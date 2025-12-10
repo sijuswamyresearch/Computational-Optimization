@@ -314,25 +314,79 @@ The simplex method uses a tableau to organize calculations:
 
 Where $s_1, s_2$ are slack variables.
 
-### Types of Linear Programming Solutions
+## Types of Linear Programming Solutions
 
-#### Unique Optimal Solution
+When we feed a problem into a solver (like the Simplex algorithm), we usually expect a single, perfect answer. But algorithms are strict logicians. If we ask for the impossible or the infinite, they will tell us exactly that. In Linear Programming, there are four distinct outcomes.
 
-When only one corner point gives the optimal objective value.
+### Unique Optimal Solution
+**The "Ideal" Scenario**
 
-#### Multiple Optimal Solutions
+This is the standard result. Geometrically, the feasible region is a polygon, and the Objective Function (the "slope" of profit or cost) cuts through the region such that it touches exactly **one** corner point (vertex) last.
 
-When multiple corner points give the same optimal objective value.
+* **Mathematical Context:** The slope of the objective function does *not* match the slope of any binding constraint.
+* **Engineering Implication:** There is exactly one best way to allocate your resources. Any deviation from this plan results in lower profit or higher cost.
 
-#### Unbounded Solution
 
-When the objective function can be improved indefinitely.
 
-#### Infeasible Problem
+### Multiple Optimal Solutions (Alternative Optima)
 
-When no point satisfies all constraints simultaneously.
+**The "Flexibility" Scenario**
 
-### Duality in Linear Programming
+Sometimes, you might get a result where the solver says: *"You can choose Point A ($x=2, y=5$) or Point B ($x=4, y=3$), and the profit is exactly the same."*
+
+* **Why this happens:** The slope of your Objective Function is **parallel** to one of the binding constraint lines. Instead of touching a single corner, the objective function lies flat against an entire edge of the feasible region.
+* **Engineering Implication:** This is actually great news for a designer! It means you have **flexibility**. Mathematically, the cost is the same, but maybe Plan A is politically easier to implement than Plan B. You can choose based on secondary factors (like aesthetics or risk) without losing optimality.
+
+
+
+### Unbounded Solution
+
+**The "Too Good to Be True" Scenario**
+
+Imagine writing a program to maximize profit, and the output is `Infinity`. While exciting, this is invariably a **modeling error**.
+
+* **Why this happens:** The feasible region is not closed (it extends infinitely in one direction), and you are trying to maximize in that direction. You have forgotten a constraint.
+* **Real-world Example:** "Maximize production." If you don't add a constraint for "Available Raw Materials" or "Factory Capacity," the math assumes you can produce infinite units.
+* **Mathematical Check:** In the Simplex tableau, this occurs when a variable can enter the basis, but no variable leaves (no positive ratio in the pivot test).
+
+
+
+### Infeasible Problem
+
+**The "Impossible" Scenario**
+
+This is the most common frustration in real-world engineering. You hit "Run," and the solver returns an error.
+
+* **Why this happens:** The constraints are contradictory. There is no overlap in the shaded regions. The Feasible Region is empty ($F = \emptyset$).
+* **Real-world Example:** "Build a warehouse that is within 5km of the city center ($x \le 5$) AND at least 10km away from residential zones ($x \ge 10$)." It is mathematically impossible to satisfy both.
+* **Debugging:** You must relax (loosen) one or more constraints to find a solution.
+
+
+## Duality in Linear Programming
+
+### The "Mirror Image" of Optimization
+
+Every Linear Programming problem (which we call the **Primal**) has a ghostly twin brother called the **Dual**.
+
+If the **Primal** problem asks: *"How do I mix these ingredients to make the most profit?"*
+The **Dual** problem asks: *"How much are these ingredients actually worth to me?"*
+
+### Why do Computer Scientists care?
+
+1.  **Computational Efficiency:** Sometimes the Primal problem has 100,000 constraints and is slow to solve. The Dual might have only 100 constraints and is much faster. Solving the Dual gives you the exact same optimal value ($Z^*$) as the Primal.
+2.  **Shadow Prices (Economic Interpretation):** The solution values of the Dual variables ($y_1, y_2...$) tell you the **Shadow Price** of your resources.
+    * *Insight:* If the shadow price of "Machine Hours" is \$50, it means acquiring **one extra hour** of machine time will increase your total profit by exactly \$50. This tells managers where to invest!
+
+### The Mathematical Transformation
+We convert a Primal to a Dual by flipping the matrix:
+* **Maximization** becomes **Minimization**.
+* **Right-Hand Side ($b$)** constants of Primal become **Objective Coefficients ($c$)** of Dual.
+* **Constraint Matrix ($A$)** is transposed ($A^T$).
+
+### Key Theorems
+
+* **Weak Duality Theorem:** The value of *any* feasible solution to the Maximization problem is always $\le$ the value of *any* feasible solution to the Minimization problem. They bound each other.
+* **Strong Duality Theorem:** If the Primal has an optimal solution, the Dual has an optimal solution, and **their Objective Values are equal** ($Z_{primal} = W_{dual}$).
 
 Every LP problem (primal) has a corresponding dual problem:
 
