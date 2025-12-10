@@ -1,0 +1,295 @@
+# 🎯 Course Vision & Context {.unnumbered}
+
+### The Optimization Revolution in Computational Sciences
+
+In an era dominated by Artificial Intelligence, Machine Learning, and Data Science, *optimization forms the fundamental backbone* that powers intelligent decision-making systems. From recommending your next movie to orchestrating global supply chains, from training deep neural networks to scheduling autonomous vehicles—optimization algorithms are the invisible engines driving technological progress.
+
+This course positions you at the intersection of *mathematical theory* and *computational practice*, equipping you with both the conceptual understanding and hands-on skills to design, implement, and deploy optimization solutions for real-world challenges.
+
+## Course Syllabus (48 Hours / 12 Weeks)
+
+### Course Overview
+
+**Course Code:** 20MAT382  
+
+**Course Name:** Computational Optimization and Applications 
+
+**Duration:** 12 Weeks (4 hours/week)  
+
+**Credits:** 4  
+
+**Total Marks:** 150 (Internal: 70 + External: 80)
+
+#### Intensive Learning Approach
+
+Accelerated project-based curriculum focusing on core optimization concepts with immediate practical application through integrated micro-projects.
+
+### Course Objectives
+
+| S.No | COURSE OBJECTIVES |
+|------|-------------------|
+| 1 | To gain a comprehensive understanding of optimization concepts and their real-world relevance, emphasizing Python as a practical tool for optimization. |
+| 2 | To develop proficiency in Python for optimization, including formulating and solving linear programming problems, implementing nonlinear optimization and analysing optimization solutions. |
+| 3 | To acquire skills in project planning and optimization techniques using Python. |
+| 4 | To master optimization techniques in the context of machine learning, including Gradient Descent, Stochastic Gradient Descent, and various optimization algorithms, all implemented in Python. |
+| 5 | To apply optimization knowledge and Python skills to solve combinatorial and graph-based problems, while also considering the ethical aspects of optimization in engineering, logistics, and decision-making. |
+
+
+## Course Outcomes
+
+At the end of the course students will be able to:
+
+
+| CO Code | COURSE OUTCOMES | REVISED BLOOM’S TAXONOMY LEVEL |
+|---------|----------------------------------------------------------------------|--------------------------------|
+| CO1 | Demonstrate a thorough understanding of optimization concepts, problem types, and their real-world applications. | 3 |
+| CO2 | Formulate and solve linear programming problems using Python. | 3 |
+| CO3 | Implement nonlinear optimization algorithms, and analyse optimization solutions using Python. | 2 |
+| CO4 | Develop practical project planning skills and proficiency in applying heuristic algorithms to real-world scenarios. | 2 |
+| CO5 | Demonstrate mastery of optimization in Machine Learning, with the ability to apply Gradient Descent, Stochastic Gradient Descent. | 3 |
+
+
+#### Core Competencies
+
+- Formulate real-world problems as mathematical optimization models
+- Implement optimization algorithms in Python using industry tools
+- Analyze and validate optimization solutions
+- Develop end-to-end optimization systems for practical applications
+
+
+### Assessment Plan (70 Marks Internal)
+
+#### Continuous Evaluation (70 Marks)
+
+**A. Theory Components (20 Marks)**
+
+- **Internal Exam 1**: 10 marks (Week 6)
+- **Internal Exam 2**: 10 marks (Week 12)
+
+**B. Practical Components (50 Marks)**
+
+- **Assignments/Micro Projects**: 15 marks (3 projects × 5 marks each)
+- **Lab Exams**: 10 marks (2 exams × 5 marks each)
+- **Day-to-Day Lab Work**: 15 marks
+- **Attendance**: 10 marks
+
+#### External Examination (80 Marks)
+
+- **End Semester Theory Exam**: 80 marks
+
+### 🗓️ 12-Week Delivery Plan (4 Hours/Week)
+
+#### Phase 1: Foundation & Linear Methods (Weeks 1-4)
+
+**Week 1: Optimization Fundamentals & Python Setup** (4 hours)
+
+- **Theory (2h)**: Optimization concepts, problem classification, LP formulation
+- **Lab (2h)**: `Python` environment setup, `PuLP` introduction
+- **Lab Work**: Basic LP implementation (1 mark)
+- **Micro-Project 1 Launch**: Campus facility location problem
+
+**Week 2: Linear Programming & Solution Methods** (4 hours)
+
+- **Theory (2h)**: Graphical method, Simplex algorithm
+- **Lab (2h)**: `PuLP` implementation, constraint handling
+- **Lab Work**: Complex constraint implementation (1 mark)
+- **Attendance**: Week 1-2 (2 marks)
+
+**Week 3: Advanced LP & Real Applications** (4 hours)
+
+- **Theory (1h)**: Sensitivity analysis, duality
+- **Lab (3h)**: Transportation problems, case studies
+- **Lab Work**: Transportation problem solution (1 mark)
+- **Micro-Project 1 Due**: Submission (5 marks)
+
+**Week 4: Nonlinear Optimization Foundations** (4 hours)
+
+- **Theory (2h)**: Unconstrained optimization, Golden Section
+- **Lab (2h)**: `SciPy` optimization, function minimization
+- **Lab Work**: Nonlinear solver implementation (1 mark)
+- **Attendance**: Week 3-4 (2 marks)
+
+#### Phase 2: Constrained & Combinatorial Methods (Weeks 5-8)
+
+**Week 5: Constrained Optimization** (4 hours)
+
+- **Theory (2h)**: KKT conditions, constraint handling
+- **Lab (2h)**: Constrained NLP implementation
+- **Lab Work**: KKT condition implementation (1 mark)
+- **Micro-Project 2 Launch**: Nonlinear cost optimization
+- **Lab Exam 1**: Basic LP/NLP implementation (5 marks)
+
+**Week 6: Project Planning & Heuristics** (4 hours)
+
+- **Theory (1h)**: CPM/PERT fundamentals
+- **Lab (3h)**: Project scheduling, greedy algorithms
+- **Internal Exam 1**: Theory assessment (10 marks)
+- **Lab Work**: Project scheduling implementation (1 mark)
+
+**Week 7: Graph Algorithms I** (4 hours)
+
+- **Theory (1h)**: Graph theory, shortest path concepts
+- **Lab (3h)**: NetworkX implementation, Dijkstra's algorithm
+- **Lab Work**: Shortest path implementation (1 mark)
+- **Micro-Project 2 Due**: Submission (5 marks)
+- **Attendance**: Week 5-7 (2 marks)
+
+**Week 8: Graph Algorithms II** (4 hours)
+
+- **Theory (1h)**: MST, network flows, TSP overview
+- **Lab (3h)**: Advanced graph algorithms
+- **Lab Work**: MST implementation (1 mark)
+- **Micro-Project 3 Launch**: Routing optimization
+
+#### Phase 3: Advanced Applications & Integration (Weeks 9-12)
+
+**Week 9: Machine Learning Optimization I** (4 hours)
+
+- **Theory (2h)**: Gradient Descent, SGD, optimization in ML
+- **Lab (2h)**: Basic GD implementation
+- **Lab Work**: Gradient descent implementation (1 mark)
+- **Attendance**: Week 8-9 (2 marks)
+
+**Week 10: Machine Learning Optimization II** (4 hours)
+
+- **Theory (1h)**: Advanced optimizers, neural networks
+- **Lab (3h)**: TensorFlow/PyTorch optimization
+- **Lab Work**: Advanced optimizer implementation (1 mark)
+- **Lab Exam 2**: Graph and ML optimization (5 marks)
+
+**Week 11: Integrated Applications** (4 hours)
+
+- **Workshop (4h)**: Comprehensive system implementation
+- **Lab Work**: Integrated system development (2 marks)
+- **Micro-Project 3 Due**: Submission (5 marks)
+
+**Week 12: Review & Final Assessment** (4 hours)
+
+- **Internal Exam 2**: Theory assessment (10 marks)
+- **Course Review**: Comprehensive concepts revision
+- **Lab Work**: Final implementation polish (1 mark)
+- **Attendance**: Week 10-12 (2 marks)
+
+###  Thematic Project: Campus City Supply Chain
+
+#### Micro-Projects (15 Marks Total)
+
+**Micro-Project 1: Basic LP Implementation** (5 marks)
+
+- **Timeline**: Week 1-3
+- **Scope**: 6 facilities, 3 warehouses, linear costs
+- **Assessment**: Model correctness (2), Code quality (2), Documentation (1)
+
+**Micro-Project 2: Nonlinear Optimization** (5 marks)
+
+- **Timeline**: Week 4-7
+- **Scope**: Enhanced cost models, KKT conditions
+- **Assessment**: Algorithm implementation (2), Analysis (2), Validation (1)
+
+**Micro-Project 3: Graph & Network Optimization** (5 marks)
+
+- **Timeline**: Week 8-11
+- **Scope**: Routing, shortest paths, resource allocation
+- **Assessment**: System design (2), Performance (2), Documentation (1)
+
+###  Detailed Mark Distribution
+
+#### Day-to-Day Lab Work (15 Marks)
+
+- **Weekly Implementation Tasks**: 12 marks (1 mark × 12 weeks)
+- **Integrated System Development**: 3 marks (Week 11)
+
+#### Attendance (10 Marks)
+
+- **Weekly Attendance**: 2 marks per 3-week block
+- **Full Attendance Bonus**: 2 marks for 100% attendance
+
+#### Lab Exams (10 Marks)
+
+- **Lab Exam 1** (Week 5): Basic LP/NLP implementation (5 marks)
+- **Lab Exam 2** (Week 10): Graph and ML optimization (5 marks)
+
+#### Internal Exams (20 Marks)
+
+- **Internal Exam 1** (Week 6): Modules 1-2 theory (10 marks)
+- **Internal Exam 2** (Week 11): Modules 3-4 theory (10 marks)
+
+###  Learning Outcomes Mapping
+
+#### Theory Outcomes (Internal Exams + External)
+
+- Formulate optimization problems mathematically
+- Understand algorithm properties and convergence
+- Analyze problem structures and solution methods
+
+#### Practical Outcomes (Lab Work + Projects)
+
+- Implement optimization algorithms in Python
+- Develop end-to-end optimization systems
+- Validate and analyze optimization results
+- Create professional documentation and visualizations
+
+###  Grading Rubrics
+
+#### Micro-Projects (5 marks each)
+
+- **Excellent (5)**: Flawless implementation with advanced features
+- **Very Good (4)**: Correct implementation with good documentation
+- **Good (3)**: Basic functionality with minor issues
+- **Satisfactory (2)**: Meets minimum requirements
+- **Poor (1)**: Significant functionality missing
+
+#### Lab Work (Weekly 1 mark)
+
+- **Complete (1)**: Task fully implemented and demonstrated
+- **Partial (0.5)**: Basic implementation with issues
+- **Incomplete (0)**: Task not attempted or completely non-functional
+
+#### Lab Exams (5 marks each)
+
+- **Algorithm Implementation**: 2 marks
+- **Problem Solving**: 2 marks
+- **Code Quality**: 1 mark
+
+###  Success Strategy
+
+#### Maximizing Internal Marks
+
+- **Consistent Attendance**: 10 marks easily achievable
+- **Regular Lab Work**: 15 marks through weekly completion
+- **Quality Projects**: 15 marks with careful implementation
+- **Lab Exam Preparation**: 10 marks with practice
+- **Internal Exam Focus**: 20 marks through concept mastery
+
+#### External Exam Preparation (80 Marks)
+
+- Comprehensive theory coverage from all modules
+- Problem-solving practice with various optimization types
+- Mathematical formulation skills
+- Algorithm analysis and comparison
+
+###  Weekly Preparation Guide
+
+#### Before Each Week
+
+- Review weekly objectives and deliverables
+- Prepare development environment
+- Read theoretical concepts in advance
+
+#### During Each Week
+
+- Attend all sessions (critical for attendance marks)
+- Complete lab work during sessions
+- Start micro-projects early
+- Seek clarification immediately
+
+#### After Each Week
+
+- Submit all lab work promptly
+- Review concepts for internal exams
+- Prepare for upcoming assessments
+- Maintain code repository
+
+---
+
+*This assessment-focused syllabus ensures students can maximize their 70 internal marks through consistent performance while preparing comprehensively for the 80-mark external examination. The structured approach balances theoretical understanding with practical implementation skills.*

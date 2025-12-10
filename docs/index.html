@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.31">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Siju Swamy">
+<meta name="dcterms.date" content="2025-11-17">
+
+<title>Computational Optimization &amp; Applications</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./intro.html" rel="next">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-c39790739b795761a025db3e98f5af6a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">🎯 Course Vision &amp; Context</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Computational Optimization &amp; Applications</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">🎯 Course Vision &amp; Context</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction to Computational Optimization and Applications</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Module-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Module 1: Basics of Optimization and Linear Programming</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#course-vision-context" id="toc-course-vision-context" class="nav-link active" data-scroll-target="#course-vision-context">🎯 Course Vision &amp; Context</a>
+  <ul class="collapse">
+  <li><a href="#the-optimization-revolution-in-computational-sciences" id="toc-the-optimization-revolution-in-computational-sciences" class="nav-link" data-scroll-target="#the-optimization-revolution-in-computational-sciences">The Optimization Revolution in Computational Sciences</a></li>
+  <li><a href="#course-syllabus-48-hours-12-weeks" id="toc-course-syllabus-48-hours-12-weeks" class="nav-link" data-scroll-target="#course-syllabus-48-hours-12-weeks">Course Syllabus (48 Hours / 12 Weeks)</a>
+  <ul class="collapse">
+  <li><a href="#course-overview" id="toc-course-overview" class="nav-link" data-scroll-target="#course-overview">Course Overview</a></li>
+  <li><a href="#course-objectives" id="toc-course-objectives" class="nav-link" data-scroll-target="#course-objectives">Course Objectives</a></li>
+  </ul></li>
+  <li><a href="#course-outcomes" id="toc-course-outcomes" class="nav-link" data-scroll-target="#course-outcomes">Course Outcomes</a>
+  <ul class="collapse">
+  <li><a href="#assessment-plan-70-marks-internal" id="toc-assessment-plan-70-marks-internal" class="nav-link" data-scroll-target="#assessment-plan-70-marks-internal">Assessment Plan (70 Marks Internal)</a></li>
+  <li><a href="#week-delivery-plan-4-hoursweek" id="toc-week-delivery-plan-4-hoursweek" class="nav-link" data-scroll-target="#week-delivery-plan-4-hoursweek">🗓️ 12-Week Delivery Plan (4 Hours/Week)</a></li>
+  <li><a href="#thematic-project-campus-city-supply-chain" id="toc-thematic-project-campus-city-supply-chain" class="nav-link" data-scroll-target="#thematic-project-campus-city-supply-chain">Thematic Project: Campus City Supply Chain</a></li>
+  <li><a href="#detailed-mark-distribution" id="toc-detailed-mark-distribution" class="nav-link" data-scroll-target="#detailed-mark-distribution">Detailed Mark Distribution</a></li>
+  <li><a href="#learning-outcomes-mapping" id="toc-learning-outcomes-mapping" class="nav-link" data-scroll-target="#learning-outcomes-mapping">Learning Outcomes Mapping</a></li>
+  <li><a href="#grading-rubrics" id="toc-grading-rubrics" class="nav-link" data-scroll-target="#grading-rubrics">Grading Rubrics</a></li>
+  <li><a href="#success-strategy" id="toc-success-strategy" class="nav-link" data-scroll-target="#success-strategy">Success Strategy</a></li>
+  <li><a href="#weekly-preparation-guide" id="toc-weekly-preparation-guide" class="nav-link" data-scroll-target="#weekly-preparation-guide">Weekly Preparation Guide</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Computational Optimization &amp; Applications</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Siju Swamy </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">November 17, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="course-vision-context" class="level1 unnumbered">
+<h1 class="unnumbered">🎯 Course Vision &amp; Context</h1>
+<section id="the-optimization-revolution-in-computational-sciences" class="level3">
+<h3 class="anchored" data-anchor-id="the-optimization-revolution-in-computational-sciences">The Optimization Revolution in Computational Sciences</h3>
+<p>In an era dominated by Artificial Intelligence, Machine Learning, and Data Science, <em>optimization forms the fundamental backbone</em> that powers intelligent decision-making systems. From recommending your next movie to orchestrating global supply chains, from training deep neural networks to scheduling autonomous vehicles—optimization algorithms are the invisible engines driving technological progress.</p>
+<p>This course positions you at the intersection of <em>mathematical theory</em> and <em>computational practice</em>, equipping you with both the conceptual understanding and hands-on skills to design, implement, and deploy optimization solutions for real-world challenges.</p>
+</section>
+<section id="course-syllabus-48-hours-12-weeks" class="level2">
+<h2 class="anchored" data-anchor-id="course-syllabus-48-hours-12-weeks">Course Syllabus (48 Hours / 12 Weeks)</h2>
+<section id="course-overview" class="level3">
+<h3 class="anchored" data-anchor-id="course-overview">Course Overview</h3>
+<p><strong>Course Code:</strong> 20MAT382</p>
+<p><strong>Course Name:</strong> Computational Optimization and Applications</p>
+<p><strong>Duration:</strong> 12 Weeks (4 hours/week)</p>
+<p><strong>Credits:</strong> 4</p>
+<p><strong>Total Marks:</strong> 150 (Internal: 70 + External: 80)</p>
+<section id="intensive-learning-approach" class="level4">
+<h4 class="anchored" data-anchor-id="intensive-learning-approach">Intensive Learning Approach</h4>
+<p>Accelerated project-based curriculum focusing on core optimization concepts with immediate practical application through integrated micro-projects.</p>
+</section>
+</section>
+<section id="course-objectives" class="level3">
+<h3 class="anchored" data-anchor-id="course-objectives">Course Objectives</h3>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 76%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>S.No</th>
+<th>COURSE OBJECTIVES</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>To gain a comprehensive understanding of optimization concepts and their real-world relevance, emphasizing Python as a practical tool for optimization.</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>To develop proficiency in Python for optimization, including formulating and solving linear programming problems, implementing nonlinear optimization and analysing optimization solutions.</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>To acquire skills in project planning and optimization techniques using Python.</td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>To master optimization techniques in the context of machine learning, including Gradient Descent, Stochastic Gradient Descent, and various optimization algorithms, all implemented in Python.</td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>To apply optimization knowledge and Python skills to solve combinatorial and graph-based problems, while also considering the ethical aspects of optimization in engineering, logistics, and decision-making.</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="course-outcomes" class="level2">
+<h2 class="anchored" data-anchor-id="course-outcomes">Course Outcomes</h2>
+<p>At the end of the course students will be able to:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 8%">
+<col style="width: 63%">
+<col style="width: 28%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>CO Code</th>
+<th>COURSE OUTCOMES</th>
+<th>REVISED BLOOM’S TAXONOMY LEVEL</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>CO1</td>
+<td>Demonstrate a thorough understanding of optimization concepts, problem types, and their real-world applications.</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>CO2</td>
+<td>Formulate and solve linear programming problems using Python.</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td>CO3</td>
+<td>Implement nonlinear optimization algorithms, and analyse optimization solutions using Python.</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>CO4</td>
+<td>Develop practical project planning skills and proficiency in applying heuristic algorithms to real-world scenarios.</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>CO5</td>
+<td>Demonstrate mastery of optimization in Machine Learning, with the ability to apply Gradient Descent, Stochastic Gradient Descent.</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<section id="core-competencies" class="level4">
+<h4 class="anchored" data-anchor-id="core-competencies">Core Competencies</h4>
+<ul>
+<li>Formulate real-world problems as mathematical optimization models</li>
+<li>Implement optimization algorithms in Python using industry tools</li>
+<li>Analyze and validate optimization solutions</li>
+<li>Develop end-to-end optimization systems for practical applications</li>
+</ul>
+</section>
+<section id="assessment-plan-70-marks-internal" class="level3">
+<h3 class="anchored" data-anchor-id="assessment-plan-70-marks-internal">Assessment Plan (70 Marks Internal)</h3>
+<section id="continuous-evaluation-70-marks" class="level4">
+<h4 class="anchored" data-anchor-id="continuous-evaluation-70-marks">Continuous Evaluation (70 Marks)</h4>
+<p><strong>A. Theory Components (20 Marks)</strong></p>
+<ul>
+<li><strong>Internal Exam 1</strong>: 10 marks (Week 6)</li>
+<li><strong>Internal Exam 2</strong>: 10 marks (Week 12)</li>
+</ul>
+<p><strong>B. Practical Components (50 Marks)</strong></p>
+<ul>
+<li><strong>Assignments/Micro Projects</strong>: 15 marks (3 projects × 5 marks each)</li>
+<li><strong>Lab Exams</strong>: 10 marks (2 exams × 5 marks each)</li>
+<li><strong>Day-to-Day Lab Work</strong>: 15 marks</li>
+<li><strong>Attendance</strong>: 10 marks</li>
+</ul>
+</section>
+<section id="external-examination-80-marks" class="level4">
+<h4 class="anchored" data-anchor-id="external-examination-80-marks">External Examination (80 Marks)</h4>
+<ul>
+<li><strong>End Semester Theory Exam</strong>: 80 marks</li>
+</ul>
+</section>
+</section>
+<section id="week-delivery-plan-4-hoursweek" class="level3">
+<h3 class="anchored" data-anchor-id="week-delivery-plan-4-hoursweek">🗓️ 12-Week Delivery Plan (4 Hours/Week)</h3>
+<section id="phase-1-foundation-linear-methods-weeks-1-4" class="level4">
+<h4 class="anchored" data-anchor-id="phase-1-foundation-linear-methods-weeks-1-4">Phase 1: Foundation &amp; Linear Methods (Weeks 1-4)</h4>
+<p><strong>Week 1: Optimization Fundamentals &amp; Python Setup</strong> (4 hours)</p>
+<ul>
+<li><strong>Theory (2h)</strong>: Optimization concepts, problem classification, LP formulation</li>
+<li><strong>Lab (2h)</strong>: <code>Python</code> environment setup, <code>PuLP</code> introduction</li>
+<li><strong>Lab Work</strong>: Basic LP implementation (1 mark)</li>
+<li><strong>Micro-Project 1 Launch</strong>: Campus facility location problem</li>
+</ul>
+<p><strong>Week 2: Linear Programming &amp; Solution Methods</strong> (4 hours)</p>
+<ul>
+<li><strong>Theory (2h)</strong>: Graphical method, Simplex algorithm</li>
+<li><strong>Lab (2h)</strong>: <code>PuLP</code> implementation, constraint handling</li>
+<li><strong>Lab Work</strong>: Complex constraint implementation (1 mark)</li>
+<li><strong>Attendance</strong>: Week 1-2 (2 marks)</li>
+</ul>
+<p><strong>Week 3: Advanced LP &amp; Real Applications</strong> (4 hours)</p>
+<ul>
+<li><strong>Theory (1h)</strong>: Sensitivity analysis, duality</li>
+<li><strong>Lab (3h)</strong>: Transportation problems, case studies</li>
+<li><strong>Lab Work</strong>: Transportation problem solution (1 mark)</li>
+<li><strong>Micro-Project 1 Due</strong>: Submission (5 marks)</li>
+</ul>
+<p><strong>Week 4: Nonlinear Optimization Foundations</strong> (4 hours)</p>
+<ul>
+<li><strong>Theory (2h)</strong>: Unconstrained optimization, Golden Section</li>
+<li><strong>Lab (2h)</strong>: <code>SciPy</code> optimization, function minimization</li>
+<li><strong>Lab Work</strong>: Nonlinear solver implementation (1 mark)</li>
+<li><strong>Attendance</strong>: Week 3-4 (2 marks)</li>
+</ul>
+</section>
+<section id="phase-2-constrained-combinatorial-methods-weeks-5-8" class="level4">
+<h4 class="anchored" data-anchor-id="phase-2-constrained-combinatorial-methods-weeks-5-8">Phase 2: Constrained &amp; Combinatorial Methods (Weeks 5-8)</h4>
+<p><strong>Week 5: Constrained Optimization</strong> (4 hours)</p>
+<ul>
+<li><strong>Theory (2h)</strong>: KKT conditions, constraint handling</li>
+<li><strong>Lab (2h)</strong>: Constrained NLP implementation</li>
+<li><strong>Lab Work</strong>: KKT condition implementation (1 mark)</li>
+<li><strong>Micro-Project 2 Launch</strong>: Nonlinear cost optimization</li>
+<li><strong>Lab Exam 1</strong>: Basic LP/NLP implementation (5 marks)</li>
+</ul>
+<p><strong>Week 6: Project Planning &amp; Heuristics</strong> (4 hours)</p>
+<ul>
+<li><strong>Theory (1h)</strong>: CPM/PERT fundamentals</li>
+<li><strong>Lab (3h)</strong>: Project scheduling, greedy algorithms</li>
+<li><strong>Internal Exam 1</strong>: Theory assessment (10 marks)</li>
+<li><strong>Lab Work</strong>: Project scheduling implementation (1 mark)</li>
+</ul>
+<p><strong>Week 7: Graph Algorithms I</strong> (4 hours)</p>
+<ul>
+<li><strong>Theory (1h)</strong>: Graph theory, shortest path concepts</li>
+<li><strong>Lab (3h)</strong>: NetworkX implementation, Dijkstra’s algorithm</li>
+<li><strong>Lab Work</strong>: Shortest path implementation (1 mark)</li>
+<li><strong>Micro-Project 2 Due</strong>: Submission (5 marks)</li>
+<li><strong>Attendance</strong>: Week 5-7 (2 marks)</li>
+</ul>
+<p><strong>Week 8: Graph Algorithms II</strong> (4 hours)</p>
+<ul>
+<li><strong>Theory (1h)</strong>: MST, network flows, TSP overview</li>
+<li><strong>Lab (3h)</strong>: Advanced graph algorithms</li>
+<li><strong>Lab Work</strong>: MST implementation (1 mark)</li>
+<li><strong>Micro-Project 3 Launch</strong>: Routing optimization</li>
+</ul>
+</section>
+<section id="phase-3-advanced-applications-integration-weeks-9-12" class="level4">
+<h4 class="anchored" data-anchor-id="phase-3-advanced-applications-integration-weeks-9-12">Phase 3: Advanced Applications &amp; Integration (Weeks 9-12)</h4>
+<p><strong>Week 9: Machine Learning Optimization I</strong> (4 hours)</p>
+<ul>
+<li><strong>Theory (2h)</strong>: Gradient Descent, SGD, optimization in ML</li>
+<li><strong>Lab (2h)</strong>: Basic GD implementation</li>
+<li><strong>Lab Work</strong>: Gradient descent implementation (1 mark)</li>
+<li><strong>Attendance</strong>: Week 8-9 (2 marks)</li>
+</ul>
+<p><strong>Week 10: Machine Learning Optimization II</strong> (4 hours)</p>
+<ul>
+<li><strong>Theory (1h)</strong>: Advanced optimizers, neural networks</li>
+<li><strong>Lab (3h)</strong>: TensorFlow/PyTorch optimization</li>
+<li><strong>Lab Work</strong>: Advanced optimizer implementation (1 mark)</li>
+<li><strong>Lab Exam 2</strong>: Graph and ML optimization (5 marks)</li>
+</ul>
+<p><strong>Week 11: Integrated Applications</strong> (4 hours)</p>
+<ul>
+<li><strong>Workshop (4h)</strong>: Comprehensive system implementation</li>
+<li><strong>Lab Work</strong>: Integrated system development (2 marks)</li>
+<li><strong>Micro-Project 3 Due</strong>: Submission (5 marks)</li>
+</ul>
+<p><strong>Week 12: Review &amp; Final Assessment</strong> (4 hours)</p>
+<ul>
+<li><strong>Internal Exam 2</strong>: Theory assessment (10 marks)</li>
+<li><strong>Course Review</strong>: Comprehensive concepts revision</li>
+<li><strong>Lab Work</strong>: Final implementation polish (1 mark)</li>
+<li><strong>Attendance</strong>: Week 10-12 (2 marks)</li>
+</ul>
+</section>
+</section>
+<section id="thematic-project-campus-city-supply-chain" class="level3">
+<h3 class="anchored" data-anchor-id="thematic-project-campus-city-supply-chain">Thematic Project: Campus City Supply Chain</h3>
+<section id="micro-projects-15-marks-total" class="level4">
+<h4 class="anchored" data-anchor-id="micro-projects-15-marks-total">Micro-Projects (15 Marks Total)</h4>
+<p><strong>Micro-Project 1: Basic LP Implementation</strong> (5 marks)</p>
+<ul>
+<li><strong>Timeline</strong>: Week 1-3</li>
+<li><strong>Scope</strong>: 6 facilities, 3 warehouses, linear costs</li>
+<li><strong>Assessment</strong>: Model correctness (2), Code quality (2), Documentation (1)</li>
+</ul>
+<p><strong>Micro-Project 2: Nonlinear Optimization</strong> (5 marks)</p>
+<ul>
+<li><strong>Timeline</strong>: Week 4-7</li>
+<li><strong>Scope</strong>: Enhanced cost models, KKT conditions</li>
+<li><strong>Assessment</strong>: Algorithm implementation (2), Analysis (2), Validation (1)</li>
+</ul>
+<p><strong>Micro-Project 3: Graph &amp; Network Optimization</strong> (5 marks)</p>
+<ul>
+<li><strong>Timeline</strong>: Week 8-11</li>
+<li><strong>Scope</strong>: Routing, shortest paths, resource allocation</li>
+<li><strong>Assessment</strong>: System design (2), Performance (2), Documentation (1)</li>
+</ul>
+</section>
+</section>
+<section id="detailed-mark-distribution" class="level3">
+<h3 class="anchored" data-anchor-id="detailed-mark-distribution">Detailed Mark Distribution</h3>
+<section id="day-to-day-lab-work-15-marks" class="level4">
+<h4 class="anchored" data-anchor-id="day-to-day-lab-work-15-marks">Day-to-Day Lab Work (15 Marks)</h4>
+<ul>
+<li><strong>Weekly Implementation Tasks</strong>: 12 marks (1 mark × 12 weeks)</li>
+<li><strong>Integrated System Development</strong>: 3 marks (Week 11)</li>
+</ul>
+</section>
+<section id="attendance-10-marks" class="level4">
+<h4 class="anchored" data-anchor-id="attendance-10-marks">Attendance (10 Marks)</h4>
+<ul>
+<li><strong>Weekly Attendance</strong>: 2 marks per 3-week block</li>
+<li><strong>Full Attendance Bonus</strong>: 2 marks for 100% attendance</li>
+</ul>
+</section>
+<section id="lab-exams-10-marks" class="level4">
+<h4 class="anchored" data-anchor-id="lab-exams-10-marks">Lab Exams (10 Marks)</h4>
+<ul>
+<li><strong>Lab Exam 1</strong> (Week 5): Basic LP/NLP implementation (5 marks)</li>
+<li><strong>Lab Exam 2</strong> (Week 10): Graph and ML optimization (5 marks)</li>
+</ul>
+</section>
+<section id="internal-exams-20-marks" class="level4">
+<h4 class="anchored" data-anchor-id="internal-exams-20-marks">Internal Exams (20 Marks)</h4>
+<ul>
+<li><strong>Internal Exam 1</strong> (Week 6): Modules 1-2 theory (10 marks)</li>
+<li><strong>Internal Exam 2</strong> (Week 11): Modules 3-4 theory (10 marks)</li>
+</ul>
+</section>
+</section>
+<section id="learning-outcomes-mapping" class="level3">
+<h3 class="anchored" data-anchor-id="learning-outcomes-mapping">Learning Outcomes Mapping</h3>
+<section id="theory-outcomes-internal-exams-external" class="level4">
+<h4 class="anchored" data-anchor-id="theory-outcomes-internal-exams-external">Theory Outcomes (Internal Exams + External)</h4>
+<ul>
+<li>Formulate optimization problems mathematically</li>
+<li>Understand algorithm properties and convergence</li>
+<li>Analyze problem structures and solution methods</li>
+</ul>
+</section>
+<section id="practical-outcomes-lab-work-projects" class="level4">
+<h4 class="anchored" data-anchor-id="practical-outcomes-lab-work-projects">Practical Outcomes (Lab Work + Projects)</h4>
+<ul>
+<li>Implement optimization algorithms in Python</li>
+<li>Develop end-to-end optimization systems</li>
+<li>Validate and analyze optimization results</li>
+<li>Create professional documentation and visualizations</li>
+</ul>
+</section>
+</section>
+<section id="grading-rubrics" class="level3">
+<h3 class="anchored" data-anchor-id="grading-rubrics">Grading Rubrics</h3>
+<section id="micro-projects-5-marks-each" class="level4">
+<h4 class="anchored" data-anchor-id="micro-projects-5-marks-each">Micro-Projects (5 marks each)</h4>
+<ul>
+<li><strong>Excellent (5)</strong>: Flawless implementation with advanced features</li>
+<li><strong>Very Good (4)</strong>: Correct implementation with good documentation</li>
+<li><strong>Good (3)</strong>: Basic functionality with minor issues</li>
+<li><strong>Satisfactory (2)</strong>: Meets minimum requirements</li>
+<li><strong>Poor (1)</strong>: Significant functionality missing</li>
+</ul>
+</section>
+<section id="lab-work-weekly-1-mark" class="level4">
+<h4 class="anchored" data-anchor-id="lab-work-weekly-1-mark">Lab Work (Weekly 1 mark)</h4>
+<ul>
+<li><strong>Complete (1)</strong>: Task fully implemented and demonstrated</li>
+<li><strong>Partial (0.5)</strong>: Basic implementation with issues</li>
+<li><strong>Incomplete (0)</strong>: Task not attempted or completely non-functional</li>
+</ul>
+</section>
+<section id="lab-exams-5-marks-each" class="level4">
+<h4 class="anchored" data-anchor-id="lab-exams-5-marks-each">Lab Exams (5 marks each)</h4>
+<ul>
+<li><strong>Algorithm Implementation</strong>: 2 marks</li>
+<li><strong>Problem Solving</strong>: 2 marks</li>
+<li><strong>Code Quality</strong>: 1 mark</li>
+</ul>
+</section>
+</section>
+<section id="success-strategy" class="level3">
+<h3 class="anchored" data-anchor-id="success-strategy">Success Strategy</h3>
+<section id="maximizing-internal-marks" class="level4">
+<h4 class="anchored" data-anchor-id="maximizing-internal-marks">Maximizing Internal Marks</h4>
+<ul>
+<li><strong>Consistent Attendance</strong>: 10 marks easily achievable</li>
+<li><strong>Regular Lab Work</strong>: 15 marks through weekly completion</li>
+<li><strong>Quality Projects</strong>: 15 marks with careful implementation</li>
+<li><strong>Lab Exam Preparation</strong>: 10 marks with practice</li>
+<li><strong>Internal Exam Focus</strong>: 20 marks through concept mastery</li>
+</ul>
+</section>
+<section id="external-exam-preparation-80-marks" class="level4">
+<h4 class="anchored" data-anchor-id="external-exam-preparation-80-marks">External Exam Preparation (80 Marks)</h4>
+<ul>
+<li>Comprehensive theory coverage from all modules</li>
+<li>Problem-solving practice with various optimization types</li>
+<li>Mathematical formulation skills</li>
+<li>Algorithm analysis and comparison</li>
+</ul>
+</section>
+</section>
+<section id="weekly-preparation-guide" class="level3">
+<h3 class="anchored" data-anchor-id="weekly-preparation-guide">Weekly Preparation Guide</h3>
+<section id="before-each-week" class="level4">
+<h4 class="anchored" data-anchor-id="before-each-week">Before Each Week</h4>
+<ul>
+<li>Review weekly objectives and deliverables</li>
+<li>Prepare development environment</li>
+<li>Read theoretical concepts in advance</li>
+</ul>
+</section>
+<section id="during-each-week" class="level4">
+<h4 class="anchored" data-anchor-id="during-each-week">During Each Week</h4>
+<ul>
+<li>Attend all sessions (critical for attendance marks)</li>
+<li>Complete lab work during sessions</li>
+<li>Start micro-projects early</li>
+<li>Seek clarification immediately</li>
+</ul>
+</section>
+<section id="after-each-week" class="level4">
+<h4 class="anchored" data-anchor-id="after-each-week">After Each Week</h4>
+<ul>
+<li>Submit all lab work promptly</li>
+<li>Review concepts for internal exams</li>
+<li>Prepare for upcoming assessments</li>
+<li>Maintain code repository</li>
+</ul>
+<hr>
+<p><em>This assessment-focused syllabus ensures students can maximize their 70 internal marks through consistent performance while preparing comprehensively for the 80-mark external examination. The structured approach balances theoretical understanding with practical implementation skills.</em></p>
+
+
+</section>
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./intro.html" class="pagination-link" aria-label="Introduction to Computational Optimization and Applications">
+        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction to Computational Optimization and Applications</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

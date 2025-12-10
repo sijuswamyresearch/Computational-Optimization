@@ -1,0 +1,13 @@
+source,target,distance_m,mode_type,capacity_pax_min,condition
+0,3,350,road,120,good
+0,1,400,road,150,good
+3,8,150,path,80,narrow
+1,2,200,road,200,excellent
+2,7,150,road,150,good
+1,4,300,path,60,stairs
+4,7,450,road,100,poor
+3,5,300,road,120,good
+5,8,250,path,80,flat
+8,6,200,road,300,excellent
+7,9,400,road,500,highway
+6,9,500,road,500,highway

@@ -1,0 +1,11 @@
+node_id,name,type,x,y,elevation_m
+0,Main Gate,Entry/Exit,0,0,10
+1,Admin Block,Academic,200,300,12
+2,Library,Academic,400,300,15
+3,Student Center,Social,300,100,10
+4,Dorm A (North),Residential,200,600,20
+5,Dorm B (South),Residential,300,-200,8
+6,Sports Complex,Social,600,0,10
+7,Engg Dept,Academic,500,400,18
+8,Cafeteria,Social,400,0,10
+9,Research Park,Industry,800,300,25

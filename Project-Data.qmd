@@ -1,0 +1,277 @@
+---
+title: "Campus City Dataset: Technical Specification"
+format: html
+jupyter: python3
+---
+
+## Dataset Overview
+
+### Project Context
+
+The **Campus City Dataset** is a comprehensive, synthetic urban logistics dataset designed specifically for teaching computational optimization. It simulates a university campus and surrounding community, providing realistic but controlled data for optimization exercises across all course modules.
+
+### Geographic Scope
+
+- **Location**: Simulated urban university environment
+- **Area**: 5 km² campus and surrounding community  
+- **Population**: 25,000 students + 15,000 residents
+- **Time Scale**: 240 operational days (academic year)
+
+## Core Data Entities
+
+###  Facilities Network (15 Locations)
+
+| Facility ID | Facility Name | Type | Latitude | Longitude | Daily Demand | Capacity | Priority |
+|-------------|---------------|------|----------|-----------|-------------|----------|----------|
+| MED_CENTER | Campus Medical Center | Hospital | 40.8075 | -73.9626 | 80 | 150 | Critical |
+| LOCAL_HOSPITAL | Community Hospital | Hospital | 40.8090 | -73.9580 | 90 | 130 | Critical |
+| ENG_BUILDING | Engineering Building | Academic | 40.8100 | -73.9600 | 30 | 80 | High |
+| SCIENCE_HALL | Science Hall | Academic | 40.8050 | -73.9650 | 35 | 90 | High |
+| LIBRARY | Main Library | Academic | 40.8085 | -73.9630 | 25 | 70 | High |
+| DORM_A | North Dormitory | Residential | 40.8120 | -73.9590 | 55 | 120 | Medium |
+| DORM_B | South Dormitory | Residential | 40.8030 | -73.9660 | 45 | 110 | Medium |
+| COMM_CENTER | Community Center | Community | 40.8060 | -73.9610 | 40 | 85 | Medium |
+| PUBLIC_SCHOOL | Local Public School | School | 40.8020 | -73.9670 | 35 | 95 | High |
+| STADIUM | University Stadium | Recreational | 40.8040 | -73.9640 | 20 | 60 | Low |
+| ADMIN_BUILDING | Administration Building | Administrative | 40.8070 | -73.9630 | 15 | 50 | Medium |
+| ARTS_CENTER | Performing Arts Center | Arts | 40.8080 | -73.9610 | 25 | 65 | Low |
+| CAFETERIA | Main Cafeteria | Dining | 40.8065 | -73.9640 | 65 | 100 | High |
+| GYMNASIUM | Campus Gymnasium | Recreational | 40.8055 | -73.9620 | 30 | 75 | Medium |
+| RESEARCH_LAB | Research Laboratory | Research | 40.8095 | -73.9595 | 20 | 55 | High |
+
+###  Warehouse Infrastructure (5 Locations)
+
+| Warehouse ID | Warehouse Name | Latitude | Longitude | Daily Capacity | Construction Cost | Operational Cost/Day |
+|--------------|---------------|----------|-----------|---------------|------------------|---------------------|
+| WH_NORTH | North Campus Warehouse | 40.8125 | -73.9626 | 400 | $300,000 | $800 |
+| WH_SOUTH | South Campus Warehouse | 40.8025 | -73.9626 | 350 | $280,000 | $700 |
+| WH_EAST | East Gate Warehouse | 40.8075 | -73.9570 | 450 | $320,000 | $900 |
+| WH_WEST | West Gate Warehouse | 40.8075 | -73.9680 | 300 | $250,000 | $600 |
+| WH_CENTRAL | Central Storage | 40.8075 | -73.9626 | 500 | $350,000 | $1,000 |
+
+###  Transportation Cost Structure
+
+| Cost Component | Value | Description |
+|---------------|-------|-------------|
+| Base Rate | $1.50 per unit-km | Variable cost based on distance |
+| Fixed Cost | $3.00 per shipment | Loading/unloading fixed cost |
+| Minimum Cost | $2.00 per unit | Regardless of distance |
+| Calculation Method | Haversine formula | Geographic distance accuracy |
+
+###  Sample Transportation Costs
+
+| From Warehouse | To Facility | Distance (km) | Cost per Unit |
+|---------------|-------------|---------------|---------------|
+| WH_NORTH | MED_CENTER | 0.62 | $3.93 |
+| WH_NORTH | ENG_BUILDING | 0.45 | $3.68 |
+| WH_EAST | LOCAL_HOSPITAL | 1.20 | $4.80 |
+| WH_CENTRAL | DORM_A | 0.50 | $3.75 |
+| WH_SOUTH | PUBLIC_SCHOOL | 0.85 | $4.28 |
+| WH_WEST | SCIENCE_HALL | 1.35 | $5.03 |
+
+###  Demand Patterns by Facility Type
+
+| Facility Type | Base Demand Range | Seasonal Variation | Priority Distribution |
+|---------------|------------------|-------------------|---------------------|
+| Hospital | 80-90 units | ±10% | Critical (100%) |
+| Academic | 25-35 units | ±15% | High (80%), Medium (20%) |
+| Residential | 45-55 units | ±12% | Medium (70%), High (30%) |
+| Community | 20-40 units | ±20% | Medium (60%), Low (40%) |
+| Recreational | 20-30 units | ±25% | Low (70%), Medium (30%) |
+
+###  Seasonal Demand Variations
+
+| Period | Academic Demand | Residential Demand | Hospital Demand | Community Demand |
+|--------|----------------|-------------------|----------------|-----------------|
+| Normal | Base | Base | Base | Base |
+| Semester Start | +15% | +10% | +5% | +8% |
+| Examination | +25% | -5% | +10% | -10% |
+| Summer | -40% | -30% | -15% | +20% |
+| Emergency | +5% | +5% | +200% | +50% |
+
+## Technical Implementation
+
+### Module-Specific Data Subsets
+
+#### Module 1: Linear Programming (Weeks 1-4)
+
+| Component | Selection | Constraints | Complexity |
+|-----------|-----------|-------------|------------|
+| Facilities | 6 (MED_CENTER, ENG_BUILDING, SCIENCE_HALL, DORM_A, LIBRARY, COMM_CENTER) | Basic capacity | Linear |
+| Warehouses | 3 (WH_NORTH, WH_SOUTH, WH_EAST) | Budget: $800,000 | Single period |
+| Costs | Linear transportation | Demand satisfaction | Basic LP |
+
+#### Module 2: Nonlinear Optimization (Weeks 4-7)
+
+| Component | Selection | Constraints | Complexity |
+|-----------|-----------|-------------|------------|
+| Facilities | 10 (all except stadium and specialized) | Nonlinear costs | Multi-period |
+| Warehouses | 4 (all except WH_WEST) | KKT conditions | Environmental |
+| Costs | Enhanced models | Capacity limits | Advanced NLP |
+
+#### Module 3: Graph Algorithms (Weeks 7-9)
+
+| Component | Selection | Constraints | Complexity |
+|-----------|-----------|-------------|------------|
+| Facilities | 12 (all core facilities) | Routing constraints | Network flows |
+| Warehouses | 5 (complete set) | Network optimization | Combinatorial |
+| Costs | Full matrix | Graph-based | System integration |
+
+### Data Validation & Feasibility
+
+| Metric | Value | Status |
+|--------|-------|--------|
+| Total Daily Demand | 485 units | ✅ Within capacity |
+| Total Warehouse Capacity | 2000 units | ✅ Sufficient |
+| Capacity Utilization | 24.25% | ✅ Optimal range |
+| Budget Headroom | 35% above estimated | ✅ Feasible |
+| Network Connectivity | All locations connected | ✅ Accessible |
+
+## Pedagogical Features
+
+### Progressive Complexity Across Modules
+
+| Module | Problem Type | Data Complexity | Skills Focus |
+|--------|-------------|-----------------|-------------|
+| 1 | Linear Programming | 6 facilities, 3 warehouses | Formulation, Basic implementation |
+| 2 | Nonlinear Optimization | 10 facilities, 4 warehouses | Advanced modeling, KKT conditions |
+| 3 | Graph Algorithms | 12 facilities, 5 warehouses | Network optimization, Routing |
+| Integrated | Multi-objective | Full dataset (15 facilities) | System design, ML integration |
+
+### Real-World Characteristics
+
+| Feature | Implementation | Educational Value |
+|---------|----------------|------------------|
+| Geographic realism | Actual coordinate-based distances | Spatial optimization skills |
+| Economic realism | Plausible cost structures | Business context understanding |
+| Operational realism | Capacity and demand balancing | Resource management |
+| Temporal realism | Seasonal variations | Dynamic optimization |
+
+## Learning Application
+
+### Micro-Project Data Usage
+
+| Micro-Project | Timeline | Data Subset | Key Learning Objectives |
+|---------------|----------|-------------|------------------------|
+| MP1: Basic LP | Weeks 1-3 | Module 1 subset | LP formulation, Constraint modeling, Cost optimization |
+| MP2: Nonlinear | Weeks 4-7 | Enhanced dataset | Nonlinear costs, KKT conditions, Sensitivity analysis |
+| MP3: Network | Weeks 8-11 | Complete dataset | Graph algorithms, Route optimization, System integration |
+
+### Assessment Alignment
+
+| Assessment Type | Data Usage | Skills Evaluated |
+|----------------|------------|------------------|
+| Internal Exam 1 | Module 1 concepts | LP theory, Formulation skills |
+| Internal Exam 2 | Comprehensive | All optimization methods |
+| Lab Exams | Practical implementation | Coding, Algorithm application |
+| Micro-Projects | Progressive complexity | End-to-end problem solving |
+
+## Data Files & Structure
+
+### Core CSV Files
+
+| File Name | Records | Description | Usage |
+|-----------|---------|-------------|--------|
+| facilities.csv | 15 | Facility locations and attributes | All modules |
+| warehouses.csv | 5 | Warehouse specifications | All modules |
+| transportation_costs.csv | 75 | Complete cost matrix | Routing and cost analysis |
+| demands.csv | 15 | Daily demand patterns | Capacity planning |
+| geographic_bounds.csv | 1 | Area definition | Visualization |
+
+### Data Schema Details
+
+#### Facilities Table Schema
+| Column | Type | Description | Example |
+|--------|------|-------------|---------|
+| facility_id | String | Unique identifier | MED_CENTER |
+| facility_name | String | Descriptive name | Campus Medical Center |
+| facility_type | String | Category | Hospital |
+| latitude | Float | Geographic coordinate | 40.8075 |
+| longitude | Float | Geographic coordinate | -73.9626 |
+| capacity | Integer | Maximum units | 150 |
+
+#### Transportation Costs Schema
+| Column | Type | Description | Example |
+|--------|------|-------------|---------|
+| from_warehouse | String | Source warehouse | WH_NORTH |
+| to_facility | String | Destination facility | MED_CENTER |
+| distance_km | Float | Calculated distance | 0.62 |
+| cost_per_unit | Float | Transportation cost | 3.93 |
+
+##  Implementation Guide
+
+### Core Dependencies
+
+| Library | Purpose | Installation |
+|---------|---------|-------------|
+| pandas | Data manipulation | pip install pandas |
+| numpy | Numerical computations | pip install numpy |
+| pulp | Linear programming | pip install pulp |
+| folium | Interactive maps | pip install folium |
+| matplotlib | Static visualizations | pip install matplotlib |
+
+### Basic Usage Examples
+
+#### Data Access Commands
+
+- Initialize dataset: CampusCityDataset()
+- Get module-specific data: get_module_subset(module_number)
+- Access facility demands: dataset.demands[facility_id]
+- Calculate transportation costs: dataset.cost_matrix[from_warehouse, to_facility]
+
+
+```python
+# 1. Create dataset with feasible constraints
+print("1. Creating dataset with guaranteed feasible constraints...")
+dataset = FeasibleCampusDataset()
+
+
+# 2. Solve optimization problem
+print("2. Solving Module 1 optimization problem...")
+optimizer = FeasibleCampusOptimizer(campus_data)
+solution = optimizer.build_and_solve_module1()
+# 3. Print detailed solution
+    optimizer.print_detailed_solution()
+```
+
+#### Visualization Capabilities
+
+| Visualization Type | Method | Output | Educational Use |
+|-------------------|--------|--------|----------------|
+| Interactive Map | create_interactive_map() | HTML file | Spatial understanding |
+| Demand Distribution | plot_demand_distribution() | Static plot | Pattern analysis |
+| Cost Analysis | plot_cost_analysis() | Static plot | Economic analysis |
+| Network Graph | plot_network() | Static plot | Connectivity analysis |
+
+## Educational Value
+
+### Concept Reinforcement Matrix
+
+| Optimization Concept | Dataset Feature | Learning Activity |
+|---------------------|----------------|------------------|
+| Mathematical Modeling | Real facility demands | Constraint formulation |
+| Algorithm Implementation | Pre-validated instances | Coding and testing |
+| Solution Analysis | Known feasible solutions | Validation and comparison |
+| Performance Evaluation | Consistent benchmarks | Algorithm comparison |
+
+### Skill Development Progression
+
+| Skill Category | Beginner (Module 1) | Intermediate (Module 2) | Advanced (Module 3) |
+|----------------|---------------------|------------------------|---------------------|
+| Problem Formulation | Basic LP constraints | Nonlinear relationships | Network constraints |
+| Implementation | Simple optimization models | Advanced solvers | Graph algorithms |
+| Analysis | Basic feasibility | Sensitivity analysis | System performance |
+| Documentation | Code comments | Technical reports | Professional presentations |
+
+### Professional Preparation
+
+| Industry Skill | Dataset Application | Course Integration |
+|----------------|---------------------|-------------------|
+| Data Handling | Realistic dataset manipulation | Weekly lab work |
+| Tool Proficiency | Standard Python libraries | All implementations |
+| Business Context | Urban logistics scenario | Project requirements |
+| Collaboration | Shared dataset structure | Team projects |
+
+---
+
+*The Campus City Dataset provides a comprehensive, pedagogically-designed foundation for teaching computational optimization, ensuring students encounter realistic challenges while maintaining academic feasibility across all course modules.*

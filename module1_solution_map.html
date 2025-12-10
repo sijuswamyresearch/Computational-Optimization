@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_ec1e7c57838bdea2188aec24af56c3c6 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+        <div style="position: fixed; 
+                    top: 10px; left: 50px; width: 300px; height: auto; 
+                    background-color: white; border:2px solid grey; z-index:9999; 
+                    font-size:14px; padding: 10px">
+        <h4>🏙️ Campus City Map Legend</h4>
+        <p><span style="color: red;">●</span> Hospital</p>
+        <p><span style="color: blue;">●</span> Academic</p>
+        <p><span style="color: green;">●</span> Residential</p>
+        <p><span style="color: orange;">●</span> Recreational</p>
+        <p><span style="color: purple;">●</span> Community</p>
+        <p><span style="color: brown;">●</span> School</p>
+        <p><span style="color: green;"><i class="fa fa-check-circle"></i></span> Selected Warehouse</p>
+        <p><span style="color: red;"><i class="fa fa-times-circle"></i></span> Available Warehouse</p>
+        <p><span style="color: blue;">━━━</span> Supply Route</p>
+        </div>
+        
+    
+        <h3 align="center" style="font-size:20px; margin-top:10px;">
+        <b>Module 1: Campus Supply Optimization Solution</b>
+        </h3>
+        
+    
+            <div class="folium-map" id="map_ec1e7c57838bdea2188aec24af56c3c6" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_ec1e7c57838bdea2188aec24af56c3c6 = L.map(
+                "map_ec1e7c57838bdea2188aec24af56c3c6",
+                {
+                    center: [40.8075, -73.9626],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 14,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+            L.control.scale().addTo(map_ec1e7c57838bdea2188aec24af56c3c6);
+
+            
+
+        
+    
+            var tile_layer_3bf528f2b4a5c396306760d95d705241 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_3bf528f2b4a5c396306760d95d705241.addTo(map_ec1e7c57838bdea2188aec24af56c3c6);
+        
+    
+            var circle_marker_dd3494d23f8ce4adcd43319fed7d1a7c = L.circleMarker(
+                [40.8075, -73.9626],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 2}
+            ).addTo(map_ec1e7c57838bdea2188aec24af56c3c6);
+        
+    
+        var popup_ede3ccbd871484dc516c39ce6c4969e0 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d5cf8b6d130b97d6b73e2c1d1ec71634 = $(`<div id="html_d5cf8b6d130b97d6b73e2c1d1ec71634" style="width: 100.0%; height: 100.0%;">                 <b>Campus Medical Center</b><br>                 Type: Hospital<br>                 Daily Demand: 81 units<br>                 Priority: Low                 </div>`)[0];
+                popup_ede3ccbd871484dc516c39ce6c4969e0.setContent(html_d5cf8b6d130b97d6b73e2c1d1ec71634);
+            
+        
+
+        circle_marker_dd3494d23f8ce4adcd43319fed7d1a7c.bindPopup(popup_ede3ccbd871484dc516c39ce6c4969e0)
+        ;
+
+        
+    
+    
+            circle_marker_dd3494d23f8ce4adcd43319fed7d1a7c.bindTooltip(
+                `<div>
+                     MED_CENTER: Campus Medical Center
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_8009da6341d2305f6f8b418b31f4496d = L.circleMarker(
+                [40.81, -73.96],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 2}
+            ).addTo(map_ec1e7c57838bdea2188aec24af56c3c6);
+        
+    
+        var popup_e68e62e7c40a7d92857eb00798c3fc1c = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_078e51acf6960f0a4e711e4edb4ab467 = $(`<div id="html_078e51acf6960f0a4e711e4edb4ab467" style="width: 100.0%; height: 100.0%;">                 <b>Engineering Building</b><br>                 Type: Academic<br>                 Daily Demand: 30 units<br>                 Priority: High                 </div>`)[0];
+                popup_e68e62e7c40a7d92857eb00798c3fc1c.setContent(html_078e51acf6960f0a4e711e4edb4ab467);
+            
+        
+
+        circle_marker_8009da6341d2305f6f8b418b31f4496d.bindPopup(popup_e68e62e7c40a7d92857eb00798c3fc1c)
+        ;
+
+        
+    
+    
+            circle_marker_8009da6341d2305f6f8b418b31f4496d.bindTooltip(
+                `<div>
+                     ENG_BUILDING: Engineering Building
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_79f3584960d867d3c3e2e53232b94b20 = L.circleMarker(
+                [40.805, -73.965],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 2}
+            ).addTo(map_ec1e7c57838bdea2188aec24af56c3c6);
+        
+    
+        var popup_4e03d1fa3c5b16f12f52241d7fc291e5 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_9c40d64509cd442db70ab52e0f00b78d = $(`<div id="html_9c40d64509cd442db70ab52e0f00b78d" style="width: 100.0%; height: 100.0%;">                 <b>Science Hall</b><br>                 Type: Academic<br>                 Daily Demand: 28 units<br>                 Priority: Medium                 </div>`)[0];
+                popup_4e03d1fa3c5b16f12f52241d7fc291e5.setContent(html_9c40d64509cd442db70ab52e0f00b78d);
+            
+        
+
+        circle_marker_79f3584960d867d3c3e2e53232b94b20.bindPopup(popup_4e03d1fa3c5b16f12f52241d7fc291e5)
+        ;
+
+        
+    
+    
+            circle_marker_79f3584960d867d3c3e2e53232b94b20.bindTooltip(
+                `<div>
+                     SCIENCE_HALL: Science Hall
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_eab5c1aaf8af5b326207a712b05fcad4 = L.circleMarker(
+                [40.812, -73.959],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 2}
+            ).addTo(map_ec1e7c57838bdea2188aec24af56c3c6);
+        
+    
+        var popup_1b3778630d3c2a681d0788af3f68a375 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_8217dcbe115abd9f27398edb3e5a7e53 = $(`<div id="html_8217dcbe115abd9f27398edb3e5a7e53" style="width: 100.0%; height: 100.0%;">                 <b>North Dormitory</b><br>                 Type: Residential<br>                 Daily Demand: 49 units<br>                 Priority: Low                 </div>`)[0];
+                popup_1b3778630d3c2a681d0788af3f68a375.setContent(html_8217dcbe115abd9f27398edb3e5a7e53);
+            
+        
+
+        circle_marker_eab5c1aaf8af5b326207a712b05fcad4.bindPopup(popup_1b3778630d3c2a681d0788af3f68a375)
+        ;
+
+        
+    
+    
+            circle_marker_eab5c1aaf8af5b326207a712b05fcad4.bindTooltip(
+                `<div>
+                     DORM_A: North Dormitory
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d10108ab9c3d6f13448219bbb30703af = L.circleMarker(
+                [40.803, -73.966],
+                {"bubblingMouseEvents": true, "color": "green", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "green", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 2}
+            ).addTo(map_ec1e7c57838bdea2188aec24af56c3c6);
+        
+    
+        var popup_a136035a598e1d0f2cac45ff622291ce = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e09d732c60d783105eb7d104ae18cb6b = $(`<div id="html_e09d732c60d783105eb7d104ae18cb6b" style="width: 100.0%; height: 100.0%;">                 <b>South Dormitory</b><br>                 Type: Residential<br>                 Daily Demand: 51 units<br>                 Priority: Low                 </div>`)[0];
+                popup_a136035a598e1d0f2cac45ff622291ce.setContent(html_e09d732c60d783105eb7d104ae18cb6b);
+            
+        
+
+        circle_marker_d10108ab9c3d6f13448219bbb30703af.bindPopup(popup_a136035a598e1d0f2cac45ff622291ce)
+        ;
+
+        
+    
+    
+            circle_marker_d10108ab9c3d6f13448219bbb30703af.bindTooltip(
+                `<div>
+                     DORM_B: South Dormitory
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_f42594c9680d078b633cbfde41b1991c = L.circleMarker(
+                [40.8085, -73.963],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "blue", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 2}
+            ).addTo(map_ec1e7c57838bdea2188aec24af56c3c6);
+        
+    
+        var popup_7502d33ebd8a872886ef4c61ca213b49 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f8088948bca084feb33a9d0fda214884 = $(`<div id="html_f8088948bca084feb33a9d0fda214884" style="width: 100.0%; height: 100.0%;">                 <b>Main Library</b><br>                 Type: Academic<br>                 Daily Demand: 30 units<br>                 Priority: Medium                 </div>`)[0];
+                popup_7502d33ebd8a872886ef4c61ca213b49.setContent(html_f8088948bca084feb33a9d0fda214884);
+            
+        
+
+        circle_marker_f42594c9680d078b633cbfde41b1991c.bindPopup(popup_7502d33ebd8a872886ef4c61ca213b49)
+        ;
+
+        
+    
+    
+            circle_marker_f42594c9680d078b633cbfde41b1991c.bindTooltip(
+                `<div>
+                     LIBRARY: Main Library
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_84ccef87b01f796a45ab434d56e93ab0 = L.circleMarker(
+                [40.804, -73.964],
+                {"bubblingMouseEvents": true, "color": "orange", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "orange", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 2}
+            ).addTo(map_ec1e7c57838bdea2188aec24af56c3c6);
+        
+    
+        var popup_fbc282c022c340ffbb4f11d8bbf8f533 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_8e5d42592158032af44a3ba75596cef5 = $(`<div id="html_8e5d42592158032af44a3ba75596cef5" style="width: 100.0%; height: 100.0%;">                 <b>University Stadium</b><br>                 Type: Recreational<br>                 Daily Demand: 23 units<br>                 Priority: Medium                 </div>`)[0];
+                popup_fbc282c022c340ffbb4f11d8bbf8f533.setContent(html_8e5d42592158032af44a3ba75596cef5);
+            
+        
+
+        circle_marker_84ccef87b01f796a45ab434d56e93ab0.bindPopup(popup_fbc282c022c340ffbb4f11d8bbf8f533)
+        ;
+
+        
+    
+    
+            circle_marker_84ccef87b01f796a45ab434d56e93ab0.bindTooltip(
+                `<div>
+                     STADIUM: University Stadium
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_de8b498c441686686d4f6c98574ee82c = L.circleMarker(
+                [40.806, -73.961],
+                {"bubblingMouseEvents": true, "color": "purple", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "purple", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 2}
+            ).addTo(map_ec1e7c57838bdea2188aec24af56c3c6);
+        
+    
+        var popup_617468c4405a73c304777f984613bc98 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_547f2181de9c9f65c90c057e171d1f1b = $(`<div id="html_547f2181de9c9f65c90c057e171d1f1b" style="width: 100.0%; height: 100.0%;">                 <b>Community Center</b><br>                 Type: Community<br>                 Daily Demand: 42 units<br>                 Priority: High                 </div>`)[0];
+                popup_617468c4405a73c304777f984613bc98.setContent(html_547f2181de9c9f65c90c057e171d1f1b);
+            
+        
+
+        circle_marker_de8b498c441686686d4f6c98574ee82c.bindPopup(popup_617468c4405a73c304777f984613bc98)
+        ;
+
+        
+    
+    
+            circle_marker_de8b498c441686686d4f6c98574ee82c.bindTooltip(
+                `<div>
+                     COMM_CENTER: Community Center
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_d15e0e25ff682a4a2d34efb43cda8cc9 = L.circleMarker(
+                [40.802, -73.967],
+                {"bubblingMouseEvents": true, "color": "brown", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "brown", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 2}
+            ).addTo(map_ec1e7c57838bdea2188aec24af56c3c6);
+        
+    
+        var popup_0223fe189ab8e893717aa059570512c6 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_dea74a7bebdc6e1ef6dbcd7c7d01ccfb = $(`<div id="html_dea74a7bebdc6e1ef6dbcd7c7d01ccfb" style="width: 100.0%; height: 100.0%;">                 <b>Local Public School</b><br>                 Type: School<br>                 Daily Demand: 33 units<br>                 Priority: Medium                 </div>`)[0];
+                popup_0223fe189ab8e893717aa059570512c6.setContent(html_dea74a7bebdc6e1ef6dbcd7c7d01ccfb);
+            
+        
+
+        circle_marker_d15e0e25ff682a4a2d34efb43cda8cc9.bindPopup(popup_0223fe189ab8e893717aa059570512c6)
+        ;
+
+        
+    
+    
+            circle_marker_d15e0e25ff682a4a2d34efb43cda8cc9.bindTooltip(
+                `<div>
+                     PUBLIC_SCHOOL: Local Public School
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var circle_marker_0b311024cf5dd81414d6f69b675a428c = L.circleMarker(
+                [40.809, -73.958],
+                {"bubblingMouseEvents": true, "color": "red", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "red", "fillOpacity": 0.7, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 10, "stroke": true, "weight": 2}
+            ).addTo(map_ec1e7c57838bdea2188aec24af56c3c6);
+        
+    
+        var popup_a46d02b3280c7909fa99505af1b69b85 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_39233804d9bd2ce21156d0589e4e9414 = $(`<div id="html_39233804d9bd2ce21156d0589e4e9414" style="width: 100.0%; height: 100.0%;">                 <b>Community Hospital</b><br>                 Type: Hospital<br>                 Daily Demand: 81 units<br>                 Priority: High                 </div>`)[0];
+                popup_a46d02b3280c7909fa99505af1b69b85.setContent(html_39233804d9bd2ce21156d0589e4e9414);
+            
+        
+
+        circle_marker_0b311024cf5dd81414d6f69b675a428c.bindPopup(popup_a46d02b3280c7909fa99505af1b69b85)
+        ;
+
+        
+    
+    
+            circle_marker_0b311024cf5dd81414d6f69b675a428c.bindTooltip(
+                `<div>
+                     LOCAL_HOSPITAL: Community Hospital
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var marker_260466d9849a5e0e3d2ed24aab4746a1 = L.marker(
+                [40.8125, -73.9626],
+                {
+}
+            ).addTo(map_ec1e7c57838bdea2188aec24af56c3c6);
+        
+    
+            var icon_16e1fdad85bb0914091845694686a9b6 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "check-circle",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_8608d7c445fd6287a991fb9ae5192bb9 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_7e31a952f11257e5d07ab4bea98de6a4 = $(`<div id="html_7e31a952f11257e5d07ab4bea98de6a4" style="width: 100.0%; height: 100.0%;">                 <b>North Campus Warehouse</b><br>                 Capacity: 400 units/day<br>                 Construction: $300,000<br>                 Operational: $800/day<br>                 Status: <b>SELECTED</b>                 </div>`)[0];
+                popup_8608d7c445fd6287a991fb9ae5192bb9.setContent(html_7e31a952f11257e5d07ab4bea98de6a4);
+            
+        
+
+        marker_260466d9849a5e0e3d2ed24aab4746a1.bindPopup(popup_8608d7c445fd6287a991fb9ae5192bb9)
+        ;
+
+        
+    
+    
+            marker_260466d9849a5e0e3d2ed24aab4746a1.bindTooltip(
+                `<div>
+                     WH_NORTH: North Campus Warehouse (SELECTED)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_260466d9849a5e0e3d2ed24aab4746a1.setIcon(icon_16e1fdad85bb0914091845694686a9b6);
+            
+    
+            var marker_8771a766b1a8c190a77da64aaa36c82d = L.marker(
+                [40.8025, -73.9626],
+                {
+}
+            ).addTo(map_ec1e7c57838bdea2188aec24af56c3c6);
+        
+    
+            var icon_c5a5d55d387b581a7629ecf829c7b5a1 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "check-circle",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_e57c636980550b9b85f8ca11d143942b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_18c8939c5ae43e9d962046e6fe96cf64 = $(`<div id="html_18c8939c5ae43e9d962046e6fe96cf64" style="width: 100.0%; height: 100.0%;">                 <b>South Campus Warehouse</b><br>                 Capacity: 350 units/day<br>                 Construction: $280,000<br>                 Operational: $700/day<br>                 Status: <b>SELECTED</b>                 </div>`)[0];
+                popup_e57c636980550b9b85f8ca11d143942b.setContent(html_18c8939c5ae43e9d962046e6fe96cf64);
+            
+        
+
+        marker_8771a766b1a8c190a77da64aaa36c82d.bindPopup(popup_e57c636980550b9b85f8ca11d143942b)
+        ;
+
+        
+    
+    
+            marker_8771a766b1a8c190a77da64aaa36c82d.bindTooltip(
+                `<div>
+                     WH_SOUTH: South Campus Warehouse (SELECTED)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_8771a766b1a8c190a77da64aaa36c82d.setIcon(icon_c5a5d55d387b581a7629ecf829c7b5a1);
+            
+    
+            var marker_7779730b7f895df565a12262900d113b = L.marker(
+                [40.8075, -73.957],
+                {
+}
+            ).addTo(map_ec1e7c57838bdea2188aec24af56c3c6);
+        
+    
+            var icon_6b7639e8025107c4ad601322fdee3dd2 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "times-circle",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_4fdaafccf0ab030b45e8f1200cf03eb8 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_6179e45856890dd6cd5dad840ba73d78 = $(`<div id="html_6179e45856890dd6cd5dad840ba73d78" style="width: 100.0%; height: 100.0%;">                 <b>East Gate Warehouse</b><br>                 Capacity: 450 units/day<br>                 Construction: $320,000<br>                 Operational: $900/day<br>                 Status: <b>Available</b>                 </div>`)[0];
+                popup_4fdaafccf0ab030b45e8f1200cf03eb8.setContent(html_6179e45856890dd6cd5dad840ba73d78);
+            
+        
+
+        marker_7779730b7f895df565a12262900d113b.bindPopup(popup_4fdaafccf0ab030b45e8f1200cf03eb8)
+        ;
+
+        
+    
+    
+            marker_7779730b7f895df565a12262900d113b.bindTooltip(
+                `<div>
+                     WH_EAST: East Gate Warehouse (Available)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_7779730b7f895df565a12262900d113b.setIcon(icon_6b7639e8025107c4ad601322fdee3dd2);
+            
+    
+            var marker_a5b5c1d2294b1994b417c2c620cb0ff6 = L.marker(
+                [40.8075, -73.968],
+                {
+}
+            ).addTo(map_ec1e7c57838bdea2188aec24af56c3c6);
+        
+    
+            var icon_e9e13e83fe231af59eef4051ffc9d119 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "times-circle",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_48515485fc25ce4d85b31e817719d6c0 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_e76d1fbbc692b720d6d94d067c788baf = $(`<div id="html_e76d1fbbc692b720d6d94d067c788baf" style="width: 100.0%; height: 100.0%;">                 <b>West Gate Warehouse</b><br>                 Capacity: 300 units/day<br>                 Construction: $250,000<br>                 Operational: $600/day<br>                 Status: <b>Available</b>                 </div>`)[0];
+                popup_48515485fc25ce4d85b31e817719d6c0.setContent(html_e76d1fbbc692b720d6d94d067c788baf);
+            
+        
+
+        marker_a5b5c1d2294b1994b417c2c620cb0ff6.bindPopup(popup_48515485fc25ce4d85b31e817719d6c0)
+        ;
+
+        
+    
+    
+            marker_a5b5c1d2294b1994b417c2c620cb0ff6.bindTooltip(
+                `<div>
+                     WH_WEST: West Gate Warehouse (Available)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_a5b5c1d2294b1994b417c2c620cb0ff6.setIcon(icon_e9e13e83fe231af59eef4051ffc9d119);
+            
+    
+            var marker_9306a4010cb9a1402ca88f01a1420ab8 = L.marker(
+                [40.8075, -73.9626],
+                {
+}
+            ).addTo(map_ec1e7c57838bdea2188aec24af56c3c6);
+        
+    
+            var icon_ead0837221f4d79173394e23492b975d = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "times-circle",
+  "prefix": "fa",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_8a92935d4c9d344a1a3300a9a9175bcc = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_d75969343f94e44b215af3a4895a063e = $(`<div id="html_d75969343f94e44b215af3a4895a063e" style="width: 100.0%; height: 100.0%;">                 <b>Central Storage</b><br>                 Capacity: 500 units/day<br>                 Construction: $350,000<br>                 Operational: $1000/day<br>                 Status: <b>Available</b>                 </div>`)[0];
+                popup_8a92935d4c9d344a1a3300a9a9175bcc.setContent(html_d75969343f94e44b215af3a4895a063e);
+            
+        
+
+        marker_9306a4010cb9a1402ca88f01a1420ab8.bindPopup(popup_8a92935d4c9d344a1a3300a9a9175bcc)
+        ;
+
+        
+    
+    
+            marker_9306a4010cb9a1402ca88f01a1420ab8.bindTooltip(
+                `<div>
+                     WH_CENTRAL: Central Storage (Available)
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_9306a4010cb9a1402ca88f01a1420ab8.setIcon(icon_ead0837221f4d79173394e23492b975d);
+            
+    
+            var poly_line_bf054dbea4718375738a78cee5b972b2 = L.polyline(
+                [[40.8125, -73.9626], [40.8075, -73.9626]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 8}
+            ).addTo(map_ec1e7c57838bdea2188aec24af56c3c6);
+        
+    
+        var popup_a27da7a7d4f5b3f200689ee55acbb32e = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_0f9b60752d57ee249e2dd792c2cd38ee = $(`<div id="html_0f9b60752d57ee249e2dd792c2cd38ee" style="width: 100.0%; height: 100.0%;">                     <b>Supply Route</b><br>                     From: North Campus Warehouse<br>                     To: Campus Medical Center<br>                     Daily Units: 81.0<br>                     Annual Units: 29,565                     </div>`)[0];
+                popup_a27da7a7d4f5b3f200689ee55acbb32e.setContent(html_0f9b60752d57ee249e2dd792c2cd38ee);
+            
+        
+
+        poly_line_bf054dbea4718375738a78cee5b972b2.bindPopup(popup_a27da7a7d4f5b3f200689ee55acbb32e)
+        ;
+
+        
+    
+    
+            poly_line_bf054dbea4718375738a78cee5b972b2.bindTooltip(
+                `<div>
+                     WH_NORTH → MED_CENTER: 81.0 units/day
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_047e74e99c4d9b03b46893ce399bfbd7 = L.polyline(
+                [[40.8125, -73.9626], [40.81, -73.96]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 5.0}
+            ).addTo(map_ec1e7c57838bdea2188aec24af56c3c6);
+        
+    
+        var popup_fe8d08cbce4d5899e922db59437fdb4f = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_424d41a5111e2aa1fb04c7431b53c632 = $(`<div id="html_424d41a5111e2aa1fb04c7431b53c632" style="width: 100.0%; height: 100.0%;">                     <b>Supply Route</b><br>                     From: North Campus Warehouse<br>                     To: Engineering Building<br>                     Daily Units: 30.0<br>                     Annual Units: 10,950                     </div>`)[0];
+                popup_fe8d08cbce4d5899e922db59437fdb4f.setContent(html_424d41a5111e2aa1fb04c7431b53c632);
+            
+        
+
+        poly_line_047e74e99c4d9b03b46893ce399bfbd7.bindPopup(popup_fe8d08cbce4d5899e922db59437fdb4f)
+        ;
+
+        
+    
+    
+            poly_line_047e74e99c4d9b03b46893ce399bfbd7.bindTooltip(
+                `<div>
+                     WH_NORTH → ENG_BUILDING: 30.0 units/day
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_d61b728359608ecc523cd73515f68ddf = L.polyline(
+                [[40.8125, -73.9626], [40.812, -73.959]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 6.9}
+            ).addTo(map_ec1e7c57838bdea2188aec24af56c3c6);
+        
+    
+        var popup_acb4437bf7d4ff6ba6a2a36728e0d50b = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_6ad735f267729f9a324f466f5d2b7d70 = $(`<div id="html_6ad735f267729f9a324f466f5d2b7d70" style="width: 100.0%; height: 100.0%;">                     <b>Supply Route</b><br>                     From: North Campus Warehouse<br>                     To: North Dormitory<br>                     Daily Units: 49.0<br>                     Annual Units: 17,885                     </div>`)[0];
+                popup_acb4437bf7d4ff6ba6a2a36728e0d50b.setContent(html_6ad735f267729f9a324f466f5d2b7d70);
+            
+        
+
+        poly_line_d61b728359608ecc523cd73515f68ddf.bindPopup(popup_acb4437bf7d4ff6ba6a2a36728e0d50b)
+        ;
+
+        
+    
+    
+            poly_line_d61b728359608ecc523cd73515f68ddf.bindTooltip(
+                `<div>
+                     WH_NORTH → DORM_A: 49.0 units/day
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_db9dc142409e19eabf49f457bb7c90e4 = L.polyline(
+                [[40.8125, -73.9626], [40.8085, -73.963]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 5.0}
+            ).addTo(map_ec1e7c57838bdea2188aec24af56c3c6);
+        
+    
+        var popup_7411855a04f2fc2969caf8d46d4c966d = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_f1d44c987ec2b82a5ddfff3c27a58ed6 = $(`<div id="html_f1d44c987ec2b82a5ddfff3c27a58ed6" style="width: 100.0%; height: 100.0%;">                     <b>Supply Route</b><br>                     From: North Campus Warehouse<br>                     To: Main Library<br>                     Daily Units: 30.0<br>                     Annual Units: 10,950                     </div>`)[0];
+                popup_7411855a04f2fc2969caf8d46d4c966d.setContent(html_f1d44c987ec2b82a5ddfff3c27a58ed6);
+            
+        
+
+        poly_line_db9dc142409e19eabf49f457bb7c90e4.bindPopup(popup_7411855a04f2fc2969caf8d46d4c966d)
+        ;
+
+        
+    
+    
+            poly_line_db9dc142409e19eabf49f457bb7c90e4.bindTooltip(
+                `<div>
+                     WH_NORTH → LIBRARY: 30.0 units/day
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_89bbd66568ca3facf2b3bce4701a2e8c = L.polyline(
+                [[40.8025, -73.9626], [40.805, -73.965]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 4.8}
+            ).addTo(map_ec1e7c57838bdea2188aec24af56c3c6);
+        
+    
+        var popup_733e061222fb021b303059b794f10ac2 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_595da18e9ea678a9286a20a80551bf8c = $(`<div id="html_595da18e9ea678a9286a20a80551bf8c" style="width: 100.0%; height: 100.0%;">                     <b>Supply Route</b><br>                     From: South Campus Warehouse<br>                     To: Science Hall<br>                     Daily Units: 28.0<br>                     Annual Units: 10,220                     </div>`)[0];
+                popup_733e061222fb021b303059b794f10ac2.setContent(html_595da18e9ea678a9286a20a80551bf8c);
+            
+        
+
+        poly_line_89bbd66568ca3facf2b3bce4701a2e8c.bindPopup(popup_733e061222fb021b303059b794f10ac2)
+        ;
+
+        
+    
+    
+            poly_line_89bbd66568ca3facf2b3bce4701a2e8c.bindTooltip(
+                `<div>
+                     WH_SOUTH → SCIENCE_HALL: 28.0 units/day
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+            var poly_line_4bb6d9f31440316eab68c5644a92583e = L.polyline(
+                [[40.8025, -73.9626], [40.803, -73.966]],
+                {"bubblingMouseEvents": true, "color": "blue", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "blue", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.7, "smoothFactor": 1.0, "stroke": true, "weight": 7.1}
+            ).addTo(map_ec1e7c57838bdea2188aec24af56c3c6);
+        
+    
+        var popup_73aaf0379cfbbb1a4d4a977a1ba2aef8 = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_b55edbeba17683f2ffe5ed8782fd59f3 = $(`<div id="html_b55edbeba17683f2ffe5ed8782fd59f3" style="width: 100.0%; height: 100.0%;">                     <b>Supply Route</b><br>                     From: South Campus Warehouse<br>                     To: South Dormitory<br>                     Daily Units: 51.0<br>                     Annual Units: 18,615                     </div>`)[0];
+                popup_73aaf0379cfbbb1a4d4a977a1ba2aef8.setContent(html_b55edbeba17683f2ffe5ed8782fd59f3);
+            
+        
+
+        poly_line_4bb6d9f31440316eab68c5644a92583e.bindPopup(popup_73aaf0379cfbbb1a4d4a977a1ba2aef8)
+        ;
+
+        
+    
+    
+            poly_line_4bb6d9f31440316eab68c5644a92583e.bindTooltip(
+                `<div>
+                     WH_SOUTH → DORM_B: 51.0 units/day
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+</script>
+</html>

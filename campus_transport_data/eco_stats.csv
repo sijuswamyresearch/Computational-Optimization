@@ -1,0 +1,6 @@
+mode,avg_speed_kmh,co2_g_per_km,space_sqm
+Walking,5,0,0.8
+Cycling,15,0,1.2
+Electric Shuttle,25,40,1.5
+Diesel Bus,25,90,1.5
+Private Car,30,170,8.0

@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.31">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Module 5: Optimization Algorithms for Advanced Applications</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="Module-5_files/libs/clipboard/clipboard.min.js"></script>
+<script src="Module-5_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="Module-5_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="Module-5_files/libs/quarto-html/popper.min.js"></script>
+<script src="Module-5_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="Module-5_files/libs/quarto-html/anchor.min.js"></script>
+<link href="Module-5_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="Module-5_files/libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="Module-5_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="Module-5_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="Module-5_files/libs/bootstrap/bootstrap-bb462d781dde1847d9e3ccf7736099dd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="fullcontent quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Module 5: Optimization Algorithms for Advanced Applications</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="module-overview" class="level2">
+<h2 class="anchored" data-anchor-id="module-overview">Module Overview</h2>
+<section id="learning-objectives" class="level3">
+<h3 class="anchored" data-anchor-id="learning-objectives">Learning Objectives</h3>
+<ul>
+<li>Master gradient-based optimization algorithms and their variants</li>
+<li>Understand optimization in machine learning and deep learning contexts</li>
+<li>Implement stochastic optimization methods for large-scale problems</li>
+<li>Apply optimization techniques to advanced AI applications</li>
+<li>Develop expertise in tuning optimization hyperparameters</li>
+</ul>
+</section>
+<section id="module-structure" class="level3">
+<h3 class="anchored" data-anchor-id="module-structure">Module Structure</h3>
+<ul>
+<li><strong>Section 5.1</strong>: Gradient Descent Fundamentals</li>
+<li><strong>Section 5.2</strong>: Advanced Gradient Methods</li>
+<li><strong>Section 5.3</strong>: Optimization in Machine Learning</li>
+<li><strong>Section 5.4</strong>: Stochastic Optimization Methods</li>
+<li><strong>Section 5.5</strong>: Capstone Project: AI-Enhanced Campus Optimization</li>
+</ul>
+</section>
+<section id="real-world-context" class="level3">
+<h3 class="anchored" data-anchor-id="real-world-context">Real-World Context</h3>
+<p>Apply optimization algorithms to train machine learning models for predictive analytics in campus operations, from demand forecasting to intelligent routing systems.</p>
+</section>
+</section>
+<section id="gradient-descent-fundamentals" class="level2">
+<h2 class="anchored" data-anchor-id="gradient-descent-fundamentals">Gradient Descent Fundamentals</h2>
+<section id="theoretical-foundation" class="level3">
+<h3 class="anchored" data-anchor-id="theoretical-foundation">Theoretical Foundation</h3>
+<section id="what-is-gradient-descent" class="level4">
+<h4 class="anchored" data-anchor-id="what-is-gradient-descent">What is Gradient Descent?</h4>
+<p>Gradient Descent is an iterative optimization algorithm used to find the minimum of a function. By following the negative gradient of the function, it progressively moves toward the optimal solution.</p>
+</section>
+<section id="mathematical-formulation" class="level4">
+<h4 class="anchored" data-anchor-id="mathematical-formulation">Mathematical Formulation</h4>
+<p>Given a function <span class="math inline">\(f(\theta)\)</span> we want to minimize:</p>
+<p><strong>Update Rule:</strong> <span class="math display">\[
+\theta_{t+1} = \theta_t - \eta \cdot \nabla f(\theta_t)
+\]</span> Where:</p>
+<ul>
+<li><span class="math inline">\(\theta\)</span>: Parameters to optimize</li>
+<li><span class="math inline">\(\eta\)</span>: Learning rate (step size)</li>
+<li><span class="math inline">\(\nabla f(\theta)\)</span>: Gradient of the function</li>
+<li><span class="math inline">\(t\)</span>: Iteration number</li>
+</ul>
+</section>
+<section id="key-concepts" class="level4">
+<h4 class="anchored" data-anchor-id="key-concepts">Key Concepts</h4>
+<p><strong>Learning Rate (η):</strong></p>
+<ul>
+<li>Controls step size in each iteration</li>
+<li>Too large: May overshoot minimum</li>
+<li>Too small: Slow convergence</li>
+</ul>
+<p><strong>Convergence Criteria:</strong></p>
+<ul>
+<li>Gradient magnitude below threshold</li>
+<li>Small change in objective function</li>
+<li>Maximum iterations reached</li>
+</ul>
+<p><strong>Types of Gradient Descent:</strong></p>
+<ol type="1">
+<li><strong>Batch Gradient Descent</strong>: Uses entire dataset for each update</li>
+<li><strong>Stochastic Gradient Descent (SGD)</strong>: Uses single sample per update</li>
+<li><strong>Mini-batch Gradient Descent</strong>: Uses small batches of data</li>
+</ol>
+</section>
+<section id="campus-city-application" class="level4">
+<h4 class="anchored" data-anchor-id="campus-city-application">Campus City Application</h4>
+<p>Optimizing warehouse locations by treating facility coordinates as parameters and total transportation cost as the objective function to minimize.</p>
+</section>
+</section>
+<section id="sample-problem" class="level3">
+<h3 class="anchored" data-anchor-id="sample-problem">Sample Problem</h3>
+<p><strong>Problem Statement:</strong> Minimize the quadratic function <span class="math inline">\(f(x) = x^2 - 4x + 4\)</span> using gradient descent starting from <span class="math inline">\(x_0 = 0\)</span>, with learning rate <span class="math inline">\(\eta = 0.1\)</span>.</p>
+<p><strong>Solution Steps:</strong></p>
+<ol type="1">
+<li><strong>Gradient:</strong> <span class="math inline">\(\nabla f(x) = 2x - 4\)</span></li>
+<li><strong>Iteration 1:</strong>
+<ul>
+<li>Gradient at <span class="math inline">\(x_0 = 0\)</span>: <span class="math inline">\(2(0) - 4 = -4\)</span></li>
+<li>Update: <span class="math inline">\(x_1 = 0 - 0.1(-4) = 0.4\)</span></li>
+</ul></li>
+<li><strong>Iteration 2:</strong>
+<ul>
+<li>Gradient at <span class="math inline">\(x_1 = 0.4\)</span>: <span class="math inline">\(2(0.4) - 4 = -3.2\)</span></li>
+<li>Update: <span class="math inline">\(x_2 = 0.4 - 0.1(-3.2) = 0.72\)</span></li>
+</ul></li>
+<li>Continue until convergence</li>
+<li><strong>Analytical minimum:</strong> <span class="math inline">\(x = 2\)</span> (from setting gradient to zero)</li>
+</ol>
+<p><strong>Observation:</strong> Gradient descent approaches the true minimum <span class="math inline">\(x = 2\)</span> asymptotically.</p>
+</section>
+<section id="review-questions-5.1" class="level3">
+<h3 class="anchored" data-anchor-id="review-questions-5.1">Review Questions 5.1</h3>
+<ol type="1">
+<li><p><strong>Explain the intuition behind gradient descent: why does following the negative gradient lead to function minimization?</strong></p></li>
+<li><p><strong>What is the effect of learning rate on gradient descent convergence? Provide examples of problems caused by too large and too small learning rates.</strong></p></li>
+<li><p><strong>Calculate the first three iterations of gradient descent for <span class="math inline">\(f(x) = 3x^2 + 2x - 5\)</span> starting from <span class="math inline">\(x_0 = 1\)</span> with <span class="math inline">\(\eta = 0.05\)</span>.</strong></p></li>
+<li><p><strong>How does gradient descent handle non-convex functions with multiple local minima?</strong></p></li>
+<li><p><strong>Design a gradient descent approach for optimizing delivery routes in Campus City. What would be your parameters and objective function?</strong></p></li>
+</ol>
+</section>
+</section>
+<section id="advanced-gradient-methods" class="level2">
+<h2 class="anchored" data-anchor-id="advanced-gradient-methods">Advanced Gradient Methods</h2>
+<section id="theoretical-foundation-1" class="level3">
+<h3 class="anchored" data-anchor-id="theoretical-foundation-1">Theoretical Foundation</h3>
+<section id="limitations-of-basic-gradient-descent" class="level4">
+<h4 class="anchored" data-anchor-id="limitations-of-basic-gradient-descent">Limitations of Basic Gradient Descent</h4>
+<ul>
+<li>Slow convergence in flat regions</li>
+<li>Oscillations in steep valleys</li>
+<li>Sensitive to learning rate choice</li>
+<li>Poor performance with ill-conditioned problems</li>
+</ul>
+</section>
+<section id="momentum-based-methods" class="level4">
+<h4 class="anchored" data-anchor-id="momentum-based-methods">Momentum-Based Methods</h4>
+<p><strong>Momentum:</strong> <span class="math display">\[
+\begin{aligned}
+v_t &amp;= \beta v_{t-1} + (1 - \beta) \nabla f(\theta_t) \\
+\theta_{t+1} &amp;= \theta_t - \eta v_t
+\end{aligned}
+\]</span></p>
+<ul>
+<li><span class="math inline">\(\beta\)</span>: Momentum coefficient (typically 0.9)</li>
+<li>Accumulates gradient from previous steps</li>
+<li>Reduces oscillations and accelerates convergence</li>
+</ul>
+<p><strong>Nesterov Accelerated Gradient (NAG):</strong> “Look-ahead” momentum that calculates gradient at approximate future position.</p>
+</section>
+<section id="adaptive-learning-rate-methods" class="level4">
+<h4 class="anchored" data-anchor-id="adaptive-learning-rate-methods">Adaptive Learning Rate Methods</h4>
+<p><strong>RMSProp:</strong> Adapts learning rate per parameter based on recent gradient magnitudes.</p>
+<p><strong>Update Rules:</strong> <span class="math display">\[
+\begin{aligned}
+E[g^2]_t &amp;= \gamma E[g^2]_{t-1} + (1 - \gamma) g_t^2 \\
+\theta_{t+1} &amp;= \theta_t - \frac{\eta}{\sqrt{E[g^2]_t + \epsilon}} g_t
+\end{aligned}
+\]</span></p>
+<p><strong>Adam (Adaptive Moment Estimation):</strong></p>
+<p>Combines momentum and RMSProp ideas:</p>
+<ul>
+<li>Maintains exponentially decaying average of past gradients (first moment)</li>
+<li>Maintains exponentially decaying average of past squared gradients (second moment)</li>
+<li>Computes bias-corrected estimates</li>
+</ul>
+</section>
+<section id="mathematical-comparison" class="level4">
+<h4 class="anchored" data-anchor-id="mathematical-comparison">Mathematical Comparison</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 22%">
+<col style="width: 22%">
+<col style="width: 37%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Method</th>
+<th>Key Idea</th>
+<th>Best For</th>
+<th>Hyperparameters</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Momentum</td>
+<td>Accumulates past gradients</td>
+<td>Navigating ravines</td>
+<td>β (momentum)</td>
+</tr>
+<tr class="even">
+<td>NAG</td>
+<td>Look-ahead gradient</td>
+<td>Faster convergence</td>
+<td>β (momentum)</td>
+</tr>
+<tr class="odd">
+<td>RMSProp</td>
+<td>Adaptive learning rates</td>
+<td>Non-stationary objectives</td>
+<td>γ (decay rate)</td>
+</tr>
+<tr class="even">
+<td>Adam</td>
+<td>Combines momentum + RMSProp</td>
+<td>General purpose</td>
+<td>β₁, β₂, ε</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="sample-problem-1" class="level3">
+<h3 class="anchored" data-anchor-id="sample-problem-1">Sample Problem</h3>
+<p><strong>Problem Statement:</strong> Compare convergence of basic gradient descent vs momentum for minimizing <span class="math inline">\(f(x) = x^4 - 3x^2 + x\)</span> starting from <span class="math inline">\(x_0 = 2.5\)</span>.</p>
+<p><strong>Analysis:</strong></p>
+<ol type="1">
+<li><strong>Basic GD:</strong> May oscillate in the valley near <span class="math inline">\(x = 1\)</span></li>
+<li><strong>Momentum GD:</strong> Smoothens oscillations and converges faster</li>
+<li><strong>Key Insight:</strong> Momentum helps escape local flat regions and reduces zigzagging</li>
+</ol>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li>Learning rate: <span class="math inline">\(\eta = 0.01\)</span></li>
+<li>Momentum: <span class="math inline">\(\beta = 0.9\)</span></li>
+<li>True minimum: Near <span class="math inline">\(x ≈ 0.85\)</span></li>
+</ul>
+</section>
+<section id="sample-problem-2" class="level3">
+<h3 class="anchored" data-anchor-id="sample-problem-2">Sample Problem</h3>
+<p><strong>Problem Statement:</strong> A neural network for predicting campus facility demand has loss function with very different curvatures in different parameter directions (ill-conditioned). Which optimizer would you choose and why?</p>
+<p><strong>Solution:</strong></p>
+<p>Adam optimizer would be most suitable because:</p>
+<ol type="1">
+<li>Handles sparse gradients well</li>
+<li>Adapts learning rates per parameter</li>
+<li>Combines benefits of momentum and RMSProp</li>
+<li>Generally robust to ill-conditioning</li>
+</ol>
+</section>
+<section id="review-questions" class="level3">
+<h3 class="anchored" data-anchor-id="review-questions">Review Questions</h3>
+<ol type="1">
+<li><p><strong>Explain how momentum helps gradient descent overcome the problem of oscillations in narrow valleys.</strong></p></li>
+<li><p><strong>Compare RMSProp and Adam optimizers. When would you choose one over the other for campus demand prediction?</strong></p></li>
+<li><p><strong>What is the “look-ahead” property of Nesterov Accelerated Gradient and how does it improve convergence?</strong></p></li>
+<li><p><strong>Design an adaptive learning rate schedule for optimizing a campus energy consumption model. What factors would influence your schedule?</strong></p></li>
+<li><p><strong>How do advanced gradient methods handle the trade-off between convergence speed and stability?</strong></p></li>
+</ol>
+</section>
+</section>
+<section id="optimization-in-machine-learning" class="level2">
+<h2 class="anchored" data-anchor-id="optimization-in-machine-learning">Optimization in Machine Learning</h2>
+<section id="theoretical-foundation-2" class="level3">
+<h3 class="anchored" data-anchor-id="theoretical-foundation-2">Theoretical Foundation</h3>
+<section id="optimization-in-ml-pipeline" class="level4">
+<h4 class="anchored" data-anchor-id="optimization-in-ml-pipeline">Optimization in ML Pipeline</h4>
+<p>Machine learning fundamentally involves optimization:</p>
+<ol type="1">
+<li><strong>Model Selection:</strong> Choose hypothesis space</li>
+<li><strong>Loss Function:</strong> Define optimization objective</li>
+<li><strong>Optimization Algorithm:</strong> Find optimal parameters</li>
+<li><strong>Regularization:</strong> Control model complexity</li>
+</ol>
+</section>
+<section id="loss-functions" class="level4">
+<h4 class="anchored" data-anchor-id="loss-functions">Loss Functions</h4>
+<p><strong>Common Loss Functions:</strong></p>
+<ol type="1">
+<li><strong>Mean Squared Error (MSE):</strong> <span class="math inline">\(\frac{1}{n} \sum (y_i - \hat{y}_i)^2\)</span></li>
+<li><strong>Cross-Entropy:</strong> <span class="math inline">\(-\sum y_i \log(\hat{y}_i)\)</span></li>
+<li><strong>Hinge Loss:</strong> <span class="math inline">\(\max(0, 1 - y_i \hat{y}_i)\)</span></li>
+</ol>
+<p><strong>Properties:</strong></p>
+<ul>
+<li>Convexity affects optimization difficulty</li>
+<li>Differentiability determines gradient availability</li>
+<li>Robustness to outliers influences performance</li>
+</ul>
+</section>
+<section id="regularization-techniques" class="level4">
+<h4 class="anchored" data-anchor-id="regularization-techniques">Regularization Techniques</h4>
+<p><strong>L1 Regularization (Lasso):</strong> <span class="math display">\[
+J(\theta) = \text{Loss}(\theta) + \lambda \sum |\theta_i|
+\]</span> - Promotes sparsity - Feature selection</p>
+<p><strong>L2 Regularization (Ridge):</strong> <span class="math display">\[
+J(\theta) = \text{Loss}(\theta) + \lambda \sum \theta_i^2
+\]</span></p>
+<ul>
+<li>Prevents overfitting</li>
+<li>Stabilizes optimization</li>
+</ul>
+<p><strong>Elastic Net:</strong> Combines L1 and L2</p>
+</section>
+<section id="neural-network-optimization" class="level4">
+<h4 class="anchored" data-anchor-id="neural-network-optimization">Neural Network Optimization</h4>
+<p>Special considerations for deep learning:</p>
+<ul>
+<li><strong>Vanishing/Exploding Gradients:</strong> Affects deep networks</li>
+<li><strong>Batch Normalization:</strong> Stabilizes training</li>
+<li><strong>Dropout:</strong> Regularization technique</li>
+<li><strong>Weight Initialization:</strong> Critical for convergence</li>
+</ul>
+</section>
+</section>
+<section id="sample-problem-3" class="level3">
+<h3 class="anchored" data-anchor-id="sample-problem-3">Sample Problem</h3>
+<p><strong>Problem Statement:</strong> Train a linear regression model for predicting campus facility demand with features: day_of_week, temperature, special_event. Use gradient descent with L2 regularization.</p>
+<p><strong>Mathematical Formulation:</strong> <span class="math display">\[
+J(\theta) = \frac{1}{2m} \sum_{i=1}^m (h_\theta(x^{(i)}) - y^{(i)})^2 + \frac{\lambda}{2m} \sum_{j=1}^n \theta_j^2
+\]</span> Where:</p>
+<ul>
+<li><span class="math inline">\(h_\theta(x) = \theta_0 + \theta_1 x_1 + \theta_2 x_2 + \theta_3 x_3\)</span></li>
+<li><span class="math inline">\(\lambda\)</span>: Regularization parameter</li>
+<li><span class="math inline">\(m\)</span>: Number of training examples</li>
+</ul>
+<p><strong>Gradient with Regularization:</strong> <span class="math display">\[
+\frac{\partial J}{\partial \theta_j} = \frac{1}{m} \sum_{i=1}^m (h_\theta(x^{(i)}) - y^{(i)}) x_j^{(i)} + \frac{\lambda}{m} \theta_j \quad \text{for } j \geq 1
+\]</span></p>
+</section>
+<section id="sample-problem-4" class="level3">
+<h3 class="anchored" data-anchor-id="sample-problem-4">Sample Problem</h3>
+<p><strong>Problem Statement:</strong> A campus energy consumption prediction model uses neural network with 3 hidden layers. During training, gradients become extremely small in early layers. Identify the problem and solution.</p>
+<p><strong>Analysis:</strong> <strong>Problem:</strong> Vanishing gradients <strong>Causes:</strong> Deep network, activation functions like sigmoid <strong>Solutions:</strong></p>
+<ol type="1">
+<li>Use ReLU activation functions</li>
+<li>Implement batch normalization</li>
+<li>Use residual connections</li>
+<li>Careful weight initialization</li>
+</ol>
+</section>
+<section id="review-questions-1" class="level3">
+<h3 class="anchored" data-anchor-id="review-questions-1">Review Questions</h3>
+<ol type="1">
+<li><p><strong>Explain how regularization prevents overfitting in machine learning optimization from an optimization theory perspective.</strong></p></li>
+<li><p><strong>Compare L1 and L2 regularization. When would you choose each for campus facility demand prediction?</strong></p></li>
+<li><p><strong>What is the vanishing gradient problem in deep learning and how do modern optimizers address it?</strong></p></li>
+<li><p><strong>Design a loss function for optimizing campus shuttle bus schedules that considers both operational costs and passenger wait times.</strong></p></li>
+<li><p><strong>How does mini-batch gradient descent balance the trade-off between computational efficiency and convergence stability?</strong></p></li>
+</ol>
+</section>
+</section>
+<section id="stochastic-optimization-methods" class="level2">
+<h2 class="anchored" data-anchor-id="stochastic-optimization-methods">Stochastic Optimization Methods</h2>
+<section id="theoretical-foundation-3" class="level3">
+<h3 class="anchored" data-anchor-id="theoretical-foundation-3">Theoretical Foundation</h3>
+<section id="why-stochastic-optimization" class="level4">
+<h4 class="anchored" data-anchor-id="why-stochastic-optimization">Why Stochastic Optimization?</h4>
+<ul>
+<li><strong>Large Datasets:</strong> Full-batch gradient descent computationally expensive</li>
+<li><strong>Online Learning:</strong> Continuous data streams</li>
+<li><strong>Non-Convex Problems:</strong> Escape local minima</li>
+<li><strong>Parallelization:</strong> Natural for distributed computing</li>
+</ul>
+</section>
+<section id="stochastic-gradient-descent-sgd" class="level4">
+<h4 class="anchored" data-anchor-id="stochastic-gradient-descent-sgd">Stochastic Gradient Descent (SGD)</h4>
+<p><strong>Algorithm:</strong> For each epoch, for each training example <span class="math inline">\((x^{(i)}, y^{(i)})\)</span>: <span class="math display">\[
+\theta := \theta - \eta \nabla_\theta J(\theta; x^{(i)}, y^{(i)})
+\]</span></p>
+<p><strong>Characteristics:</strong></p>
+<ul>
+<li>Noisy gradient estimates</li>
+<li>Faster per iteration</li>
+<li>May not converge to exact minimum</li>
+<li>Can escape local minima in non-convex problems</li>
+</ul>
+</section>
+<section id="mini-batch-gradient-descent" class="level4">
+<h4 class="anchored" data-anchor-id="mini-batch-gradient-descent">Mini-batch Gradient Descent</h4>
+<p><strong>Update Rule:</strong> <span class="math display">\[
+\theta := \theta - \eta \nabla_\theta J(\theta; x^{(i:i+n)}, y^{(i:i+n)})
+\]</span> Where batch size <span class="math inline">\(n\)</span> is typically 32, 64, or 128.</p>
+<p><strong>Advantages:</strong></p>
+<ul>
+<li>Reduces variance compared to SGD</li>
+<li>Hardware efficient (GPU parallelization)</li>
+<li>More stable convergence than pure SGD</li>
+</ul>
+</section>
+<section id="advanced-stochastic-methods" class="level4">
+<h4 class="anchored" data-anchor-id="advanced-stochastic-methods">Advanced Stochastic Methods</h4>
+<p><strong>SGD with Momentum:</strong> Combines stochastic updates with momentum accumulation.</p>
+<p><strong>Adam for Stochastic Optimization:</strong> Particularly effective for stochastic settings due to adaptive learning rates.</p>
+<p><strong>Learning Rate Scheduling:</strong></p>
+<ul>
+<li>Step decay</li>
+<li>Exponential decay</li>
+<li>Cosine annealing</li>
+<li>Warm restarts</li>
+</ul>
+</section>
+<section id="convergence-analysis" class="level4">
+<h4 class="anchored" data-anchor-id="convergence-analysis">Convergence Analysis</h4>
+<p><strong>Theoretical Guarantees:</strong></p>
+<ul>
+<li>SGD converges to stationary point for non-convex functions</li>
+<li>Convergence rate: <span class="math inline">\(O(1/\sqrt{T})\)</span> for convex functions</li>
+<li>Mini-batch: <span class="math inline">\(O(1/\sqrt{T} + 1/B)\)</span> where B is batch size</li>
+</ul>
+</section>
+</section>
+<section id="sample-problem-5.4.1" class="level3">
+<h3 class="anchored" data-anchor-id="sample-problem-5.4.1">🔍 Sample Problem 5.4.1</h3>
+<p><strong>Problem Statement:</strong> Compare convergence behavior of batch GD, SGD, and mini-batch GD for optimizing a logistic regression model on campus facility usage data with 10,000 samples.</p>
+<p><strong>Analysis:</strong></p>
+<ul>
+<li><strong>Batch GD:</strong> 10,000 computations per update, smooth convergence</li>
+<li><strong>SGD:</strong> 1 computation per update, noisy but fast initial progress</li>
+<li><strong>Mini-batch (B=64):</strong> 64 computations per update, balance of speed and stability</li>
+</ul>
+<p><strong>Trade-offs:</strong></p>
+<ul>
+<li>Computational cost per epoch</li>
+<li>Convergence speed</li>
+<li>Final solution quality</li>
+<li>Memory requirements</li>
+</ul>
+</section>
+<section id="sample-problem-5" class="level3">
+<h3 class="anchored" data-anchor-id="sample-problem-5">Sample Problem</h3>
+<p><strong>Problem Statement:</strong> Design a learning rate schedule for training a neural network on campus energy data that shows seasonal patterns.</p>
+<p><strong>Solution:</strong> <strong>Cosine Annealing with Warm Restarts:</strong></p>
+<ul>
+<li>Start with relatively high learning rate</li>
+<li>Gradually decrease following cosine curve</li>
+<li>Periodically restart to escape local minima</li>
+<li>Align restarts with seasonal transitions</li>
+</ul>
+<p><strong>Justification:</strong> Seasonal patterns create shifting data distributions, making warm restarts beneficial.</p>
+</section>
+<section id="review-questions-2" class="level3">
+<h3 class="anchored" data-anchor-id="review-questions-2">Review Questions</h3>
+<ol type="1">
+<li><p><strong>Explain why stochastic gradient descent can help escape local minima in non-convex optimization problems.</strong></p></li>
+<li><p><strong>What is the optimal batch size for mini-batch gradient descent and how does it depend on problem characteristics?</strong></p></li>
+<li><p><strong>Compare the convergence rates of SGD, mini-batch GD, and batch GD. When would you choose each method?</strong></p></li>
+<li><p><strong>Design a distributed optimization strategy for training a campus-wide prediction model using stochastic methods.</strong></p></li>
+<li><p><strong>How does learning rate scheduling improve stochastic optimization, particularly for non-stationary campus data?</strong></p></li>
+</ol>
+</section>
+</section>
+<section id="capstone-project-ai-enhanced-campus-optimization" class="level2">
+<h2 class="anchored" data-anchor-id="capstone-project-ai-enhanced-campus-optimization">Capstone Project: AI-Enhanced Campus Optimization</h2>
+<section id="project-foundation" class="level3">
+<h3 class="anchored" data-anchor-id="project-foundation">Project Foundation</h3>
+<section id="integration-of-all-modules" class="level4">
+<h4 class="anchored" data-anchor-id="integration-of-all-modules">Integration of All Modules</h4>
+<p>This capstone project synthesizes concepts from all five modules:</p>
+<ul>
+<li><strong>Module 1:</strong> Linear constraints and formulations</li>
+<li><strong>Module 2:</strong> Nonlinear cost modeling</li>
+<li><strong>Module 3:</strong> Project planning and scheduling</li>
+<li><strong>Module 4:</strong> Graph algorithms and network optimization</li>
+<li><strong>Module 5:</strong> Machine learning and gradient optimization</li>
+</ul>
+</section>
+<section id="project-vision" class="level4">
+<h4 class="anchored" data-anchor-id="project-vision">Project Vision</h4>
+<p>Develop an intelligent campus optimization system that:</p>
+<ol type="1">
+<li><strong>Predicts</strong> facility demands using machine learning</li>
+<li><strong>Optimizes</strong> resource allocation using advanced algorithms</li>
+<li><strong>Adapts</strong> to changing conditions in real-time</li>
+<li><strong>Visualizes</strong> optimal solutions and provides insights</li>
+</ol>
+</section>
+<section id="system-architecture" class="level4">
+<h4 class="anchored" data-anchor-id="system-architecture">System Architecture</h4>
+<p><strong>Data Layer:</strong></p>
+<ul>
+<li>Historical campus operations data</li>
+<li>Real-time sensor data</li>
+<li>Environmental and contextual data</li>
+</ul>
+<p><strong>Model Layer:</strong></p>
+<ul>
+<li>Demand prediction models</li>
+<li>Optimization algorithms</li>
+<li>Constraint handlers</li>
+</ul>
+<p><strong>Application Layer:</strong></p>
+<ul>
+<li>Dashboard for campus operations</li>
+<li>Real-time optimization engine</li>
+<li>Reporting and analytics</li>
+</ul>
+</section>
+</section>
+<section id="capstone-project-requirements" class="level3">
+<h3 class="anchored" data-anchor-id="capstone-project-requirements">Capstone Project Requirements</h3>
+<section id="part-a-predictive-modeling-5-marks" class="level4">
+<h4 class="anchored" data-anchor-id="part-a-predictive-modeling-5-marks">Part A: Predictive Modeling (5 Marks)</h4>
+<p><strong>Objective:</strong> Develop machine learning models to predict campus facility demands.</p>
+<p><strong>Tasks:</strong></p>
+<ol type="1">
+<li><p><strong>Feature Engineering:</strong></p>
+<ul>
+<li>Temporal features (hour, day, month, holidays)</li>
+<li>Environmental features (weather, temperature)</li>
+<li>Event features (exams, sports, cultural events)</li>
+<li>Historical demand patterns</li>
+</ul></li>
+<li><p><strong>Model Development:</strong></p>
+<ul>
+<li>Time series forecasting models</li>
+<li>Regression models for demand prediction</li>
+<li>Ensemble methods for improved accuracy</li>
+</ul></li>
+<li><p><strong>Optimization Integration:</strong></p>
+<ul>
+<li>Use predictions as input to optimization models</li>
+<li>Handle prediction uncertainty in optimization</li>
+<li>Adaptive models that update with new data</li>
+</ul></li>
+</ol>
+</section>
+<section id="part-b-integrated-optimization-system-6-marks" class="level4">
+<h4 class="anchored" data-anchor-id="part-b-integrated-optimization-system-6-marks">Part B: Integrated Optimization System (6 Marks)</h4>
+<p><strong>Objective:</strong> Create a comprehensive optimization system that uses predictions to make optimal decisions.</p>
+<p><strong>Tasks:</strong></p>
+<ol type="1">
+<li><p><strong>Multi-Period Optimization:</strong></p>
+<ul>
+<li>Dynamic optimization across time horizons</li>
+<li>Handling of time-dependent constraints</li>
+<li>Integration of predicted vs actual demands</li>
+</ul></li>
+<li><p><strong>Stochastic Optimization:</strong></p>
+<ul>
+<li>Handle uncertainty in predictions</li>
+<li>Robust optimization approaches</li>
+<li>Scenario-based planning</li>
+</ul></li>
+<li><p><strong>Real-Time Adaptation:</strong></p>
+<ul>
+<li>Update optimization based on real-time data</li>
+<li>Handle unexpected events and disruptions</li>
+<li>Provide alternative solutions</li>
+</ul></li>
+</ol>
+</section>
+<section id="part-c-advanced-algorithm-implementation-5-marks" class="level4">
+<h4 class="anchored" data-anchor-id="part-c-advanced-algorithm-implementation-5-marks">Part C: Advanced Algorithm Implementation (5 Marks)</h4>
+<p><strong>Objective:</strong> Implement sophisticated optimization algorithms for complex campus problems.</p>
+<p><strong>Tasks:</strong></p>
+<ol type="1">
+<li><p><strong>Gradient-Based Optimization:</strong></p>
+<ul>
+<li>Implement Adam optimizer for parameter tuning</li>
+<li>Learning rate scheduling and adaptation</li>
+<li>Handling of non-convex objective functions</li>
+</ul></li>
+<li><p><strong>Metaheuristic Integration:</strong></p>
+<ul>
+<li>Combine gradient methods with heuristic approaches</li>
+<li>Hybrid algorithms for complex constraints</li>
+<li>Multi-objective optimization techniques</li>
+</ul></li>
+<li><p><strong>Large-Scale Optimization:</strong></p>
+<ul>
+<li>Distributed optimization approaches</li>
+<li>Parallel processing for campus-scale problems</li>
+<li>Efficient data structures for optimization</li>
+</ul></li>
+</ol>
+</section>
+<section id="part-d-system-deployment-evaluation-4-marks" class="level4">
+<h4 class="anchored" data-anchor-id="part-d-system-deployment-evaluation-4-marks">Part D: System Deployment &amp; Evaluation (4 Marks)</h4>
+<p><strong>Objective:</strong> Deploy and evaluate the complete system.</p>
+<p><strong>Tasks:</strong></p>
+<ol type="1">
+<li><p><strong>Performance Metrics:</strong></p>
+<ul>
+<li>Optimization solution quality</li>
+<li>Computational efficiency</li>
+<li>Prediction accuracy</li>
+<li>Practical feasibility</li>
+</ul></li>
+<li><p><strong>Comparative Analysis:</strong></p>
+<ul>
+<li>Baseline vs optimized solutions</li>
+<li>Different algorithm comparisons</li>
+<li>Sensitivity to parameter choices</li>
+</ul></li>
+<li><p><strong>Business Impact Assessment:</strong></p>
+<ul>
+<li>Cost savings quantification</li>
+<li>Service improvement metrics</li>
+<li>Environmental impact reduction</li>
+<li>Scalability assessment</li>
+</ul></li>
+</ol>
+</section>
+</section>
+<section id="sample-capstone-problem" class="level3">
+<h3 class="anchored" data-anchor-id="sample-capstone-problem">Sample Capstone Problem</h3>
+<p><strong>Problem Statement:</strong> Develop an AI-driven system for Campus City that:</p>
+<ol type="1">
+<li>Predicts hourly demands for all 15 facilities</li>
+<li>Optimizes warehouse operations and delivery schedules</li>
+<li>Adapts to real-time events (emergencies, weather)</li>
+<li>Provides dashboard for operations management</li>
+</ol>
+<p><strong>Solution Components:</strong></p>
+<p><strong>Prediction Module:</strong></p>
+<ul>
+<li>LSTM neural networks for time series prediction</li>
+<li>Gradient-based optimization for model training</li>
+<li>Uncertainty quantification for predictions</li>
+</ul>
+<p><strong>Optimization Module:</strong></p>
+<ul>
+<li>Multi-period mixed-integer programming</li>
+<li>Stochastic optimization for demand uncertainty</li>
+<li>Real-time re-optimization engine</li>
+</ul>
+<p><strong>Integration Layer:</strong></p>
+<ul>
+<li>API for data exchange between modules</li>
+<li>Visualization dashboard</li>
+<li>Alert system for exceptional situations</li>
+</ul>
+</section>
+<section id="capstone-design-questions" class="level3">
+<h3 class="anchored" data-anchor-id="capstone-design-questions">Capstone Design Questions</h3>
+<ol type="1">
+<li><p><strong>How would you design a neural network architecture for predicting campus facility demands that captures both temporal patterns and external factors?</strong></p></li>
+<li><p><strong>What gradient optimization method would you choose for training your prediction models and why?</strong></p></li>
+<li><p><strong>How would you handle the trade-off between prediction model complexity and optimization solution time in a real-time system?</strong></p></li>
+<li><p><strong>Design a multi-objective optimization approach that balances cost minimization with service level maximization for campus operations.</strong></p></li>
+<li><p><strong>How would you validate that your AI-enhanced optimization system actually improves campus operations compared to traditional methods?</strong></p></li>
+</ol>
+</section>
+</section>
+<section id="module-5-summary" class="level2">
+<h2 class="anchored" data-anchor-id="module-5-summary">Module 5 Summary</h2>
+<section id="key-concepts-mastered" class="level3">
+<h3 class="anchored" data-anchor-id="key-concepts-mastered">Key Concepts Mastered</h3>
+<ul>
+<li>✅ Gradient descent fundamentals and mathematical foundations</li>
+<li>✅ Advanced gradient methods (Momentum, RMSProp, Adam)</li>
+<li>✅ Optimization in machine learning pipelines</li>
+<li>✅ Stochastic optimization methods and applications</li>
+<li>✅ Integration of AI with traditional optimization</li>
+</ul>
+</section>
+<section id="skills-developed" class="level3">
+<h3 class="anchored" data-anchor-id="skills-developed">Skills Developed</h3>
+<ul>
+<li><strong>Algorithm Selection:</strong> Choosing appropriate optimization methods for different problems</li>
+<li><strong>Hyperparameter Tuning:</strong> Optimizing optimization algorithms themselves</li>
+<li><strong>System Integration:</strong> Combining prediction models with optimization</li>
+<li><strong>Practical Implementation:</strong> Applying advanced methods to campus-scale problems</li>
+</ul>
+</section>
+<section id="course-integration" class="level3">
+<h3 class="anchored" data-anchor-id="course-integration">Course Integration</h3>
+<p>This module completes the learning journey by:</p>
+<ul>
+<li>Building on foundations from previous modules</li>
+<li>Introducing cutting-edge optimization techniques</li>
+<li>Preparing students for real-world AI/ML optimization challenges</li>
+<li>Providing a comprehensive skill set for industry applications</li>
+</ul>
+</section>
+<section id="career-applications" class="level3">
+<h3 class="anchored" data-anchor-id="career-applications">Career Applications</h3>
+<p>Skills developed in this module are directly applicable to:</p>
+<ul>
+<li>Data Scientist roles in logistics and operations</li>
+<li>Machine Learning Engineer positions</li>
+<li>Optimization Specialist careers</li>
+<li>AI Product Development</li>
+<li>Research in computational optimization</li>
+</ul>
+</section>
+<section id="final-preparation" class="level3">
+<h3 class="anchored" data-anchor-id="final-preparation">Final Preparation</h3>
+<ul>
+<li>Complete Capstone Project integration</li>
+<li>Review all module concepts for final assessment</li>
+<li>Prepare professional portfolio with project work</li>
+<li>Develop presentation skills for technical solutions</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="course-culmination" class="level2">
+<h2 class="anchored" data-anchor-id="course-culmination">Course Culmination</h2>
+<section id="learning-journey-recap" class="level3">
+<h3 class="anchored" data-anchor-id="learning-journey-recap">Learning Journey Recap</h3>
+<ul>
+<li><strong>Module 1:</strong> Mathematical foundations and linear optimization</li>
+<li><strong>Module 2:</strong> Nonlinear methods and constraint handling</li>
+<li><strong>Module 3:</strong> Project planning and heuristic approaches</li>
+<li><strong>Module 4:</strong> Combinatorial optimization and graph algorithms</li>
+<li><strong>Module 5:</strong> AI integration and advanced optimization</li>
+</ul>
+</section>
+<section id="professional-competencies-achieved" class="level3">
+<h3 class="anchored" data-anchor-id="professional-competencies-achieved">Professional Competencies Achieved</h3>
+<ol type="1">
+<li><strong>Technical Expertise:</strong> From basic LP to neural network optimization</li>
+<li><strong>Problem-Solving:</strong> Structured approach to complex optimization challenges</li>
+<li><strong>Implementation Skills:</strong> Python proficiency with industry-standard libraries</li>
+<li><strong>Business Acumen:</strong> Translating technical solutions to business value</li>
+<li><strong>Communication:</strong> Presenting optimization insights to diverse audiences</li>
+</ol>
+</section>
+<section id="future-learning-pathways" class="level3">
+<h3 class="anchored" data-anchor-id="future-learning-pathways">Future Learning Pathways</h3>
+<ul>
+<li>Advanced topics in convex optimization</li>
+<li>Reinforcement learning for sequential decision making</li>
+<li>Quantum optimization algorithms</li>
+<li>Large-scale distributed optimization systems</li>
+<li>Research in optimization theory and applications</li>
+</ul>
+<p><em>This module completes the Computational Optimization &amp; Applications course, equipping students with comprehensive optimization skills applicable to the most challenging problems in technology, business, and research.</em></p>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

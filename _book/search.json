@@ -1,0 +1,252 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Computational Optimization",
+    "section": "",
+    "text": "🎯 Course Vision & Context\n\nThe Optimization Revolution in Computational Sciences\nIn an era dominated by Artificial Intelligence, Machine Learning, and Data Science, optimization forms the fundamental backbone that powers intelligent decision-making systems. From recommending your next movie to orchestrating global supply chains, from training deep neural networks to scheduling autonomous vehicles—optimization algorithms are the invisible engines driving technological progress.\nThis course positions you at the intersection of mathematical theory and computational practice, equipping you with both the conceptual understanding and hands-on skills to design, implement, and deploy optimization solutions for real-world challenges.",
+    "crumbs": [
+      "🎯 Course Vision & Context"
+    ]
+  },
+  {
+    "objectID": "intro.html",
+    "href": "intro.html",
+    "title": "1  Introduction to Computational Optimization and Applications",
+    "section": "",
+    "text": "1.1 Why Optimization Matters Now More Than Ever\nThe exponential growth in data complexity and computational requirements has transformed optimization from a theoretical discipline to an essential toolkit for every computer scientist and data professional. Consider these real-world contexts:",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction to Computational Optimization and Applications</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#programme-objectives-learning-outcomes",
+    "href": "intro.html#programme-objectives-learning-outcomes",
+    "title": "1  Introduction to Computational Optimization and Applications",
+    "section": "1.2 📋 Programme Objectives & Learning Outcomes",
+    "text": "1.2 📋 Programme Objectives & Learning Outcomes\n\n1.2.1 Core Educational Mission\nThis minor programme is designed to bridge the critical gap between theoretical optimization mathematics and practical computational implementation. Upon successful completion, you will be able to:\n\n\n\n\n\n\n\nDomain\nLearning Outcomes\n\n\n\n\nTheoretical Foundation\n• Formulate real-world problems as mathematical optimization models• Understand optimality conditions and convergence properties• Analyze problem structures to select appropriate solution methods\n\n\nComputational Skills\n• Implement classical and modern optimization algorithms in Python• Utilize industry-standard optimization libraries and frameworks• Develop end-to-end optimization pipelines for practical applications\n\n\nAI/ML Integration\n• Understand optimization’s role in training machine learning models• Implement gradient-based methods for neural network optimization• Apply optimization to hyperparameter tuning and model selection\n\n\nProblem-Solving\n• Design optimization solutions for complex, multi-objective problems• Evaluate solution quality and algorithm performance• Communicate optimization insights to technical and non-technical stakeholders\n\n\n\n\n\n1.2.2 The “Smart City Logistics” Experiential Thread\nThroughout this course, we’ll employ a continuous practical thread: optimizing logistics and operations for a smart city ecosystem. This narrative provides:\n\nReal-world context for theoretical concepts\nProgressive complexity as we advance through modules\nPortfolio-building implementation experience\nIndustry-relevant problem-solving skills\n\nSmart City Optimization Journey: - Module 1: Warehouse Location (Linear Programming) - Module 2: Fuel Cost Optimization (Nonlinear Programming) - Module 3: Delivery Routing (Graph Algorithms) - Module 4: Dynamic Scheduling (Heuristic Methods) - Module 5: Demand Prediction (ML Integration)",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction to Computational Optimization and Applications</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#course-roadmap-syllabus-integration",
+    "href": "intro.html#course-roadmap-syllabus-integration",
+    "title": "1  Introduction to Computational Optimization and Applications",
+    "section": "1.3 🗺️ Course Roadmap & Syllabus Integration",
+    "text": "1.3 🗺️ Course Roadmap & Syllabus Integration\n\n1.3.1 Module Progression: From Foundations to Frontiers\nOur journey through computational optimization is strategically sequenced to build from fundamental principles to advanced applications:\n\n1.3.1.1 Foundation Phase: Mathematical Underpinnings\n\nModule I: Linear Programming & Formulation Skills\nModule II: Nonlinear Optimization & Constraint Handling\n\n\n\n1.3.1.2 Advanced Phase: Algorithmic Thinking\n\nModule III: Project Planning & Heuristic Methods\nModule IV: Combinatorial & Graph Optimization\n\n\n\n1.3.1.3 Integration Phase: AI/ML Applications\n\nModule V: Gradient Methods & Machine Learning Optimization\n\n\n\n\n1.3.2 Assessment Strategy: Theory Meets Practice\nTo ensure comprehensive understanding and skill development, assessment integrates both theoretical knowledge and practical implementation:\n\nSeries Examinations: Test conceptual understanding and problem formulation\nPractical Assignments: Evaluate implementation skills and computational thinking\n\nFinal Project: Assess integrated problem-solving and solution design\nContinuous Evaluation: Monitor progress through micro-projects and code reviews",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction to Computational Optimization and Applications</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#optimization-in-the-aiml-ecosystem",
+    "href": "intro.html#optimization-in-the-aiml-ecosystem",
+    "title": "1  Introduction to Computational Optimization and Applications",
+    "section": "1.4 🔗 Optimization in the AI/ML Ecosystem",
+    "text": "1.4 🔗 Optimization in the AI/ML Ecosystem\n\n1.4.1 The Central Role in Machine Learning\nOptimization isn’t just adjacent to machine learning—it is machine learning. The entire process of training machine learning models revolves around optimization principles:\n\nLoss Minimization: Finding model parameters that minimize prediction error\nConvergence Analysis: Understanding when and how algorithms reach optimal solutions\nRegularization: Balancing model complexity with performance through constrained optimization\nHyperparameter Tuning: Optimizing the optimization process itself\n\n\n\n1.4.2 Emerging Trends & Future Directions\nThe field of optimization is rapidly evolving, driven by advances in:\n\nLarge-Scale Optimization: Methods for billion-parameter models in deep learning\nAutomated Optimization: AutoML and neural architecture search\nQuantum Optimization: Quantum annealing and hybrid quantum-classical algorithms\n\nFederated Optimization: Privacy-preserving distributed learning\nMulti-Objective Optimization: Pareto optimization for conflicting objectives\nExplainable Optimization: Interpretable and transparent optimization processes",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction to Computational Optimization and Applications</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#technical-ecosystem-tools",
+    "href": "intro.html#technical-ecosystem-tools",
+    "title": "1  Introduction to Computational Optimization and Applications",
+    "section": "1.5 🛠️ Technical Ecosystem & Tools",
+    "text": "1.5 🛠️ Technical Ecosystem & Tools\n\n1.5.1 Why Python for Optimization?\nPython has emerged as the lingua franca for computational optimization due to:\n\nRich Ecosystem: Comprehensive libraries for every optimization paradigm\nAI/ML Integration: Seamless connection with machine learning frameworks\nPerformance: C/Fortran-backed numerical computing with Python simplicity\nCommunity: Vibrant ecosystem with continuous algorithm development\nIndustry Adoption: Widely used in both academia and industry\n\n\n\n1.5.2 Core Toolchain\nThroughout this course, we’ll work with industry-standard tools:\nOur Computational Optimization Stack:\n\n\n\nCategory\nTools\n\n\n\n\nNumerical Computing\nNumPy, SciPy\n\n\nLinear Programming\nPuLP, CVXPY\n\n\nMachine Learning\nScikit-learn, TensorFlow, PyTorch\n\n\nGraph Algorithms\nNetworkX\n\n\nVisualization\nMatplotlib, Plotly, Seaborn\n\n\nDevelopment\nJupyter, VSCode, Git",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction to Computational Optimization and Applications</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#getting-started-your-learning-journey",
+    "href": "intro.html#getting-started-your-learning-journey",
+    "title": "1  Introduction to Computational Optimization and Applications",
+    "section": "1.6 🎓 Getting Started: Your Learning Journey",
+    "text": "1.6 🎓 Getting Started: Your Learning Journey\n\n1.6.1 Prerequisites & Preparation\nTo succeed in this course, you should have:\n\nProgramming Fundamentals: Basic Python proficiency\nMathematical Background: Linear algebra and calculus foundations\n\nComputational Mindset: Willingness to experiment and debug\nProblem-Solving Attitude: Persistence through challenging concepts\nCuriosity and Creativity: Interest in exploring multiple solution approaches\n\n\n\n1.6.2 How to Maximize Your Learning\n\nEngage Actively: Don’t just read—implement every concept in code\nThink Critically: Question why certain methods work better for specific problems\nExperiment Freely: Modify parameters, break code, and learn from failures\nConnect Concepts: Relate theoretical principles to practical implementations\nBuild Portfolio: Document your work for future career opportunities\nCollaborate Effectively: Learn from peers through code reviews and discussions\nStay Updated: Follow recent developments in optimization research\n\n\n\n1.6.3 Course Structure and Expectations\nThis course is designed as a blended learning experience combining:\n\nTheoretical Foundations: Mathematical principles and algorithm concepts\nPractical Implementation: Hands-on coding exercises and projects\nReal-World Applications: Industry-relevant case studies and problems\nAssessment and Feedback: Continuous evaluation and improvement",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction to Computational Optimization and Applications</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#welcome-to-the-journey",
+    "href": "intro.html#welcome-to-the-journey",
+    "title": "1  Introduction to Computational Optimization and Applications",
+    "section": "1.7 🌟 Welcome to the Journey",
+    "text": "1.7 🌟 Welcome to the Journey\nYou are beginning a journey into one of the most fundamental and powerful domains of computer science and artificial intelligence. The skills you develop here will serve as a foundation for advanced work in machine learning, operations research, data science, and algorithmic design.\nAs we progress through the modules, remember that each concept builds toward a comprehensive understanding of how to make computers not just compute, but optimize—transforming them from calculators into intelligent decision-makers.\nThe journey through computational optimization is challenging but immensely rewarding. You’ll gain not just technical skills, but a new way of thinking about problem-solving that will serve you throughout your career in technology.\n\n“Optimization is the science of better. In a world of limited resources and unlimited wants, optimization provides the mathematical foundation for making the best possible decisions.”",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction to Computational Optimization and Applications</span>"
+    ]
+  },
+  {
+    "objectID": "summary.html",
+    "href": "summary.html",
+    "title": "2  Summary",
+    "section": "",
+    "text": "In summary, this book has no content whatsoever.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Summary</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#why-optimization-matters-now-more-than-ever",
+    "href": "intro.html#why-optimization-matters-now-more-than-ever",
+    "title": "1  Introduction to Computational Optimization and Applications",
+    "section": "",
+    "text": "AI Systems: Training neural networks is essentially an optimization process (Gradient Descent)\nOperations Research: Logistics, scheduling, and resource allocation drive billion-dollar efficiencies\n\nData Science: Model selection, hyperparameter tuning, and feature engineering are optimization problems\nAutonomous Systems: Path planning, control systems, and decision-making rely on optimization algorithms\nQuantum Computing: Many quantum algorithms are designed to solve optimization problems more efficiently",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction to Computational Optimization and Applications</span>"
+    ]
+  },
+  {
+    "objectID": "Module-1.html",
+    "href": "Module-1.html",
+    "title": "2  Basics of Optimization and Linear Programming",
+    "section": "",
+    "text": "2.1 Module Overview",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Basics of Optimization and Linear Programming</span>"
+    ]
+  },
+  {
+    "objectID": "Module-1.html#module-overview",
+    "href": "Module-1.html#module-overview",
+    "title": "2  Basics of Optimization and Linear Programming",
+    "section": "",
+    "text": "2.1.1 Learning Objectives\n\nUnderstand fundamental optimization concepts and problem classification\nFormulate real-world problems as Linear Programming models\nSolve LP problems using graphical and computational methods\nImplement LP solutions in Python for practical applications\nApply optimization thinking to facility location problems\n\n\n\n2.1.2 Smart City Context: Warehouse Location Challenge\nIn our Smart City Logistics project, we face a critical business decision: where to locate new distribution warehouses to minimize transportation costs while serving all city facilities efficiently. This module provides the mathematical foundation to solve this strategic problem.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Basics of Optimization and Linear Programming</span>"
+    ]
+  },
+  {
+    "objectID": "Module-1.html#foundations-of-optimization",
+    "href": "Module-1.html#foundations-of-optimization",
+    "title": "2  Basics of Optimization and Linear Programming",
+    "section": "2.2 Foundations of Optimization",
+    "text": "2.2 Foundations of Optimization\n\n2.2.1 What is Optimization?\nOptimization is the science of finding the best possible solution from all feasible alternatives under given constraints. In computational terms, it involves:\n\nDecision Variables: Quantities we can control (e.g., warehouse locations, shipment quantities)\nObjective Function: What we want to maximize or minimize (e.g., total transportation cost)\nConstraints: Limitations and requirements (e.g., budget, capacity, demand)\n\n\n\n2.2.2 Optimization Problem Classification\n\n\n\n\n\n\n\n\nProblem Type\nCharacteristics\nSmart City Example\n\n\n\n\nLinear Programming\nLinear objective and constraints\nWarehouse location with fixed costs\n\n\nNonlinear Programming\nNonlinear relationships\nFuel costs that increase with distance\n\n\nConstrained Optimization\nWith limitations\nBudget constraints on construction\n\n\nUnconstrained Optimization\nNo limitations\nTheoretical ideal locations\n\n\nDiscrete Optimization\nInteger decisions\nYes/no decisions for locations\n\n\nContinuous Optimization\nReal-valued decisions\nPrecise coordinates for facilities\n\n\n\n\n\n2.2.3 Real-World Applications in CSE\n\nResource Allocation: CPU time, memory allocation in operating systems\nNetwork Optimization: Internet routing, data flow optimization\nMachine Learning: Model training via loss function minimization\nDatabase Systems: Query optimization and indexing\nComputer Graphics: Rendering optimization and path tracing",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Basics of Optimization and Linear Programming</span>"
+    ]
+  },
+  {
+    "objectID": "Module-1.html#basic-python-for-optimization",
+    "href": "Module-1.html#basic-python-for-optimization",
+    "title": "2  Basics of Optimization and Linear Programming",
+    "section": "2.3 Basic Python for Optimization",
+    "text": "2.3 Basic Python for Optimization\n\n2.3.1 Essential Python Libraries Setup\n\n# Core optimization stack installation\n# pip install numpy scipy matplotlib pulp pandas jupyter\n\n\n\n\n\n\n\nKey Python Libraries Required for Computational Part\n\n\n\n\nNumPy: Numerical computing and array operations\nSciPy: Scientific computing and optimization algorithms\nMatplotlib: Data visualization and result plotting\nPuLP: Linear programming interface\nPandas: Data manipulation and analysis\n\n\n\n\n\n2.3.2 Python Fundamentals for Optimization\n\n# Essential operations we'll use frequently\nimport numpy as np\nimport matplotlib.pyplot as plt\n\n# Array operations for constraint matrices\ncoefficients = np.array([[2, 1], [1, 3], [4, 2]])\n\n# Function definitions for objectives\ndef transportation_cost(warehouses, facilities):\n    return np.sum(warehouses * facilities)\n\n# Data handling for problem parameters\ndemand_data = {'Hospital': 50, 'School': 30, 'Mall': 80}",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Basics of Optimization and Linear Programming</span>"
+    ]
+  },
+  {
+    "objectID": "Module-1.html#linear-programming-fundamentals",
+    "href": "Module-1.html#linear-programming-fundamentals",
+    "title": "2  Basics of Optimization and Linear Programming",
+    "section": "2.4 Linear Programming Fundamentals",
+    "text": "2.4 Linear Programming Fundamentals\n\n2.4.1 Mathematical Definition of Linear Programming\nA Linear Programming (LP) problem can be formally defined as:\nObjective Function: \\[\n\\text{Optimize } Z = c_1x_1 + c_2x_2 + \\cdots + c_nx_n\n\\]\nSubject to Constraints:\n\\[\n\\begin{aligned}\na_{11}x_1 + a_{12}x_2 + \\cdots + a_{1n}x_n & \\leq b_1 \\\\\na_{21}x_1 + a_{22}x_2 + \\cdots + a_{2n}x_n & \\leq b_2 \\\\\n\\vdots & \\\\\na_{m1}x_1 + a_{m2}x_2 + \\cdots + a_{mn}x_n & \\leq b_m \\\\\n\\end{aligned}\n\\]\nNon-negativity Conditions:\n\\[\nx_1, x_2, \\ldots, x_n \\geq 0\n\\]\nWhere:\n\n\\(Z\\) is the objective function to be optimized (maximized or minimized)\n\\(x_1, x_2, \\ldots, x_n\\) are the decision variables\n\\(c_1, c_2, \\ldots, c_n\\) are the coefficients of the objective function\n\\(a_{ij}\\) are the technological coefficients\n\\(b_1, b_2, \\ldots, b_m\\) are the right-hand side constants\n\n\n\n2.4.2 Standard Forms of Linear Programming\n\n2.4.2.1 Canonical Form (Maximization)\n\\[\n\\begin{aligned}\n\\text{Maximize } & Z = \\mathbf{c}^T\\mathbf{x} \\\\\n\\text{Subject to } & \\mathbf{A}\\mathbf{x} \\leq \\mathbf{b} \\\\\n& \\mathbf{x} \\geq \\mathbf{0}\n\\end{aligned}\n\\]\n\n\n2.4.2.2 Standard Form (Maximization)\n\\[\n\\begin{aligned}\n\\text{Maximize } & Z = \\mathbf{c}^T\\mathbf{x} \\\\\n\\text{Subject to } & \\mathbf{A}\\mathbf{x} = \\mathbf{b} \\\\\n& \\mathbf{x} \\geq \\mathbf{0}\n\\end{aligned}\n\\]\n\n\n\n2.4.3 Key Concepts in Linear Programming\n\n2.4.3.1 Feasible Region\nThe set of all points that satisfy all constraints simultaneously: \\[\nF = \\{\\mathbf{x} \\in \\mathbb{R}^n : \\mathbf{A}\\mathbf{x} \\leq \\mathbf{b}, \\mathbf{x} \\geq \\mathbf{0}\\}\n\\]\n\n\n2.4.3.2 Optimal Solution\nA point (^*) in the feasible region that gives the best value of the objective function.\n\n\n2.4.3.3 Corner Point (Extreme Point)\nA point in the feasible region that cannot be expressed as a convex combination of two other distinct points in the region.\n\n\n\n2.4.4 Smart City Case: Warehouse Location Formulation\n\n2.4.4.1 Problem Statement\nWe need to choose locations for 2 warehouses from 4 potential sites to serve 3 major facilities while minimizing total costs.\n\n\n2.4.4.2 Decision Variables\nLet: - \\(x_{ij}\\): Amount shipped from warehouse \\(i\\) to facility \\(j\\) - \\(y_i\\): Binary variable (1 if warehouse \\(i\\) is built, 0 otherwise)\nWhere: - \\(i = 1, 2, 3, 4\\) (warehouse sites) - \\(j = 1, 2, 3\\) (facilities: Hospital, Mall, School)\n\n\n2.4.4.3 Objective Function\nMinimize total cost: \\[\n\\text{Minimize } Z = \\sum_{i=1}^{4} \\sum_{j=1}^{3} c_{ij}x_{ij} + \\sum_{i=1}^{4} f_i y_i\n\\] Where: - \\(c_{ij}\\): Transportation cost per unit from warehouse \\(i\\) to facility \\(j\\) - \\(f_i\\): Fixed construction cost for warehouse \\(i\\)\n\n\n2.4.4.4 Constraints\nDemand Constraints (Each facility’s demand must be met): \\[\n\\sum_{i=1}^{4} x_{ij} = d_j \\quad \\text{for } j = 1,2,3\n\\] Where \\(d_j\\) is the demand of facility \\(j\\).\nCapacity Constraints (Warehouse capacity cannot be exceeded): \\[\n\\sum_{j=1}^{3} x_{ij} \\leq C_i y_i \\quad \\text{for } i = 1,2,3,4\n\\] Where \\(C_i\\) is the capacity of warehouse \\(i\\).\nBudget Constraint: \\[\n\\sum_{i=1}^{4} f_i y_i \\leq B\n\\] Where \\(B\\) is the total budget available.\nWarehouse Selection Constraint (Select exactly 2 warehouses): \\[\n\\sum_{i=1}^{4} y_i = 2\n\\]\nNon-negativity and Binary Requirements: \\[\nx_{ij} \\geq 0 \\quad \\text{for all } i,j\n\\] \\[\ny_i \\in \\{0, 1\\} \\quad \\text{for all } i\n\\]\n\n\n\n2.4.5 Graphical Method for Two-Variable Problems\n\n2.4.5.1 Step-by-Step Procedure\n\nPlot Constraints: Convert each inequality to equality and plot the line\nIdentify Feasible Region: Determine which side of each line satisfies the inequality\nFind Corner Points: Identify intersection points of constraint boundaries\nEvaluate Objective Function: Calculate objective value at each corner point\nIdentify Optimal Solution: Select the corner point with best objective value\n\n\n\n2.4.5.2 Example: Simple Warehouse Problem\nConsider a simplified version with 2 warehouses and 1 facility:\nProblem: \\[\n\\begin{aligned}\n\\text{Maximize } & Z = 40x_1 + 30x_2 \\\\\n\\text{Subject to } & 2x_1 + x_2 \\leq 100 \\\\\n& x_1 + 3x_2 \\leq 90 \\\\\n& x_1 \\geq 0, x_2 \\geq 0\n\\end{aligned}\n\\]\nStep 1: Plot Constraints - Constraint 1: \\(2x_1 + x_2 = 100\\) → Line through (0,100) and (50,0) - Constraint 2: \\(x_1 + 3x_2 = 90\\) → Line through (0,30) and (90,0)\nStep 2: Identify Corner Points - Intersection of axes: (0,0), (0,30), (50,0) - Intersection of constraints: Solve: \\[\n  \\begin{aligned}\n  2x_1 + x_2 &= 100 \\\\\n  x_1 + 3x_2 &= 90\n  \\end{aligned}\n\\] Solution: \\(x_1 = 42, x_2 = 16\\)\nStep 3: Evaluate Objective Function\n\nAt (0,0): \\(Z = 0\\)\nAt (0,30): \\(Z = 900\\)\nAt (50,0): \\(Z = 2000\\)\nAt (42,16): \\(Z = 40×42 + 30×16 = 2160\\)\n\nOptimal Solution: \\(x_1 = 42, x_2 = 16\\) with \\(Z = 2160\\)\n\n\n\n2.4.6 Simplex Method Theory\n\n2.4.6.1 Fundamental Theorem of Linear Programming\nIf an LP problem has an optimal solution, then there exists at least one corner point of the feasible region that is optimal.\n\n\n2.4.6.2 Simplex Algorithm Steps\n\nConvert to Standard Form\n\nConvert inequalities to equations using slack variables\nEnsure all variables are non-negative\nConvert minimization to maximization if needed\n\nInitial Basic Feasible Solution\n\nIdentify basic variables (variables with coefficient 1 in one equation and 0 in others)\nSet non-basic variables to zero\n\nOptimality Test\n\nCalculate reduced costs for non-basic variables\nIf all reduced costs \\(\\leq 0\\) (for maximization), current solution is optimal\n\nPivot Column Selection\n\nChoose non-basic variable with most positive reduced cost (for maximization)\n\nPivot Row Selection\n\nUse minimum ratio test: \\(\\min \\left\\{ \\frac{b_i}{a_{ij}} : a_{ij} &gt; 0 \\right\\}\\)\n\nPivot Operation\n\nMake pivot element equal to 1\nMake other elements in pivot column equal to 0\n\nRepeat until optimality condition is satisfied\n\n\n\n2.4.6.3 Simplex Tableau Format\nThe simplex method uses a tableau to organize calculations:\n\n\n\nBasic Var\n\\(x_1\\)\n\\(x_2\\)\n\\(s_1\\)\n\\(s_2\\)\nRHS\n\n\n\n\n\\(s_1\\)\n2\n1\n1\n0\n100\n\n\n\\(s_2\\)\n1\n3\n0\n1\n90\n\n\n\\(Z\\)\n-40\n-30\n0\n0\n0\n\n\n\nWhere \\(s_1, s_2\\) are slack variables.\n\n\n\n2.4.7 Types of Linear Programming Solutions\n\n2.4.7.1 Unique Optimal Solution\nWhen only one corner point gives the optimal objective value.\n\n\n2.4.7.2 Multiple Optimal Solutions\nWhen multiple corner points give the same optimal objective value.\n\n\n2.4.7.3 Unbounded Solution\nWhen the objective function can be improved indefinitely.\n\n\n2.4.7.4 Infeasible Problem\nWhen no point satisfies all constraints simultaneously.\n\n\n\n2.4.8 Duality in Linear Programming\nEvery LP problem (primal) has a corresponding dual problem:\nPrimal Problem: \\[\n\\begin{aligned}\n\\text{Maximize } & Z = \\mathbf{c}^T\\mathbf{x} \\\\\n\\text{Subject to } & \\mathbf{A}\\mathbf{x} \\leq \\mathbf{b} \\\\\n& \\mathbf{x} \\geq \\mathbf{0}\n\\end{aligned}\n\\]\nDual Problem: \\[\n\\begin{aligned}\n\\text{Minimize } & W = \\mathbf{b}^T\\mathbf{y} \\\\\n\\text{Subject to } & \\mathbf{A}^T\\mathbf{y} \\geq \\mathbf{c} \\\\\n& \\mathbf{y} \\geq \\mathbf{0}\n\\end{aligned}\n\\]\n\n2.4.8.1 Duality Theorems\n\nWeak Duality Theorem: For any feasible solution \\(\\mathbf{x}\\) of primal and \\(\\mathbf{y}\\) of dual: \\[\n\\mathbf{c}^T\\mathbf{x} \\leq \\mathbf{b}^T\\mathbf{y}\n  \\]\nStrong Duality Theorem: If either primal or dual has an optimal solution, then both have optimal solutions and: \\[\n\\mathbf{c}^T\\mathbf{x}^* = \\mathbf{b}^T\\mathbf{y}^*\n  \\]\n\n\n\n\n2.4.9 Sensitivity Analysis\nSensitivity analysis examines how changes in parameters affect the optimal solution:\n\n2.4.9.1 Changes in Objective Function Coefficients\n\nRange of optimality for each coefficient\nEffect on optimal solution when coefficients change\n\n\n\n2.4.9.2 Changes in Right-Hand Side Constants\n\nShadow prices (dual variables)\nRange of feasibility for each constraint\n\n\n\n2.4.9.3 Changes in Constraint Coefficients\n\nEffect of adding new variables or constraints\nImpact of changing technological coefficients\n\n\n\n\n2.4.10 Special Cases in Linear Programming\n\n2.4.10.1 Transportation Problems\nSpecial structure where sources supply destinations with minimum transportation cost.\n\n\n2.4.10.2 Assignment Problems\nSpecial case of transportation problem where each source is assigned to exactly one destination.\n\n\n2.4.10.3 Network Flow Problems\nOptimization problems defined on networks with flow conservation constraints.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Basics of Optimization and Linear Programming</span>"
+    ]
+  },
+  {
+    "objectID": "Module-1.html#practical-implementation-with-python",
+    "href": "Module-1.html#practical-implementation-with-python",
+    "title": "2  Basics of Optimization and Linear Programming",
+    "section": "2.5 Practical Implementation with Python",
+    "text": "2.5 Practical Implementation with Python\n\nProblem Statement\n\nA Smart City logistics company needs to determine the optimal distribution strategy between two warehouses (Warehouse A and Warehouse B) to minimize total operational costs. The company must decide how many units to ship from each warehouse while considering capacity constraints and transportation costs.\n\n2.5.0.1 Problem Data:\n\nWarehouse A: Transportation cost = $40 per unit\nWarehouse B: Transportation cost = $30 per unit\nConstraint 1: Minimum demand exeeds 60\nConstraint 2: Warehouse A has a maximum capacity of 50\nConstraint 3: Warehouse B has a maximum capacity of 40\nConstraint 4: Total units from both warehouses cannot exceed 200 (2 units from A + 3 unit from B combination)\nBoth warehouses have non-negative shipment quantities\n\n\n\n2.5.1 Mathematical Formulation\n\n2.5.1.1 Decision Variables\nLet: - $ x_1 $: Number of units to ship from Warehouse A - $ x_2 $: Number of units to ship from Warehouse B\n\n\n2.5.1.2 Objective Function\nMinimize the total transportation cost: \\[\n\\text{Minimize } Z = 40x_1 + 30x_2\n\\]\n\n\n\n2.5.2 Complete Linear Programming Model\n\\[\n\\begin{aligned}\n\\text{Minimize } & Z = 40x_1 + 30x_2 \\\\\n\\text{Subject to } & x_1+x_2\\geq 60\\\\\n&x_1\\leq 50\\\\\n&x_2\\leq 40\\\\\n&2x_1 + 3x_2 \\leq 200 \\\\\n& x_1 \\geq 0 \\\\\n& x_2 \\geq 0\n\\end{aligned}\n\\]\n\nUsing PuLP for LP Problems\n\nPuLP provides a high-level interface for formulating and solving optimization problems:\n\nimport pulp\n\n# Create optimization problem\nmodel = pulp.LpProblem(\"Warehouse_Location\", pulp.LpMinimize)\n\n# Define decision variables\nx1 = pulp.LpVariable('Warehouse_A', lowBound=0, cat='Continuous')\nx2 = pulp.LpVariable('Warehouse_B', lowBound=0, cat='Continuous')\n\n# Define objective function\nmodel += 40*x1 + 30*x2, \"Total_Cost\"\n\n# Add realistic constraints\nmodel += x1 + x2 &gt;= 60, \"Minimum_Demand\"\nmodel += x1 &lt;= 50, \"Warehouse_A_Capacity\"  # Warehouse A max capacity\nmodel += x2 &lt;= 40, \"Warehouse_B_Capacity\"  # Warehouse B max capacity\nmodel += 2*x1 + 3*x2 &lt;= 200, \"Budget_Constraint\"  # Combined resource constraint\n\n# Solve the problem\nmodel.solve()\n\n# Print results\nprint(f\"Status: {pulp.LpStatus[model.status]}\")\nprint(f\"Optimal Cost: ${pulp.value(model.objective):.2f}\")\nprint(f\"Warehouse A: {x1.varValue} units\")\nprint(f\"Warehouse B: {x2.varValue} units\")\n\nStatus: Optimal\nOptimal Cost: $2000.00\nWarehouse A: 20.0 units\nWarehouse B: 40.0 units",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Basics of Optimization and Linear Programming</span>"
+    ]
+  },
+  {
+    "objectID": "Module-1.html#linear-programming-problems-collection",
+    "href": "Module-1.html#linear-programming-problems-collection",
+    "title": "2  Basics of Optimization and Linear Programming",
+    "section": "2.6 Linear Programming Problems Collection",
+    "text": "2.6 Linear Programming Problems Collection\nProblem 1\nA manufacturing company produces two products (A and B) using three machines (M1, M2, M3). The profit per unit is $50 for product A and $40 for product B. Machine time requirements and availability are given below. Determine the optimal production quantities to maximize profit.\n\n\n\n\n\n\n\n\n\nMachine\nProduct A (hrs/unit)\nProduct B (hrs/unit)\nAvailable Hours\n\n\n\n\nM1\n2\n1\n100\n\n\nM2\n1\n2\n80\n\n\nM3\n1\n1\n60\n\n\n\nMathematical Formulation\nDecision Variables:\n\n\\(x_1\\): Units of Product A to produce\n\\(x_2\\): Units of Product B to produce\n\nObjective Function: \\[\n\\text{Maximize } Z = 50x_1 + 40x_2\n\\]\nConstraints: \\[\n\\begin{aligned}\n2x_1 + x_2 &\\leq 100 \\quad \\text{(Machine M1)} \\\\\nx_1 + 2x_2 &\\leq 80 \\quad \\text{(Machine M2)} \\\\\nx_1 + x_2 &\\leq 60 \\quad \\text{(Machine M3)} \\\\\nx_1, x_2 &\\geq 0\n\\end{aligned}\n\\]\n\nPython Solution\n\n\nimport pulp\n\n# Create the optimization problem\nmodel = pulp.LpProblem(\"Product_Mix_Optimization\", pulp.LpMaximize)\n\n# Decision variables\nx1 = pulp.LpVariable('Product_A', lowBound=0, cat='Continuous')\nx2 = pulp.LpVariable('Product_B', lowBound=0, cat='Continuous')\n\n# Objective function\nmodel += 50*x1 + 40*x2, \"Total_Profit\"\n\n# Constraints\nmodel += 2*x1 + x2 &lt;= 100, \"Machine_M1\"\nmodel += x1 + 2*x2 &lt;= 80, \"Machine_M2\"\nmodel += x1 + x2 &lt;= 60, \"Machine_M3\"\n\n# Solve\nmodel.solve()\n\n# Results\nprint(\"=== PRODUCT MIX OPTIMIZATION ===\")\nprint(f\"Status: {pulp.LpStatus[model.status]}\")\nprint(f\"Optimal Profit: ${pulp.value(model.objective):.2f}\")\nprint(f\"Product A: {x1.varValue} units\")\nprint(f\"Product B: {x2.varValue} units\")\nprint(f\"Machine M1 usage: {2*x1.varValue + x2.varValue}/100 hours\")\nprint(f\"Machine M2 usage: {x1.varValue + 2*x2.varValue}/80 hours\")\nprint(f\"Machine M3 usage: {x1.varValue + x2.varValue}/60 hours\")\n\n=== PRODUCT MIX OPTIMIZATION ===\nStatus: Optimal\nOptimal Profit: $2800.00\nProduct A: 40.0 units\nProduct B: 20.0 units\nMachine M1 usage: 100.0/100 hours\nMachine M2 usage: 80.0/80 hours\nMachine M3 usage: 60.0/60 hours",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Basics of Optimization and Linear Programming</span>"
+    ]
+  },
+  {
+    "objectID": "micro_project1.html",
+    "href": "micro_project1.html",
+    "title": "3  Micro-Project 1: NYC Emergency Supply Distribution Network",
+    "section": "",
+    "text": "3.1 🎯 Project Overview",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Micro-Project 1: NYC Emergency Supply Distribution Network</span>"
+    ]
+  },
+  {
+    "objectID": "micro_project1.html#project-overview",
+    "href": "micro_project1.html#project-overview",
+    "title": "3  Micro-Project 1: NYC Emergency Supply Distribution Network",
+    "section": "",
+    "text": "3.1.1 Business Context\nAs an optimization analyst at NYC Emergency Logistics, you’ve been tasked with designing an optimal distribution network for emergency medical supplies. The recent pandemic highlighted the need for efficient resource allocation across New York City’s critical facilities.\n\n\n3.1.2 Problem Statement\nDesign a cost-effective supply distribution system that ensures all major NYC facilities receive their required emergency supplies while minimizing total operational costs and respecting warehouse capacity constraints.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Micro-Project 1: NYC Emergency Supply Distribution Network</span>"
+    ]
+  },
+  {
+    "objectID": "micro_project1.html#project-scope-constraints",
+    "href": "micro_project1.html#project-scope-constraints",
+    "title": "3  Micro-Project 1: NYC Emergency Supply Distribution Network",
+    "section": "3.2 📊 Project Scope & Constraints",
+    "text": "3.2 📊 Project Scope & Constraints\n\n3.2.1 Dataset Scope (Simplified for Module 1)\n\n10 Major Facilities: Hospitals and schools across NYC boroughs\n5 Potential Warehouse Locations: Strategic distribution centers\nLinear Transportation Costs: Distance-based cost model\nBasic Capacity Constraints: Warehouse storage limits and facility demand requirements\n\n\n\n3.2.2 Business Constraints\n\nTotal budget: $2,000,000 for warehouse construction and operations\nEach facility’s demand must be fully satisfied\nWarehouse capacities cannot be exceeded\nMust select at least 2 warehouses for redundancy",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Micro-Project 1: NYC Emergency Supply Distribution Network</span>"
+    ]
+  },
+  {
+    "objectID": "micro_project1.html#learning-objectives",
+    "href": "micro_project1.html#learning-objectives",
+    "title": "3  Micro-Project 1: NYC Emergency Supply Distribution Network",
+    "section": "3.3 🎓 Learning Objectives",
+    "text": "3.3 🎓 Learning Objectives\nBy completing this micro-project, you will be able to:\n\nFormulate real-world distribution problems as Linear Programming models\nImplement LP solutions using Python’s PuLP library\nInterpret optimization results in business context\nValidate solution feasibility and constraint satisfaction\nCommunicate technical solutions to non-technical stakeholders",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Micro-Project 1: NYC Emergency Supply Distribution Network</span>"
+    ]
+  },
+  {
+    "objectID": "micro_project1.html#project-data",
+    "href": "micro_project1.html#project-data",
+    "title": "3  Micro-Project 1: NYC Emergency Supply Distribution Network",
+    "section": "3.4 📋 Project Data",
+    "text": "3.4 📋 Project Data\n\n3.4.1 Facilities Data (10 Major NYC Locations)\n\n\n\n\n\n\n\n\n\n\nFacility ID\nFacility Name\nType\nBorough\nDaily Demand (units)\n\n\n\n\nFAC_001\nBellevue Hospital Center\nHospital\nManhattan\n120\n\n\nFAC_002\nNYC Health + Hospitals/Harlem\nHospital\nManhattan\n95\n\n\nFAC_003\nMount Sinai Hospital\nHospital\nManhattan\n110\n\n\nFAC_004\nBronxCare Health System\nHospital\nBronx\n85\n\n\nFAC_005\nBrooklyn Hospital Center\nHospital\nBrooklyn\n90\n\n\nFAC_006\nSt. John’s Episcopal Hospital\nHospital\nQueens\n75\n\n\nFAC_007\nStaten Island University Hospital\nHospital\nStaten Island\n70\n\n\nFAC_008\nStuyvesant High School\nSchool\nManhattan\n40\n\n\nFAC_009\nBrooklyn Technical High School\nSchool\nBrooklyn\n45\n\n\nFAC_010\nBronx High School of Science\nSchool\nBronx\n35\n\n\n\n\n\n3.4.2 Warehouse Locations (5 Potential Sites)\n\n\n\n\n\n\n\n\n\n\n\nWarehouse ID\nLocation\nBorough\nCapacity (units)\nConstruction Cost\nOperational Cost/day\n\n\n\n\nWH_01\nLower Manhattan\nManhattan\n300\n$600,000\n$1,200\n\n\nWH_02\nSouth Bronx\nBronx\n250\n$450,000\n$900\n\n\nWH_03\nDowntown Brooklyn\nBrooklyn\n280\n$550,000\n$1,100\n\n\nWH_04\nLong Island City\nQueens\n270\n$500,000\n$1,000\n\n\nWH_05\nNorth Shore\nStaten Island\n200\n$400,000\n$800\n\n\n\n\n\n3.4.3 Transportation Costs ($/unit)\n\n\n\nFrom  To\nFAC_001\nFAC_002\nFAC_003\n…\nFAC_010\n\n\n\n\nWH_01\n2.50\n3.00\n2.80\n…\n4.50\n\n\nWH_02\n3.50\n2.80\n3.20\n…\n2.50\n\n\nWH_03\n4.00\n3.50\n3.80\n…\n3.00\n\n\nWH_04\n3.80\n3.20\n3.50\n…\n3.80\n\n\nWH_05\n5.00\n4.50\n4.80\n…\n2.20",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Micro-Project 1: NYC Emergency Supply Distribution Network</span>"
+    ]
+  },
+  {
+    "objectID": "micro_project1.html#technical-requirements",
+    "href": "micro_project1.html#technical-requirements",
+    "title": "3  Micro-Project 1: NYC Emergency Supply Distribution Network",
+    "section": "3.5 🛠️ Technical Requirements",
+    "text": "3.5 🛠️ Technical Requirements\n\n3.5.1 Mathematical Formulation Components\nDecision Variables:\n\n\\(x_{ij}\\): Units shipped from warehouse i to facility j\n\\(y_i\\): Binary variable (1 if warehouse i is selected, 0 otherwise)\n\nObjective Function:\nMinimize Total Cost = Construction Cost + Operational Cost + Transportation Cost\nConstraints:\n\nDemand Satisfaction: Each facility receives exactly its required units\nCapacity Limits: Warehouse shipments don’t exceed capacity\nBudget Constraint: Total costs within $2,000,000 budget\nMinimum Warehouses: At least 2 warehouses must be selected\nNon-negativity: All shipment quantities non-negative\n\n\n\n3.5.2 Python Implementation Requirements\n\nUse PuLP library for LP formulation\nImplement proper variable definitions and constraints\nInclude comprehensive error handling\nGenerate clear, readable output with business interpretation",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Micro-Project 1: NYC Emergency Supply Distribution Network</span>"
+    ]
+  },
+  {
+    "objectID": "micro_project1.html#project-milestones",
+    "href": "micro_project1.html#project-milestones",
+    "title": "3  Micro-Project 1: NYC Emergency Supply Distribution Network",
+    "section": "3.6 📅 Project Milestones",
+    "text": "3.6 📅 Project Milestones\n\n3.6.1 Milestone 1: Problem Analysis & Formulation (Day 1-2)\nDeliverables:\n\nComplete mathematical formulation document\nDecision variables clearly defined\nObjective function with cost components\nAll constraints with mathematical expressions\n\nSuccess Criteria:\n\nAll business requirements translated to mathematical constraints\nFormulation verified by instructor\n\n\n\n3.6.2 Milestone 2: Python Implementation (Day 3-4)\nDeliverables:\n\nWorking Python code using NYCLogisticsDataset class\nProper LP model setup with PuLP\nConstraint implementation\nSolution algorithm execution\n\nSuccess Criteria:\n\nCode executes without errors\nModel converges to optimal solution\nAll constraints properly implemented\n\n\n\n3.6.3 Milestone 3: Solution Analysis & Validation (Day 5)\nDeliverables:\n\nComplete solution interpretation\nConstraint satisfaction verification\nCost breakdown analysis\nBusiness recommendations\n\nSuccess Criteria:\n\nAll constraints verified programmatically\nSolution makes business sense\nClear cost-benefit analysis\n\n\n\n3.6.4 Milestone 4: Final Report & Presentation (Day 6-7)\nDeliverables:\n\nComprehensive project report\nCode documentation\nBusiness presentation slides\nPeer code review completed\n\nSuccess Criteria:\n\nProfessional-quality deliverables\nClear communication of technical concepts\nDemonstrated understanding of LP applications",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Micro-Project 1: NYC Emergency Supply Distribution Network</span>"
+    ]
+  },
+  {
+    "objectID": "micro_project1.html#final-deliverables",
+    "href": "micro_project1.html#final-deliverables",
+    "title": "3  Micro-Project 1: NYC Emergency Supply Distribution Network",
+    "section": "3.7 📁 Final Deliverables",
+    "text": "3.7 📁 Final Deliverables\n\n** 1. Technical Implementation**\n\n\n# emergency_supply_optimization.py\n\n\nComplete Python implementation\nData loading and preprocessing\nLP model formulation\nSolution extraction and validation\nResults visualization\n\n\n2. Mathematical Formulation Document\n\n\nDetailed variable definitions\nObjective function derivation\nConstraint explanations\nModel assumptions and limitations\n\n\n3. Business Report (PDF)\n\n\nExecutive summary\nProblem statement\nMethodology overview\nOptimal solution presentation\nCost analysis and savings\nImplementation recommendations\nRisk assessment\n\n\n4. Presentation Slides\n\n\n5-minute project overview\nKey findings and insights\nVisualizations of optimal distribution\nBusiness impact analysis",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Micro-Project 1: NYC Emergency Supply Distribution Network</span>"
+    ]
+  }
+]

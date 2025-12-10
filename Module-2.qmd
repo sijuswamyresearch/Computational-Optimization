@@ -1,0 +1,526 @@
+---
+title: "Module 2: Non-linear Programming with Python"
+format: html
+jupyter: python3
+---
+
+## Module Overview
+
+### Learning Objectives
+
+- Understand the limitations of linear models and need for nonlinear optimization
+- Master unconstrained optimization techniques (Golden Section, Fibonacci)
+- Formulate and solve constrained nonlinear problems using KKT conditions
+- Implement nonlinear optimization algorithms in Python
+- Apply nonlinear methods to realistic cost modeling problems
+
+### Module Structure
+
+- **Section 2.1**: Introduction to Nonlinear Optimization
+- **Section 2.2**: Unconstrained Optimization Methods  
+- **Section 2.3**: Constrained Optimization & KKT Conditions
+- **Section 2.4**: Python Implementation of Nonlinear Solvers
+- **Section 2.5**: Advanced Applications & Micro-Project 2
+
+### Real-World Context
+
+Extend the Campus City supply chain model with realistic nonlinear cost functions, environmental constraints, and multi-period optimization challenges.
+
+
+## Introduction to Nonlinear Optimization
+
+Nonlinear programming (NLP) is an optimization technique used to find the best outcome (maximum profit, lowest cost, etc.) in a mathematical model where at least one of the objective functions or constraints is nonlinear . This means the relationship between variables cannot be represented on a straight line. NLP addresses the complexity found in real-world scenarios, such as modeling physical systems or financial markets, where linear assumptions are often inadequate for accurate prediction and decision-making . Key components of an NLP problem include decision variables, an objective function to be optimized, and constraints that limit the possible solutions. 
+
+The primary purpose of using NLP is to provide more accurate and realistic models for optimization problems across various fields, including engineering design, economics, finance, and operations research. For example, in portfolio optimization, investors use NLP to maximize returns while balancing risk, which inherently involves nonlinear relationships between different assets. In chemical engineering, NLP helps optimize process yields and efficiency where reaction kinetics are nonlinear. It is applied when linear models fail to capture the true nature of the relationships between the inputs and outputs of a system.
+
+Solving NLP problems involves specialized algorithms, such as sequential quadratic programming (SQP), interior-point methods, or generalized reduced gradient methods. The "how much" refers to the computational resources and mathematical complexity required, which are often significantly greater than for linear programming. The complexity and effort vary widely based on the problem's size and structure (e.g., convexity). While the general approach is similar (define variables, objective, constraints), the execution demands sophisticated software and potentially substantial processing power to find the global optimum efficiently.
+
+### Theoretical Foundation
+
+The fundamental theoretical difference between Linear Programming Problems (LPP) and NLP lies in the *mathematical nature of their objective functions and constraints*, which dictates the complexity of their feasible regions, solution methods, and optimality guarantees.
+
+
+| Feature | Linear Programming (LPP) | Nonlinear Programming (NLP) |
+|---------|--------------------------|------------------------------|
+| **Function Types** | Objective function and all constraints must be linear. | At least one function (objective or a constraint) is nonlinear. |
+| **Feasible Region** | The feasible region is a convex polyhedron (a shape with flat faces). | The feasible region can be non-convex, curved, or disconnected. |
+| **Optimality** | A locally optimal solution is always a globally optimal solution. The optimum lies at a **corner point (vertex)** of the feasible region. | Solutions often only guarantee a local optimum. The global optimum is difficult to find without additional assumptions (e.g., convexity of the entire problem). |
+| **Solution Methods** | Solved primarily by the **Simplex Method** or **Interior Point Methods**, which systematically explore the corner points. | Requires more complex iterative numerical methods such as **Gradient Descent**, **Newton’s Method**, or **Lagrangian heuristics**, often relying on derivatives. |
+| **Computational Complexity** | Generally easier and faster to solve, even with a vast number of variables. | Generally more computationally intensive and difficult to solve, especially for large-scale, non-convex problems. |
+
+                         ┌───────────────────────────────────────────┐
+                         |      Optimization Problems                |
+                         └───────────────────────────────────────────┘
+                                        |
+                    ┌───────────────────┴───────────────────┐
+                    |                                       |
+         ┌───────────────────────┐               ┌────────────────────────┐
+         | Linear Programming     |               | Nonlinear Programming  |
+         | (LPP)                  |               | (NLP)                  |
+         └───────────────────────┘               └────────────────────────┘
+                    |                                       |
+         ┌───────────────────────┐               ┌────────────────────────────────┐
+         | Linear objective &     |               | At least one objective or      |
+         | linear constraints     |               | constraint is nonlinear        |
+         └───────────────────────┘               └────────────────────────────────┘
+                    |                                       |
+          Feasible region is convex                Region may be curved or nonconvex
+                    |                                       |
+        Optimal solution at a vertex                May have multiple local optima
+                    |                                       |
+        Solved via Simplex / IPM                      Solved via numerical methods
+
+#### Why Nonlinear Optimization?
+
+Linear programming assumes proportional relationships, but real-world problems often involve:
+
+- **Economies of scale**: Decreasing marginal costs
+- **Physical constraints**: Nonlinear relationships (distance vs fuel consumption)
+- **Quality constraints**: Minimum/maximum thresholds with nonlinear effects
+- **Environmental factors**: Quadratic cost functions for emissions
+
+#### Mathematical Formulation
+
+A general Nonlinear Programming (NLP) problem:
+
+**Objective Function:**
+$$
+\text{Minimize } f(\mathbf{x})
+$$
+
+**Subject to:**
+
+$$
+\begin{aligned}
+g_i(\mathbf{x}) & \leq 0, \quad i = 1, \ldots, m \\
+h_j(\mathbf{x}) & = 0, \quad j = 1, \ldots, p \\
+\mathbf{x} & \in \mathbb{R}^n
+\end{aligned}
+$$
+
+Where:
+
+- $f(\mathbf{x})$: Nonlinear objective function
+- $g_i(\mathbf{x})$: Nonlinear inequality constraints  
+- $h_j(\mathbf{x})$: Nonlinear equality constraints
+
+### Sample Problem
+
+**Problem Statement:**
+A delivery company has a cost function $C(d) = 500 + 2d + 0.1d^2$ where $d$ is distance in km. Find the optimal delivery distance that minimizes cost per unit for a shipment of 100 units.
+
+**Mathematical Formulation:**
+$$
+\text{Minimize } \frac{C(d)}{100} = 5 + 0.02d + 0.001d^2
+$$
+
+**Solution:**
+
+1. Take derivative: $\frac{d}{dd}\left(5 + 0.02d + 0.001d^2\right) = 0.02 + 0.002d$
+2. Set to zero: $0.02 + 0.002d = 0$
+3. Solve: $d = -10$ km → Not feasible
+4. Check boundaries: Minimum at $d = 0$ with cost $5/unit
+
+**Interpretation:** The cost function is convex and increasing, so minimum occurs at shortest distance.
+
+### Review Questions
+
+1. What are three real-world scenarios where linear models fail and nonlinear optimization is required?
+   
+2. Explain the difference between convex and non-convex optimization problems. Why is this distinction important?
+
+3. A manufacturing process has cost $C(x) = 1000 + 50x + 0.5x^2$ where x is production volume. Find the production level that minimizes average cost.
+
+4. Why can't the Simplex method be directly applied to nonlinear optimization problems?
+
+5. Describe a campus logistics scenario where nonlinear optimization would provide better results than linear programming.
+
+:::{.callout-note}
+### NLP Vs LPP
+
+The linear nature of LPP guarantees a single, well-defined feasible region and objective function behavior, allowing for robust algorithms like the Simplex method to efficiently find the absolute best (global) solution. NLP, by contrast, accommodates the complex, often non-convex, relationships found in many real-world problems. This flexibility comes at a theoretical and computational cost: the presence of curves and non-linear interactions means there may be multiple "local" optimal points, and standard algorithms may get stuck at one that is not the overall best solution. The theoretical foundation of NLP thus focuses heavily on iterative improvement, convergence properties, and finding efficient ways to navigate these more challenging landscapes.
+:::
+
+
+## Unconstrained Optimization Methods
+
+Unconstrained Nonlinear Programming deals with optimizing a nonlinear objective function without any constraints on the decision variables. The objective is to determine a point $x^{*} \in \mathbb{R}^{n}$ such that:
+
+$$
+\min_{x \in \mathbb{R}^{n}} f(x)
+$$
+
+(or equivalently $\max f(x)$ depending on the problem context).
+
+
+**Intuition Behind Unconstrained NLP**
+
+The central idea in solving unconstrained NLP problems is to understand how the objective function surface behaves and to iteratively move toward regions where the function value improves.
+
+**Downhill Movement Intuition**
+
+For minimization problems, the objective is to move step-by-step in a direction that decreases the function value, much like descending a slope.
+
+**Hiking Analogy**
+
+Consider attempting to reach the lowest valley point in a mountainous landscape while blindfolded. The only available information is the slope beneath your feet. The safest strategy is always stepping in the direction that slopes downward most strongly.
+
+:::{.callout-note}
+## Key points
+
+- This *direction of steepest descent* is mathematically represented by the gradient $\nabla f(x)$.
+- Repeated movement in this direction leads to progressively lower function values until a flat region is encountered.
+## Link with Calculus
+
+In single-variable calculus, stationary (optimal) points are found by solving:
+
+$$
+\frac{df}{dx} = 0
+$$
+
+In multi-variable calculus, this concept generalizes to:
+
+$$
+\nabla f(x^{*}) = 0
+$$
+
+A point where the gradient is zero is called a **critical point**. It may represent:
+
+| Type of Critical Point | Interpretation |
+|------------------------|----------------|
+| Local Minimum | Valley bottom |
+| Local Maximum | Hilltop |
+| Saddle Point | A flat ridge point |
+
+To classify these points, second-order information is required.
+:::
+
+
+:::{.callout-tip}
+### First-Order Necessary Condition (FONC)
+
+For a differentiable function $f(x)$, a point $x^{*}$ can be a local minimum only if:
+
+$$
+\nabla f(x^{*}) = 0
+$$
+
+This guarantees flatness but **does not guarantee** an actual minimum.
+:::
+
+:::{.callout-note}
+### Second-Order Sufficient Condition (SOSC)
+
+Let $H(x)$ denote the **Hessian matrix** of second partial derivatives:
+
+$$
+H(x) = \left[ \frac{\partial^{2} f}{\partial x_i \partial x_j} \right]
+$$
+
+If $x^{*}$ satisfies $\nabla f(x^{*}) = 0$ and
+
+$$
+H(x^{*}) \text{ is positive definite}
+$$
+
+then $x^{*}$ is a **strict local minimum**.
+:::
+
+**Curvature Interpretation**
+
+
+| Hessian Property | Interpretation |
+|------------------|----------------|
+| $H \succ 0$ | Strict minimum (upward curvature) |
+| $H \prec 0$ | Maximum (downward curvature) |
+| Indefinite | Saddle point (mixed curvature) |
+
+
+### Algorithms for Unconstrained NLP 
+
+This module focuses specifically on *iteration-based direct search techniques*, which do not require gradient or Hessian calculations. Such algorithms are especially useful when:
+
+- The derivative is difficult or impossible to compute
+- The objective function is noisy or discontinuous
+- Only function value evaluations are available
+
+The algorithms covered in this module include:
+
+
+#### Fibonacci Search Method
+
+A bracketing method used for **one-dimensional** minimization.  
+This method iteratively narrows down an interval containing the minimum using Fibonacci numbers.
+
+:::{.callout-note}
+### Key Concept
+The interval size decreases proportionally according to Fibonacci sequence ratios, ensuring efficient narrowing.
+
+This method is applicable to Smooth 1-D unimodal functions.
+:::
+
+#### Golden Section Search Method
+
+A more efficient improvement over Fibonacci search, eliminating the need to precompute steps.  
+The method divides the interval using the *Golden Ratio*:
+
+$$
+\phi = \frac{\sqrt{5} + 1}{2} \approx 1.618
+$$
+
+:::{.callout-note}
+### Key Concept
+The interval is repeatedly reduced while maintaining internal division based on $\phi$, ensuring optimal reduction at each iteration.
+:::
+
+#### Hooke and Jeeves Pattern Search Method
+
+A *direct search* method used for *multidimensional* optimization without derivatives.
+
+:::{.callout-note}
+### Key Components
+
+- **Exploratory search:** Tests moves along coordinate directions to find improvement.
+- **Pattern move:** Accelerates search in the identified promising direction.
+:::
+
+
+#### Advantages
+
+- Does not require derivative information
+- Suitable for complex, non-smooth landscapes
+
+
+Unconstrained NLP is guided by theoretical optimality conditions and solved computationally using iterative search techniques. In this module, emphasis is placed on **direct search algorithms** useful when derivatives are unavailable.
+
+$$
+\nabla f(x^{*}) = 0 \quad \text{and} \quad H(x^{*}) \succ 0
+$$
+
+The practical tools studied—**Fibonacci Search, Golden Section Search, and Hooke & Jeeves**—offer systematic methods for approaching optimal points when classical derivative-based methods cannot be applied.
+
+#### Review Questions
+
+1. Why does the condition $\nabla f(x^{*}) = 0$ not guarantee a minimum?
+2. What role does curvature play in distinguishing minima from maxima?
+3. Why are direct search methods such as Fibonacci or Golden Section useful?
+4. Compare Hooke & Jeeves with gradient-based methods.
+5. Explain why Golden Section is more efficient than Fibonacci Search.
+
+
+
+
+### Theoretical Foundation
+
+#### One-Dimensional Search Methods
+When dealing with single-variable nonlinear functions, we use specialized search techniques:
+
+**Golden Section Search:**
+- Divide interval using golden ratio $\phi = \frac{1+\sqrt{5}}{2} \approx 1.618$
+- Progressively narrow search interval
+- Guaranteed convergence for unimodal functions
+
+**Fibonacci Search:**
+- Uses Fibonacci sequence for interval reduction
+- Optimal in terms of function evaluations
+- Similar convergence properties to Golden Section
+
+#### Mathematical Basis
+For a unimodal function $f(x)$ on interval \([a,b]\):
+
+**Golden Section Points:**
+$$
+\begin{aligned}
+x_1 & = b - \frac{b-a}{\phi} \\
+x_2 & = a + \frac{b-a}{\phi}
+\end{aligned}
+$$
+
+**Iteration:** Compare $f(x_1)$ and $f(x_2)$, eliminate portion of interval based on which is larger.
+
+### Sample Problem
+
+**Problem Statement:**
+Use Golden Section search to minimize $f(x) = (x-3)^2 + 2$ on interval [0, 5] with 4 iterations.
+
+**Solution:**
+**Iteration 1:**
+- $x_1 = 5 - \frac{5-0}{1.618} = 1.91$, $f(x_1) = 2.19$
+- $x_2 = 0 + \frac{5-0}{1.618} = 3.09$, $f(x_2) = 2.01$
+- Since $f(x_1) > f(x_2)$, new interval: [1.91, 5]
+
+**Iteration 2:**
+- $x_1 = 5 - \frac{5-1.91}{1.618} = 3.09$ (already computed)
+- $x_2 = 1.91 + \frac{5-1.91}{1.618} = 3.82$, $f(x_2) = 2.67$
+- Since $f(x_1) < f(x_2)$, new interval: [1.91, 3.82]
+
+**Continue for 4 iterations → Final interval: [2.85, 3.15] containing true minimum at x=3**
+
+### Sample Problem
+
+**Problem Statement:**
+A warehouse has energy consumption $E(w) = 1000 + 50w + 0.2w^2$ kWh, where w is weekly shipments (0 ≤ w ≤ 200). Find optimal shipment volume that minimizes energy per shipment.
+
+**Solution:**
+Energy per shipment: $f(w) = \frac{1000}{w} + 50 + 0.2w$
+
+Using Golden Section on [10, 200]:
+- **Iteration 1:** Compare w=70.8 and w=139.2
+- **Iteration 2:** Compare w=44.4 and w=70.8  
+- **Iteration 3:** Compare w=57.6 and w=70.8
+- **Optimal:** w ≈ 70.7 shipments/week, energy/shipment ≈ 78.3 kWh
+
+### Review Questions
+
+1. **Explain why Golden Section search is more efficient than exhaustive search for unimodal functions.**
+
+2. **Compare Golden Section and Fibonacci search methods. When would you choose one over the other?**
+
+3. **A transportation cost function is $C(d) = \frac{1000}{d} + 2d$ for d > 0. Use Golden Section to find the optimal distance in [10, 100] with 3 iterations.**
+
+4. **What is a unimodal function and why is this property important for one-dimensional search methods?**
+
+5. **How would you modify Golden Section search if you suspected multiple local minima in your search interval?**
+
+
+## Constrained Optimization & KKT Conditions
+
+### Theoretical Foundation
+
+#### Karush-Kuhn-Tucker (KKT) Conditions
+For constrained nonlinear optimization, KKT conditions provide necessary conditions for optimality:
+
+**Primal Problem:**
+$$
+\begin{aligned}
+\text{Minimize } & f(\mathbf{x}) \\
+\text{Subject to } & g_i(\mathbf{x}) \leq 0, \quad i = 1, \ldots, m \\
+& h_j(\mathbf{x}) = 0, \quad j = 1, \ldots, p
+\end{aligned}
+$$
+
+**KKT Conditions:**
+1. **Stationarity:** $\nabla f(\mathbf{x}) + \sum \lambda_i \nabla g_i(\mathbf{x}) + \sum \mu_j \nabla h_j(\mathbf{x}) = 0$
+2. **Primal Feasibility:** $g_i(\mathbf{x}) \leq 0, \quad h_j(\mathbf{x}) = 0$
+3. **Dual Feasibility:** $\lambda_i \geq 0$
+4. **Complementary Slackness:** $\lambda_i g_i(\mathbf{x}) = 0$
+
+#### Interpretation
+- **Lagrange Multipliers (λ, μ):** Sensitivity of objective to constraint changes
+- **Complementary Slackness:** Inactive constraints have zero multipliers
+- **Stationarity:** Balance between objective improvement and constraint satisfaction
+
+### Sample Problem
+
+**Problem Statement:**
+Minimize $f(x,y) = x^2 + y^2$ subject to $x + y \geq 4$.
+
+**Solution:**
+
+1. **Rewrite constraint:** $g(x,y) = 4 - x - y \leq 0$
+2. **Lagrangian:** $L(x,y,\lambda) = x^2 + y^2 + \lambda(4 - x - y)$
+3. **KKT Conditions:**
+   - $\frac{\partial L}{\partial x} = 2x - \lambda = 0$
+   - $\frac{\partial L}{\partial y} = 2y - \lambda = 0$ 
+   - $\lambda(4 - x - y) = 0$
+   - $4 - x - y \leq 0$, $\lambda \geq 0 $
+
+4. **Case 1:** λ = 0 → x=0, y=0 → violates constraint
+5. **Case 2:** 4 - x - y = 0 → from stationarity: x=y=λ/2 → 4 - λ/2 - λ/2 = 0 → λ=4
+6. **Solution:** x=2, y=2, λ=4, f=8
+
+### Sample Problem
+
+**Problem Statement:**
+Campus City wants to minimize transportation cost $C(d) = 2d + 0.1d^2$ while ensuring at least 80% of routes are under 3km. Formulate as KKT problem.
+
+**Solution:**
+
+**Mathematical Formulation:**
+
+- Objective: Minimize $\sum 2d_i + 0.1d_i^2$
+- Constraint: $\frac{\text{count}(d_i \leq 3)}{n} \geq 0.8$
+
+**KKT Interpretation:**
+
+- Lagrange multiplier indicates cost increase for relaxing the 80% constraint
+- Helps decide if expanding the constraint is cost-effective
+
+### Review Questions
+
+1. **Explain the economic interpretation of Lagrange multipliers in constrained optimization.**
+
+2. **What does complementary slackness tell us about active vs inactive constraints at the optimal solution?**
+
+3. **Solve using KKT: Minimize $f(x) = x^2$ subject to $x \geq 2$.**
+
+4. **How do KKT conditions extend the method of Lagrange multipliers for inequality constraints?**
+
+5. **In a campus logistics context, what would a high Lagrange multiplier for an environmental constraint indicate?**
+
+
+## Python Implementation of Nonlinear Solvers
+
+### Theoretical Foundation
+
+#### Python Optimization Ecosystem
+
+- **scipy.optimize**: Comprehensive optimization toolkit
+- **minimize() function**: Unified interface for multiple algorithms
+- **Algorithm choices**: SLSQP, trust-constr, COBYLA for constrained problems
+
+#### Key Functions
+
+```python
+from scipy.optimize import minimize
+
+# For unconstrained problems
+result = minimize(fun, x0, method='BFGS')
+
+# For constrained problems  
+result = minimize(fun, x0, constraints=constraints, method='SLSQP')
+```
+:::{.callout-note}
+### Practical Considerations
+
+- Initial guess ($x_0$): Critical for convergence
+
+- Gradient provision: Can significantly improve performance
+
+- Constraint formulation: Proper bounds and constraint objects
+:::
+
+### Sample Problem
+
+Problem Statement:
+Implement Golden Section search in `Python` for  $f(x)=(x−4)^2+3$ on [0, 10].
+
+>**Solution:**
+
+```{python}
+import math
+
+def golden_section_search(f, a, b, tol=1e-6, max_iter=100):
+    phi = (1 + math.sqrt(5)) / 2
+    for i in range(max_iter):
+        x1 = b - (b - a) / phi
+        x2 = a + (b - a) / phi
+        
+        if f(x1) > f(x2):
+            a = x1
+        else:
+            b = x2
+            
+        if abs(b - a) < tol:
+            return (a + b) / 2
+    return (a + b) / 2
+
+# Test the function
+def objective(x):
+    return (x - 4)**2 + 3
+
+result = golden_section_search(objective, 0, 10)
+print(f"Optimal x: {result:.4f}")  # Output: Optimal x: 4.0000
+```
+
+

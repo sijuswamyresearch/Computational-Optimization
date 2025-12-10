@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.31">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>1&nbsp; Introduction to Computational Optimization and Applications – Computational Optimization</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./summary.html" rel="next">
+<link href="./index.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-364982630eef5352dd1537128a8ed5cb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./intro.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction to Computational Optimization and Applications</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Computational Optimization</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🎯 Course Vision &amp; Context</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction to Computational Optimization and Applications</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Summary</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">References</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#why-optimization-matters-now-more-than-ever" id="toc-why-optimization-matters-now-more-than-ever" class="nav-link active" data-scroll-target="#why-optimization-matters-now-more-than-ever"><span class="header-section-number">1.1</span> Why Optimization Matters Now More Than Ever</a></li>
+  <li><a href="#programme-objectives-learning-outcomes" id="toc-programme-objectives-learning-outcomes" class="nav-link" data-scroll-target="#programme-objectives-learning-outcomes"><span class="header-section-number">1.2</span> 📋 Programme Objectives &amp; Learning Outcomes</a>
+  <ul class="collapse">
+  <li><a href="#core-educational-mission" id="toc-core-educational-mission" class="nav-link" data-scroll-target="#core-educational-mission"><span class="header-section-number">1.2.1</span> Core Educational Mission</a></li>
+  <li><a href="#the-smart-city-logistics-experiential-thread" id="toc-the-smart-city-logistics-experiential-thread" class="nav-link" data-scroll-target="#the-smart-city-logistics-experiential-thread"><span class="header-section-number">1.2.2</span> The “Smart City Logistics” Experiential Thread</a></li>
+  </ul></li>
+  <li><a href="#course-roadmap-syllabus-integration" id="toc-course-roadmap-syllabus-integration" class="nav-link" data-scroll-target="#course-roadmap-syllabus-integration"><span class="header-section-number">1.3</span> 🗺️ Course Roadmap &amp; Syllabus Integration</a>
+  <ul class="collapse">
+  <li><a href="#module-progression-from-foundations-to-frontiers" id="toc-module-progression-from-foundations-to-frontiers" class="nav-link" data-scroll-target="#module-progression-from-foundations-to-frontiers"><span class="header-section-number">1.3.1</span> Module Progression: From Foundations to Frontiers</a></li>
+  <li><a href="#assessment-strategy-theory-meets-practice" id="toc-assessment-strategy-theory-meets-practice" class="nav-link" data-scroll-target="#assessment-strategy-theory-meets-practice"><span class="header-section-number">1.3.2</span> Assessment Strategy: Theory Meets Practice</a></li>
+  </ul></li>
+  <li><a href="#optimization-in-the-aiml-ecosystem" id="toc-optimization-in-the-aiml-ecosystem" class="nav-link" data-scroll-target="#optimization-in-the-aiml-ecosystem"><span class="header-section-number">1.4</span> 🔗 Optimization in the AI/ML Ecosystem</a>
+  <ul class="collapse">
+  <li><a href="#the-central-role-in-machine-learning" id="toc-the-central-role-in-machine-learning" class="nav-link" data-scroll-target="#the-central-role-in-machine-learning"><span class="header-section-number">1.4.1</span> The Central Role in Machine Learning</a></li>
+  <li><a href="#emerging-trends-future-directions" id="toc-emerging-trends-future-directions" class="nav-link" data-scroll-target="#emerging-trends-future-directions"><span class="header-section-number">1.4.2</span> Emerging Trends &amp; Future Directions</a></li>
+  </ul></li>
+  <li><a href="#technical-ecosystem-tools" id="toc-technical-ecosystem-tools" class="nav-link" data-scroll-target="#technical-ecosystem-tools"><span class="header-section-number">1.5</span> 🛠️ Technical Ecosystem &amp; Tools</a>
+  <ul class="collapse">
+  <li><a href="#why-python-for-optimization" id="toc-why-python-for-optimization" class="nav-link" data-scroll-target="#why-python-for-optimization"><span class="header-section-number">1.5.1</span> Why Python for Optimization?</a></li>
+  <li><a href="#core-toolchain" id="toc-core-toolchain" class="nav-link" data-scroll-target="#core-toolchain"><span class="header-section-number">1.5.2</span> Core Toolchain</a></li>
+  </ul></li>
+  <li><a href="#getting-started-your-learning-journey" id="toc-getting-started-your-learning-journey" class="nav-link" data-scroll-target="#getting-started-your-learning-journey"><span class="header-section-number">1.6</span> 🎓 Getting Started: Your Learning Journey</a>
+  <ul class="collapse">
+  <li><a href="#prerequisites-preparation" id="toc-prerequisites-preparation" class="nav-link" data-scroll-target="#prerequisites-preparation"><span class="header-section-number">1.6.1</span> Prerequisites &amp; Preparation</a></li>
+  <li><a href="#how-to-maximize-your-learning" id="toc-how-to-maximize-your-learning" class="nav-link" data-scroll-target="#how-to-maximize-your-learning"><span class="header-section-number">1.6.2</span> How to Maximize Your Learning</a></li>
+  <li><a href="#course-structure-and-expectations" id="toc-course-structure-and-expectations" class="nav-link" data-scroll-target="#course-structure-and-expectations"><span class="header-section-number">1.6.3</span> Course Structure and Expectations</a></li>
+  </ul></li>
+  <li><a href="#welcome-to-the-journey" id="toc-welcome-to-the-journey" class="nav-link" data-scroll-target="#welcome-to-the-journey"><span class="header-section-number">1.7</span> 🌟 Welcome to the Journey</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction to Computational Optimization and Applications</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div id="3a3482d7" class="cell" data-execution_count="1">
+<div class="cell-output cell-output-stdout">
+<pre><code>🚀 Welcome to Computational Optimization &amp; Applications
+📚 Where Mathematics Meets Computational Intelligence
+🌉 Bridging Theory and Practice in the AI Revolution</code></pre>
+</div>
+</div>
+<hr>
+<section id="why-optimization-matters-now-more-than-ever" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="why-optimization-matters-now-more-than-ever"><span class="header-section-number">1.1</span> Why Optimization Matters Now More Than Ever</h2>
+<p>The exponential growth in data complexity and computational requirements has transformed optimization from a theoretical discipline to an essential toolkit for every computer scientist and data professional. Consider these real-world contexts:</p>
+<ul>
+<li><strong>AI Systems</strong>: Training neural networks is essentially an optimization process (Gradient Descent)</li>
+<li><strong>Operations Research</strong>: Logistics, scheduling, and resource allocation drive billion-dollar efficiencies<br>
+</li>
+<li><strong>Data Science</strong>: Model selection, hyperparameter tuning, and feature engineering are optimization problems</li>
+<li><strong>Autonomous Systems</strong>: Path planning, control systems, and decision-making rely on optimization algorithms</li>
+<li><strong>Quantum Computing</strong>: Many quantum algorithms are designed to solve optimization problems more efficiently</li>
+</ul>
+</section>
+<section id="programme-objectives-learning-outcomes" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="programme-objectives-learning-outcomes"><span class="header-section-number">1.2</span> 📋 Programme Objectives &amp; Learning Outcomes</h2>
+<section id="core-educational-mission" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="core-educational-mission"><span class="header-section-number">1.2.1</span> Core Educational Mission</h3>
+<p>This minor programme is designed to bridge the critical gap between theoretical optimization mathematics and practical computational implementation. Upon successful completion, you will be able to:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 35%">
+<col style="width: 64%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Domain</strong></th>
+<th><strong>Learning Outcomes</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Theoretical Foundation</strong></td>
+<td>• Formulate real-world problems as mathematical optimization models<br>• Understand optimality conditions and convergence properties<br>• Analyze problem structures to select appropriate solution methods</td>
+</tr>
+<tr class="even">
+<td><strong>Computational Skills</strong></td>
+<td>• Implement classical and modern optimization algorithms in Python<br>• Utilize industry-standard optimization libraries and frameworks<br>• Develop end-to-end optimization pipelines for practical applications</td>
+</tr>
+<tr class="odd">
+<td><strong>AI/ML Integration</strong></td>
+<td>• Understand optimization’s role in training machine learning models<br>• Implement gradient-based methods for neural network optimization<br>• Apply optimization to hyperparameter tuning and model selection</td>
+</tr>
+<tr class="even">
+<td><strong>Problem-Solving</strong></td>
+<td>• Design optimization solutions for complex, multi-objective problems<br>• Evaluate solution quality and algorithm performance<br>• Communicate optimization insights to technical and non-technical stakeholders</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="the-smart-city-logistics-experiential-thread" class="level3" data-number="1.2.2">
+<h3 data-number="1.2.2" class="anchored" data-anchor-id="the-smart-city-logistics-experiential-thread"><span class="header-section-number">1.2.2</span> The “Smart City Logistics” Experiential Thread</h3>
+<p>Throughout this course, we’ll employ a <strong>continuous practical thread</strong>: optimizing logistics and operations for a smart city ecosystem. This narrative provides:</p>
+<ul>
+<li><strong>Real-world context</strong> for theoretical concepts</li>
+<li><strong>Progressive complexity</strong> as we advance through modules</li>
+<li><strong>Portfolio-building</strong> implementation experience</li>
+<li><strong>Industry-relevant</strong> problem-solving skills</li>
+</ul>
+<p><strong>Smart City Optimization Journey:</strong> - <strong>Module 1</strong>: Warehouse Location (Linear Programming) - <strong>Module 2</strong>: Fuel Cost Optimization (Nonlinear Programming) - <strong>Module 3</strong>: Delivery Routing (Graph Algorithms) - <strong>Module 4</strong>: Dynamic Scheduling (Heuristic Methods) - <strong>Module 5</strong>: Demand Prediction (ML Integration)</p>
+</section>
+</section>
+<section id="course-roadmap-syllabus-integration" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="course-roadmap-syllabus-integration"><span class="header-section-number">1.3</span> 🗺️ Course Roadmap &amp; Syllabus Integration</h2>
+<section id="module-progression-from-foundations-to-frontiers" class="level3" data-number="1.3.1">
+<h3 data-number="1.3.1" class="anchored" data-anchor-id="module-progression-from-foundations-to-frontiers"><span class="header-section-number">1.3.1</span> Module Progression: From Foundations to Frontiers</h3>
+<p>Our journey through computational optimization is strategically sequenced to build from fundamental principles to advanced applications:</p>
+<section id="foundation-phase-mathematical-underpinnings" class="level4" data-number="1.3.1.1">
+<h4 data-number="1.3.1.1" class="anchored" data-anchor-id="foundation-phase-mathematical-underpinnings"><span class="header-section-number">1.3.1.1</span> Foundation Phase: Mathematical Underpinnings</h4>
+<ul>
+<li><strong>Module I</strong>: Linear Programming &amp; Formulation Skills</li>
+<li><strong>Module II</strong>: Nonlinear Optimization &amp; Constraint Handling</li>
+</ul>
+</section>
+<section id="advanced-phase-algorithmic-thinking" class="level4" data-number="1.3.1.2">
+<h4 data-number="1.3.1.2" class="anchored" data-anchor-id="advanced-phase-algorithmic-thinking"><span class="header-section-number">1.3.1.2</span> Advanced Phase: Algorithmic Thinking</h4>
+<ul>
+<li><strong>Module III</strong>: Project Planning &amp; Heuristic Methods</li>
+<li><strong>Module IV</strong>: Combinatorial &amp; Graph Optimization</li>
+</ul>
+</section>
+<section id="integration-phase-aiml-applications" class="level4" data-number="1.3.1.3">
+<h4 data-number="1.3.1.3" class="anchored" data-anchor-id="integration-phase-aiml-applications"><span class="header-section-number">1.3.1.3</span> Integration Phase: AI/ML Applications</h4>
+<ul>
+<li><strong>Module V</strong>: Gradient Methods &amp; Machine Learning Optimization</li>
+</ul>
+</section>
+</section>
+<section id="assessment-strategy-theory-meets-practice" class="level3" data-number="1.3.2">
+<h3 data-number="1.3.2" class="anchored" data-anchor-id="assessment-strategy-theory-meets-practice"><span class="header-section-number">1.3.2</span> Assessment Strategy: Theory Meets Practice</h3>
+<p>To ensure comprehensive understanding and skill development, assessment integrates both theoretical knowledge and practical implementation:</p>
+<ul>
+<li><strong>Series Examinations</strong>: Test conceptual understanding and problem formulation</li>
+<li><strong>Practical Assignments</strong>: Evaluate implementation skills and computational thinking<br>
+</li>
+<li><strong>Final Project</strong>: Assess integrated problem-solving and solution design</li>
+<li><strong>Continuous Evaluation</strong>: Monitor progress through micro-projects and code reviews</li>
+</ul>
+</section>
+</section>
+<section id="optimization-in-the-aiml-ecosystem" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="optimization-in-the-aiml-ecosystem"><span class="header-section-number">1.4</span> 🔗 Optimization in the AI/ML Ecosystem</h2>
+<section id="the-central-role-in-machine-learning" class="level3" data-number="1.4.1">
+<h3 data-number="1.4.1" class="anchored" data-anchor-id="the-central-role-in-machine-learning"><span class="header-section-number">1.4.1</span> The Central Role in Machine Learning</h3>
+<p>Optimization isn’t just adjacent to machine learning—<strong>it is machine learning</strong>. The entire process of training machine learning models revolves around optimization principles:</p>
+<ul>
+<li><strong>Loss Minimization</strong>: Finding model parameters that minimize prediction error</li>
+<li><strong>Convergence Analysis</strong>: Understanding when and how algorithms reach optimal solutions</li>
+<li><strong>Regularization</strong>: Balancing model complexity with performance through constrained optimization</li>
+<li><strong>Hyperparameter Tuning</strong>: Optimizing the optimization process itself</li>
+</ul>
+</section>
+<section id="emerging-trends-future-directions" class="level3" data-number="1.4.2">
+<h3 data-number="1.4.2" class="anchored" data-anchor-id="emerging-trends-future-directions"><span class="header-section-number">1.4.2</span> Emerging Trends &amp; Future Directions</h3>
+<p>The field of optimization is rapidly evolving, driven by advances in:</p>
+<ul>
+<li><strong>Large-Scale Optimization</strong>: Methods for billion-parameter models in deep learning</li>
+<li><strong>Automated Optimization</strong>: AutoML and neural architecture search</li>
+<li><strong>Quantum Optimization</strong>: Quantum annealing and hybrid quantum-classical algorithms<br>
+</li>
+<li><strong>Federated Optimization</strong>: Privacy-preserving distributed learning</li>
+<li><strong>Multi-Objective Optimization</strong>: Pareto optimization for conflicting objectives</li>
+<li><strong>Explainable Optimization</strong>: Interpretable and transparent optimization processes</li>
+</ul>
+</section>
+</section>
+<section id="technical-ecosystem-tools" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="technical-ecosystem-tools"><span class="header-section-number">1.5</span> 🛠️ Technical Ecosystem &amp; Tools</h2>
+<section id="why-python-for-optimization" class="level3" data-number="1.5.1">
+<h3 data-number="1.5.1" class="anchored" data-anchor-id="why-python-for-optimization"><span class="header-section-number">1.5.1</span> Why Python for Optimization?</h3>
+<p>Python has emerged as the <strong>lingua franca</strong> for computational optimization due to:</p>
+<ul>
+<li><strong>Rich Ecosystem</strong>: Comprehensive libraries for every optimization paradigm</li>
+<li><strong>AI/ML Integration</strong>: Seamless connection with machine learning frameworks</li>
+<li><strong>Performance</strong>: C/Fortran-backed numerical computing with Python simplicity</li>
+<li><strong>Community</strong>: Vibrant ecosystem with continuous algorithm development</li>
+<li><strong>Industry Adoption</strong>: Widely used in both academia and industry</li>
+</ul>
+</section>
+<section id="core-toolchain" class="level3" data-number="1.5.2">
+<h3 data-number="1.5.2" class="anchored" data-anchor-id="core-toolchain"><span class="header-section-number">1.5.2</span> Core Toolchain</h3>
+<p>Throughout this course, we’ll work with industry-standard tools:</p>
+<p><strong>Our Computational Optimization Stack:</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Category</th>
+<th>Tools</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Numerical Computing</strong></td>
+<td>NumPy, SciPy</td>
+</tr>
+<tr class="even">
+<td><strong>Linear Programming</strong></td>
+<td>PuLP, CVXPY</td>
+</tr>
+<tr class="odd">
+<td><strong>Machine Learning</strong></td>
+<td>Scikit-learn, TensorFlow, PyTorch</td>
+</tr>
+<tr class="even">
+<td><strong>Graph Algorithms</strong></td>
+<td>NetworkX</td>
+</tr>
+<tr class="odd">
+<td><strong>Visualization</strong></td>
+<td>Matplotlib, Plotly, Seaborn</td>
+</tr>
+<tr class="even">
+<td><strong>Development</strong></td>
+<td>Jupyter, VSCode, Git</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="getting-started-your-learning-journey" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="getting-started-your-learning-journey"><span class="header-section-number">1.6</span> 🎓 Getting Started: Your Learning Journey</h2>
+<section id="prerequisites-preparation" class="level3" data-number="1.6.1">
+<h3 data-number="1.6.1" class="anchored" data-anchor-id="prerequisites-preparation"><span class="header-section-number">1.6.1</span> Prerequisites &amp; Preparation</h3>
+<p>To succeed in this course, you should have:</p>
+<ul>
+<li><strong>Programming Fundamentals</strong>: Basic Python proficiency</li>
+<li><strong>Mathematical Background</strong>: Linear algebra and calculus foundations<br>
+</li>
+<li><strong>Computational Mindset</strong>: Willingness to experiment and debug</li>
+<li><strong>Problem-Solving Attitude</strong>: Persistence through challenging concepts</li>
+<li><strong>Curiosity and Creativity</strong>: Interest in exploring multiple solution approaches</li>
+</ul>
+</section>
+<section id="how-to-maximize-your-learning" class="level3" data-number="1.6.2">
+<h3 data-number="1.6.2" class="anchored" data-anchor-id="how-to-maximize-your-learning"><span class="header-section-number">1.6.2</span> How to Maximize Your Learning</h3>
+<ol type="1">
+<li><strong>Engage Actively</strong>: Don’t just read—implement every concept in code</li>
+<li><strong>Think Critically</strong>: Question why certain methods work better for specific problems</li>
+<li><strong>Experiment Freely</strong>: Modify parameters, break code, and learn from failures</li>
+<li><strong>Connect Concepts</strong>: Relate theoretical principles to practical implementations</li>
+<li><strong>Build Portfolio</strong>: Document your work for future career opportunities</li>
+<li><strong>Collaborate Effectively</strong>: Learn from peers through code reviews and discussions</li>
+<li><strong>Stay Updated</strong>: Follow recent developments in optimization research</li>
+</ol>
+</section>
+<section id="course-structure-and-expectations" class="level3" data-number="1.6.3">
+<h3 data-number="1.6.3" class="anchored" data-anchor-id="course-structure-and-expectations"><span class="header-section-number">1.6.3</span> Course Structure and Expectations</h3>
+<p>This course is designed as a <strong>blended learning experience</strong> combining:</p>
+<ul>
+<li><strong>Theoretical Foundations</strong>: Mathematical principles and algorithm concepts</li>
+<li><strong>Practical Implementation</strong>: Hands-on coding exercises and projects</li>
+<li><strong>Real-World Applications</strong>: Industry-relevant case studies and problems</li>
+<li><strong>Assessment and Feedback</strong>: Continuous evaluation and improvement</li>
+</ul>
+</section>
+</section>
+<section id="welcome-to-the-journey" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="welcome-to-the-journey"><span class="header-section-number">1.7</span> 🌟 Welcome to the Journey</h2>
+<p>You are beginning a journey into one of the most fundamental and powerful domains of computer science and artificial intelligence. The skills you develop here will serve as a foundation for advanced work in machine learning, operations research, data science, and algorithmic design.</p>
+<p>As we progress through the modules, remember that each concept builds toward a comprehensive understanding of how to make computers not just compute, but <strong>optimize</strong>—transforming them from calculators into intelligent decision-makers.</p>
+<p>The journey through computational optimization is challenging but immensely rewarding. You’ll gain not just technical skills, but a new way of thinking about problem-solving that will serve you throughout your career in technology.</p>
+<blockquote class="blockquote">
+<p><strong>“Optimization is the science of better. In a world of limited resources and unlimited wants, optimization provides the mathematical foundation for making the best possible decisions.”</strong></p>
+</blockquote>
+<hr>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link" aria-label="🎯 Course Vision &amp; Context">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">🎯 Course Vision &amp; Context</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./summary.html" class="pagination-link" aria-label="Summary">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Summary</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

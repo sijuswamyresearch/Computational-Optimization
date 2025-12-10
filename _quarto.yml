@@ -1,0 +1,31 @@
+project:
+  type: book
+  output-dir: docs
+
+book:
+  title: "Computational Optimization & Applications"
+  author: "Siju Swamy"
+  date: "11/17/2025"
+  chapters:
+    - index.qmd
+    - intro.qmd
+    - Module-1.qmd
+#    - Module-2.qmd
+#    - Module-3.qmd
+#    - Module-4.qmd
+#    - Project-Data.qmd
+#    - summary.qmd
+#    - references.qmd
+
+bibliography: references.bib
+
+format:
+  html:
+    theme:
+      - yeti
+      - brand
+  pdf:
+    documentclass: scrreprt
+
+
+

@@ -1,0 +1,1119 @@
+---
+title: "Module 3: Project Planning and Optimization Techniques"
+format: html
+jupyter: python3
+---
+
+## Module Overview
+
+### Learning Objectives
+
+- Master project planning methodologies: CPM and PERT
+- Implement network analysis for project scheduling
+- Create and interpret Gantt charts for project visualization
+- Apply heuristic algorithms for optimization problems
+- Develop practical scheduling solutions for campus projects
+
+### Module Structure
+
+- **Section 3.1**: Introduction to Project Planning
+- **Section 3.2**: Critical Path Method (CPM)
+- **Section 3.3**: Program Evaluation and Review Technique (PERT)
+- **Section 3.4**: Gantt Charts and Project Visualization
+- **Section 3.5**: Heuristic Algorithms and Local Search
+- **Section 3.6**: Micro-Project 3: Campus Construction Planning
+
+### Real-World Context
+
+In Module 1 and 2, we looked at how to optimize a system when we know the variables and the constraints. But in the real world—especially in engineering and software development—**time** is the most precious constraint of all.
+
+Have you ever wondered how massive projects, like building our new campus library or launching a software product like ChatGPT, actually finish on time? It isn't magic; it's mathematics.
+
+In this module, we are going to learn the art and science of **Scheduling**. We will move from "I hope we finish on time" to "I calculate we have a 95% probability of finishing by Friday."
+Apply project planning techniques to campus construction projects, facility maintenance schedules, and resource allocation for campus events.
+
+## Introduction to Project Planning
+
+### The Engineering of Time
+Project planning is essentially an optimization problem where we try to minimize time ($T$) or Cost ($C$) while respecting a complex web of dependencies.
+
+Imagine you are cooking a meal. You cannot fry the onions before you chop them. That is a **dependency**. However, you *can* boil the water while you chop the onions. That is **parallelism**. Project planning is simply the mathematical modeling of these dependencies and parallel tasks.
+
+
+### Theoretical Foundation
+
+We represent a project as a **Directed Acyclic Graph (DAG)**, denoted as $G = (V, E)$.
+
+* **Vertices ($V$):** These are events or milestones (e.g., "Foundation poured").
+* **Edges ($E$):** These are the activities that take time (e.g., "Pouring Concrete - 3 days").
+* **Weights:** The duration or cost attached to an edge.
+
+#### Mathematical Representation
+
+A project can be represented as a directed graph $G = (V, E)$ where:
+
+- **Vertices (V)**: Represent project milestones or activity completion points
+- **Edges (E)**: Represent activities with associated durations
+- **Weights**: Activity durations or costs
+
+:::{.callout-note}
+### Insight
+Why "Acyclic"? Because if you have a cycle (A depends on B, B depends on A), you have an infinite loop. In project management, that means the project never finishes! We must avoid cycles.
+:::
+
+### Sample Scenario: The Library Construction
+Let's look at a concrete example. We are building a library. Here is the logic:
+
+| Activity | Description | Predecessors | Duration (weeks) |
+|:---|:---|:---|:---|
+| A | Site Prep | - | 2 |
+| B | Foundation | A | 4 |
+| C | Framing | B | 6 |
+| D | Electrical | C | 3 |
+| E | Plumbing | C | 3 |
+| F | Interior | D, E | 4 |
+| G | Exterior | C | 2 |
+| H | Inspection | F, G | 1 |
+
+Do you see activity **F**? It cannot start until **both** D and E are finished. This is where the math gets interesting.
+
+#### What is Project Planning?
+
+Project planning involves defining project objectives, determining tasks and resources needed, and establishing timelines for project completion. In optimization context, it's about finding the most efficient sequence of activities to minimize time or cost.
+
+#### Key Components of Project Planning
+
+1. **Activities/Tasks**: Discrete work elements with defined durations
+2. **Dependencies**: Precedence relationships between activities
+3. **Resources**: Personnel, equipment, and materials required
+4. **Time Estimates**: Duration for each activity
+5. **Milestones**: Significant checkpoints in project timeline
+
+#### Project Management Objectives
+
+1. **Time Minimization**: Complete project in shortest possible time
+2. **Cost Optimization**: Minimize total project cost
+3. **Resource Leveling**: Smooth resource utilization over time
+4. **Risk Mitigation**: Identify and manage critical activities
+
+#### Campus City Applications
+
+- Construction of new campus facilities
+- Maintenance scheduling for existing buildings
+- Event planning and resource allocation
+- Academic calendar optimization
+- Emergency response planning
+
+### Sample Problem
+
+**Problem Statement:**
+Campus City is planning a new library construction with the following activities:
+
+| Activity | Description | Immediate Predecessors | Duration (weeks) |
+|----------|-------------|------------------------|------------------|
+| A | Site preparation | - | 2 |
+| B | Foundation work | A | 4 |
+| C | Structural framing | B | 6 |
+| D | Electrical work | C | 3 |
+| E | Plumbing work | C | 3 |
+| F | Interior work | D, E | 4 |
+| G | Exterior finishing | C | 2 |
+| H | Final inspection | F, G | 1 |
+
+Construct the project network and identify the project completion time.
+
+**Solution Approach:**
+We'll represent this as a network diagram with nodes as activity completion points and edges as activities. The solution will be developed in Section 3.2.
+
+### Review Questions
+
+1. **What are the key differences between project planning and continuous optimization problems?**
+
+2. **Explain how project dependencies create sequencing constraints that must be respected in scheduling.**
+
+3. **Describe three campus scenarios where project planning techniques would provide significant benefits over ad-hoc scheduling.**
+
+4. **What information is minimally required to begin project planning for a campus construction project?**
+
+5. **How does uncertainty in activity durations affect project planning decisions?**
+
+
+## Critical Path Method (CPM)
+
+### The "Bottleneck" Concept
+
+The Critical Path Method (CPM) is one of the most powerful tools in an engineer's toolkit. Here is the intuition: **A project is only as fast as its slowest sequence of dependent tasks.**
+
+We call this longest sequence the **Critical Path**. If any activity on this path is delayed by one day, the *entire project* is delayed by one day.
+
+#### What is Critical Path Method?
+
+CPM is an algorithm for scheduling project activities that:
+
+- Identifies critical activities that cannot be delayed without delaying the project
+- Calculates the minimum project duration
+- Determines float/slack time for non-critical activities
+
+#### CPM Terminology
+
+1. **Earliest Start Time (ES)**: Earliest time an activity can begin
+2. **Earliest Finish Time (EF)**: ES + Activity Duration
+3. **Latest Start Time (LS)**: Latest time an activity can begin without delaying project
+4. **Latest Finish Time (LF)**: LS + Activity Duration
+5. **Float/Slack**: LF - EF or LS - ES (flexibility in scheduling)
+6. **Critical Path**: Sequence of activities with zero float
+
+#### CPM Algorithm Steps
+
+**Forward Pass (Calculate ES, EF):**
+
+1. Start with initial activity: ES = 0, EF = Duration
+2. For each subsequent activity: ES = max(EF of all predecessors)
+3. EF = ES + Duration
+4. Project duration = max(EF of all terminal activities)
+
+**Backward Pass (Calculate LS, LF):**
+
+1. For terminal activities: LF = Project duration, LS = LF - Duration
+2. For each preceding activity: LF = min(LS of all successors)
+3. LS = LF - Duration
+
+**Identify Critical Path:**
+Activities where ES = LS (or EF = LF) have zero float and are on critical path.
+
+#### Mathematical Formulation
+For activity $i$ with duration $d_i$:
+
+$$
+\begin{aligned}
+ES_i &= \max_{j \in P(i)} EF_j \\
+EF_i &= ES_i + d_i \\
+LF_i &= \min_{j \in S(i)} LS_j \\
+LS_i &= LF_i - d_i \\
+\text{Float}_i &= LS_i - ES_i = LF_i - EF_i
+\end{aligned}
+$$
+
+Where $P(i)$ are predecessors and $S(i)$ are successors.
+
+## Practice Problems: Critical Path Method (CPM)
+
+### The Systematic Approach: The "Pass" Method
+
+To solve CPM problems without getting confused, we treat the project network like a circuit. We don't guess; we calculate.
+
+**The 4-Step Algorithm:**
+
+1.  **Forward Pass (The Earliest Possible):**
+
+    * Start at Time 0.
+    * Move $Start \to End$.
+    * **Rule:** $ES = \max(EF \text{ of predecessors})$.
+    * *Logic:* You can't start until *all* your prerequisites are done.
+
+2.  **Backward Pass (The Latest Permissible):**
+
+    * Start at the Project End Time.
+    * Move $End \to Start$.
+    * **Rule:** $LF = \min(LS \text{ of successors})$.
+    * *Logic:* You must finish early enough so *everyone* waiting for you can start on time.
+
+3.  **Calculate Float (The Buffer):**
+
+    * $\text{Float} = LS - ES$ (or $LF - EF$).
+
+4.  **Identify Critical Path:**
+
+    * Any activity with **Zero Float** is Critical.
+
+
+### Problem 1: The "Hello World" of CPM
+**Scenario:** A simple linear workflow with one parallel branch.
+
+**Activity Data:**
+| Activity | Predecessors | Duration (Days) |
+|:---|:---|:---|
+| A | - | 3 |
+| B | A | 4 |
+| C | A | 2 |
+| D | B, C | 5 |
+
+
+
+**Mathematical Solution:**
+
+**Step 1: Forward Pass (Find ES, EF)**
+
+* **A:** Start at 0. Duration 3. $\to EF = 3$.
+* **B:** Predecessor A (ends at 3). Start at 3. Duration 4. $\to EF = 7$.
+* **C:** Predecessor A (ends at 3). Start at 3. Duration 2. $\to EF = 5$.
+* **D:** Predecessors B (ends 7) and C (ends 5).
+
+    * *Rule:* We must wait for the **slowest** one. $\max(7, 5) = 7$.
+    * Start at 7. Duration 5. $\to EF = 12$.
+
+**Project Duration:** 12 Days.
+
+**Step 2: Backward Pass (Find LF, LS)**
+
+* **D:** End at 12. Duration 5. $\to LS = 12 - 5 = 7$.
+* **B:** Successor D (starts at 7). Must finish by 7. Duration 4. $\to LS = 7 - 4 = 3$.
+* **C:** Successor D (starts at 7). Must finish by 7. Duration 2. $\to LS = 7 - 2 = 5$.
+* **A:** Successors B (starts 3) and C (starts 5).
+
+    * *Rule:* Must be done in time for the **earliest** requirement. $\min(3, 5) = 3$.
+    * Must finish by 3. Duration 3. $\to LS = 0$.
+
+**Step 3 & 4: Float & Critical Path**
+
+| Activity | Duration | ES | EF | LS | LF | Float (LS-ES) | Critical? |
+|:---|:---|:---|:---|:---|:---|:---|:---|
+| A | 3 | 0 | 3 | 0 | 3 | 0 | **Yes** |
+| B | 4 | 3 | 7 | 3 | 7 | 0 | **Yes** |
+| C | 2 | 3 | 5 | 5 | 7 | 2 | No |
+| D | 5 | 7 | 12 | 7 | 12 | 0 | **Yes** |
+
+**Critical Path:** $A \to B \to D$
+
+
+### Problem 2: The Bottleneck
+**Scenario:** Software Development. Coding takes longer than Documentation.
+
+**Activity Data:**
+| Activity | Description | Pred | Duration |
+|:---|:---|:---|:---|
+| S | Start Specs | - | 2 |
+| C | Code Module | S | 8 |
+| D | Write Docs | S | 3 |
+| T | Testing | C, D | 4 |
+
+**Mathematical Solution:**
+
+**Forward Pass:**
+1.  **S:** $0 \to 2$.
+2.  **C:** Starts after S(2). $2 + 8 = 10$.
+3.  **D:** Starts after S(2). $2 + 3 = 5$.
+4.  **T:** Waits for C(10) & D(5). $\max(10, 5) = 10$. $10 + 4 = 14$.
+*Project Ends: Day 14.*
+
+**Backward Pass:**
+1.  **T:** Finish by 14. Start by $14-4=10$.
+2.  **C:** Must finish by T's start (10). Start by $10-8=2$.
+3.  **D:** Must finish by T's start (10). Start by $10-3=7$.
+4.  **S:** Successors C(starts 2) & D(starts 7). $\min(2, 7) = 2$. Start by $2-2=0$.
+
+**Float Calculation:**
+* **Float C:** $LS(2) - ES(2) = 0$ (Critical)
+* **Float D:** $LS(7) - ES(2) = 5$ (Slack)
+
+**Interpretation:** The Documentation team (D) can delay their start by up to 5 days without affecting the launch date. The Coding team (C) has zero wiggle room.
+
+**Critical Path:** $S \to C \to T$
+
+---
+
+### Problem 3: The "Merge" Challenge
+**Scenario:** Construction. Notice how Activity F depends on three things.
+
+**Activity Data:**
+| Act | Pred | Time |
+|:---|:---|:---|
+| A | - | 5 |
+| B | A | 3 |
+| C | A | 4 |
+| D | A | 6 |
+| E | B | 2 |
+| F | C, D, E | 3 |
+
+**Mathematical Solution:**
+
+**Step 1: The Merge (Node F)**
+* First, compute B, C, D (all start after A finishes at 5).
+
+    * **B:** $5 + 3 = 8$. (E follows B: $8 + 2 = 10$).
+    * **C:** $5 + 4 = 9$.
+    * **D:** $5 + 6 = 11$.
+* **F** depends on C(9), D(11), E(10).
+* **F's Start:** $\max(9, 11, 10) = 11$.
+* **F's Finish:** $11 + 3 = 14$.
+
+**Step 2: Backward from Merge**
+* **F:** $LS = 11$.
+* Now F pushes back on C, D, and E. They ALL must finish by 11.
+
+    * **D:** $LF=11$. Duration 6. $LS = 5$.
+    * **C:** $LF=11$. Duration 4. $LS = 7$.
+    * **E:** $LF=11$. Duration 2. $LS = 9$. (This pushes back on B).
+
+**Float Analysis:**
+* **Path A-D-F:** $5+6+3=14$. (Length 14). Float = 0.
+* **Path A-C-F:** $5+4+3=12$. (Length 12). Float = 2.
+* **Path A-B-E-F:** $5+3+2+3=13$. (Length 13). Float = 1.
+
+**Critical Path:** $A \to D \to F$
+
+---
+
+### Problem 4: Complex Dependencies
+**Scenario:** A tech product launch.
+
+| Act | Desc | Pred | Time |
+|:---|:---|:---|:---|
+| A | Market Research | - | 10 |
+| B | Product Design | A | 20 |
+| C | Ad Campaign | A | 15 |
+| D | Prototype | B | 10 |
+| E | Manufacture | D | 30 |
+| F | Launch Event | C, E | 5 |
+
+**Mathematical Solution:**
+
+**Trace Table:**
+
+| Node | Pred | ES | EF (=ES+Dur) | Succ | LF | LS (=LF-Dur) | Float |
+|:---|:---|:---|:---|:---|:---|:---|:---|
+| **A** | - | 0 | 10 | B, C | 10 | 0 | 0 |
+| **B** | A | 10 | 30 | D | 30 | 10 | 0 |
+| **C** | A | 10 | 25 | F | 70 | 55 | **45** |
+| **D** | B | 30 | 40 | E | 40 | 30 | 0 |
+| **E** | D | 40 | 70 | F | 70 | 40 | 0 |
+| **F** | C, E | **70** | 75 | - | 75 | 70 | 0 |
+
+**Calculations to Watch:**
+* For **F**: Predecessors C(25) and E(70). $\max(25, 70) = 70$.
+* For **C**: Successor F requires start at 70. Duration 15. $LS = 70-15 = 55$.
+    * Float for C: $55 - 10 = 45$.
+    * *Insight:* The Ad Campaign (C) is wildly non-critical. You have 45 days of slack!
+
+**Critical Path:** $A \to B \to D \to E \to F$
+
+### Problem 5: The "Exam Style" Tabular Problem
+**Scenario:** Complete the table to find the project parameters.
+
+**Given Data:**
+* A (4), B (3) start at 0.
+* C (2) depends on A.
+* D (5) depends on A.
+* E (6) depends on B.
+* F (3) depends on C, D, E.
+
+**Mathematical Solution:**
+
+**Forward Pass:**
+1.  **A:** $0 \to 4$.
+2.  **B:** $0 \to 3$.
+3.  **C:** After A(4). $4 \to 6$.
+4.  **D:** After A(4). $4 \to 9$.
+5.  **E:** After B(3). $3 \to 9$.
+6.  **F:** After C(6), D(9), E(9). $\max(6, 9, 9) = 9$. $9 \to 12$.
+
+**Backward Pass:**
+1.  **F:** End 12. Start 9.
+2.  **C:** Need by 9. End 9. Start $9-2=7$.
+3.  **D:** Need by 9. End 9. Start $9-5=4$.
+4.  **E:** Need by 9. End 9. Start $9-6=3$.
+5.  **A:** Succ C(start 7), D(start 4). $\min(7, 4) = 4$. End 4. Start 0.
+6.  **B:** Succ E(start 3). End 3. Start 0.
+
+**Results Table:**
+
+| Activity | ES | EF | LS | LF | Float | Critical? |
+|:---|:---|:---|:---|:---|:---|:---|
+| A | 0 | 4 | 0 | 4 | 0 | **YES** |
+| B | 0 | 3 | 0 | 3 | 0 | **YES** |
+| C | 4 | 6 | 7 | 9 | 3 | No |
+| D | 4 | 9 | 4 | 9 | 0 | **YES** |
+| E | 3 | 9 | 3 | 9 | 0 | **YES** |
+| F | 9 | 12 | 9 | 12 | 0 | **YES** |
+
+**Observation:**
+This project has **Two Critical Paths**:
+1.  $A \to D \to F$ (Length $4+5+3 = 12$)
+2.  $B \to E \to F$ (Length $3+6+3 = 12$)
+
+Both paths are bottlenecks. Delays in either A OR B will delay the project.
+
+### Sample Problem
+
+**Problem Statement:**
+Solve the library construction problem from Section 3.1 using CPM.
+
+**Solution:**
+
+**Forward Pass:**
+
+- A: ES=0, EF=2
+- B: ES=2, EF=6
+- C: ES=6, EF=12
+- D: ES=12, EF=15
+- E: ES=12, EF=15
+- F: ES=15, EF=19
+- G: ES=12, EF=14
+- H: ES=19, EF=20
+
+**Backward Pass:**
+
+- H: LF=20, LS=19
+- F: LF=19, LS=15
+- G: LF=19, LS=17
+- D: LF=15, LS=12
+- E: LF=15, LS=12
+- C: LF=12, LS=6
+- B: LF=6, LS=2
+- A: LF=2, LS=0
+
+**Critical Path:** A → B → C → D → F → H (Float = 0 for all)
+**Project Duration:** 20 weeks
+
+**Non-critical Activity:** G has float of 3 weeks (LS=17, ES=14)
+
+### Sample Problem
+
+**Problem Statement:**
+A campus renovation project has the following activities with crashing costs (cost to reduce duration by 1 week):
+
+| Activity | Normal Time | Crash Time | Normal Cost | Crash Cost | Predecessors |
+|----------|-------------|------------|-------------|------------|--------------|
+| A | 3 | 2 | $1000 | $1500 | - |
+| B | 4 | 3 | $2000 | $2600 | A |
+| C | 5 | 4 | $1500 | $2000 | A |
+| D | 6 | 4 | $3000 | $4200 | B, C |
+
+Find the minimum cost schedule to complete in 10 weeks.
+
+**Solution Approach:**
+Use CPM with time-cost trade-off analysis (crashing). Calculate cost slope = (Crash Cost - Normal Cost)/(Normal Time - Crash Time) and crash activities on critical path starting with lowest cost slope.
+
+### Review Questions
+
+1. **Explain why activities on the critical path have zero float. What implications does this have for project management?**
+
+2. **How does CPM help in resource allocation for campus construction projects?**
+
+3. **Given a project network, how would you determine all possible critical paths if multiple exist?**
+
+4. **What is the significance of float/slack time in project scheduling? How can it be utilized effectively?**
+
+5. **Design a CPM analysis for planning a campus festival. Identify what would constitute critical activities.**
+
+
+## Program Evaluation and Review Technique (PERT)
+
+### Theoretical Foundation
+
+#### What is PERT?
+CPM assumes we know exactly how long tasks take. But in reality, construction crews get sick, materials arrive late, and code has bugs. PERT extends CPM by incorporating probabilistic time estimates to handle uncertainty in activity durations.
+
+#### Three-Point Time Estimates
+Each activity has three duration estimates:
+
+1. **Optimistic Time (a)**: Minimum possible time under ideal conditions
+2. **Most Likely Time (m)**: Most probable time under normal conditions
+3. **Pessimistic Time (b)**: Maximum possible time under worst conditions
+
+#### PERT Calculations
+
+**Expected Time (te):**
+$$
+t_e = \frac{a + 4m + b}{6}
+$$
+
+**Variance (σ²):**
+$$
+\sigma^2 = \left(\frac{b - a}{6}\right)^2
+$$
+
+**Standard Deviation (σ):**
+$$
+\sigma = \frac{b - a}{6}
+$$
+
+:::{.callout-tip}
+### Why divide by 6?
+This approximation assumes the range from $a$ to $b$ covers 6 standard deviations ($\pm 3\sigma$) of a normal distribution, which covers 99.7% of all outcomes. It is a brilliant statistical shortcut!
+:::
+
+### Probability of Deadline Success
+Once we have the expected duration and variance for the Critical Path, we can use the **Central Limit Theorem**. It tells us the total project time will follow a Normal Distribution (Bell Curve).
+
+#### Probability Analysis
+For the entire project:
+
+- **Expected Project Duration**: Sum of te along critical path
+- **Project Variance**: Sum of variances along critical path
+- **Project Standard Deviation**: Square root of project variance
+
+
+We can calculate the **Z-score**:
+
+Using normal distribution (Central Limit Theorem):
+$$
+Z = \frac{T - T_E}{\sigma_p}
+$$
+
+Where:
+
+- $T$: Target completion time
+- $T_E$: Expected project duration
+- $\sigma_p$: Project standard deviation
+- $Z$: Standard normal variable
+Or 
+$$Z = \frac{\text{Target Time} - \text{Expected Time}}{\text{Project Standard Deviation}}$$
+
+This $Z$ value tells us the precise probability of meeting a deadline. For example, if $Z=1.65$, there is a 95% chance you finish on time. This is how professional engineers manage risk.
+**Probability of Completion:**
+
+
+#### PERT vs CPM Comparison
+
+| Aspect | CPM | PERT |
+|--------|-----|------|
+| Time Estimates | Deterministic | Probabilistic |
+| Focus | Time-Cost trade-offs | Time uncertainty |
+| Best For | Well-defined projects | Research/development |
+| Output | Critical path, floats | Completion probabilities |
+
+### Sample Problem
+
+**Problem Statement:**
+For the library construction project, add probabilistic time estimates:
+
+| Activity | a | m | b | Predecessors |
+|----------|---|---|---|--------------|
+| A | 1 | 2 | 3 | - |
+| B | 3 | 4 | 5 | A |
+| C | 5 | 6 | 7 | B |
+| D | 2 | 3 | 4 | C |
+| E | 2 | 3 | 4 | C |
+| F | 3 | 4 | 5 | D, E |
+| G | 1 | 2 | 3 | C |
+| H | 1 | 1 | 1 | F, G |
+
+Calculate:
+
+1. Expected project duration
+2. Probability of completing in 22 weeks
+3. 95% confidence interval for completion
+
+**Solution:**
+
+**Step 1: Calculate te for each activity:**
+
+- A: (1+8+3)/6 = 2
+- B: (3+16+5)/6 = 4
+- C: (5+24+7)/6 = 6
+- D: (2+12+4)/6 = 3
+- E: (2+12+4)/6 = 3
+- F: (3+16+5)/6 = 4
+- G: (1+8+3)/6 = 2
+- H: (1+4+1)/6 = 1
+
+**Step 2: Identify critical path** (same as CPM): A-B-C-D-F-H
+
+**Expected duration:** 2+4+6+3+4+1 = 20 weeks
+
+**Step 3: Calculate variances along critical path:**
+
+- A: ((3-1)/6)² = 0.11
+- B: ((5-3)/6)² = 0.11
+- C: ((7-5)/6)² = 0.11
+- D: ((4-2)/6)² = 0.11
+- F: ((5-3)/6)² = 0.11
+- H: ((1-1)/6)² = 0
+
+**Total variance:** 0.55
+
+**Standard deviation:** √0.55 = 0.74 weeks
+
+**Step 4: Probability of completing in 22 weeks:**
+
+Z = (22-20)/0.74 = 2.70, 
+P(Z ≤ 2.70) ≈ 0.9965 → 99.65% probability
+
+**Step 5: 95% confidence interval:**
+
+Z for 95% = 1.96, 
+Interval: 20 ± 1.96×0.74 = [18.55, 21.45] weeks
+
+### Sample Problem
+
+**Problem Statement:**
+A campus research project has activity D with estimates: a=4, m=5, b=12 weeks. Calculate the expected time and standard deviation. What does the large range (b-a) indicate?
+
+**Solution:**
+
+te = (4+20+12)/6 = 6 weeks
+σ = (12-4)/6 = 1.33 weeks
+
+**Interpretation:** Large uncertainty in this activity duration. Should be monitored closely.
+
+### Review Questions
+
+1. **Explain why PERT uses the formula (a+4m+b)/6 for expected time rather than a simple average.**
+
+2. **How does the assumption of normal distribution for project completion time rely on the Central Limit Theorem?**
+
+3. **Calculate the probability of completing a project with expected duration 45 days and standard deviation 5 days within 50 days.**
+
+4. **What managerial insights can be gained from PERT probability analysis that are not available from deterministic CPM?**
+
+5. **Design a PERT analysis for planning a campus conference. Which activities would likely have the highest uncertainty and why?**
+
+
+## Gantt Charts and Project Visualization
+
+While CPM and PERT are the *brains* of the operation, the **Gantt Chart** is the *face*. It is a horizontal bar chart that maps activities against time.
+### Why do we need this?
+Imagine explaining "Nodes and Edges" to a University Dean or a Construction Foreman. They might not understand graph theory, but they understand a bar chart.
+
+* It visualizes **Parallelism**: "Look, the electricians and plumbers are working at the same time."
+* It highlights **blockers**: "We cannot paint until the drywall is up."
+
+### Theoretical Foundation
+
+#### What is a Gantt Chart?
+
+A Gantt chart is a bar chart that visually represents a project schedule, showing:
+
+- Activities/tasks on vertical axis
+- Timeline on horizontal axis
+- Bars showing activity durations and relationships
+
+#### Components of Gantt Charts
+
+1. **Task Bars**: Horizontal bars representing activity durations
+2. **Milestone Markers**: Diamond symbols for key events
+3. **Dependency Lines**: Arrows showing precedence relationships
+4. **Progress Bars**: Shaded portions showing completed work
+5. **Resource Assignments**: Color coding or labels for resources
+
+#### Creating Gantt Charts from CPM/PERT
+
+**Steps:**
+
+1. List all activities with durations and dependencies
+2. Calculate ES, EF, LS, LF using CPM
+3. Draw timeline on horizontal axis
+4. Plot each activity as bar from ES to EF
+5. Add dependencies as arrows between bars
+6. Highlight critical path activities
+7. Add milestones and resources
+
+#### Advanced Features
+
+- **Baseline Schedule**: Original plan for comparison
+- **Actual Progress**: Overlay of completed work
+- **Resource Loading**: Show resource utilization over time
+- **Critical Path Highlighting**: Color-code critical activities
+- **Slack/Float Representation**: Show available flexibility
+
+#### Benefits for Campus Projects
+
+1. **Visual Communication**: Easy to understand for stakeholders
+2. **Progress Tracking**: Monitor actual vs planned
+3. **Resource Management**: Identify overallocation
+4. **Schedule Adjustment**: Visualize impact of changes
+5. **Stakeholder Reporting**: Professional project updates
+
+### Sample Problem
+
+**Problem Statement:**
+Create a Gantt chart for the library construction project using CPM results from Section 3.2.
+
+**Solution Structure:**
+
+**Timeline (weeks):** 0 2 4 6 8 10 12 14 16 18 20
+
+**Activity Bars:**
+
+- A: [======] Weeks 0-2 (Critical)
+- B: [==============] Weeks 2-6 (Critical)
+- C: [======================] Weeks 6-12 (Critical)
+- D: [===========] Weeks 12-15 (Critical)
+- E: [===========] Weeks 12-15
+- F: [===============] Weeks 15-19 (Critical)
+- G: [=======] Weeks 12-14 (Float: Weeks 14-17)
+- H: [====] Weeks 19-20 (Critical)
+
+**Dependencies:** Arrows connecting bars according to precedence
+
+**Milestones:** 
+
+- Start: Week 0
+- Foundation Complete: Week 6
+- Structure Complete: Week 12
+- Project Complete: Week 20
+
+### Sample Problem
+
+**Problem Statement:**
+A campus event planning project has resource constraints (only 2 project managers available). Create a resource-leveled Gantt chart.
+
+**Activities with PM requirements:**
+
+- Planning: 2 PMs, 2 weeks
+- Vendor Selection: 1 PM, 3 weeks
+- Logistics: 2 PMs, 2 weeks
+- Promotion: 1 PM, 4 weeks
+- Execution: 2 PMs, 1 week
+
+**Solution Approach:**
+Adjust schedule within float limits to ensure never more than 2 PMs working simultaneously, minimizing project extension.
+
+### Review Questions
+
+1. **What information from CPM analysis is essential for creating an accurate Gantt chart?**
+
+2. **How do Gantt charts help in communicating project status to non-technical campus stakeholders?**
+
+3. **Design a Gantt chart for a semester-long academic project. What special considerations would apply?**
+
+4. **Explain how resource leveling can be visualized and implemented using Gantt charts.**
+
+5. **What are the limitations of Gantt charts compared to network diagrams for complex projects?**
+
+
+## Heuristic Algorithms and Local Search
+
+Sometimes, a project is so complex—like scheduling 5,000 exams for 20,000 students in 500 rooms—that finding the *perfect* mathematical solution would take a supercomputer 100 years. These are called **NP-Hard** problems. In these cases, we use **Heuristics**. A heuristic is a fancy word for a "smart rule of thumb." It doesn't guarantee the *perfect* solution, but it guarantees a *good* solution quickly.
+
+### Theoretical Foundation
+
+#### What are Heuristic Algorithms?
+
+Heuristics are problem-solving approaches that:
+
+- Find good (not necessarily optimal) solutions efficiently
+- Handle complex, large-scale, or NP-hard problems
+- Use rules of thumb, intuition, or iterative improvement
+
+#### When to Use Heuristics
+
+1. **NP-hard problems**: Exact solutions computationally infeasible
+2. **Large-scale problems**: Solution space too large for exhaustive search
+3. **Real-time decisions**: Need quick, good-enough solutions
+4. **Complex constraints**: Difficult to model mathematically
+
+#### Types of Heuristics
+
+**Constructive Heuristics:**
+
+- Build solution from scratch
+- Example: Nearest Neighbor for TSP
+
+**Improvement Heuristics:**
+
+- Start with initial solution and improve it
+- Example: Local Search, Simulated Annealing
+
+**Metaheuristics:**
+
+- High-level strategies to guide search
+- Examples: Genetic Algorithms, Tabu Search
+
+### Greedy Algorithms
+A greedy algorithm makes the best choice *right now*, without worrying about the future.
+*Example:* Assign the largest class to the first available large room. Then the next. Then the next.
+
+#### Local Search Algorithms
+
+Imagine you are blindfolded on a mountain and want to reach the peak. You step in a random direction. If you go up, you stay there. If you go down, you step back. You keep doing this until you can't go up anymore.
+
+**Basic Local Search:**
+
+1. Start with initial solution
+2. Evaluate neighborhood (solutions reachable by small change)
+3. Move to best neighbor
+4. Repeat until no improving neighbor exists
+
+**Variants:**
+
+- **Hill Climbing**: Always move to better solution
+- **Steepest Ascent**: Evaluate all neighbors, choose best
+- **Random Restart**: Multiple runs from different starting points
+
+#### Applications in Campus Planning
+
+- **Room Assignment**: Assign classes to rooms heuristically
+- **Exam Scheduling**: Create conflict-free exam schedules
+- **Maintenance Routing**: Plan efficient maintenance routes
+- **Resource Allocation**: Allocate limited resources optimally
+
+### Sample Problem
+
+**Problem Statement:**
+Schedule 5 campus events into 3 time slots (Morning, Afternoon, Evening) with preferences:
+
+- Events A, B conflict (can't be same slot)
+- Event C prefers Morning
+- Event D prefers Afternoon or Evening
+- Event E has no preference
+Use greedy heuristic to create schedule.
+
+**Heuristic Solution:**
+
+1. Place C in Morning (highest priority preference)
+2. Place A in Afternoon (avoids conflict with C)
+3. Place B in Evening (avoids conflict with A)
+4. Place D in Afternoon (preference satisfied)
+5. Place E in remaining slot (Evening)
+
+**Result:** 
+
+- Morning: C
+- Afternoon: A, D
+- Evening: B, E
+
+### Sample Problem
+
+**Problem Statement:**
+Optimize delivery routes for campus catering using 2-opt local search heuristic for TSP.
+
+**Initial Route:** Warehouse → A → B → C → D → E → Warehouse (Distance: 45 km)
+
+**2-opt Operation:**
+Try swapping pairs of edges to reduce total distance.
+
+**Example Improvement:**
+
+Swap B-C and D-E connections:
+New route: Warehouse → A → B → D → C → E → Warehouse
+If distance < 45 km, accept the swap.
+
+### Review Questions
+
+1. **Explain the trade-off between solution quality and computational time when using heuristic algorithms.**
+
+2. **What is the "local optimum" problem in local search algorithms and how can it be addressed?**
+
+3. **Design a greedy heuristic for assigning project teams to campus facilities based on proximity and capacity.**
+
+4. **Compare constructive heuristics vs improvement heuristics. When would you use each approach?**
+
+5. **How can heuristics be combined with exact methods (like CPM) for complex campus planning problems?**
+
+
+## Micro-Project 3: Campus Construction Planning
+
+### Project Overview
+
+#### Business Context
+
+Campus City is planning a major expansion: construction of a new Student Center. As the project planning specialist, you are responsible for developing the complete project plan using CPM, PERT, and heuristic optimization techniques.
+
+#### Project Scope
+
+The new Student Center construction involves:
+
+- Site preparation and utilities
+- Main structure construction
+- Interior finishing and amenities
+- External landscaping
+- Final commissioning and handover
+
+### Project Data Specification
+
+#### Activities and Dependencies
+
+Based on campus construction standards and previous projects:
+
+**Phase 1: Site Preparation (Weeks 1-8)**
+
+1. A: Clear site (3 weeks)
+2. B: Excavate foundation (2 weeks, after A)
+3. C: Install utilities (4 weeks, after A)
+4. D: Pour foundation (3 weeks, after B, C)
+
+**Phase 2: Structure Construction (Weeks 9-20)**
+
+5. E: Erect steel frame (6 weeks, after D)
+6. F: Install roofing (3 weeks, after E)
+7. G: External walls (4 weeks, after E)
+8. H: Windows/doors (2 weeks, after F, G)
+
+**Phase 3: Interior Work (Weeks 21-32)**
+
+9. I: Electrical systems (5 weeks, after H)
+10. J: Plumbing systems (4 weeks, after H)
+11. K: HVAC installation (4 weeks, after H)
+12. L: Drywall/painting (3 weeks, after I, J, K)
+
+**Phase 4: Finishing (Weeks 33-40)**
+
+13. M: Flooring (3 weeks, after L)
+14. N: Fixtures/furniture (2 weeks, after M)
+15. O: Landscaping (4 weeks, after G)
+16. P: Final inspection (1 week, after N, O)
+
+#### Probabilistic Time Estimates
+For critical activities, provide three-point estimates:
+
+- E: Steel erection: 5, 6, 8 weeks
+- I: Electrical: 4, 5, 7 weeks
+- M: Flooring: 2, 3, 5 weeks
+
+#### Resource Constraints
+
+- Maximum 3 construction crews available
+- Specialized equipment available for 2 activities simultaneously
+- Budget constraint: $5,000,000 total
+- Crew costs: $10,000/week per crew
+
+### Project Requirements
+
+#### Part A: CPM Analysis (4 Marks)
+
+**Tasks:**
+
+1. **Network Diagram:** Create complete project network
+2. **Critical Path Identification:** Determine all critical activities
+3. **Float Calculation:** Compute float for non-critical activities
+4. **Minimum Duration:** Calculate project completion time
+
+**Deliverables:**
+
+- Complete CPM calculations table
+- Network diagram visualization
+- Critical path analysis report
+
+#### Part B: PERT Analysis (4 Marks)
+
+**Tasks:**
+
+1. **Expected Times:** Calculate te for all activities
+2. **Probability Analysis:** Determine probability of completion in 42 weeks
+3. **Confidence Intervals:** Compute 90% and 95% confidence intervals
+4. **Risk Assessment:** Identify high-risk activities
+
+**Deliverables:**
+
+- PERT calculations with variances
+- Probability analysis report
+- Risk mitigation recommendations
+
+#### Part C: Gantt Chart & Resource Planning (4 Marks)
+
+**Tasks:**
+
+1. **Gantt Chart:** Create comprehensive project Gantt chart
+2. **Resource Loading:** Plan crew allocation over project timeline
+3. **Resource Leveling:** Optimize crew utilization within constraints
+4. **Schedule Compression:** Explore time-cost trade-offs
+
+**Deliverables:**
+
+- Professional Gantt chart
+- Resource allocation plan
+- Schedule optimization analysis
+
+#### Part D: Heuristic Optimization (3 Marks)
+
+**Tasks:**
+
+1. **Schedule Optimization:** Use local search to improve schedule
+2. **Cost Optimization:** Heuristically minimize project cost
+3. **Scenario Analysis:** Evaluate "what-if" scenarios
+
+**Deliverables:**
+
+- Heuristic algorithm design
+- Optimization results
+- Scenario analysis report
+
+### Evaluation Criteria
+
+#### Technical Accuracy (40%)
+
+- Correct CPM/PERT calculations
+- Proper critical path identification
+- Accurate probability computations
+
+#### Analysis Quality (30%)
+
+- Insightful interpretation of results
+- Practical recommendations
+- Risk assessment completeness
+
+#### Visualization & Presentation (20%)
+
+- Professional Gantt charts
+- Clear network diagrams
+- Well-organized reports
+
+#### Innovation & Creativity (10%)
+
+- Novel heuristic approaches
+- Creative problem-solving
+- Practical implementation ideas
+
+### Project Timeline
+
+**Week 1:** Data analysis and network construction
+**Week 2:** CPM calculations and critical path analysis
+**Week 3:** PERT analysis and probability computations
+**Week 4:** Gantt chart creation and resource planning
+**Week 5:** Heuristic optimization and final report
+
+### Success Metrics
+
+#### Technical Validation
+
+- **Network Consistency:** All dependencies correctly modeled
+- **Calculation Accuracy:** CPM/PERT computations error-free
+- **Critical Path Correctness:** Identified critical activities verified
+- **Probability Validity:** Statistical assumptions properly applied
+
+#### Practical Feasibility
+
+- **Resource Realism:** Crew allocation within practical limits
+- **Schedule Viability:** Timeline accounts for real-world constraints
+- **Cost Alignment:** Budget estimates realistic for campus projects
+- **Risk Management:** High-risk activities properly identified
+
+#### Business Impact
+
+- **Time Optimization:** Project duration minimized effectively
+- **Cost Efficiency:** Resource utilization optimized
+- **Risk Mitigation:** Uncertainty properly managed
+- **Implementation Ready:** Plan actionable for campus operations
+
+
+## Module 3 Summary
+
+### Key Concepts Mastered
+
+- ✅ Project planning fundamentals and methodologies
+- ✅ Critical Path Method (CPM) for deterministic scheduling
+- ✅ Program Evaluation Review Technique (PERT) for probabilistic analysis
+- ✅ Gantt chart creation and project visualization
+- ✅ Heuristic algorithms for complex optimization problems
+
+### Skills Developed
+
+- **Project Analysis:** Breaking down complex projects into manageable activities
+- **Network Modeling:** Representing projects as directed graphs
+- **Probabilistic Thinking:** Incorporating uncertainty into planning
+- **Visual Communication:** Creating effective project visualizations
+- **Heuristic Design:** Developing practical optimization approaches
+
+### Integration with Other Modules
+
+- **Foundation from Module 1:** Linear thinking for dependency modeling
+- **Building on Module 2:** Handling uncertainty in project durations
+- **Preparation for Module 4:** Network concepts for graph algorithms
+- **Connection to Module 5:** Optimization techniques for scheduling
+
+### Real-World Applications
+
+- Campus construction and renovation projects
+- Academic calendar and event scheduling
+- Resource allocation for campus operations
+- Maintenance planning and facility management
+- Emergency response and contingency planning
+
+### Next Steps
+
+- Complete Micro-Project 3 implementation
+- Practice CPM/PERT calculations with various project scenarios
+- Explore advanced project management software tools
+- Prepare for Module 4: Graph Algorithms and Network Optimization
