@@ -6,6 +6,10 @@ jupyter: python3
 
 ## Module Overview
 
+<div style="text-align: center;">
+  <img src="Module-3-info.png" alt="A detailed infographic about Quarto webpage contents" style="width: 650px; height: auto; display: block; margin: 0 auto;">
+</div>
+
 ### Learning Objectives
 
 - Master project planning methodologies: CPM and PERT

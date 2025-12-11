@@ -6,6 +6,12 @@ jupyter: python3
 
 ## Module Overview
 
+
+<div style="text-align: center;">
+  <img src="Modul1-1-info.png" alt="A detailed infographic about Quarto webpage contents" style="width: 650px; height: auto; display: block; margin: 0 auto;">
+</div>
+
+
 ### Learning Objectives
 
 - Understand fundamental optimization concepts and problem classification
@@ -157,7 +163,7 @@ $$
 
 #### Optimal Solution
 
-A point \(\mathbf{x}^*\) in the feasible region that gives the best value of the objective function.
+A point $\mathbf{x}^*$ in the feasible region that gives the best value of the objective function.
 
 #### Corner Point (Extreme Point)
 A point in the feasible region that cannot be expressed as a convex combination of two other distinct points in the region.

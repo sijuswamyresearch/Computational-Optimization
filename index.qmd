@@ -6,6 +6,10 @@ In an era dominated by Artificial Intelligence, Machine Learning, and Data Scien
 
 This course positions you at the intersection of *mathematical theory* and *computational practice*, equipping you with both the conceptual understanding and hands-on skills to design, implement, and deploy optimization solutions for real-world challenges.
 
+<div style="text-align: center;">
+  <img src="Course-Outline.png" alt="A detailed infographic about Quarto webpage contents" style="width: 650px; height: auto; display: block; margin: 0 auto;">
+</div>
+
 ## Course Syllabus (48 Hours / 12 Weeks)
 
 ### Course Overview

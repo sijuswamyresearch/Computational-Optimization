@@ -16,6 +16,13 @@ print("🌉 Bridging Theory and Practice in the AI Revolution")
 
 ----
 
+
+
+<div style="text-align: center;">
+  <img src="Course-outlineOBE.png" alt="A detailed infographic about Quarto webpage contents" style="width: 650px; height: auto; display: block; margin: 0 auto;">
+</div>
+
+
 ## Why Optimization Matters Now More Than Ever
 
 The exponential growth in data complexity and computational requirements has transformed optimization from a theoretical discipline to an essential toolkit for every computer scientist and data professional. Consider these real-world contexts:

@@ -6,6 +6,11 @@ jupyter: python3
 
 ## Module Overview
 
+
+<div style="text-align: center;">
+  <img src="Module-2-info.png" alt="A detailed infographic about Quarto webpage contents" style="width: 650px; height: auto; display: block; margin: 0 auto;">
+</div>
+
 ### Learning Objectives
 
 - Understand the limitations of linear models and need for nonlinear optimization

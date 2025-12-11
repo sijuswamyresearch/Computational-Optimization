@@ -6,6 +6,11 @@ jupyter: python3
 
 ## Module Overview
 
+<div style="text-align: center;">
+  <img src="Module-5-info.png" alt="A detailed infographic about Quarto webpage contents" style="width: 650px; height: auto; display: block; margin: 0 auto;">
+</div>
+
+
 ### Learning Objectives
 
 - Master gradient-based optimization algorithms and their variants

@@ -287,6 +287,9 @@ window.Quarto = {
 
 <section id="module-overview" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="module-overview"><span class="header-section-number">2.1</span> Module Overview</h2>
+<div style="text-align: center;">
+<p><img src="Modul1-1-info.png" alt="A detailed infographic about Quarto webpage contents" style="width: 650px; height: auto; display: block; margin: 0 auto;"></p>
+</div>
 <section id="learning-objectives" class="level3" data-number="2.1.1">
 <h3 data-number="2.1.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">2.1.1</span> Learning Objectives</h3>
 <ul>
@@ -377,7 +380,7 @@ window.Quarto = {
 <h2 data-number="2.3" class="anchored" data-anchor-id="basic-python-for-optimization"><span class="header-section-number">2.3</span> Basic Python for Optimization</h2>
 <section id="essential-python-libraries-setup" class="level3" data-number="2.3.1">
 <h3 data-number="2.3.1" class="anchored" data-anchor-id="essential-python-libraries-setup"><span class="header-section-number">2.3.1</span> Essential Python Libraries Setup</h3>
-<div id="9eb9750a" class="cell" data-execution_count="1">
+<div id="d700d3c0" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Core optimization stack installation</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># pip install numpy scipy matplotlib pulp pandas jupyter</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -403,7 +406,7 @@ Key <code>Python</code> Libraries Required for Computational Part
 </section>
 <section id="python-fundamentals-for-optimization" class="level3" data-number="2.3.2">
 <h3 data-number="2.3.2" class="anchored" data-anchor-id="python-fundamentals-for-optimization"><span class="header-section-number">2.3.2</span> Python Fundamentals for Optimization</h3>
-<div id="0be58d52" class="cell" data-execution_count="2">
+<div id="3a8ae8f0" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Essential operations we'll use frequently</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -483,7 +486,7 @@ F = \{\mathbf{x} \in \mathbb{R}^n : \mathbf{A}\mathbf{x} \leq \mathbf{b}, \mathb
 </section>
 <section id="optimal-solution" class="level4" data-number="2.4.3.2">
 <h4 data-number="2.4.3.2" class="anchored" data-anchor-id="optimal-solution"><span class="header-section-number">2.4.3.2</span> Optimal Solution</h4>
-<p>A point (^*) in the feasible region that gives the best value of the objective function.</p>
+<p>A point <span class="math inline">\(\mathbf{x}^*\)</span> in the feasible region that gives the best value of the objective function.</p>
 </section>
 <section id="corner-point-extreme-point" class="level4" data-number="2.4.3.3">
 <h4 data-number="2.4.3.3" class="anchored" data-anchor-id="corner-point-extreme-point"><span class="header-section-number">2.4.3.3</span> Corner Point (Extreme Point)</h4>
@@ -921,7 +924,7 @@ x_1, x_2 &amp;\ge 0.
 <p><em>Using PuLP for LP Problems</em></p>
 </blockquote>
 <p><code>PuLP</code> provides a high-level interface for formulating and solving optimization problems:</p>
-<div id="11e8c169" class="cell" data-execution_count="3">
+<div id="deff0766" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pulp</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create optimization problem</span></span>
@@ -1018,7 +1021,7 @@ x_1, x_2 &amp;\geq 0
 <blockquote class="blockquote">
 <p><code>Python</code> Solution</p>
 </blockquote>
-<div id="93788651" class="cell" data-execution_count="4">
+<div id="c625707a" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pulp</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the optimization problem</span></span>
@@ -1148,7 +1151,7 @@ x_1 \geq 0, \quad x_2 \geq 0
 <blockquote class="blockquote">
 <p><code>Python</code> Implementation</p>
 </blockquote>
-<div id="4a46f12f" class="cell" data-execution_count="5">
+<div id="825e4369" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pulp</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the optimization problem</span></span>
