@@ -477,15 +477,15 @@ Campus City wants to minimize transportation cost $C(d) = 2d + 0.1d^2$ while ens
 
 ### Review Questions
 
-1. **Explain the economic interpretation of Lagrange multipliers in constrained optimization.**
+1. Explain the economic interpretation of Lagrange multipliers in constrained optimization.
 
-2. **What does complementary slackness tell us about active vs inactive constraints at the optimal solution?**
+2. What does complementary slackness tell us about active vs inactive constraints at the optimal solution?
 
-3. **Solve using KKT: Minimize $f(x) = x^2$ subject to $x \geq 2$.**
+3. Solve using KKT: Minimize $f(x) = x^2$ subject to $x \geq 2$.
 
-4. **How do KKT conditions extend the method of Lagrange multipliers for inequality constraints?**
+4. How do KKT conditions extend the method of Lagrange multipliers for inequality constraints?
 
-5. **In a campus logistics context, what would a high Lagrange multiplier for an environmental constraint indicate?**
+5. In a campus logistics context, what would a high Lagrange multiplier for an environmental constraint indicate?
 
 
 ## Python Implementation of Nonlinear Solvers
