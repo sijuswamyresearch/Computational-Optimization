@@ -341,27 +341,42 @@ x_2 & = a + \frac{b-a}{\phi}
 \end{aligned}
 $$
 
+Where $\phi=1.618$
+
+:::{.callout-note}
+## Alter:
+ Instead of choosing $\phi=1.618$, we can select the other Golder section ratio ($<1$). In that case the section points can be calculated as:
+$$
+\begin{aligned}
+x_1 & = b - \phi\cdot (b-a) \\
+x_2 & = a + \phi\cdot (b-a)
+\end{aligned}
+$$
+:::
+
 **Iteration:** Compare $f(x_1)$ and $f(x_2)$, eliminate portion of interval based on which is larger.
 
-### Sample Problem
+### Sample Problem 1
 
 **Problem Statement:**
 Use Golden Section search to minimize $f(x) = (x-3)^2 + 2$ on interval [0, 5] with 4 iterations.
 
 **Solution:**
 **Iteration 1:**
+
 - $x_1 = 5 - \frac{5-0}{1.618} = 1.91$, $f(x_1) = 2.19$
 - $x_2 = 0 + \frac{5-0}{1.618} = 3.09$, $f(x_2) = 2.01$
 - Since $f(x_1) > f(x_2)$, new interval: [1.91, 5]
 
 **Iteration 2:**
+
 - $x_1 = 5 - \frac{5-1.91}{1.618} = 3.09$ (already computed)
 - $x_2 = 1.91 + \frac{5-1.91}{1.618} = 3.82$, $f(x_2) = 2.67$
 - Since $f(x_1) < f(x_2)$, new interval: [1.91, 3.82]
 
 **Continue for 4 iterations → Final interval: [2.85, 3.15] containing true minimum at x=3**
 
-### Sample Problem
+### Sample Problem 2
 
 **Problem Statement:**
 A warehouse has energy consumption $E(w) = 1000 + 50w + 0.2w^2$ kWh, where w is weekly shipments (0 ≤ w ≤ 200). Find optimal shipment volume that minimizes energy per shipment.
@@ -370,22 +385,28 @@ A warehouse has energy consumption $E(w) = 1000 + 50w + 0.2w^2$ kWh, where w is 
 Energy per shipment: $f(w) = \frac{1000}{w} + 50 + 0.2w$
 
 Using Golden Section on [10, 200]:
+
 - **Iteration 1:** Compare w=70.8 and w=139.2
 - **Iteration 2:** Compare w=44.4 and w=70.8  
 - **Iteration 3:** Compare w=57.6 and w=70.8
 - **Optimal:** w ≈ 70.7 shipments/week, energy/shipment ≈ 78.3 kWh
 
+
+### Sample problem 3
+
+Minimize $$f(x)=-\frac{1}{(x-1)^2}\left(\ln(x)-2\left(\frac{x-1}{x+1}\right)\right)$$ such that $x$ in $[1.5,4.5]$ using the Golden Section Method.
+
 ### Review Questions
 
-1. **Explain why Golden Section search is more efficient than exhaustive search for unimodal functions.**
+1. Explain why Golden Section search is more efficient than exhaustive search for unimodal functions.
 
-2. **Compare Golden Section and Fibonacci search methods. When would you choose one over the other?**
+2. Compare Golden Section and Fibonacci search methods. When would you choose one over the other?
 
-3. **A transportation cost function is $C(d) = \frac{1000}{d} + 2d$ for d > 0. Use Golden Section to find the optimal distance in [10, 100] with 3 iterations.**
+3. A transportation cost function is $C(d) = \frac{1000}{d} + 2d$ for d > 0. Use Golden Section to find the optimal distance in [10, 100] with 3 iterations.
 
-4. **What is a unimodal function and why is this property important for one-dimensional search methods?**
+4. What is a unimodal function and why is this property important for one-dimensional search methods?
 
-5. **How would you modify Golden Section search if you suspected multiple local minima in your search interval?**
+5. How would you modify Golden Section search if you suspected multiple local minima in your search interval?
 
 
 ## Constrained Optimization & KKT Conditions
@@ -405,12 +426,14 @@ $$
 $$
 
 **KKT Conditions:**
+
 1. **Stationarity:** $\nabla f(\mathbf{x}) + \sum \lambda_i \nabla g_i(\mathbf{x}) + \sum \mu_j \nabla h_j(\mathbf{x}) = 0$
 2. **Primal Feasibility:** $g_i(\mathbf{x}) \leq 0, \quad h_j(\mathbf{x}) = 0$
 3. **Dual Feasibility:** $\lambda_i \geq 0$
 4. **Complementary Slackness:** $\lambda_i g_i(\mathbf{x}) = 0$
 
 #### Interpretation
+
 - **Lagrange Multipliers (λ, μ):** Sensitivity of objective to constraint changes
 - **Complementary Slackness:** Inactive constraints have zero multipliers
 - **Stationarity:** Balance between objective improvement and constraint satisfaction
@@ -418,6 +441,7 @@ $$
 ### Sample Problem
 
 **Problem Statement:**
+
 Minimize $f(x,y) = x^2 + y^2$ subject to $x + y \geq 4$.
 
 **Solution:**
@@ -528,4 +552,516 @@ result = golden_section_search(objective, 0, 10)
 print(f"Optimal x: {result:.4f}")  # Output: Optimal x: 4.0000
 ```
 
+### Solution of constrained NLPP
 
+To solve NLPP using KKT method, we will use `solve()` function from the `sympy` library. Key functions required for solution will be imported
+
+```{python}
+from sympy import symbols, diff, solve
+```
+
+>**Example 1:**  Minimize $f(x, y) = x^2 + y^2$ subject to $x + y \ge 4$ (Standard form: $4 - x - y \le 0$).
+
+`SymPy` does not inherently "solve" inequality constraints in the same way a numerical solver (like `SciPy`) does. Instead, you must manually transform the inequality into an equation using the Complementary Slackness condition from the KKT framework.Here is the logic: An inequality constraint $g(x) \le 0$ is handled by introducing a Lagrange multiplier $\lambda$ and adding the equation $\lambda \cdot g(x) = 0$ to your system.
+
+The 3-Step "Filter" WorkflowSince SymPy's solve function returns all mathematical solutions (stationary points), you must add a "Filter" step to check the inequalities manually.
+- *Formulate:* Convert inequalities to KKT equations (Stationarity + Complementary Slackness).
+- *Solve:* Use `solve()` to find all candidate points.
+- *Filter:* Discard solutions that violate Primal Feasibility ($g(x) \le 0$) or Dual Feasibility ($\lambda \ge 0$).
+
+>**Python code:**
+
+```{python}
+from sympy import symbols, diff, solve
+
+# 1. Define Variables
+x, y = symbols('x y', real=True)
+lam = symbols('lambda', real=True) # Lagrange Multiplier
+
+# 2. Define Functions
+f = x**2 + y**2           # Objective
+g = 4 - x - y             # Inequality constraint (g <= 0)
+
+# 3. Formulate Lagrangian
+# L = f + lambda * g
+L = f + lam * g
+
+# 4. Generate KKT Equations
+# A. Stationarity: Gradient of L must be zero
+eq1 = diff(L, x)
+eq2 = diff(L, y)
+
+# B. Complementary Slackness: lambda * constraint = 0
+eq3 = lam * g
+
+# 5. Solve the System of Equations
+# We ask SymPy to find values for x, y, and lambda that satisfy these 3 equalities
+solutions = solve([eq1, eq2, eq3], (x, y, lam), dict=True)
+
+print(f"Candidate Solutions found: {len(solutions)}")
+
+# 6. Filter Solutions (The Crucial Step for Inequalities)
+print("\n--- Validation Step ---")
+valid_solutions = []
+
+for sol in solutions:
+    x_val = sol[x]
+    y_val = sol[y]
+    lam_val = sol[lam]
+    
+    # Check Primal Feasibility: g(x) <= 0
+    # (Using a small tolerance for floating point comparisons if needed)
+    primal_check = (4 - x_val - y_val) <= 0
+    
+    # Check Dual Feasibility: lambda >= 0
+    dual_check = lam_val >= 0
+    
+    print(f"Testing Point ({x_val}, {y_val}) with lambda={lam_val}:")
+    print(f"  Constraint g <= 0? {primal_check}")
+    print(f"  Dual lambda >= 0? {dual_check}")
+    
+    if primal_check and dual_check:
+        print(" VALID Optimal Solution")
+        valid_solutions.append(sol)
+    else:
+        print(" INVALID (Violates KKT conditions)")
+
+# Output Final Result
+if valid_solutions:
+    opt = valid_solutions[0]
+    print(f"\nOptimal Solution: x={opt[x]}, y={opt[y]}, cost={opt[x]**2 + opt[y]**2}")
+```
+
+>**Example 2:** Solve $f(x_1,x_2)=-x_1^2-x_2^2$; $-x_1-x_2\le -1$; $-2x_1+2x_2\le 1$; $x_1,x_2\ge 0$.
+
+```{python}
+import sympy as sp
+
+# 1. Define Variables
+x1, x2 = sp.symbols('x1 x2', real=True)
+lam1, lam2 = sp.symbols('lambda1 lambda2', real=True)
+
+# 2. Define Objective (Maximization)
+f = -x1**2 - x2**2
+
+# 3. Define Constraints in Standard Form (g(x) <= 0)
+# Original: -x1 - x2 >= -1  -> x1 + x2 <= 1 -> x1 + x2 - 1 <= 0
+g1 = x1 + x2 - 1
+
+# Original: -2x1 + 2x2 <= 1 -> -2x1 + 2x2 - 1 <= 0
+g2 = -2*x1 + 2*x2 - 1
+
+# 4. Formulate Lagrangian for Maximization (L = f - lambda*g)
+L = f - lam1 * g1 - lam2 * g2
+
+# 5. KKT Equations
+# A. Stationarity (Gradient of L w.r.t x must be 0)
+stat_x1 = sp.diff(L, x1)
+stat_x2 = sp.diff(L, x2)
+
+# B. Complementary Slackness (lambda * g = 0)
+slack_1 = lam1 * g1
+slack_2 = lam2 * g2
+
+# 6. Solve the System
+print("Solving KKT system...")
+# We assume non-negativity of x (x >= 0) is a boundary check rather than an explicit Lagrangian term 
+# to keep the symbolic solver efficient for this demo.
+solutions = sp.solve([stat_x1, stat_x2, slack_1, slack_2], (x1, x2, lam1, lam2), dict=True)
+
+# 7. Validation & Filtering
+print(f"\nFound {len(solutions)} candidate points. Filtering for optimality...")
+print("-" * 75)
+print(f"{'Point (x1, x2)':<20} | {'Multipliers':<20} | {'Objective':<10} | {'Status'}")
+print("-" * 75)
+
+best_f = -float('inf')
+best_sol = None
+
+for sol in solutions:
+    # Extract numerical values
+    x1_v = float(sol[x1])
+    x2_v = float(sol[x2])
+    l1_v = float(sol[lam1])
+    l2_v = float(sol[lam2])
+    
+    status = "Valid"
+    
+    # Check 1: Non-negativity of variables (x >= 0)
+    if x1_v < -1e-7 or x2_v < -1e-7:
+        status = "Invalid (x < 0)"
+        
+    # Check 2: Primal Feasibility (g <= 0)
+    elif (x1_v + x2_v - 1) > 1e-7:
+        status = "Invalid (g1 > 0)"
+    elif (-2*x1_v + 2*x2_v - 1) > 1e-7:
+        status = "Invalid (g2 > 0)"
+        
+    # Check 3: Dual Feasibility (lambda >= 0 for Max problem with L = f - lg)
+    elif l1_v < -1e-7 or l2_v < -1e-7:
+        status = "Invalid (lambda < 0)"
+    
+    # Calculate Objective
+    obj_val = -x1_v**2 - x2_v**2
+    
+    print(f"({x1_v:.4f}, {x2_v:.4f})   | L1={l1_v:.4f}, L2={l2_v:.4f} | {obj_val:.4f}     | {status}")
+    
+    if "Valid" in status and obj_val > best_f:
+        best_f = obj_val
+        best_sol = (x1_v, x2_v)
+
+print("-" * 75)
+if best_sol:
+    print(f"\n Optimal Solution: x1 = {best_sol[0]}, x2 = {best_sol[1]}")
+    print(f"   Max Objective Value = {best_f}")
+```
+
+>**Example 3:** Minimize $f(x_1,x_2)=2x_1+6x_2$ subject to $x_1-x_2\le 0$; $x_1^2+x_2^2\ge 4$; $x_1,x_2\ge 0$.
+
+
+Mathematical Formulation for `Sympy` requires constraints to be in the form $g(x) \ge 0$. We must rearrange the given inequalities:
+- *Objective:* Minimize $f(x) = 2x_1 + 6x_2$
+- *Constraint 1:* $x_1 - x_2 \le 0 \implies x_2 - x_1 \ge 0$
+- *Constraint 2:* $x_1^2 + x_2^2 \ge 4 \implies x_1^2 + x_2^2 - 4 \ge 0$
+- *Bounds:* $x_1, x_2 \ge 0$
+
+```{python}
+import sympy as sp
+
+# 1. Define Symbols
+x1, x2 = sp.symbols('x1 x2', real=True)
+lam1, lam2 = sp.symbols('lambda1 lambda2', real=True)
+
+# 2. Define Objective (Minimization)
+f = 2*x1 + 6*x2
+
+# 3. Define Constraints in Standard Form (g(x) <= 0)
+# Constraint 1: x1 - x2 <= 0
+g1 = x1 - x2
+
+# Constraint 2: x1^2 + x2^2 >= 4  --> 4 - x1^2 - x2^2 <= 0
+g2 = 4 - x1**2 - x2**2
+
+# 4. Formulate Lagrangian (Minimization: L = f + sum(lambda * g))
+L = f + lam1 * g1 + lam2 * g2
+
+# 5. KKT Equations
+# A. Stationarity (Gradient of L = 0)
+eq_x1 = sp.diff(L, x1)
+eq_x2 = sp.diff(L, x2)
+
+# B. Complementary Slackness (lambda * g = 0)
+eq_slack1 = lam1 * g1
+eq_slack2 = lam2 * g2
+
+# 6. Solve the System
+print("Solving KKT system equations...")
+# This solves for stationary points and intersection points
+solutions = sp.solve([eq_x1, eq_x2, eq_slack1, eq_slack2], (x1, x2, lam1, lam2), dict=True)
+
+# 7. Filter & Validate Solutions
+print(f"\nFound {len(solutions)} candidate points. Validating KKT conditions...")
+print("-" * 85)
+print(f"{'Point (x1, x2)':<20} | {'Multipliers':<20} | {'Cost':<10} | {'Status'}")
+print("-" * 85)
+
+optimal_val = float('inf')
+optimal_sol = None
+
+for sol in solutions:
+    # Extract values (convert to float for comparison)
+    x1_v = float(sol[x1])
+    x2_v = float(sol[x2])
+    l1_v = float(sol[lam1])
+    l2_v = float(sol[lam2])
+    
+    # Validation Logic
+    status = "Valid"
+    
+    # 1. Domain Check (x >= 0)
+    if x1_v < -1e-7 or x2_v < -1e-7:
+        status = "Invalid (x < 0)"
+        
+    # 2. Primal Feasibility (g <= 0)
+    # Check g1: x1 - x2 <= 0
+    elif (x1_v - x2_v) > 1e-7:
+        status = "Invalid (g1 > 0)"
+    # Check g2: 4 - x1^2 - x2^2 <= 0
+    elif (4 - x1_v**2 - x2_v**2) > 1e-7:
+        status = "Invalid (g2 > 0)"
+        
+    # 3. Dual Feasibility (lambda >= 0 for Minimization)
+    elif l1_v < -1e-7 or l2_v < -1e-7:
+        status = "Invalid (lambda < 0)"
+        
+    # Calculate Cost
+    cost = 2*x1_v + 6*x2_v
+    
+    print(f"({x1_v:.4f}, {x2_v:.4f})   | L1={l1_v:.4f}, L2={l2_v:.4f} | {cost:.4f}    | {status}")
+    
+    if "Valid" in status and cost < optimal_val:
+        optimal_val = cost
+        optimal_sol = (x1_v, x2_v)
+
+print("-" * 85)
+if optimal_sol:
+    print(f"\n Optimal Solution: x1 = {optimal_sol[0]:.4f}, x2 = {optimal_sol[1]:.4f}")
+    print(f"   Minimum Value = {optimal_val:.4f}")
+    
+    # Insight for the user
+    print("\nInsight: The solution lies at the intersection of the line x1=x2 and the circle.")
+```
+
+### Support Vector Machine (SVM) Theory: A Constrained Optimization Perspective
+
+>**Introduction & Geometric Intuition**
+
+The Support Vector Machine (SVM) is a supervised learning algorithm that finds the optimal hyperplane to separate two classes of data. Unlike other linear classifiers, SVM seeks the **widest possible separation** (margin) between the classes.
+
+>**The Hyperplane Equation**
+
+A hyperplane is defined by the equation:
+$$w^T x + b = 0$$
+- $w$: The weight vector (normal to the hyperplane).
+- $b$: The bias term (position relative to origin).
+- $x$: The feature vector of a data point.
+
+>**The Concept of the Margin**
+
+The "Margin" is the physical distance between the decision boundary and the closest data points (Support Vectors).
+
+- **Positive Boundary:** $w^T x + b = +1$
+- **Negative Boundary:** $w^T x + b = -1$
+
+
+
+>**Mathematical Derivation of the Margin**
+
+To calculate the width of the margin ($M$), consider two support vectors, $x_+$ on the positive boundary and $x_-$ on the negative boundary.
+
+1.  **Equations:**
+
+     - $w^T x_+ + b = 1$
+     - $w^T x_- + b = -1$
+2.  **Difference:** Subtracting the second from the first:
+    $$w^T (x_+ - x_-) = 2$$
+
+3.  **Projection:** The physical distance $M$ is the projection of $(x_+ - x_-)$ onto the unit normal vector $\frac{w}{||w||}$:
+    $$M = (x_+ - x_-) \cdot \frac{w}{||w||} = \frac{w^T(x_+ - x_-)}{||w||} = \frac{2}{||w||}$$
+
+**Key Insight:** To **maximize** the margin ($M = \frac{2}{||w||}$), we must **minimize** the norm of the weight vector ($||w||$).
+
+>**The Constraint: Sign Agreement**
+
+For a classifier to be valid, it must correctly classify data points *outside* the margin.
+* If $y_i = +1$, we require $w^T x_i + b \ge 1$.
+* If $y_i = -1$, we require $w^T x_i + b \le -1$.
+
+These two conditions can be compressed into a single inequality:
+$$y_i (w^T x_i + b) \ge 1 \quad \forall i$$
+
+This constraint ensures that every point is both correctly classified and located safely outside the "no-man's land" of the margin.
+
+>**The Primal Optimization Problem**
+
+Minimizing $||w||$ involves a square root, which is computationally difficult. Instead, we minimize $\frac{1}{2}||w||^2$, which is a convex quadratic function with the same optimum.
+
+**Standard Form (Hard Margin SVM):**
+$$
+\begin{aligned}
+& \text{Minimize} & & f(w, b) = \frac{1}{2}||w||^2 \\
+& \text{Subject to} & & y_i(w^T x_i + b) \ge 1, \quad i = 1, \dots, N
+\end{aligned}
+$$
+
+
+
+> **Solving via Lagrange Multipliers (KKT Conditions)**
+To solve this constrained problem, we construct the *Lagrangian Function*:
+
+$$\mathcal{L}(w, b, \alpha) = \frac{1}{2}||w||^2 - \sum_{i=1}^{N} \alpha_i [y_i(w^T x_i + b) - 1]$$
+where $\alpha_i \ge 0$ are the Lagrange Multipliers.
+
+The Karush-Kuhn-Tucker (KKT) Conditions
+
+For optimality, the following conditions must hold:
+
+1.  **Stationarity ($\nabla \mathcal{L} = 0$):**
+    * $\nabla_w \mathcal{L} = w - \sum \alpha_i y_i x_i = 0 \implies \mathbf{w = \sum \alpha_i y_i x_i}$
+    * $\nabla_b \mathcal{L} = -\sum \alpha_i y_i = 0 \implies \mathbf{\sum \alpha_i y_i = 0}$
+2.  **Primal Feasibility:**
+    * $y_i(w^T x_i + b) - 1 \ge 0$
+3.  **Dual Feasibility:**
+    * $\alpha_i \ge 0$
+4.  **Complementary Slackness:**
+    * $\alpha_i [y_i(w^T x_i + b) - 1] = 0$
+    * *Interpretation:* If $\alpha_i > 0$, the point lies exactly on the margin ($y_i(w^T x + b) = 1$). These points are the **Support Vectors**. If $\alpha_i = 0$, the point is irrelevant to the boundary.
+
+> Example Calculation
+
+**Data:** Class +1 at $(2,2)$, Class -1 at $(0,0)$.
+
+1.  **Lagrangian Formulation:**
+    $$\mathcal{L} = \frac{1}{2}(w_1^2 + w_2^2) - \alpha_1 (2w_1 + 2w_2 + b - 1) - \alpha_2 (-b - 1)$$
+2.  **Solving:**
+    * From stationarity: $w_1 = 2\alpha, w_2 = 2\alpha$.
+    * From sum constraint: $\alpha_1 = \alpha_2 = \alpha$.
+    * From active constraints: $b = -1$, $w_1 + w_2 = 1$.
+3.  **Result:**
+    * $\alpha = 0.25$
+    * **Optimal Weights:** $w = [0.5, 0.5]$
+    * **Optimal Bias:** $b = -1$
+    * **Margin Width:** $2/||w|| \approx 2.82$
+
+>**Python solution**
+
+```{python}
+import sympy as sp
+
+# 1. Define Variables
+w1, w2, b = sp.symbols('w1 w2 b', real=True)
+lam1, lam2 = sp.symbols('lambda1 lambda2', real=True)
+
+# 2. Define Objective (Minimize 1/2 ||w||^2)
+f = 0.5 * (w1**2 + w2**2)
+
+# 3. Define Constraints (g <= 0)
+# Constraint for Point A (2, 2): 1 - y(wx+b) <= 0
+g1 = 1 - (1 * (2*w1 + 2*w2 + b))
+# Constraint for Point B (0, 0): 1 - y(wx+b) <= 0
+g2 = 1 - (-1 * (0*w1 + 0*w2 + b))
+
+# 4. Formulate Lagrangian
+L = f + lam1 * g1 + lam2 * g2
+
+# 5. KKT Conditions
+# A. Stationarity (Gradient of L = 0)
+stat_w1 = sp.diff(L, w1)
+stat_w2 = sp.diff(L, w2)
+stat_b  = sp.diff(L, b)
+
+# B. Complementary Slackness (lambda * g = 0)
+slack_1 = lam1 * g1
+slack_2 = lam2 * g2
+
+# 6. Solve the System
+print("Solving KKT system...")
+# We explicitly ask for a dictionary result
+solutions = sp.solve([stat_w1, stat_w2, stat_b, slack_1, slack_2], 
+                     (w1, w2, b, lam1, lam2), dict=True)
+
+# 7. Validate Solutions
+print(f"\nFound {len(solutions)} candidate solutions. Validating...")
+print("-" * 60)
+
+for sol in solutions:
+    # Use .get() to handle cases where a variable is free/undetermined
+    # If b is not in solution, it usually implies it's arbitrary in that specific branch 
+    # (e.g. if w=0, lambda=0, b might not be constrained by stationarity).
+    # We default to 0.0 for checking purposes or flag it.
+    try:
+        val_w1 = float(sol.get(w1, 0))
+        val_w2 = float(sol.get(w2, 0))
+        val_b  = float(sol.get(b, 0)) 
+        val_l1 = float(sol.get(lam1, 0))
+        val_l2 = float(sol.get(lam2, 0))
+    except TypeError:
+        print("Skipping a symbolic/complex solution that couldn't be converted to float.")
+        continue
+
+    status = "Valid Optimal Solution"
+
+    # Check Primal Feasibility (g <= 0)
+    # Using a small tolerance (1e-6)
+    if (1 - 2*val_w1 - 2*val_w2 - val_b) > 1e-6:
+        status = "Invalid (Violates Point A Constraint)"
+    elif (1 + val_b) > 1e-6:
+        status = "Invalid (Violates Point B Constraint)"
+    
+    # Check Dual Feasibility (lambda >= 0)
+    elif val_l1 < -1e-6 or val_l2 < -1e-6:
+        status = "Invalid (Negative Multiplier)"
+
+    # Print results
+    print(f"Solution: w=({val_w1:.4f}, {val_w2:.4f}), b={val_b:.4f}")
+    print(f"Multipliers: λ1={val_l1:.4f}, λ2={val_l2:.4f}")
+    print(f"Status: {status}")
+    print("-" * 60)
+```
+
+### Principal Component Analysis (PCA)
+
+While often viewed as linear algebra, PCA is fundamentally a constrained optimization problem seeking the direction of maximum variance.
+
+>**The Formulation**
+
+* **Objective:** Find a direction vector $w$ that maximizes the variance of the projected data.
+    $$\text{Maximize } f(w) = w^T \Sigma w$$
+    *(where $\Sigma$ is the Covariance Matrix)*
+
+* **Constraint:** To prevent the vector length from growing infinitely to cheat the maximization, we fix its length to 1.
+    $$\text{Subject to } g(w) = w^T w - 1 = 0$$
+
+>**The Lagrangian Solution**
+
+We formulate the Lagrangian with multiplier $\lambda$:
+$$\mathcal{L}(w, \lambda) = w^T \Sigma w - \lambda(w^T w - 1)$$
+
+* **Finding the Optimum:**
+    Differentiating with respect to $w$ yields:
+    $$2\Sigma w - 2\lambda w = 0 \implies \Sigma w = \lambda w$$
+
+:::{.callout-note}
+## Insight
+The optimal direction $w$ is simply the **Eigenvector** of the covariance matrix, and the Lagrange multiplier $\lambda$ is the **Eigenvalue** (representing the amount of variance).
+:::
+
+### Ridge Regression (L2 Regularization)
+
+Ridge regression modifies standard least-squares fitting by imposing a budget on the size of the coefficients to prevent overfitting.
+
+>**The Formulation**
+
+* **Objective:** Minimize the sum of squared prediction errors.
+    $$\text{Minimize } ||y - X\beta||^2$$
+
+* **Constraint:** The total size (squared magnitude) of the coefficients must not exceed a budget $t$.
+    $$\text{Subject to } ||\beta||^2 \le t$$
+
+>**The Lagrangian Solution**
+$$\mathcal{L}(\beta, \lambda) = ||y - X\beta||^2 + \lambda(||\beta||^2 - t)$$
+
+* **Resulting Update Rule:**
+    Solving for $\nabla \mathcal{L} = 0$ gives the famous closed-form solution:
+    $$\hat{\beta} = (X^T X + \lambda I)^{-1} X^T y$$
+
+:::{.callout-note}
+### Insight:
+
+The regularization parameter $\lambda$ used in code is actually the Lagrange Multiplier corresponding to the weight constraint.
+:::
+
+### Maximum Entropy Models (MaxEnt)
+
+Used in Natural Language Processing and ecology, `MaxEnt` seeks the most "unbiased" probability distribution that still fits the observed data.
+
+>**The Formulation**
+
+* **Objective:** Maximize the Entropy (uncertainty) of the distribution $p(x)$.
+    $$\text{Maximize } H(p) = -\sum p(x) \log p(x)$$
+
+* **Constraints:**
+    1.  **Normalization:** The probabilities must sum to 1.
+        $$\sum p(x) = 1$$
+    2.  **Feature Matching:** The expected value of features in our model must match the empirical averages seen in the training data.
+        $$\sum p(x) f_i(x) = \mathbb{E}_{data}[f_i]$$
+
+>**The Lagrangian Solution**
+
+Solving this Lagrangian system yields the **Gibbs (Softmax) Distribution**:
+$$p(y|x) = \frac{1}{Z} \exp\left(\sum \lambda_i f_i(x, y)\right)$$
+
+:::{.callout-note}
+### Insights:
+This derivation serves as the theoretical foundation for **Logistic Regression** and the final layer of most **Neural Networks**.
+:::

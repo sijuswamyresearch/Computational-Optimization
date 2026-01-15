@@ -1,0 +1,1891 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.31">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>3&nbsp; Module 2: Non-linear Programming with Python – Computational Optimization &amp; Applications</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./Module-1.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-c39790739b795761a025db3e98f5af6a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Module-2.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Module 2: Non-linear Programming with Python</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Computational Optimization &amp; Applications</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🎯 Course Vision &amp; Context</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction to Computational Optimization and Applications</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Module-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Module 1: Basics of Optimization and Linear Programming</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Module-2.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Module 2: Non-linear Programming with Python</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#module-overview" id="toc-module-overview" class="nav-link active" data-scroll-target="#module-overview"><span class="header-section-number">3.1</span> Module Overview</a>
+  <ul class="collapse">
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives"><span class="header-section-number">3.1.1</span> Learning Objectives</a></li>
+  <li><a href="#module-structure" id="toc-module-structure" class="nav-link" data-scroll-target="#module-structure"><span class="header-section-number">3.1.2</span> Module Structure</a></li>
+  <li><a href="#real-world-context" id="toc-real-world-context" class="nav-link" data-scroll-target="#real-world-context"><span class="header-section-number">3.1.3</span> Real-World Context</a></li>
+  </ul></li>
+  <li><a href="#introduction-to-nonlinear-optimization" id="toc-introduction-to-nonlinear-optimization" class="nav-link" data-scroll-target="#introduction-to-nonlinear-optimization"><span class="header-section-number">3.2</span> Introduction to Nonlinear Optimization</a>
+  <ul class="collapse">
+  <li><a href="#theoretical-foundation" id="toc-theoretical-foundation" class="nav-link" data-scroll-target="#theoretical-foundation"><span class="header-section-number">3.2.1</span> Theoretical Foundation</a></li>
+  <li><a href="#sample-problem" id="toc-sample-problem" class="nav-link" data-scroll-target="#sample-problem"><span class="header-section-number">3.2.2</span> Sample Problem</a></li>
+  <li><a href="#review-questions" id="toc-review-questions" class="nav-link" data-scroll-target="#review-questions"><span class="header-section-number">3.2.3</span> Review Questions</a></li>
+  </ul></li>
+  <li><a href="#unconstrained-optimization-methods" id="toc-unconstrained-optimization-methods" class="nav-link" data-scroll-target="#unconstrained-optimization-methods"><span class="header-section-number">3.3</span> Unconstrained Optimization Methods</a>
+  <ul class="collapse">
+  <li><a href="#algorithms-for-unconstrained-nlp" id="toc-algorithms-for-unconstrained-nlp" class="nav-link" data-scroll-target="#algorithms-for-unconstrained-nlp"><span class="header-section-number">3.3.1</span> Algorithms for Unconstrained NLP</a></li>
+  <li><a href="#theoretical-foundation-1" id="toc-theoretical-foundation-1" class="nav-link" data-scroll-target="#theoretical-foundation-1"><span class="header-section-number">3.3.2</span> Theoretical Foundation</a></li>
+  <li><a href="#sample-problem-1" id="toc-sample-problem-1" class="nav-link" data-scroll-target="#sample-problem-1"><span class="header-section-number">3.3.3</span> Sample Problem 1</a></li>
+  <li><a href="#sample-problem-2" id="toc-sample-problem-2" class="nav-link" data-scroll-target="#sample-problem-2"><span class="header-section-number">3.3.4</span> Sample Problem 2</a></li>
+  <li><a href="#sample-problem-3" id="toc-sample-problem-3" class="nav-link" data-scroll-target="#sample-problem-3"><span class="header-section-number">3.3.5</span> Sample problem 3</a></li>
+  <li><a href="#review-questions-2" id="toc-review-questions-2" class="nav-link" data-scroll-target="#review-questions-2"><span class="header-section-number">3.3.6</span> Review Questions</a></li>
+  </ul></li>
+  <li><a href="#constrained-optimization-kkt-conditions" id="toc-constrained-optimization-kkt-conditions" class="nav-link" data-scroll-target="#constrained-optimization-kkt-conditions"><span class="header-section-number">3.4</span> Constrained Optimization &amp; KKT Conditions</a>
+  <ul class="collapse">
+  <li><a href="#theoretical-foundation-2" id="toc-theoretical-foundation-2" class="nav-link" data-scroll-target="#theoretical-foundation-2"><span class="header-section-number">3.4.1</span> Theoretical Foundation</a></li>
+  <li><a href="#sample-problem-4" id="toc-sample-problem-4" class="nav-link" data-scroll-target="#sample-problem-4"><span class="header-section-number">3.4.2</span> Sample Problem</a></li>
+  <li><a href="#sample-problem-5" id="toc-sample-problem-5" class="nav-link" data-scroll-target="#sample-problem-5"><span class="header-section-number">3.4.3</span> Sample Problem</a></li>
+  <li><a href="#review-questions-3" id="toc-review-questions-3" class="nav-link" data-scroll-target="#review-questions-3"><span class="header-section-number">3.4.4</span> Review Questions</a></li>
+  </ul></li>
+  <li><a href="#python-implementation-of-nonlinear-solvers" id="toc-python-implementation-of-nonlinear-solvers" class="nav-link" data-scroll-target="#python-implementation-of-nonlinear-solvers"><span class="header-section-number">3.5</span> Python Implementation of Nonlinear Solvers</a>
+  <ul class="collapse">
+  <li><a href="#theoretical-foundation-3" id="toc-theoretical-foundation-3" class="nav-link" data-scroll-target="#theoretical-foundation-3"><span class="header-section-number">3.5.1</span> Theoretical Foundation</a></li>
+  <li><a href="#sample-problem-6" id="toc-sample-problem-6" class="nav-link" data-scroll-target="#sample-problem-6"><span class="header-section-number">3.5.2</span> Sample Problem</a></li>
+  <li><a href="#solution-of-constrained-nlpp" id="toc-solution-of-constrained-nlpp" class="nav-link" data-scroll-target="#solution-of-constrained-nlpp"><span class="header-section-number">3.5.3</span> Solution of constrained NLPP</a></li>
+  <li><a href="#support-vector-machine-svm-theory-a-constrained-optimization-perspective" id="toc-support-vector-machine-svm-theory-a-constrained-optimization-perspective" class="nav-link" data-scroll-target="#support-vector-machine-svm-theory-a-constrained-optimization-perspective"><span class="header-section-number">3.5.4</span> Support Vector Machine (SVM) Theory: A Constrained Optimization Perspective</a></li>
+  <li><a href="#principal-component-analysis-pca" id="toc-principal-component-analysis-pca" class="nav-link" data-scroll-target="#principal-component-analysis-pca"><span class="header-section-number">3.5.5</span> Principal Component Analysis (PCA)</a></li>
+  <li><a href="#ridge-regression-l2-regularization" id="toc-ridge-regression-l2-regularization" class="nav-link" data-scroll-target="#ridge-regression-l2-regularization"><span class="header-section-number">3.5.6</span> Ridge Regression (L2 Regularization)</a></li>
+  <li><a href="#maximum-entropy-models-maxent" id="toc-maximum-entropy-models-maxent" class="nav-link" data-scroll-target="#maximum-entropy-models-maxent"><span class="header-section-number">3.5.7</span> Maximum Entropy Models (MaxEnt)</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Module 2: Non-linear Programming with Python</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="module-overview" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="module-overview"><span class="header-section-number">3.1</span> Module Overview</h2>
+<div style="text-align: center;">
+<p><img src="Module-2-info.png" alt="A detailed infographic about Quarto webpage contents" style="width: 650px; height: auto; display: block; margin: 0 auto;"></p>
+</div>
+<section id="learning-objectives" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">3.1.1</span> Learning Objectives</h3>
+<ul>
+<li>Understand the limitations of linear models and need for nonlinear optimization</li>
+<li>Master unconstrained optimization techniques (Golden Section, Fibonacci)</li>
+<li>Formulate and solve constrained nonlinear problems using KKT conditions</li>
+<li>Implement nonlinear optimization algorithms in Python</li>
+<li>Apply nonlinear methods to realistic cost modeling problems</li>
+</ul>
+</section>
+<section id="module-structure" class="level3" data-number="3.1.2">
+<h3 data-number="3.1.2" class="anchored" data-anchor-id="module-structure"><span class="header-section-number">3.1.2</span> Module Structure</h3>
+<ul>
+<li><strong>Section 2.1</strong>: Introduction to Nonlinear Optimization</li>
+<li><strong>Section 2.2</strong>: Unconstrained Optimization Methods<br>
+</li>
+<li><strong>Section 2.3</strong>: Constrained Optimization &amp; KKT Conditions</li>
+<li><strong>Section 2.4</strong>: Python Implementation of Nonlinear Solvers</li>
+<li><strong>Section 2.5</strong>: Advanced Applications &amp; Micro-Project 2</li>
+</ul>
+</section>
+<section id="real-world-context" class="level3" data-number="3.1.3">
+<h3 data-number="3.1.3" class="anchored" data-anchor-id="real-world-context"><span class="header-section-number">3.1.3</span> Real-World Context</h3>
+<p>Extend the Campus City supply chain model with realistic nonlinear cost functions, environmental constraints, and multi-period optimization challenges.</p>
+</section>
+</section>
+<section id="introduction-to-nonlinear-optimization" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="introduction-to-nonlinear-optimization"><span class="header-section-number">3.2</span> Introduction to Nonlinear Optimization</h2>
+<p>Nonlinear programming (NLP) is an optimization technique used to find the best outcome (maximum profit, lowest cost, etc.) in a mathematical model where at least one of the objective functions or constraints is nonlinear . This means the relationship between variables cannot be represented on a straight line. NLP addresses the complexity found in real-world scenarios, such as modeling physical systems or financial markets, where linear assumptions are often inadequate for accurate prediction and decision-making . Key components of an NLP problem include decision variables, an objective function to be optimized, and constraints that limit the possible solutions.</p>
+<p>The primary purpose of using NLP is to provide more accurate and realistic models for optimization problems across various fields, including engineering design, economics, finance, and operations research. For example, in portfolio optimization, investors use NLP to maximize returns while balancing risk, which inherently involves nonlinear relationships between different assets. In chemical engineering, NLP helps optimize process yields and efficiency where reaction kinetics are nonlinear. It is applied when linear models fail to capture the true nature of the relationships between the inputs and outputs of a system.</p>
+<p>Solving NLP problems involves specialized algorithms, such as sequential quadratic programming (SQP), interior-point methods, or generalized reduced gradient methods. The “how much” refers to the computational resources and mathematical complexity required, which are often significantly greater than for linear programming. The complexity and effort vary widely based on the problem’s size and structure (e.g., convexity). While the general approach is similar (define variables, objective, constraints), the execution demands sophisticated software and potentially substantial processing power to find the global optimum efficiently.</p>
+<section id="theoretical-foundation" class="level3" data-number="3.2.1">
+<h3 data-number="3.2.1" class="anchored" data-anchor-id="theoretical-foundation"><span class="header-section-number">3.2.1</span> Theoretical Foundation</h3>
+<p>The fundamental theoretical difference between Linear Programming Problems (LPP) and NLP lies in the <em>mathematical nature of their objective functions and constraints</em>, which dictates the complexity of their feasible regions, solution methods, and optimality guarantees.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 13%">
+<col style="width: 40%">
+<col style="width: 46%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Feature</th>
+<th>Linear Programming (LPP)</th>
+<th>Nonlinear Programming (NLP)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Function Types</strong></td>
+<td>Objective function and all constraints must be linear.</td>
+<td>At least one function (objective or a constraint) is nonlinear.</td>
+</tr>
+<tr class="even">
+<td><strong>Feasible Region</strong></td>
+<td>The feasible region is a convex polyhedron (a shape with flat faces).</td>
+<td>The feasible region can be non-convex, curved, or disconnected.</td>
+</tr>
+<tr class="odd">
+<td><strong>Optimality</strong></td>
+<td>A locally optimal solution is always a globally optimal solution. The optimum lies at a <strong>corner point (vertex)</strong> of the feasible region.</td>
+<td>Solutions often only guarantee a local optimum. The global optimum is difficult to find without additional assumptions (e.g., convexity of the entire problem).</td>
+</tr>
+<tr class="even">
+<td><strong>Solution Methods</strong></td>
+<td>Solved primarily by the <strong>Simplex Method</strong> or <strong>Interior Point Methods</strong>, which systematically explore the corner points.</td>
+<td>Requires more complex iterative numerical methods such as <strong>Gradient Descent</strong>, <strong>Newton’s Method</strong>, or <strong>Lagrangian heuristics</strong>, often relying on derivatives.</td>
+</tr>
+<tr class="odd">
+<td><strong>Computational Complexity</strong></td>
+<td>Generally easier and faster to solve, even with a vast number of variables.</td>
+<td>Generally more computationally intensive and difficult to solve, especially for large-scale, non-convex problems.</td>
+</tr>
+</tbody>
+</table>
+<pre><code>                     ┌───────────────────────────────────────────┐
+                     |      Optimization Problems                |
+                     └───────────────────────────────────────────┘
+                                    |
+                ┌───────────────────┴───────────────────┐
+                |                                       |
+     ┌───────────────────────┐               ┌────────────────────────┐
+     | Linear Programming     |               | Nonlinear Programming  |
+     | (LPP)                  |               | (NLP)                  |
+     └───────────────────────┘               └────────────────────────┘
+                |                                       |
+     ┌───────────────────────┐               ┌────────────────────────────────┐
+     | Linear objective &amp;     |               | At least one objective or      |
+     | linear constraints     |               | constraint is nonlinear        |
+     └───────────────────────┘               └────────────────────────────────┘
+                |                                       |
+      Feasible region is convex                Region may be curved or nonconvex
+                |                                       |
+    Optimal solution at a vertex                May have multiple local optima
+                |                                       |
+    Solved via Simplex / IPM                      Solved via numerical methods</code></pre>
+<section id="why-nonlinear-optimization" class="level4" data-number="3.2.1.1">
+<h4 data-number="3.2.1.1" class="anchored" data-anchor-id="why-nonlinear-optimization"><span class="header-section-number">3.2.1.1</span> Why Nonlinear Optimization?</h4>
+<p>Linear programming assumes proportional relationships, but real-world problems often involve:</p>
+<ul>
+<li><strong>Economies of scale</strong>: Decreasing marginal costs</li>
+<li><strong>Physical constraints</strong>: Nonlinear relationships (distance vs fuel consumption)</li>
+<li><strong>Quality constraints</strong>: Minimum/maximum thresholds with nonlinear effects</li>
+<li><strong>Environmental factors</strong>: Quadratic cost functions for emissions</li>
+</ul>
+</section>
+<section id="mathematical-formulation" class="level4" data-number="3.2.1.2">
+<h4 data-number="3.2.1.2" class="anchored" data-anchor-id="mathematical-formulation"><span class="header-section-number">3.2.1.2</span> Mathematical Formulation</h4>
+<p>A general Nonlinear Programming (NLP) problem:</p>
+<p><strong>Objective Function:</strong> <span class="math display">\[
+\text{Minimize } f(\mathbf{x})
+\]</span></p>
+<p><strong>Subject to:</strong></p>
+<p><span class="math display">\[
+\begin{aligned}
+g_i(\mathbf{x}) &amp; \leq 0, \quad i = 1, \ldots, m \\
+h_j(\mathbf{x}) &amp; = 0, \quad j = 1, \ldots, p \\
+\mathbf{x} &amp; \in \mathbb{R}^n
+\end{aligned}
+\]</span></p>
+<p>Where:</p>
+<ul>
+<li><span class="math inline">\(f(\mathbf{x})\)</span>: Nonlinear objective function</li>
+<li><span class="math inline">\(g_i(\mathbf{x})\)</span>: Nonlinear inequality constraints<br>
+</li>
+<li><span class="math inline">\(h_j(\mathbf{x})\)</span>: Nonlinear equality constraints</li>
+</ul>
+</section>
+</section>
+<section id="sample-problem" class="level3" data-number="3.2.2">
+<h3 data-number="3.2.2" class="anchored" data-anchor-id="sample-problem"><span class="header-section-number">3.2.2</span> Sample Problem</h3>
+<p><strong>Problem Statement:</strong> A delivery company has a cost function <span class="math inline">\(C(d) = 500 + 2d + 0.1d^2\)</span> where <span class="math inline">\(d\)</span> is distance in km. Find the optimal delivery distance that minimizes cost per unit for a shipment of 100 units.</p>
+<p><strong>Mathematical Formulation:</strong> <span class="math display">\[
+\text{Minimize } \frac{C(d)}{100} = 5 + 0.02d + 0.001d^2
+\]</span></p>
+<p><strong>Solution:</strong></p>
+<ol type="1">
+<li>Take derivative: <span class="math inline">\(\frac{d}{dd}\left(5 + 0.02d + 0.001d^2\right) = 0.02 + 0.002d\)</span></li>
+<li>Set to zero: <span class="math inline">\(0.02 + 0.002d = 0\)</span></li>
+<li>Solve: <span class="math inline">\(d = -10\)</span> km → Not feasible</li>
+<li>Check boundaries: Minimum at <span class="math inline">\(d = 0\)</span> with cost $5/unit</li>
+</ol>
+<p><strong>Interpretation:</strong> The cost function is convex and increasing, so minimum occurs at shortest distance.</p>
+</section>
+<section id="review-questions" class="level3" data-number="3.2.3">
+<h3 data-number="3.2.3" class="anchored" data-anchor-id="review-questions"><span class="header-section-number">3.2.3</span> Review Questions</h3>
+<ol type="1">
+<li><p>What are three real-world scenarios where linear models fail and nonlinear optimization is required?</p></li>
+<li><p>Explain the difference between convex and non-convex optimization problems. Why is this distinction important?</p></li>
+<li><p>A manufacturing process has cost <span class="math inline">\(C(x) = 1000 + 50x + 0.5x^2\)</span> where x is production volume. Find the production level that minimizes average cost.</p></li>
+<li><p>Why can’t the Simplex method be directly applied to nonlinear optimization problems?</p></li>
+<li><p>Describe a campus logistics scenario where nonlinear optimization would provide better results than linear programming.</p></li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+NLP Vs LPP
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The linear nature of LPP guarantees a single, well-defined feasible region and objective function behavior, allowing for robust algorithms like the Simplex method to efficiently find the absolute best (global) solution. NLP, by contrast, accommodates the complex, often non-convex, relationships found in many real-world problems. This flexibility comes at a theoretical and computational cost: the presence of curves and non-linear interactions means there may be multiple “local” optimal points, and standard algorithms may get stuck at one that is not the overall best solution. The theoretical foundation of NLP thus focuses heavily on iterative improvement, convergence properties, and finding efficient ways to navigate these more challenging landscapes.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="unconstrained-optimization-methods" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="unconstrained-optimization-methods"><span class="header-section-number">3.3</span> Unconstrained Optimization Methods</h2>
+<p>Unconstrained Nonlinear Programming deals with optimizing a nonlinear objective function without any constraints on the decision variables. The objective is to determine a point <span class="math inline">\(x^{*} \in \mathbb{R}^{n}\)</span> such that:</p>
+<p><span class="math display">\[
+\min_{x \in \mathbb{R}^{n}} f(x)
+\]</span></p>
+<p>(or equivalently <span class="math inline">\(\max f(x)\)</span> depending on the problem context).</p>
+<p><strong>Intuition Behind Unconstrained NLP</strong></p>
+<p>The central idea in solving unconstrained NLP problems is to understand how the objective function surface behaves and to iteratively move toward regions where the function value improves.</p>
+<p><strong>Downhill Movement Intuition</strong></p>
+<p>For minimization problems, the objective is to move step-by-step in a direction that decreases the function value, much like descending a slope.</p>
+<p><strong>Hiking Analogy</strong></p>
+<p>Consider attempting to reach the lowest valley point in a mountainous landscape while blindfolded. The only available information is the slope beneath your feet. The safest strategy is always stepping in the direction that slopes downward most strongly.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Key points
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>This <em>direction of steepest descent</em> is mathematically represented by the gradient <span class="math inline">\(\nabla f(x)\)</span>.</li>
+<li>Repeated movement in this direction leads to progressively lower function values until a flat region is encountered. ## Link with Calculus</li>
+</ul>
+<p>In single-variable calculus, stationary (optimal) points are found by solving:</p>
+<p><span class="math display">\[
+\frac{df}{dx} = 0
+\]</span></p>
+<p>In multi-variable calculus, this concept generalizes to:</p>
+<p><span class="math display">\[
+\nabla f(x^{*}) = 0
+\]</span></p>
+<p>A point where the gradient is zero is called a <strong>critical point</strong>. It may represent:</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Type of Critical Point</th>
+<th>Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Local Minimum</td>
+<td>Valley bottom</td>
+</tr>
+<tr class="even">
+<td>Local Maximum</td>
+<td>Hilltop</td>
+</tr>
+<tr class="odd">
+<td>Saddle Point</td>
+<td>A flat ridge point</td>
+</tr>
+</tbody>
+</table>
+<p>To classify these points, second-order information is required.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+First-Order Necessary Condition (FONC)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For a differentiable function <span class="math inline">\(f(x)\)</span>, a point <span class="math inline">\(x^{*}\)</span> can be a local minimum only if:</p>
+<p><span class="math display">\[
+\nabla f(x^{*}) = 0
+\]</span></p>
+<p>This guarantees flatness but <strong>does not guarantee</strong> an actual minimum.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Second-Order Sufficient Condition (SOSC)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Let <span class="math inline">\(H(x)\)</span> denote the <strong>Hessian matrix</strong> of second partial derivatives:</p>
+<p><span class="math display">\[
+H(x) = \left[ \frac{\partial^{2} f}{\partial x_i \partial x_j} \right]
+\]</span></p>
+<p>If <span class="math inline">\(x^{*}\)</span> satisfies <span class="math inline">\(\nabla f(x^{*}) = 0\)</span> and</p>
+<p><span class="math display">\[
+H(x^{*}) \text{ is positive definite}
+\]</span></p>
+<p>then <span class="math inline">\(x^{*}\)</span> is a <strong>strict local minimum</strong>.</p>
+</div>
+</div>
+<p><strong>Curvature Interpretation</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Hessian Property</th>
+<th>Interpretation</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(H \succ 0\)</span></td>
+<td>Strict minimum (upward curvature)</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(H \prec 0\)</span></td>
+<td>Maximum (downward curvature)</td>
+</tr>
+<tr class="odd">
+<td>Indefinite</td>
+<td>Saddle point (mixed curvature)</td>
+</tr>
+</tbody>
+</table>
+<section id="algorithms-for-unconstrained-nlp" class="level3" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="algorithms-for-unconstrained-nlp"><span class="header-section-number">3.3.1</span> Algorithms for Unconstrained NLP</h3>
+<p>This module focuses specifically on <em>iteration-based direct search techniques</em>, which do not require gradient or Hessian calculations. Such algorithms are especially useful when:</p>
+<ul>
+<li>The derivative is difficult or impossible to compute</li>
+<li>The objective function is noisy or discontinuous</li>
+<li>Only function value evaluations are available</li>
+</ul>
+<p>The algorithms covered in this module include:</p>
+<section id="fibonacci-search-method" class="level4" data-number="3.3.1.1">
+<h4 data-number="3.3.1.1" class="anchored" data-anchor-id="fibonacci-search-method"><span class="header-section-number">3.3.1.1</span> Fibonacci Search Method</h4>
+<p>A bracketing method used for <strong>one-dimensional</strong> minimization.<br>
+This method iteratively narrows down an interval containing the minimum using Fibonacci numbers.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Key Concept
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The interval size decreases proportionally according to Fibonacci sequence ratios, ensuring efficient narrowing.</p>
+<p>This method is applicable to Smooth 1-D unimodal functions.</p>
+</div>
+</div>
+</section>
+<section id="golden-section-search-method" class="level4" data-number="3.3.1.2">
+<h4 data-number="3.3.1.2" class="anchored" data-anchor-id="golden-section-search-method"><span class="header-section-number">3.3.1.2</span> Golden Section Search Method</h4>
+<p>A more efficient improvement over Fibonacci search, eliminating the need to precompute steps.<br>
+The method divides the interval using the <em>Golden Ratio</em>:</p>
+<p><span class="math display">\[
+\phi = \frac{\sqrt{5} + 1}{2} \approx 1.618
+\]</span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Key Concept
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The interval is repeatedly reduced while maintaining internal division based on <span class="math inline">\(\phi\)</span>, ensuring optimal reduction at each iteration.</p>
+</div>
+</div>
+</section>
+<section id="hooke-and-jeeves-pattern-search-method" class="level4" data-number="3.3.1.3">
+<h4 data-number="3.3.1.3" class="anchored" data-anchor-id="hooke-and-jeeves-pattern-search-method"><span class="header-section-number">3.3.1.3</span> Hooke and Jeeves Pattern Search Method</h4>
+<p>A <em>direct search</em> method used for <em>multidimensional</em> optimization without derivatives.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Key Components
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Exploratory search:</strong> Tests moves along coordinate directions to find improvement.</li>
+<li><strong>Pattern move:</strong> Accelerates search in the identified promising direction.</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="advantages" class="level4" data-number="3.3.1.4">
+<h4 data-number="3.3.1.4" class="anchored" data-anchor-id="advantages"><span class="header-section-number">3.3.1.4</span> Advantages</h4>
+<ul>
+<li>Does not require derivative information</li>
+<li>Suitable for complex, non-smooth landscapes</li>
+</ul>
+<p>Unconstrained NLP is guided by theoretical optimality conditions and solved computationally using iterative search techniques. In this module, emphasis is placed on <strong>direct search algorithms</strong> useful when derivatives are unavailable.</p>
+<p><span class="math display">\[
+\nabla f(x^{*}) = 0 \quad \text{and} \quad H(x^{*}) \succ 0
+\]</span></p>
+<p>The practical tools studied—<strong>Fibonacci Search, Golden Section Search, and Hooke &amp; Jeeves</strong>—offer systematic methods for approaching optimal points when classical derivative-based methods cannot be applied.</p>
+</section>
+<section id="review-questions-1" class="level4" data-number="3.3.1.5">
+<h4 data-number="3.3.1.5" class="anchored" data-anchor-id="review-questions-1"><span class="header-section-number">3.3.1.5</span> Review Questions</h4>
+<ol type="1">
+<li>Why does the condition <span class="math inline">\(\nabla f(x^{*}) = 0\)</span> not guarantee a minimum?</li>
+<li>What role does curvature play in distinguishing minima from maxima?</li>
+<li>Why are direct search methods such as Fibonacci or Golden Section useful?</li>
+<li>Compare Hooke &amp; Jeeves with gradient-based methods.</li>
+<li>Explain why Golden Section is more efficient than Fibonacci Search.</li>
+</ol>
+</section>
+</section>
+<section id="theoretical-foundation-1" class="level3" data-number="3.3.2">
+<h3 data-number="3.3.2" class="anchored" data-anchor-id="theoretical-foundation-1"><span class="header-section-number">3.3.2</span> Theoretical Foundation</h3>
+<section id="one-dimensional-search-methods" class="level4" data-number="3.3.2.1">
+<h4 data-number="3.3.2.1" class="anchored" data-anchor-id="one-dimensional-search-methods"><span class="header-section-number">3.3.2.1</span> One-Dimensional Search Methods</h4>
+<p>When dealing with single-variable nonlinear functions, we use specialized search techniques:</p>
+<p><strong>Golden Section Search:</strong> - Divide interval using golden ratio <span class="math inline">\(\phi = \frac{1+\sqrt{5}}{2} \approx 1.618\)</span> - Progressively narrow search interval - Guaranteed convergence for unimodal functions</p>
+<p><strong>Fibonacci Search:</strong> - Uses Fibonacci sequence for interval reduction - Optimal in terms of function evaluations - Similar convergence properties to Golden Section</p>
+</section>
+<section id="mathematical-basis" class="level4" data-number="3.3.2.2">
+<h4 data-number="3.3.2.2" class="anchored" data-anchor-id="mathematical-basis"><span class="header-section-number">3.3.2.2</span> Mathematical Basis</h4>
+<p>For a unimodal function <span class="math inline">\(f(x)\)</span> on interval ([a,b]):</p>
+<p><strong>Golden Section Points:</strong> <span class="math display">\[
+\begin{aligned}
+x_1 &amp; = b - \frac{b-a}{\phi} \\
+x_2 &amp; = a + \frac{b-a}{\phi}
+\end{aligned}
+\]</span></p>
+<p>Where <span class="math inline">\(\phi=1.618\)</span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Alter:
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Instead of choosing <span class="math inline">\(\phi=1.618\)</span>, we can select the other Golder section ratio (<span class="math inline">\(&lt;1\)</span>). In that case the section points can be calculated as: <span class="math display">\[
+\begin{aligned}
+x_1 &amp; = b - \phi\cdot (b-a) \\
+x_2 &amp; = a + \phi\cdot (b-a)
+\end{aligned}
+\]</span></p>
+</div>
+</div>
+<p><strong>Iteration:</strong> Compare <span class="math inline">\(f(x_1)\)</span> and <span class="math inline">\(f(x_2)\)</span>, eliminate portion of interval based on which is larger.</p>
+</section>
+</section>
+<section id="sample-problem-1" class="level3" data-number="3.3.3">
+<h3 data-number="3.3.3" class="anchored" data-anchor-id="sample-problem-1"><span class="header-section-number">3.3.3</span> Sample Problem 1</h3>
+<p><strong>Problem Statement:</strong> Use Golden Section search to minimize <span class="math inline">\(f(x) = (x-3)^2 + 2\)</span> on interval [0, 5] with 4 iterations.</p>
+<p><strong>Solution:</strong> <strong>Iteration 1:</strong></p>
+<ul>
+<li><span class="math inline">\(x_1 = 5 - \frac{5-0}{1.618} = 1.91\)</span>, <span class="math inline">\(f(x_1) = 2.19\)</span></li>
+<li><span class="math inline">\(x_2 = 0 + \frac{5-0}{1.618} = 3.09\)</span>, <span class="math inline">\(f(x_2) = 2.01\)</span></li>
+<li>Since <span class="math inline">\(f(x_1) &gt; f(x_2)\)</span>, new interval: [1.91, 5]</li>
+</ul>
+<p><strong>Iteration 2:</strong></p>
+<ul>
+<li><span class="math inline">\(x_1 = 5 - \frac{5-1.91}{1.618} = 3.09\)</span> (already computed)</li>
+<li><span class="math inline">\(x_2 = 1.91 + \frac{5-1.91}{1.618} = 3.82\)</span>, <span class="math inline">\(f(x_2) = 2.67\)</span></li>
+<li>Since <span class="math inline">\(f(x_1) &lt; f(x_2)\)</span>, new interval: [1.91, 3.82]</li>
+</ul>
+<p><strong>Continue for 4 iterations → Final interval: [2.85, 3.15] containing true minimum at x=3</strong></p>
+</section>
+<section id="sample-problem-2" class="level3" data-number="3.3.4">
+<h3 data-number="3.3.4" class="anchored" data-anchor-id="sample-problem-2"><span class="header-section-number">3.3.4</span> Sample Problem 2</h3>
+<p><strong>Problem Statement:</strong> A warehouse has energy consumption <span class="math inline">\(E(w) = 1000 + 50w + 0.2w^2\)</span> kWh, where w is weekly shipments (0 ≤ w ≤ 200). Find optimal shipment volume that minimizes energy per shipment.</p>
+<p><strong>Solution:</strong> Energy per shipment: <span class="math inline">\(f(w) = \frac{1000}{w} + 50 + 0.2w\)</span></p>
+<p>Using Golden Section on [10, 200]:</p>
+<ul>
+<li><strong>Iteration 1:</strong> Compare w=70.8 and w=139.2</li>
+<li><strong>Iteration 2:</strong> Compare w=44.4 and w=70.8<br>
+</li>
+<li><strong>Iteration 3:</strong> Compare w=57.6 and w=70.8</li>
+<li><strong>Optimal:</strong> w ≈ 70.7 shipments/week, energy/shipment ≈ 78.3 kWh</li>
+</ul>
+</section>
+<section id="sample-problem-3" class="level3" data-number="3.3.5">
+<h3 data-number="3.3.5" class="anchored" data-anchor-id="sample-problem-3"><span class="header-section-number">3.3.5</span> Sample problem 3</h3>
+<p>Minimize <span class="math display">\[f(x)=-\frac{1}{(x-1)^2}\left(\ln(x)-2\left(\frac{x-1}{x+1}\right)\right)\]</span> such that <span class="math inline">\(x\)</span> in <span class="math inline">\([1.5,4.5]\)</span> using the Golden Section Method.</p>
+</section>
+<section id="review-questions-2" class="level3" data-number="3.3.6">
+<h3 data-number="3.3.6" class="anchored" data-anchor-id="review-questions-2"><span class="header-section-number">3.3.6</span> Review Questions</h3>
+<ol type="1">
+<li><p>Explain why Golden Section search is more efficient than exhaustive search for unimodal functions.</p></li>
+<li><p>Compare Golden Section and Fibonacci search methods. When would you choose one over the other?</p></li>
+<li><p>A transportation cost function is <span class="math inline">\(C(d) = \frac{1000}{d} + 2d\)</span> for d &gt; 0. Use Golden Section to find the optimal distance in [10, 100] with 3 iterations.</p></li>
+<li><p>What is a unimodal function and why is this property important for one-dimensional search methods?</p></li>
+<li><p>How would you modify Golden Section search if you suspected multiple local minima in your search interval?</p></li>
+</ol>
+</section>
+</section>
+<section id="constrained-optimization-kkt-conditions" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="constrained-optimization-kkt-conditions"><span class="header-section-number">3.4</span> Constrained Optimization &amp; KKT Conditions</h2>
+<section id="theoretical-foundation-2" class="level3" data-number="3.4.1">
+<h3 data-number="3.4.1" class="anchored" data-anchor-id="theoretical-foundation-2"><span class="header-section-number">3.4.1</span> Theoretical Foundation</h3>
+<section id="karush-kuhn-tucker-kkt-conditions" class="level4" data-number="3.4.1.1">
+<h4 data-number="3.4.1.1" class="anchored" data-anchor-id="karush-kuhn-tucker-kkt-conditions"><span class="header-section-number">3.4.1.1</span> Karush-Kuhn-Tucker (KKT) Conditions</h4>
+<p>For constrained nonlinear optimization, KKT conditions provide necessary conditions for optimality:</p>
+<p><strong>Primal Problem:</strong> <span class="math display">\[
+\begin{aligned}
+\text{Minimize } &amp; f(\mathbf{x}) \\
+\text{Subject to } &amp; g_i(\mathbf{x}) \leq 0, \quad i = 1, \ldots, m \\
+&amp; h_j(\mathbf{x}) = 0, \quad j = 1, \ldots, p
+\end{aligned}
+\]</span></p>
+<p><strong>KKT Conditions:</strong></p>
+<ol type="1">
+<li><strong>Stationarity:</strong> <span class="math inline">\(\nabla f(\mathbf{x}) + \sum \lambda_i \nabla g_i(\mathbf{x}) + \sum \mu_j \nabla h_j(\mathbf{x}) = 0\)</span></li>
+<li><strong>Primal Feasibility:</strong> <span class="math inline">\(g_i(\mathbf{x}) \leq 0, \quad h_j(\mathbf{x}) = 0\)</span></li>
+<li><strong>Dual Feasibility:</strong> <span class="math inline">\(\lambda_i \geq 0\)</span></li>
+<li><strong>Complementary Slackness:</strong> <span class="math inline">\(\lambda_i g_i(\mathbf{x}) = 0\)</span></li>
+</ol>
+</section>
+<section id="interpretation" class="level4" data-number="3.4.1.2">
+<h4 data-number="3.4.1.2" class="anchored" data-anchor-id="interpretation"><span class="header-section-number">3.4.1.2</span> Interpretation</h4>
+<ul>
+<li><strong>Lagrange Multipliers (λ, μ):</strong> Sensitivity of objective to constraint changes</li>
+<li><strong>Complementary Slackness:</strong> Inactive constraints have zero multipliers</li>
+<li><strong>Stationarity:</strong> Balance between objective improvement and constraint satisfaction</li>
+</ul>
+</section>
+</section>
+<section id="sample-problem-4" class="level3" data-number="3.4.2">
+<h3 data-number="3.4.2" class="anchored" data-anchor-id="sample-problem-4"><span class="header-section-number">3.4.2</span> Sample Problem</h3>
+<p><strong>Problem Statement:</strong></p>
+<p>Minimize <span class="math inline">\(f(x,y) = x^2 + y^2\)</span> subject to <span class="math inline">\(x + y \geq 4\)</span>.</p>
+<p><strong>Solution:</strong></p>
+<ol type="1">
+<li><strong>Rewrite constraint:</strong> <span class="math inline">\(g(x,y) = 4 - x - y \leq 0\)</span></li>
+<li><strong>Lagrangian:</strong> <span class="math inline">\(L(x,y,\lambda) = x^2 + y^2 + \lambda(4 - x - y)\)</span></li>
+<li><strong>KKT Conditions:</strong>
+<ul>
+<li><span class="math inline">\(\frac{\partial L}{\partial x} = 2x - \lambda = 0\)</span></li>
+<li><span class="math inline">\(\frac{\partial L}{\partial y} = 2y - \lambda = 0\)</span></li>
+<li><span class="math inline">\(\lambda(4 - x - y) = 0\)</span></li>
+<li><span class="math inline">\(4 - x - y \leq 0\)</span>, $ $</li>
+</ul></li>
+<li><strong>Case 1:</strong> λ = 0 → x=0, y=0 → violates constraint</li>
+<li><strong>Case 2:</strong> 4 - x - y = 0 → from stationarity: x=y=λ/2 → 4 - λ/2 - λ/2 = 0 → λ=4</li>
+<li><strong>Solution:</strong> x=2, y=2, λ=4, f=8</li>
+</ol>
+</section>
+<section id="sample-problem-5" class="level3" data-number="3.4.3">
+<h3 data-number="3.4.3" class="anchored" data-anchor-id="sample-problem-5"><span class="header-section-number">3.4.3</span> Sample Problem</h3>
+<p><strong>Problem Statement:</strong> Campus City wants to minimize transportation cost <span class="math inline">\(C(d) = 2d + 0.1d^2\)</span> while ensuring at least 80% of routes are under 3km. Formulate as KKT problem.</p>
+<p><strong>Solution:</strong></p>
+<p><strong>Mathematical Formulation:</strong></p>
+<ul>
+<li>Objective: Minimize <span class="math inline">\(\sum 2d_i + 0.1d_i^2\)</span></li>
+<li>Constraint: <span class="math inline">\(\frac{\text{count}(d_i \leq 3)}{n} \geq 0.8\)</span></li>
+</ul>
+<p><strong>KKT Interpretation:</strong></p>
+<ul>
+<li>Lagrange multiplier indicates cost increase for relaxing the 80% constraint</li>
+<li>Helps decide if expanding the constraint is cost-effective</li>
+</ul>
+</section>
+<section id="review-questions-3" class="level3" data-number="3.4.4">
+<h3 data-number="3.4.4" class="anchored" data-anchor-id="review-questions-3"><span class="header-section-number">3.4.4</span> Review Questions</h3>
+<ol type="1">
+<li><p><strong>Explain the economic interpretation of Lagrange multipliers in constrained optimization.</strong></p></li>
+<li><p><strong>What does complementary slackness tell us about active vs inactive constraints at the optimal solution?</strong></p></li>
+<li><p><strong>Solve using KKT: Minimize <span class="math inline">\(f(x) = x^2\)</span> subject to <span class="math inline">\(x \geq 2\)</span>.</strong></p></li>
+<li><p><strong>How do KKT conditions extend the method of Lagrange multipliers for inequality constraints?</strong></p></li>
+<li><p><strong>In a campus logistics context, what would a high Lagrange multiplier for an environmental constraint indicate?</strong></p></li>
+</ol>
+</section>
+</section>
+<section id="python-implementation-of-nonlinear-solvers" class="level2" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="python-implementation-of-nonlinear-solvers"><span class="header-section-number">3.5</span> Python Implementation of Nonlinear Solvers</h2>
+<section id="theoretical-foundation-3" class="level3" data-number="3.5.1">
+<h3 data-number="3.5.1" class="anchored" data-anchor-id="theoretical-foundation-3"><span class="header-section-number">3.5.1</span> Theoretical Foundation</h3>
+<section id="python-optimization-ecosystem" class="level4" data-number="3.5.1.1">
+<h4 data-number="3.5.1.1" class="anchored" data-anchor-id="python-optimization-ecosystem"><span class="header-section-number">3.5.1.1</span> Python Optimization Ecosystem</h4>
+<ul>
+<li><strong>scipy.optimize</strong>: Comprehensive optimization toolkit</li>
+<li><strong>minimize() function</strong>: Unified interface for multiple algorithms</li>
+<li><strong>Algorithm choices</strong>: SLSQP, trust-constr, COBYLA for constrained problems</li>
+</ul>
+</section>
+<section id="key-functions" class="level4" data-number="3.5.1.2">
+<h4 data-number="3.5.1.2" class="anchored" data-anchor-id="key-functions"><span class="header-section-number">3.5.1.2</span> Key Functions</h4>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> minimize</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># For unconstrained problems</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> minimize(fun, x0, method<span class="op">=</span><span class="st">'BFGS'</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co"># For constrained problems  </span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> minimize(fun, x0, constraints<span class="op">=</span>constraints, method<span class="op">=</span><span class="st">'SLSQP'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Practical Considerations
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p>Initial guess (<span class="math inline">\(x_0\)</span>): Critical for convergence</p></li>
+<li><p>Gradient provision: Can significantly improve performance</p></li>
+<li><p>Constraint formulation: Proper bounds and constraint objects</p></li>
+</ul>
+</div>
+</div>
+</section>
+</section>
+<section id="sample-problem-6" class="level3" data-number="3.5.2">
+<h3 data-number="3.5.2" class="anchored" data-anchor-id="sample-problem-6"><span class="header-section-number">3.5.2</span> Sample Problem</h3>
+<p>Problem Statement: Implement Golden Section search in <code>Python</code> for <span class="math inline">\(f(x)=(x−4)^2+3\)</span> on [0, 10].</p>
+<blockquote class="blockquote">
+<p><strong>Solution:</strong></p>
+</blockquote>
+<div id="c0ca4129" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> golden_section_search(f, a, b, tol<span class="op">=</span><span class="fl">1e-6</span>, max_iter<span class="op">=</span><span class="dv">100</span>):</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    phi <span class="op">=</span> (<span class="dv">1</span> <span class="op">+</span> math.sqrt(<span class="dv">5</span>)) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(max_iter):</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        x1 <span class="op">=</span> b <span class="op">-</span> (b <span class="op">-</span> a) <span class="op">/</span> phi</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>        x2 <span class="op">=</span> a <span class="op">+</span> (b <span class="op">-</span> a) <span class="op">/</span> phi</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> f(x1) <span class="op">&gt;</span> f(x2):</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>            a <span class="op">=</span> x1</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>            b <span class="op">=</span> x2</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="bu">abs</span>(b <span class="op">-</span> a) <span class="op">&lt;</span> tol:</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> (a <span class="op">+</span> b) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (a <span class="op">+</span> b) <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Test the function</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> objective(x):</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (x <span class="op">-</span> <span class="dv">4</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">3</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> golden_section_search(objective, <span class="dv">0</span>, <span class="dv">10</span>)</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Optimal x: </span><span class="sc">{</span>result<span class="sc">:.4f}</span><span class="ss">"</span>)  <span class="co"># Output: Optimal x: 4.0000</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Optimal x: 4.0000</code></pre>
+</div>
+</div>
+</section>
+<section id="solution-of-constrained-nlpp" class="level3" data-number="3.5.3">
+<h3 data-number="3.5.3" class="anchored" data-anchor-id="solution-of-constrained-nlpp"><span class="header-section-number">3.5.3</span> Solution of constrained NLPP</h3>
+<p>To solve NLPP using KKT method, we will use <code>solve()</code> function from the <code>sympy</code> library. Key functions required for solution will be imported</p>
+<div id="04350257" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sympy <span class="im">import</span> symbols, diff, solve</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<blockquote class="blockquote">
+<p><strong>Example 1:</strong> Minimize <span class="math inline">\(f(x, y) = x^2 + y^2\)</span> subject to <span class="math inline">\(x + y \ge 4\)</span> (Standard form: <span class="math inline">\(4 - x - y \le 0\)</span>).</p>
+</blockquote>
+<p><code>SymPy</code> does not inherently “solve” inequality constraints in the same way a numerical solver (like <code>SciPy</code>) does. Instead, you must manually transform the inequality into an equation using the Complementary Slackness condition from the KKT framework.Here is the logic: An inequality constraint <span class="math inline">\(g(x) \le 0\)</span> is handled by introducing a Lagrange multiplier <span class="math inline">\(\lambda\)</span> and adding the equation <span class="math inline">\(\lambda \cdot g(x) = 0\)</span> to your system.</p>
+<p>The 3-Step “Filter” WorkflowSince SymPy’s solve function returns all mathematical solutions (stationary points), you must add a “Filter” step to check the inequalities manually. - <em>Formulate:</em> Convert inequalities to KKT equations (Stationarity + Complementary Slackness). - <em>Solve:</em> Use <code>solve()</code> to find all candidate points. - <em>Filter:</em> Discard solutions that violate Primal Feasibility (<span class="math inline">\(g(x) \le 0\)</span>) or Dual Feasibility (<span class="math inline">\(\lambda \ge 0\)</span>).</p>
+<blockquote class="blockquote">
+<p><strong>Python code:</strong></p>
+</blockquote>
+<div id="1bc007c3" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sympy <span class="im">import</span> symbols, diff, solve</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Define Variables</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>x, y <span class="op">=</span> symbols(<span class="st">'x y'</span>, real<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>lam <span class="op">=</span> symbols(<span class="st">'lambda'</span>, real<span class="op">=</span><span class="va">True</span>) <span class="co"># Lagrange Multiplier</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Define Functions</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> y<span class="op">**</span><span class="dv">2</span>           <span class="co"># Objective</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> <span class="dv">4</span> <span class="op">-</span> x <span class="op">-</span> y             <span class="co"># Inequality constraint (g &lt;= 0)</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Formulate Lagrangian</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co"># L = f + lambda * g</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> f <span class="op">+</span> lam <span class="op">*</span> g</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Generate KKT Equations</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co"># A. Stationarity: Gradient of L must be zero</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>eq1 <span class="op">=</span> diff(L, x)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>eq2 <span class="op">=</span> diff(L, y)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="co"># B. Complementary Slackness: lambda * constraint = 0</span></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>eq3 <span class="op">=</span> lam <span class="op">*</span> g</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. Solve the System of Equations</span></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a><span class="co"># We ask SymPy to find values for x, y, and lambda that satisfy these 3 equalities</span></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>solutions <span class="op">=</span> solve([eq1, eq2, eq3], (x, y, lam), <span class="bu">dict</span><span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Candidate Solutions found: </span><span class="sc">{</span><span class="bu">len</span>(solutions)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a><span class="co"># 6. Filter Solutions (The Crucial Step for Inequalities)</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">--- Validation Step ---"</span>)</span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>valid_solutions <span class="op">=</span> []</span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> sol <span class="kw">in</span> solutions:</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>    x_val <span class="op">=</span> sol[x]</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a>    y_val <span class="op">=</span> sol[y]</span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>    lam_val <span class="op">=</span> sol[lam]</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-38"><a href="#cb6-38" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Check Primal Feasibility: g(x) &lt;= 0</span></span>
+<span id="cb6-39"><a href="#cb6-39" aria-hidden="true" tabindex="-1"></a>    <span class="co"># (Using a small tolerance for floating point comparisons if needed)</span></span>
+<span id="cb6-40"><a href="#cb6-40" aria-hidden="true" tabindex="-1"></a>    primal_check <span class="op">=</span> (<span class="dv">4</span> <span class="op">-</span> x_val <span class="op">-</span> y_val) <span class="op">&lt;=</span> <span class="dv">0</span></span>
+<span id="cb6-41"><a href="#cb6-41" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-42"><a href="#cb6-42" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Check Dual Feasibility: lambda &gt;= 0</span></span>
+<span id="cb6-43"><a href="#cb6-43" aria-hidden="true" tabindex="-1"></a>    dual_check <span class="op">=</span> lam_val <span class="op">&gt;=</span> <span class="dv">0</span></span>
+<span id="cb6-44"><a href="#cb6-44" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-45"><a href="#cb6-45" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Testing Point (</span><span class="sc">{</span>x_val<span class="sc">}</span><span class="ss">, </span><span class="sc">{</span>y_val<span class="sc">}</span><span class="ss">) with lambda=</span><span class="sc">{</span>lam_val<span class="sc">}</span><span class="ss">:"</span>)</span>
+<span id="cb6-46"><a href="#cb6-46" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"  Constraint g &lt;= 0? </span><span class="sc">{</span>primal_check<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb6-47"><a href="#cb6-47" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"  Dual lambda &gt;= 0? </span><span class="sc">{</span>dual_check<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb6-48"><a href="#cb6-48" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb6-49"><a href="#cb6-49" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> primal_check <span class="kw">and</span> dual_check:</span>
+<span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">" VALID Optimal Solution"</span>)</span>
+<span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a>        valid_solutions.append(sol)</span>
+<span id="cb6-52"><a href="#cb6-52" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">" INVALID (Violates KKT conditions)"</span>)</span>
+<span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a><span class="co"># Output Final Result</span></span>
+<span id="cb6-56"><a href="#cb6-56" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> valid_solutions:</span>
+<span id="cb6-57"><a href="#cb6-57" aria-hidden="true" tabindex="-1"></a>    opt <span class="op">=</span> valid_solutions[<span class="dv">0</span>]</span>
+<span id="cb6-58"><a href="#cb6-58" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Optimal Solution: x=</span><span class="sc">{</span>opt[x]<span class="sc">}</span><span class="ss">, y=</span><span class="sc">{</span>opt[y]<span class="sc">}</span><span class="ss">, cost=</span><span class="sc">{</span>opt[x]<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> opt[y]<span class="op">**</span><span class="dv">2</span><span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Candidate Solutions found: 2
+
+--- Validation Step ---
+Testing Point (0, 0) with lambda=0:
+  Constraint g &lt;= 0? False
+  Dual lambda &gt;= 0? True
+ INVALID (Violates KKT conditions)
+Testing Point (2, 2) with lambda=4:
+  Constraint g &lt;= 0? True
+  Dual lambda &gt;= 0? True
+ VALID Optimal Solution
+
+Optimal Solution: x=2, y=2, cost=8</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p><strong>Example 2:</strong> Solve <span class="math inline">\(f(x_1,x_2)=-x_1^2-x_2^2\)</span>; <span class="math inline">\(-x_1-x_2\le -1\)</span>; <span class="math inline">\(-2x_1+2x_2\le 1\)</span>; <span class="math inline">\(x_1,x_2\ge 0\)</span>.</p>
+</blockquote>
+<div id="d0accd0b" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Define Variables</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>x1, x2 <span class="op">=</span> sp.symbols(<span class="st">'x1 x2'</span>, real<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>lam1, lam2 <span class="op">=</span> sp.symbols(<span class="st">'lambda1 lambda2'</span>, real<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Define Objective (Maximization)</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="op">-</span>x1<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> x2<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Define Constraints in Standard Form (g(x) &lt;= 0)</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Original: -x1 - x2 &gt;= -1  -&gt; x1 + x2 &lt;= 1 -&gt; x1 + x2 - 1 &lt;= 0</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>g1 <span class="op">=</span> x1 <span class="op">+</span> x2 <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Original: -2x1 + 2x2 &lt;= 1 -&gt; -2x1 + 2x2 - 1 &lt;= 0</span></span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>g2 <span class="op">=</span> <span class="op">-</span><span class="dv">2</span><span class="op">*</span>x1 <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>x2 <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Formulate Lagrangian for Maximization (L = f - lambda*g)</span></span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> f <span class="op">-</span> lam1 <span class="op">*</span> g1 <span class="op">-</span> lam2 <span class="op">*</span> g2</span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. KKT Equations</span></span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a><span class="co"># A. Stationarity (Gradient of L w.r.t x must be 0)</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>stat_x1 <span class="op">=</span> sp.diff(L, x1)</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>stat_x2 <span class="op">=</span> sp.diff(L, x2)</span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="co"># B. Complementary Slackness (lambda * g = 0)</span></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a>slack_1 <span class="op">=</span> lam1 <span class="op">*</span> g1</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>slack_2 <span class="op">=</span> lam2 <span class="op">*</span> g2</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a><span class="co"># 6. Solve the System</span></span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Solving KKT system..."</span>)</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a><span class="co"># We assume non-negativity of x (x &gt;= 0) is a boundary check rather than an explicit Lagrangian term </span></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a><span class="co"># to keep the symbolic solver efficient for this demo.</span></span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>solutions <span class="op">=</span> sp.solve([stat_x1, stat_x2, slack_1, slack_2], (x1, x2, lam1, lam2), <span class="bu">dict</span><span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-35"><a href="#cb8-35" aria-hidden="true" tabindex="-1"></a><span class="co"># 7. Validation &amp; Filtering</span></span>
+<span id="cb8-36"><a href="#cb8-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Found </span><span class="sc">{</span><span class="bu">len</span>(solutions)<span class="sc">}</span><span class="ss"> candidate points. Filtering for optimality..."</span>)</span>
+<span id="cb8-37"><a href="#cb8-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">75</span>)</span>
+<span id="cb8-38"><a href="#cb8-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="st">'Point (x1, x2)'</span><span class="sc">:&lt;20}</span><span class="ss"> | </span><span class="sc">{</span><span class="st">'Multipliers'</span><span class="sc">:&lt;20}</span><span class="ss"> | </span><span class="sc">{</span><span class="st">'Objective'</span><span class="sc">:&lt;10}</span><span class="ss"> | </span><span class="sc">{</span><span class="st">'Status'</span><span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb8-39"><a href="#cb8-39" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">75</span>)</span>
+<span id="cb8-40"><a href="#cb8-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-41"><a href="#cb8-41" aria-hidden="true" tabindex="-1"></a>best_f <span class="op">=</span> <span class="op">-</span><span class="bu">float</span>(<span class="st">'inf'</span>)</span>
+<span id="cb8-42"><a href="#cb8-42" aria-hidden="true" tabindex="-1"></a>best_sol <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb8-43"><a href="#cb8-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-44"><a href="#cb8-44" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> sol <span class="kw">in</span> solutions:</span>
+<span id="cb8-45"><a href="#cb8-45" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Extract numerical values</span></span>
+<span id="cb8-46"><a href="#cb8-46" aria-hidden="true" tabindex="-1"></a>    x1_v <span class="op">=</span> <span class="bu">float</span>(sol[x1])</span>
+<span id="cb8-47"><a href="#cb8-47" aria-hidden="true" tabindex="-1"></a>    x2_v <span class="op">=</span> <span class="bu">float</span>(sol[x2])</span>
+<span id="cb8-48"><a href="#cb8-48" aria-hidden="true" tabindex="-1"></a>    l1_v <span class="op">=</span> <span class="bu">float</span>(sol[lam1])</span>
+<span id="cb8-49"><a href="#cb8-49" aria-hidden="true" tabindex="-1"></a>    l2_v <span class="op">=</span> <span class="bu">float</span>(sol[lam2])</span>
+<span id="cb8-50"><a href="#cb8-50" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-51"><a href="#cb8-51" aria-hidden="true" tabindex="-1"></a>    status <span class="op">=</span> <span class="st">"Valid"</span></span>
+<span id="cb8-52"><a href="#cb8-52" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-53"><a href="#cb8-53" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Check 1: Non-negativity of variables (x &gt;= 0)</span></span>
+<span id="cb8-54"><a href="#cb8-54" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> x1_v <span class="op">&lt;</span> <span class="op">-</span><span class="fl">1e-7</span> <span class="kw">or</span> x2_v <span class="op">&lt;</span> <span class="op">-</span><span class="fl">1e-7</span>:</span>
+<span id="cb8-55"><a href="#cb8-55" aria-hidden="true" tabindex="-1"></a>        status <span class="op">=</span> <span class="st">"Invalid (x &lt; 0)"</span></span>
+<span id="cb8-56"><a href="#cb8-56" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb8-57"><a href="#cb8-57" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Check 2: Primal Feasibility (g &lt;= 0)</span></span>
+<span id="cb8-58"><a href="#cb8-58" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> (x1_v <span class="op">+</span> x2_v <span class="op">-</span> <span class="dv">1</span>) <span class="op">&gt;</span> <span class="fl">1e-7</span>:</span>
+<span id="cb8-59"><a href="#cb8-59" aria-hidden="true" tabindex="-1"></a>        status <span class="op">=</span> <span class="st">"Invalid (g1 &gt; 0)"</span></span>
+<span id="cb8-60"><a href="#cb8-60" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> (<span class="op">-</span><span class="dv">2</span><span class="op">*</span>x1_v <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>x2_v <span class="op">-</span> <span class="dv">1</span>) <span class="op">&gt;</span> <span class="fl">1e-7</span>:</span>
+<span id="cb8-61"><a href="#cb8-61" aria-hidden="true" tabindex="-1"></a>        status <span class="op">=</span> <span class="st">"Invalid (g2 &gt; 0)"</span></span>
+<span id="cb8-62"><a href="#cb8-62" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb8-63"><a href="#cb8-63" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Check 3: Dual Feasibility (lambda &gt;= 0 for Max problem with L = f - lg)</span></span>
+<span id="cb8-64"><a href="#cb8-64" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> l1_v <span class="op">&lt;</span> <span class="op">-</span><span class="fl">1e-7</span> <span class="kw">or</span> l2_v <span class="op">&lt;</span> <span class="op">-</span><span class="fl">1e-7</span>:</span>
+<span id="cb8-65"><a href="#cb8-65" aria-hidden="true" tabindex="-1"></a>        status <span class="op">=</span> <span class="st">"Invalid (lambda &lt; 0)"</span></span>
+<span id="cb8-66"><a href="#cb8-66" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-67"><a href="#cb8-67" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate Objective</span></span>
+<span id="cb8-68"><a href="#cb8-68" aria-hidden="true" tabindex="-1"></a>    obj_val <span class="op">=</span> <span class="op">-</span>x1_v<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> x2_v<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb8-69"><a href="#cb8-69" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-70"><a href="#cb8-70" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"(</span><span class="sc">{</span>x1_v<span class="sc">:.4f}</span><span class="ss">, </span><span class="sc">{</span>x2_v<span class="sc">:.4f}</span><span class="ss">)   | L1=</span><span class="sc">{</span>l1_v<span class="sc">:.4f}</span><span class="ss">, L2=</span><span class="sc">{</span>l2_v<span class="sc">:.4f}</span><span class="ss"> | </span><span class="sc">{</span>obj_val<span class="sc">:.4f}</span><span class="ss">     | </span><span class="sc">{</span>status<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb8-71"><a href="#cb8-71" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb8-72"><a href="#cb8-72" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="st">"Valid"</span> <span class="kw">in</span> status <span class="kw">and</span> obj_val <span class="op">&gt;</span> best_f:</span>
+<span id="cb8-73"><a href="#cb8-73" aria-hidden="true" tabindex="-1"></a>        best_f <span class="op">=</span> obj_val</span>
+<span id="cb8-74"><a href="#cb8-74" aria-hidden="true" tabindex="-1"></a>        best_sol <span class="op">=</span> (x1_v, x2_v)</span>
+<span id="cb8-75"><a href="#cb8-75" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-76"><a href="#cb8-76" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">75</span>)</span>
+<span id="cb8-77"><a href="#cb8-77" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> best_sol:</span>
+<span id="cb8-78"><a href="#cb8-78" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss"> Optimal Solution: x1 = </span><span class="sc">{</span>best_sol[<span class="dv">0</span>]<span class="sc">}</span><span class="ss">, x2 = </span><span class="sc">{</span>best_sol[<span class="dv">1</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb8-79"><a href="#cb8-79" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"   Max Objective Value = </span><span class="sc">{</span>best_f<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Solving KKT system...
+
+Found 4 candidate points. Filtering for optimality...
+---------------------------------------------------------------------------
+Point (x1, x2)       | Multipliers          | Objective  | Status
+---------------------------------------------------------------------------
+(0.2500, 0.7500)   | L1=-1.0000, L2=-0.2500 | -0.6250     | Invalid (lambda &lt; 0)
+(0.5000, 0.5000)   | L1=-1.0000, L2=0.0000 | -0.5000     | Invalid (lambda &lt; 0)
+(-0.2500, 0.2500)   | L1=0.0000, L2=-0.2500 | -0.1250     | Invalid (x &lt; 0)
+(0.0000, 0.0000)   | L1=0.0000, L2=0.0000 | -0.0000     | Valid
+---------------------------------------------------------------------------
+
+ Optimal Solution: x1 = 0.0, x2 = 0.0
+   Max Objective Value = -0.0</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p><strong>Example 3:</strong> Minimize <span class="math inline">\(f(x_1,x_2)=2x_1+6x_2\)</span> subject to <span class="math inline">\(x_1-x_2\le 0\)</span>; <span class="math inline">\(x_1^2+x_2^2\ge 4\)</span>; <span class="math inline">\(x_1,x_2\ge 0\)</span>.</p>
+</blockquote>
+<p>Mathematical Formulation for <code>Sympy</code> requires constraints to be in the form <span class="math inline">\(g(x) \ge 0\)</span>. We must rearrange the given inequalities: - <em>Objective:</em> Minimize <span class="math inline">\(f(x) = 2x_1 + 6x_2\)</span> - <em>Constraint 1:</em> <span class="math inline">\(x_1 - x_2 \le 0 \implies x_2 - x_1 \ge 0\)</span> - <em>Constraint 2:</em> <span class="math inline">\(x_1^2 + x_2^2 \ge 4 \implies x_1^2 + x_2^2 - 4 \ge 0\)</span> - <em>Bounds:</em> <span class="math inline">\(x_1, x_2 \ge 0\)</span></p>
+<div id="ed8fdd3a" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Define Symbols</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>x1, x2 <span class="op">=</span> sp.symbols(<span class="st">'x1 x2'</span>, real<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>lam1, lam2 <span class="op">=</span> sp.symbols(<span class="st">'lambda1 lambda2'</span>, real<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Define Objective (Minimization)</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>x1 <span class="op">+</span> <span class="dv">6</span><span class="op">*</span>x2</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Define Constraints in Standard Form (g(x) &lt;= 0)</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Constraint 1: x1 - x2 &lt;= 0</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>g1 <span class="op">=</span> x1 <span class="op">-</span> x2</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Constraint 2: x1^2 + x2^2 &gt;= 4  --&gt; 4 - x1^2 - x2^2 &lt;= 0</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>g2 <span class="op">=</span> <span class="dv">4</span> <span class="op">-</span> x1<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> x2<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Formulate Lagrangian (Minimization: L = f + sum(lambda * g))</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> f <span class="op">+</span> lam1 <span class="op">*</span> g1 <span class="op">+</span> lam2 <span class="op">*</span> g2</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. KKT Equations</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a><span class="co"># A. Stationarity (Gradient of L = 0)</span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>eq_x1 <span class="op">=</span> sp.diff(L, x1)</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>eq_x2 <span class="op">=</span> sp.diff(L, x2)</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a><span class="co"># B. Complementary Slackness (lambda * g = 0)</span></span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>eq_slack1 <span class="op">=</span> lam1 <span class="op">*</span> g1</span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>eq_slack2 <span class="op">=</span> lam2 <span class="op">*</span> g2</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a><span class="co"># 6. Solve the System</span></span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Solving KKT system equations..."</span>)</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a><span class="co"># This solves for stationary points and intersection points</span></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>solutions <span class="op">=</span> sp.solve([eq_x1, eq_x2, eq_slack1, eq_slack2], (x1, x2, lam1, lam2), <span class="bu">dict</span><span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a><span class="co"># 7. Filter &amp; Validate Solutions</span></span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Found </span><span class="sc">{</span><span class="bu">len</span>(solutions)<span class="sc">}</span><span class="ss"> candidate points. Validating KKT conditions..."</span>)</span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">85</span>)</span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="st">'Point (x1, x2)'</span><span class="sc">:&lt;20}</span><span class="ss"> | </span><span class="sc">{</span><span class="st">'Multipliers'</span><span class="sc">:&lt;20}</span><span class="ss"> | </span><span class="sc">{</span><span class="st">'Cost'</span><span class="sc">:&lt;10}</span><span class="ss"> | </span><span class="sc">{</span><span class="st">'Status'</span><span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">85</span>)</span>
+<span id="cb10-39"><a href="#cb10-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-40"><a href="#cb10-40" aria-hidden="true" tabindex="-1"></a>optimal_val <span class="op">=</span> <span class="bu">float</span>(<span class="st">'inf'</span>)</span>
+<span id="cb10-41"><a href="#cb10-41" aria-hidden="true" tabindex="-1"></a>optimal_sol <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb10-42"><a href="#cb10-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-43"><a href="#cb10-43" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> sol <span class="kw">in</span> solutions:</span>
+<span id="cb10-44"><a href="#cb10-44" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Extract values (convert to float for comparison)</span></span>
+<span id="cb10-45"><a href="#cb10-45" aria-hidden="true" tabindex="-1"></a>    x1_v <span class="op">=</span> <span class="bu">float</span>(sol[x1])</span>
+<span id="cb10-46"><a href="#cb10-46" aria-hidden="true" tabindex="-1"></a>    x2_v <span class="op">=</span> <span class="bu">float</span>(sol[x2])</span>
+<span id="cb10-47"><a href="#cb10-47" aria-hidden="true" tabindex="-1"></a>    l1_v <span class="op">=</span> <span class="bu">float</span>(sol[lam1])</span>
+<span id="cb10-48"><a href="#cb10-48" aria-hidden="true" tabindex="-1"></a>    l2_v <span class="op">=</span> <span class="bu">float</span>(sol[lam2])</span>
+<span id="cb10-49"><a href="#cb10-49" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-50"><a href="#cb10-50" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Validation Logic</span></span>
+<span id="cb10-51"><a href="#cb10-51" aria-hidden="true" tabindex="-1"></a>    status <span class="op">=</span> <span class="st">"Valid"</span></span>
+<span id="cb10-52"><a href="#cb10-52" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-53"><a href="#cb10-53" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 1. Domain Check (x &gt;= 0)</span></span>
+<span id="cb10-54"><a href="#cb10-54" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> x1_v <span class="op">&lt;</span> <span class="op">-</span><span class="fl">1e-7</span> <span class="kw">or</span> x2_v <span class="op">&lt;</span> <span class="op">-</span><span class="fl">1e-7</span>:</span>
+<span id="cb10-55"><a href="#cb10-55" aria-hidden="true" tabindex="-1"></a>        status <span class="op">=</span> <span class="st">"Invalid (x &lt; 0)"</span></span>
+<span id="cb10-56"><a href="#cb10-56" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb10-57"><a href="#cb10-57" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2. Primal Feasibility (g &lt;= 0)</span></span>
+<span id="cb10-58"><a href="#cb10-58" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Check g1: x1 - x2 &lt;= 0</span></span>
+<span id="cb10-59"><a href="#cb10-59" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> (x1_v <span class="op">-</span> x2_v) <span class="op">&gt;</span> <span class="fl">1e-7</span>:</span>
+<span id="cb10-60"><a href="#cb10-60" aria-hidden="true" tabindex="-1"></a>        status <span class="op">=</span> <span class="st">"Invalid (g1 &gt; 0)"</span></span>
+<span id="cb10-61"><a href="#cb10-61" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Check g2: 4 - x1^2 - x2^2 &lt;= 0</span></span>
+<span id="cb10-62"><a href="#cb10-62" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> (<span class="dv">4</span> <span class="op">-</span> x1_v<span class="op">**</span><span class="dv">2</span> <span class="op">-</span> x2_v<span class="op">**</span><span class="dv">2</span>) <span class="op">&gt;</span> <span class="fl">1e-7</span>:</span>
+<span id="cb10-63"><a href="#cb10-63" aria-hidden="true" tabindex="-1"></a>        status <span class="op">=</span> <span class="st">"Invalid (g2 &gt; 0)"</span></span>
+<span id="cb10-64"><a href="#cb10-64" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb10-65"><a href="#cb10-65" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 3. Dual Feasibility (lambda &gt;= 0 for Minimization)</span></span>
+<span id="cb10-66"><a href="#cb10-66" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> l1_v <span class="op">&lt;</span> <span class="op">-</span><span class="fl">1e-7</span> <span class="kw">or</span> l2_v <span class="op">&lt;</span> <span class="op">-</span><span class="fl">1e-7</span>:</span>
+<span id="cb10-67"><a href="#cb10-67" aria-hidden="true" tabindex="-1"></a>        status <span class="op">=</span> <span class="st">"Invalid (lambda &lt; 0)"</span></span>
+<span id="cb10-68"><a href="#cb10-68" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb10-69"><a href="#cb10-69" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate Cost</span></span>
+<span id="cb10-70"><a href="#cb10-70" aria-hidden="true" tabindex="-1"></a>    cost <span class="op">=</span> <span class="dv">2</span><span class="op">*</span>x1_v <span class="op">+</span> <span class="dv">6</span><span class="op">*</span>x2_v</span>
+<span id="cb10-71"><a href="#cb10-71" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-72"><a href="#cb10-72" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"(</span><span class="sc">{</span>x1_v<span class="sc">:.4f}</span><span class="ss">, </span><span class="sc">{</span>x2_v<span class="sc">:.4f}</span><span class="ss">)   | L1=</span><span class="sc">{</span>l1_v<span class="sc">:.4f}</span><span class="ss">, L2=</span><span class="sc">{</span>l2_v<span class="sc">:.4f}</span><span class="ss"> | </span><span class="sc">{</span>cost<span class="sc">:.4f}</span><span class="ss">    | </span><span class="sc">{</span>status<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb10-73"><a href="#cb10-73" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-74"><a href="#cb10-74" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="st">"Valid"</span> <span class="kw">in</span> status <span class="kw">and</span> cost <span class="op">&lt;</span> optimal_val:</span>
+<span id="cb10-75"><a href="#cb10-75" aria-hidden="true" tabindex="-1"></a>        optimal_val <span class="op">=</span> cost</span>
+<span id="cb10-76"><a href="#cb10-76" aria-hidden="true" tabindex="-1"></a>        optimal_sol <span class="op">=</span> (x1_v, x2_v)</span>
+<span id="cb10-77"><a href="#cb10-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-78"><a href="#cb10-78" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">85</span>)</span>
+<span id="cb10-79"><a href="#cb10-79" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> optimal_sol:</span>
+<span id="cb10-80"><a href="#cb10-80" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss"> Optimal Solution: x1 = </span><span class="sc">{</span>optimal_sol[<span class="dv">0</span>]<span class="sc">:.4f}</span><span class="ss">, x2 = </span><span class="sc">{</span>optimal_sol[<span class="dv">1</span>]<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb10-81"><a href="#cb10-81" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"   Minimum Value = </span><span class="sc">{</span>optimal_val<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb10-82"><a href="#cb10-82" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb10-83"><a href="#cb10-83" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Insight for the user</span></span>
+<span id="cb10-84"><a href="#cb10-84" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Insight: The solution lies at the intersection of the line x1=x2 and the circle."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Solving KKT system equations...
+
+Found 4 candidate points. Validating KKT conditions...
+-------------------------------------------------------------------------------------
+Point (x1, x2)       | Multipliers          | Cost       | Status
+-------------------------------------------------------------------------------------
+(-0.6325, -1.8974)   | L1=0.0000, L2=-1.5811 | -12.6491    | Invalid (x &lt; 0)
+(0.6325, 1.8974)   | L1=0.0000, L2=1.5811 | 12.6491    | Valid
+(-1.4142, -1.4142)   | L1=2.0000, L2=-1.4142 | -11.3137    | Invalid (x &lt; 0)
+(1.4142, 1.4142)   | L1=2.0000, L2=1.4142 | 11.3137    | Valid
+-------------------------------------------------------------------------------------
+
+ Optimal Solution: x1 = 1.4142, x2 = 1.4142
+   Minimum Value = 11.3137
+
+Insight: The solution lies at the intersection of the line x1=x2 and the circle.</code></pre>
+</div>
+</div>
+</section>
+<section id="support-vector-machine-svm-theory-a-constrained-optimization-perspective" class="level3" data-number="3.5.4">
+<h3 data-number="3.5.4" class="anchored" data-anchor-id="support-vector-machine-svm-theory-a-constrained-optimization-perspective"><span class="header-section-number">3.5.4</span> Support Vector Machine (SVM) Theory: A Constrained Optimization Perspective</h3>
+<blockquote class="blockquote">
+<p><strong>Introduction &amp; Geometric Intuition</strong></p>
+</blockquote>
+<p>The Support Vector Machine (SVM) is a supervised learning algorithm that finds the optimal hyperplane to separate two classes of data. Unlike other linear classifiers, SVM seeks the <strong>widest possible separation</strong> (margin) between the classes.</p>
+<blockquote class="blockquote">
+<p><strong>The Hyperplane Equation</strong></p>
+</blockquote>
+<p>A hyperplane is defined by the equation: <span class="math display">\[w^T x + b = 0\]</span> - <span class="math inline">\(w\)</span>: The weight vector (normal to the hyperplane). - <span class="math inline">\(b\)</span>: The bias term (position relative to origin). - <span class="math inline">\(x\)</span>: The feature vector of a data point.</p>
+<blockquote class="blockquote">
+<p><strong>The Concept of the Margin</strong></p>
+</blockquote>
+<p>The “Margin” is the physical distance between the decision boundary and the closest data points (Support Vectors).</p>
+<ul>
+<li><strong>Positive Boundary:</strong> <span class="math inline">\(w^T x + b = +1\)</span></li>
+<li><strong>Negative Boundary:</strong> <span class="math inline">\(w^T x + b = -1\)</span></li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>Mathematical Derivation of the Margin</strong></p>
+</blockquote>
+<p>To calculate the width of the margin (<span class="math inline">\(M\)</span>), consider two support vectors, <span class="math inline">\(x_+\)</span> on the positive boundary and <span class="math inline">\(x_-\)</span> on the negative boundary.</p>
+<ol type="1">
+<li><p><strong>Equations:</strong></p>
+<ul>
+<li><span class="math inline">\(w^T x_+ + b = 1\)</span></li>
+<li><span class="math inline">\(w^T x_- + b = -1\)</span></li>
+</ul></li>
+<li><p><strong>Difference:</strong> Subtracting the second from the first: <span class="math display">\[w^T (x_+ - x_-) = 2\]</span></p></li>
+<li><p><strong>Projection:</strong> The physical distance <span class="math inline">\(M\)</span> is the projection of <span class="math inline">\((x_+ - x_-)\)</span> onto the unit normal vector <span class="math inline">\(\frac{w}{||w||}\)</span>: <span class="math display">\[M = (x_+ - x_-) \cdot \frac{w}{||w||} = \frac{w^T(x_+ - x_-)}{||w||} = \frac{2}{||w||}\]</span></p></li>
+</ol>
+<p><strong>Key Insight:</strong> To <strong>maximize</strong> the margin (<span class="math inline">\(M = \frac{2}{||w||}\)</span>), we must <strong>minimize</strong> the norm of the weight vector (<span class="math inline">\(||w||\)</span>).</p>
+<blockquote class="blockquote">
+<p><strong>The Constraint: Sign Agreement</strong></p>
+</blockquote>
+<p>For a classifier to be valid, it must correctly classify data points <em>outside</em> the margin. * If <span class="math inline">\(y_i = +1\)</span>, we require <span class="math inline">\(w^T x_i + b \ge 1\)</span>. * If <span class="math inline">\(y_i = -1\)</span>, we require <span class="math inline">\(w^T x_i + b \le -1\)</span>.</p>
+<p>These two conditions can be compressed into a single inequality: <span class="math display">\[y_i (w^T x_i + b) \ge 1 \quad \forall i\]</span></p>
+<p>This constraint ensures that every point is both correctly classified and located safely outside the “no-man’s land” of the margin.</p>
+<blockquote class="blockquote">
+<p><strong>The Primal Optimization Problem</strong></p>
+</blockquote>
+<p>Minimizing <span class="math inline">\(||w||\)</span> involves a square root, which is computationally difficult. Instead, we minimize <span class="math inline">\(\frac{1}{2}||w||^2\)</span>, which is a convex quadratic function with the same optimum.</p>
+<p><strong>Standard Form (Hard Margin SVM):</strong> <span class="math display">\[
+\begin{aligned}
+&amp; \text{Minimize} &amp; &amp; f(w, b) = \frac{1}{2}||w||^2 \\
+&amp; \text{Subject to} &amp; &amp; y_i(w^T x_i + b) \ge 1, \quad i = 1, \dots, N
+\end{aligned}
+\]</span></p>
+<blockquote class="blockquote">
+<p><strong>Solving via Lagrange Multipliers (KKT Conditions)</strong> To solve this constrained problem, we construct the <em>Lagrangian Function</em>:</p>
+</blockquote>
+<p><span class="math display">\[\mathcal{L}(w, b, \alpha) = \frac{1}{2}||w||^2 - \sum_{i=1}^{N} \alpha_i [y_i(w^T x_i + b) - 1]\]</span> where <span class="math inline">\(\alpha_i \ge 0\)</span> are the Lagrange Multipliers.</p>
+<p>The Karush-Kuhn-Tucker (KKT) Conditions</p>
+<p>For optimality, the following conditions must hold:</p>
+<ol type="1">
+<li><strong>Stationarity (<span class="math inline">\(\nabla \mathcal{L} = 0\)</span>):</strong>
+<ul>
+<li><span class="math inline">\(\nabla_w \mathcal{L} = w - \sum \alpha_i y_i x_i = 0 \implies \mathbf{w = \sum \alpha_i y_i x_i}\)</span></li>
+<li><span class="math inline">\(\nabla_b \mathcal{L} = -\sum \alpha_i y_i = 0 \implies \mathbf{\sum \alpha_i y_i = 0}\)</span></li>
+</ul></li>
+<li><strong>Primal Feasibility:</strong>
+<ul>
+<li><span class="math inline">\(y_i(w^T x_i + b) - 1 \ge 0\)</span></li>
+</ul></li>
+<li><strong>Dual Feasibility:</strong>
+<ul>
+<li><span class="math inline">\(\alpha_i \ge 0\)</span></li>
+</ul></li>
+<li><strong>Complementary Slackness:</strong>
+<ul>
+<li><span class="math inline">\(\alpha_i [y_i(w^T x_i + b) - 1] = 0\)</span></li>
+<li><em>Interpretation:</em> If <span class="math inline">\(\alpha_i &gt; 0\)</span>, the point lies exactly on the margin (<span class="math inline">\(y_i(w^T x + b) = 1\)</span>). These points are the <strong>Support Vectors</strong>. If <span class="math inline">\(\alpha_i = 0\)</span>, the point is irrelevant to the boundary.</li>
+</ul></li>
+</ol>
+<blockquote class="blockquote">
+<p>Example Calculation</p>
+</blockquote>
+<p><strong>Data:</strong> Class +1 at <span class="math inline">\((2,2)\)</span>, Class -1 at <span class="math inline">\((0,0)\)</span>.</p>
+<ol type="1">
+<li><strong>Lagrangian Formulation:</strong> <span class="math display">\[\mathcal{L} = \frac{1}{2}(w_1^2 + w_2^2) - \alpha_1 (2w_1 + 2w_2 + b - 1) - \alpha_2 (-b - 1)\]</span></li>
+<li><strong>Solving:</strong>
+<ul>
+<li>From stationarity: <span class="math inline">\(w_1 = 2\alpha, w_2 = 2\alpha\)</span>.</li>
+<li>From sum constraint: <span class="math inline">\(\alpha_1 = \alpha_2 = \alpha\)</span>.</li>
+<li>From active constraints: <span class="math inline">\(b = -1\)</span>, <span class="math inline">\(w_1 + w_2 = 1\)</span>.</li>
+</ul></li>
+<li><strong>Result:</strong>
+<ul>
+<li><span class="math inline">\(\alpha = 0.25\)</span></li>
+<li><strong>Optimal Weights:</strong> <span class="math inline">\(w = [0.5, 0.5]\)</span></li>
+<li><strong>Optimal Bias:</strong> <span class="math inline">\(b = -1\)</span></li>
+<li><strong>Margin Width:</strong> <span class="math inline">\(2/||w|| \approx 2.82\)</span></li>
+</ul></li>
+</ol>
+<blockquote class="blockquote">
+<p><strong>Python solution</strong></p>
+</blockquote>
+<div id="5263ca53" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Define Variables</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>w1, w2, b <span class="op">=</span> sp.symbols(<span class="st">'w1 w2 b'</span>, real<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>lam1, lam2 <span class="op">=</span> sp.symbols(<span class="st">'lambda1 lambda2'</span>, real<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Define Objective (Minimize 1/2 ||w||^2)</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>f <span class="op">=</span> <span class="fl">0.5</span> <span class="op">*</span> (w1<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> w2<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. Define Constraints (g &lt;= 0)</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Constraint for Point A (2, 2): 1 - y(wx+b) &lt;= 0</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>g1 <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> (<span class="dv">1</span> <span class="op">*</span> (<span class="dv">2</span><span class="op">*</span>w1 <span class="op">+</span> <span class="dv">2</span><span class="op">*</span>w2 <span class="op">+</span> b))</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Constraint for Point B (0, 0): 1 - y(wx+b) &lt;= 0</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>g2 <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> (<span class="op">-</span><span class="dv">1</span> <span class="op">*</span> (<span class="dv">0</span><span class="op">*</span>w1 <span class="op">+</span> <span class="dv">0</span><span class="op">*</span>w2 <span class="op">+</span> b))</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="co"># 4. Formulate Lagrangian</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> f <span class="op">+</span> lam1 <span class="op">*</span> g1 <span class="op">+</span> lam2 <span class="op">*</span> g2</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="co"># 5. KKT Conditions</span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="co"># A. Stationarity (Gradient of L = 0)</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>stat_w1 <span class="op">=</span> sp.diff(L, w1)</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>stat_w2 <span class="op">=</span> sp.diff(L, w2)</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>stat_b  <span class="op">=</span> sp.diff(L, b)</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a><span class="co"># B. Complementary Slackness (lambda * g = 0)</span></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>slack_1 <span class="op">=</span> lam1 <span class="op">*</span> g1</span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a>slack_2 <span class="op">=</span> lam2 <span class="op">*</span> g2</span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a><span class="co"># 6. Solve the System</span></span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Solving KKT system..."</span>)</span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a><span class="co"># We explicitly ask for a dictionary result</span></span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a>solutions <span class="op">=</span> sp.solve([stat_w1, stat_w2, stat_b, slack_1, slack_2], </span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a>                     (w1, w2, b, lam1, lam2), <span class="bu">dict</span><span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a><span class="co"># 7. Validate Solutions</span></span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Found </span><span class="sc">{</span><span class="bu">len</span>(solutions)<span class="sc">}</span><span class="ss"> candidate solutions. Validating..."</span>)</span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">60</span>)</span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> sol <span class="kw">in</span> solutions:</span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Use .get() to handle cases where a variable is free/undetermined</span></span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a>    <span class="co"># If b is not in solution, it usually implies it's arbitrary in that specific branch </span></span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a>    <span class="co"># (e.g. if w=0, lambda=0, b might not be constrained by stationarity).</span></span>
+<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a>    <span class="co"># We default to 0.0 for checking purposes or flag it.</span></span>
+<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a>    <span class="cf">try</span>:</span>
+<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a>        val_w1 <span class="op">=</span> <span class="bu">float</span>(sol.get(w1, <span class="dv">0</span>))</span>
+<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a>        val_w2 <span class="op">=</span> <span class="bu">float</span>(sol.get(w2, <span class="dv">0</span>))</span>
+<span id="cb12-47"><a href="#cb12-47" aria-hidden="true" tabindex="-1"></a>        val_b  <span class="op">=</span> <span class="bu">float</span>(sol.get(b, <span class="dv">0</span>)) </span>
+<span id="cb12-48"><a href="#cb12-48" aria-hidden="true" tabindex="-1"></a>        val_l1 <span class="op">=</span> <span class="bu">float</span>(sol.get(lam1, <span class="dv">0</span>))</span>
+<span id="cb12-49"><a href="#cb12-49" aria-hidden="true" tabindex="-1"></a>        val_l2 <span class="op">=</span> <span class="bu">float</span>(sol.get(lam2, <span class="dv">0</span>))</span>
+<span id="cb12-50"><a href="#cb12-50" aria-hidden="true" tabindex="-1"></a>    <span class="cf">except</span> <span class="pp">TypeError</span>:</span>
+<span id="cb12-51"><a href="#cb12-51" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Skipping a symbolic/complex solution that couldn't be converted to float."</span>)</span>
+<span id="cb12-52"><a href="#cb12-52" aria-hidden="true" tabindex="-1"></a>        <span class="cf">continue</span></span>
+<span id="cb12-53"><a href="#cb12-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-54"><a href="#cb12-54" aria-hidden="true" tabindex="-1"></a>    status <span class="op">=</span> <span class="st">"Valid Optimal Solution"</span></span>
+<span id="cb12-55"><a href="#cb12-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-56"><a href="#cb12-56" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Check Primal Feasibility (g &lt;= 0)</span></span>
+<span id="cb12-57"><a href="#cb12-57" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Using a small tolerance (1e-6)</span></span>
+<span id="cb12-58"><a href="#cb12-58" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (<span class="dv">1</span> <span class="op">-</span> <span class="dv">2</span><span class="op">*</span>val_w1 <span class="op">-</span> <span class="dv">2</span><span class="op">*</span>val_w2 <span class="op">-</span> val_b) <span class="op">&gt;</span> <span class="fl">1e-6</span>:</span>
+<span id="cb12-59"><a href="#cb12-59" aria-hidden="true" tabindex="-1"></a>        status <span class="op">=</span> <span class="st">"Invalid (Violates Point A Constraint)"</span></span>
+<span id="cb12-60"><a href="#cb12-60" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> (<span class="dv">1</span> <span class="op">+</span> val_b) <span class="op">&gt;</span> <span class="fl">1e-6</span>:</span>
+<span id="cb12-61"><a href="#cb12-61" aria-hidden="true" tabindex="-1"></a>        status <span class="op">=</span> <span class="st">"Invalid (Violates Point B Constraint)"</span></span>
+<span id="cb12-62"><a href="#cb12-62" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb12-63"><a href="#cb12-63" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Check Dual Feasibility (lambda &gt;= 0)</span></span>
+<span id="cb12-64"><a href="#cb12-64" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> val_l1 <span class="op">&lt;</span> <span class="op">-</span><span class="fl">1e-6</span> <span class="kw">or</span> val_l2 <span class="op">&lt;</span> <span class="op">-</span><span class="fl">1e-6</span>:</span>
+<span id="cb12-65"><a href="#cb12-65" aria-hidden="true" tabindex="-1"></a>        status <span class="op">=</span> <span class="st">"Invalid (Negative Multiplier)"</span></span>
+<span id="cb12-66"><a href="#cb12-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-67"><a href="#cb12-67" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Print results</span></span>
+<span id="cb12-68"><a href="#cb12-68" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Solution: w=(</span><span class="sc">{</span>val_w1<span class="sc">:.4f}</span><span class="ss">, </span><span class="sc">{</span>val_w2<span class="sc">:.4f}</span><span class="ss">), b=</span><span class="sc">{</span>val_b<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb12-69"><a href="#cb12-69" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Multipliers: λ1=</span><span class="sc">{</span>val_l1<span class="sc">:.4f}</span><span class="ss">, λ2=</span><span class="sc">{</span>val_l2<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb12-70"><a href="#cb12-70" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Status: </span><span class="sc">{</span>status<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb12-71"><a href="#cb12-71" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">60</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Solving KKT system...
+
+Found 3 candidate solutions. Validating...
+------------------------------------------------------------
+Solution: w=(0.0000, 0.0000), b=0.0000
+Multipliers: λ1=0.0000, λ2=0.0000
+Status: Invalid (Violates Point A Constraint)
+------------------------------------------------------------
+Solution: w=(0.0000, 0.0000), b=-1.0000
+Multipliers: λ1=0.0000, λ2=0.0000
+Status: Invalid (Violates Point A Constraint)
+------------------------------------------------------------
+Solution: w=(0.5000, 0.5000), b=-1.0000
+Multipliers: λ1=0.2500, λ2=0.2500
+Status: Valid Optimal Solution
+------------------------------------------------------------</code></pre>
+</div>
+</div>
+</section>
+<section id="principal-component-analysis-pca" class="level3" data-number="3.5.5">
+<h3 data-number="3.5.5" class="anchored" data-anchor-id="principal-component-analysis-pca"><span class="header-section-number">3.5.5</span> Principal Component Analysis (PCA)</h3>
+<p>While often viewed as linear algebra, PCA is fundamentally a constrained optimization problem seeking the direction of maximum variance.</p>
+<blockquote class="blockquote">
+<p><strong>The Formulation</strong></p>
+</blockquote>
+<ul>
+<li><p><strong>Objective:</strong> Find a direction vector <span class="math inline">\(w\)</span> that maximizes the variance of the projected data. <span class="math display">\[\text{Maximize } f(w) = w^T \Sigma w\]</span> <em>(where <span class="math inline">\(\Sigma\)</span> is the Covariance Matrix)</em></p></li>
+<li><p><strong>Constraint:</strong> To prevent the vector length from growing infinitely to cheat the maximization, we fix its length to 1. <span class="math display">\[\text{Subject to } g(w) = w^T w - 1 = 0\]</span></p></li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>The Lagrangian Solution</strong></p>
+</blockquote>
+<p>We formulate the Lagrangian with multiplier <span class="math inline">\(\lambda\)</span>: <span class="math display">\[\mathcal{L}(w, \lambda) = w^T \Sigma w - \lambda(w^T w - 1)\]</span></p>
+<ul>
+<li><strong>Finding the Optimum:</strong> Differentiating with respect to <span class="math inline">\(w\)</span> yields: <span class="math display">\[2\Sigma w - 2\lambda w = 0 \implies \Sigma w = \lambda w\]</span></li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Insight
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The optimal direction <span class="math inline">\(w\)</span> is simply the <strong>Eigenvector</strong> of the covariance matrix, and the Lagrange multiplier <span class="math inline">\(\lambda\)</span> is the <strong>Eigenvalue</strong> (representing the amount of variance).</p>
+</div>
+</div>
+</section>
+<section id="ridge-regression-l2-regularization" class="level3" data-number="3.5.6">
+<h3 data-number="3.5.6" class="anchored" data-anchor-id="ridge-regression-l2-regularization"><span class="header-section-number">3.5.6</span> Ridge Regression (L2 Regularization)</h3>
+<p>Ridge regression modifies standard least-squares fitting by imposing a budget on the size of the coefficients to prevent overfitting.</p>
+<blockquote class="blockquote">
+<p><strong>The Formulation</strong></p>
+</blockquote>
+<ul>
+<li><p><strong>Objective:</strong> Minimize the sum of squared prediction errors. <span class="math display">\[\text{Minimize } ||y - X\beta||^2\]</span></p></li>
+<li><p><strong>Constraint:</strong> The total size (squared magnitude) of the coefficients must not exceed a budget <span class="math inline">\(t\)</span>. <span class="math display">\[\text{Subject to } ||\beta||^2 \le t\]</span></p></li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>The Lagrangian Solution</strong> <span class="math display">\[\mathcal{L}(\beta, \lambda) = ||y - X\beta||^2 + \lambda(||\beta||^2 - t)\]</span></p>
+</blockquote>
+<ul>
+<li><strong>Resulting Update Rule:</strong> Solving for <span class="math inline">\(\nabla \mathcal{L} = 0\)</span> gives the famous closed-form solution: <span class="math display">\[\hat{\beta} = (X^T X + \lambda I)^{-1} X^T y\]</span></li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Insight:
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The regularization parameter <span class="math inline">\(\lambda\)</span> used in code is actually the Lagrange Multiplier corresponding to the weight constraint.</p>
+</div>
+</div>
+</section>
+<section id="maximum-entropy-models-maxent" class="level3" data-number="3.5.7">
+<h3 data-number="3.5.7" class="anchored" data-anchor-id="maximum-entropy-models-maxent"><span class="header-section-number">3.5.7</span> Maximum Entropy Models (MaxEnt)</h3>
+<p>Used in Natural Language Processing and ecology, <code>MaxEnt</code> seeks the most “unbiased” probability distribution that still fits the observed data.</p>
+<blockquote class="blockquote">
+<p><strong>The Formulation</strong></p>
+</blockquote>
+<ul>
+<li><p><strong>Objective:</strong> Maximize the Entropy (uncertainty) of the distribution <span class="math inline">\(p(x)\)</span>. <span class="math display">\[\text{Maximize } H(p) = -\sum p(x) \log p(x)\]</span></p></li>
+<li><p><strong>Constraints:</strong></p>
+<ol type="1">
+<li><strong>Normalization:</strong> The probabilities must sum to 1. <span class="math display">\[\sum p(x) = 1\]</span></li>
+<li><strong>Feature Matching:</strong> The expected value of features in our model must match the empirical averages seen in the training data. <span class="math display">\[\sum p(x) f_i(x) = \mathbb{E}_{data}[f_i]\]</span></li>
+</ol></li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>The Lagrangian Solution</strong></p>
+</blockquote>
+<p>Solving this Lagrangian system yields the <strong>Gibbs (Softmax) Distribution</strong>: <span class="math display">\[p(y|x) = \frac{1}{Z} \exp\left(\sum \lambda_i f_i(x, y)\right)\]</span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Insights:
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This derivation serves as the theoretical foundation for <strong>Logistic Regression</strong> and the final layer of most <strong>Neural Networks</strong>.</p>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Module-1.html" class="pagination-link" aria-label="Module 1: Basics of Optimization and Linear Programming">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Module 1: Basics of Optimization and Linear Programming</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

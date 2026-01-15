@@ -10,7 +10,7 @@ book:
     - index.qmd
     - intro.qmd
     - Module-1.qmd
-#    - Module-2.qmd
+    - Module-2.qmd
 #    - Module-3.qmd
 #    - Module-4.qmd
 #    - Project-Data.qmd
