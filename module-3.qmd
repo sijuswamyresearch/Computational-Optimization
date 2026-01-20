@@ -113,6 +113,7 @@ Project planning involves defining project objectives, determining tasks and res
 **Problem Statement:**
 Campus City is planning a new library construction with the following activities:
 
+
 | Activity | Description | Immediate Predecessors | Duration (weeks) |
 |----------|-------------|------------------------|------------------|
 | A | Site preparation | - | 2 |
@@ -124,6 +125,7 @@ Campus City is planning a new library construction with the following activities
 | G | Exterior finishing | C | 2 |
 | H | Final inspection | F, G | 1 |
 
+
 Construct the project network and identify the project completion time.
 
 **Solution Approach:**
@@ -131,15 +133,15 @@ We'll represent this as a network diagram with nodes as activity completion poin
 
 ### Review Questions
 
-1. **What are the key differences between project planning and continuous optimization problems?**
+1. What are the key differences between project planning and continuous optimization problems?
 
-2. **Explain how project dependencies create sequencing constraints that must be respected in scheduling.**
+2. Explain how project dependencies create sequencing constraints that must be respected in scheduling.
 
-3. **Describe three campus scenarios where project planning techniques would provide significant benefits over ad-hoc scheduling.**
+3. Describe three campus scenarios where project planning techniques would provide significant benefits over ad-hoc scheduling.
 
-4. **What information is minimally required to begin project planning for a campus construction project?**
+4. What information is minimally required to begin project planning for a campus construction project?
 
-5. **How does uncertainty in activity durations affect project planning decisions?**
+5. How does uncertainty in activity durations affect project planning decisions?
 
 
 ## Critical Path Method (CPM)
@@ -232,9 +234,11 @@ To solve CPM problems without getting confused, we treat the project network lik
 
 
 ### Problem 1: The "Hello World" of CPM
+
 **Scenario:** A simple linear workflow with one parallel branch.
 
 **Activity Data:**
+
 | Activity | Predecessors | Duration (Days) |
 |:---|:---|:---|
 | A | - | 3 |
@@ -260,13 +264,13 @@ To solve CPM problems without getting confused, we treat the project network lik
 
 **Step 2: Backward Pass (Find LF, LS)**
 
-* **D:** End at 12. Duration 5. $\to LS = 12 - 5 = 7$.
-* **B:** Successor D (starts at 7). Must finish by 7. Duration 4. $\to LS = 7 - 4 = 3$.
-* **C:** Successor D (starts at 7). Must finish by 7. Duration 2. $\to LS = 7 - 2 = 5$.
-* **A:** Successors B (starts 3) and C (starts 5).
+- **D:** End at 12. Duration 5. $\to LS = 12 - 5 = 7$.
+- **B:** Successor D (starts at 7). Must finish by 7. Duration 4. $\to LS = 7 - 4 = 3$.
+- **C:** Successor D (starts at 7). Must finish by 7. Duration 2. $\to LS = 7 - 2 = 5$.
+- **A:** Successors B (starts 3) and C (starts 5).
 
-    * *Rule:* Must be done in time for the **earliest** requirement. $\min(3, 5) = 3$.
-    * Must finish by 3. Duration 3. $\to LS = 0$.
+    - *Rule:* Must be done in time for the **earliest** requirement. $\min(3, 5) = 3$.
+    - Must finish by 3. Duration 3. $\to LS = 0$.
 
 **Step 3 & 4: Float & Critical Path**
 
@@ -279,11 +283,116 @@ To solve CPM problems without getting confused, we treat the project network lik
 
 **Critical Path:** $A \to B \to D$
 
+>**Python solution**
+
+```{python}
+import networkx as nx
+import pandas as pd
+
+# 1. Define the Project Data
+tasks = {
+    'A': {'duration': 3, 'predecessors': []},
+    'B': {'duration': 4, 'predecessors': ['A']},
+    'C': {'duration': 2, 'predecessors': ['A']},
+    'D': {'duration': 5, 'predecessors': ['B', 'C']}
+}
+
+# 2. Build the Network Graph
+G = nx.DiGraph()
+for task, data in tasks.items():
+    G.add_node(task, duration=data['duration'])
+    for pred in data['predecessors']:
+        G.add_edge(pred, task)
+
+# ---------------------------------------------------------
+# 3. Forward Pass (Calculate Early Start & Early Finish)
+# ---------------------------------------------------------
+# We iterate in topological order to ensure predecessors are processed first
+early_start = {}
+early_finish = {}
+
+for task in nx.topological_sort(G):
+    # ES is max of predecessor's EF. If no predecessors, ES = 0
+    predecessors = list(G.predecessors(task))
+    if not predecessors:
+        es = 0
+    else:
+        es = max(early_finish[p] for p in predecessors)
+    
+    duration = G.nodes[task]['duration']
+    ef = es + duration
+    
+    early_start[task] = es
+    early_finish[task] = ef
+
+project_duration = max(early_finish.values())
+
+# ---------------------------------------------------------
+# 4. Backward Pass (Calculate Late Start & Late Finish)
+# ---------------------------------------------------------
+# We iterate in reverse topological order
+late_start = {}
+late_finish = {}
+
+for task in reversed(list(nx.topological_sort(G))):
+    successors = list(G.successors(task))
+    
+    # LF is min of successor's LS. If no successors, LF = Project Duration
+    if not successors:
+        lf = project_duration
+    else:
+        lf = min(late_start[s] for s in successors)
+        
+    duration = G.nodes[task]['duration']
+    ls = lf - duration
+    
+    late_finish[task] = lf
+    late_start[task] = ls
+
+# ---------------------------------------------------------
+# 5. Calculate Slack & Identify Critical Path
+# ---------------------------------------------------------
+slack = {}
+critical_path = []
+
+for task in tasks:
+    s = late_start[task] - early_start[task]
+    slack[task] = s
+    if s == 0:
+        critical_path.append(task)
+
+# ---------------------------------------------------------
+# 6. Display Results
+# ---------------------------------------------------------
+# Create a DataFrame for a clean CPM Table
+df = pd.DataFrame({
+    'Duration': [tasks[t]['duration'] for t in tasks],
+    'ES (Early Start)': [early_start[t] for t in tasks],
+    'EF (Early Finish)': [early_finish[t] for t in tasks],
+    'LS (Late Start)': [late_start[t] for t in tasks],
+    'LF (Late Finish)': [late_finish[t] for t in tasks],
+    'Slack': [slack[t] for t in tasks],
+    'Critical?': ['Yes' if s == 0 else 'No' for s in slack.values()]
+}, index=tasks.keys())
+
+print("--- CPM Schedule Table ---")
+print(df)
+print("-" * 30)
+print(f"Total Project Duration: {project_duration} Days")
+print(f"Critical Path: {' -> '.join(critical_path)}")
+
+# Visualize the Network
+import matplotlib.pyplot as plt
+pos = nx.spring_layout(G)
+nx.draw(G, pos, with_labels=True, node_size=2000, node_color='skyblue')
+plt.show()
+```
 
 ### Problem 2: The Bottleneck
 **Scenario:** Software Development. Coding takes longer than Documentation.
 
 **Activity Data:**
+
 | Activity | Description | Pred | Duration |
 |:---|:---|:---|:---|
 | S | Start Specs | - | 2 |
@@ -314,12 +423,86 @@ To solve CPM problems without getting confused, we treat the project network lik
 
 **Critical Path:** $S \to C \to T$
 
----
+>**Python solution**
+
+```{python}
+import networkx as nx
+import pandas as pd
+
+# 1. Define the Project Data (Updated for Problem 2)
+tasks = {
+    'S': {'desc': 'Start Specs', 'duration': 2, 'predecessors': []},
+    'C': {'desc': 'Code Module', 'duration': 8, 'predecessors': ['S']},
+    'D': {'desc': 'Write Docs',  'duration': 3, 'predecessors': ['S']},
+    'T': {'desc': 'Testing',     'duration': 4, 'predecessors': ['C', 'D']}
+}
+
+# 2. Build Graph
+G = nx.DiGraph()
+for task, data in tasks.items():
+    G.add_node(task, duration=data['duration'], desc=data['desc'])
+    for pred in data['predecessors']:
+        G.add_edge(pred, task)
+
+# 3. Forward Pass (Early Start/Finish)
+early_start = {}
+early_finish = {}
+for task in nx.topological_sort(G):
+    # ES = Max of predecessor EF
+    predecessors = list(G.predecessors(task))
+    es = max((early_finish[p] for p in predecessors), default=0)
+    
+    duration = G.nodes[task]['duration']
+    early_start[task] = es
+    early_finish[task] = es + duration
+
+project_duration = max(early_finish.values())
+
+# 4. Backward Pass (Late Start/Finish)
+late_start = {}
+late_finish = {}
+for task in reversed(list(nx.topological_sort(G))):
+    successors = list(G.successors(task))
+    # LF = Min of successor LS
+    lf = min((late_start[s] for s in successors), default=project_duration)
+    
+    duration = G.nodes[task]['duration']
+    late_start[task] = lf - duration
+    late_finish[task] = lf
+
+# 5. Calculate Slack & Critical Path
+slack = {}
+critical_path = []
+for task in tasks:
+    s = late_start[task] - early_start[task]
+    slack[task] = s
+    if s == 0:
+        critical_path.append(task)
+
+# 6. Display Results
+df = pd.DataFrame({
+    'Description': [tasks[t]['desc'] for t in tasks],
+    'Duration': [tasks[t]['duration'] for t in tasks],
+    'ES': [early_start[t] for t in tasks],
+    'EF': [early_finish[t] for t in tasks],
+    'LS': [late_start[t] for t in tasks],
+    'LF': [late_finish[t] for t in tasks],
+    'Slack': [slack[t] for t in tasks],
+    'Critical': ['Yes' if s == 0 else 'No' for s in slack.values()]
+}, index=tasks.keys())
+
+print("--- CPM Schedule Analysis: The Bottleneck ---")
+print(df[['Description', 'Duration', 'ES', 'EF', 'Slack', 'Critical']])
+print("-" * 60)
+print(f"Total Project Duration: {project_duration} Days")
+print(f"Critical Path: {' -> '.join(critical_path)}")
+```
 
 ### Problem 3: The "Merge" Challenge
 **Scenario:** Construction. Notice how Activity F depends on three things.
 
 **Activity Data:**
+
 | Act | Pred | Time |
 |:---|:---|:---|
 | A | - | 5 |
@@ -334,31 +517,109 @@ To solve CPM problems without getting confused, we treat the project network lik
 **Step 1: The Merge (Node F)**
 * First, compute B, C, D (all start after A finishes at 5).
 
-    * **B:** $5 + 3 = 8$. (E follows B: $8 + 2 = 10$).
-    * **C:** $5 + 4 = 9$.
-    * **D:** $5 + 6 = 11$.
-* **F** depends on C(9), D(11), E(10).
-* **F's Start:** $\max(9, 11, 10) = 11$.
-* **F's Finish:** $11 + 3 = 14$.
+    - **B:** $5 + 3 = 8$. (E follows B: $8 + 2 = 10$).
+    - **C:** $5 + 4 = 9$.
+    - **D:** $5 + 6 = 11$.
+- **F** depends on C(9), D(11), E(10).
+- **F's Start:** $\max(9, 11, 10) = 11$.
+- **F's Finish:** $11 + 3 = 14$.
 
 **Step 2: Backward from Merge**
-* **F:** $LS = 11$.
-* Now F pushes back on C, D, and E. They ALL must finish by 11.
 
-    * **D:** $LF=11$. Duration 6. $LS = 5$.
-    * **C:** $LF=11$. Duration 4. $LS = 7$.
-    * **E:** $LF=11$. Duration 2. $LS = 9$. (This pushes back on B).
+- **F:** $LS = 11$.
+- Now F pushes back on C, D, and E. They ALL must finish by 11.
+
+    - **D:** $LF=11$. Duration 6. $LS = 5$.
+    - **C:** $LF=11$. Duration 4. $LS = 7$.
+    - **E:** $LF=11$. Duration 2. $LS = 9$. (This pushes back on B).
 
 **Float Analysis:**
-* **Path A-D-F:** $5+6+3=14$. (Length 14). Float = 0.
-* **Path A-C-F:** $5+4+3=12$. (Length 12). Float = 2.
-* **Path A-B-E-F:** $5+3+2+3=13$. (Length 13). Float = 1.
+
+- **Path A-D-F:** $5+6+3=14$. (Length 14). Float = 0.
+- **Path A-C-F:** $5+4+3=12$. (Length 12). Float = 2.
+- **Path A-B-E-F:** $5+3+2+3=13$. (Length 13). Float = 1.
 
 **Critical Path:** $A \to D \to F$
 
----
+>**Python solution**
+
+```{python}
+import networkx as nx
+import pandas as pd
+
+# 1. Define the Project Data (Problem 3: The Merge)
+tasks = {
+    'A': {'duration': 5, 'predecessors': []},
+    'B': {'duration': 3, 'predecessors': ['A']},
+    'C': {'duration': 4, 'predecessors': ['A']},
+    'D': {'duration': 6, 'predecessors': ['A']},
+    'E': {'duration': 2, 'predecessors': ['B']},
+    'F': {'duration': 3, 'predecessors': ['C', 'D', 'E']}
+}
+
+# 2. Build Graph
+G = nx.DiGraph()
+for task, data in tasks.items():
+    G.add_node(task, duration=data['duration'])
+    for pred in data['predecessors']:
+        G.add_edge(pred, task)
+
+# 3. Forward Pass (Early Start/Finish)
+early_start = {}
+early_finish = {}
+# Topological sort ensures we process parents before children
+for task in nx.topological_sort(G):
+    predecessors = list(G.predecessors(task))
+    # ES is Max of predecessors' EF
+    es = max((early_finish[p] for p in predecessors), default=0)
+    
+    duration = G.nodes[task]['duration']
+    early_start[task] = es
+    early_finish[task] = es + duration
+
+project_duration = max(early_finish.values())
+
+# 4. Backward Pass (Late Start/Finish)
+late_start = {}
+late_finish = {}
+for task in reversed(list(nx.topological_sort(G))):
+    successors = list(G.successors(task))
+    # LF is Min of successors' LS
+    lf = min((late_start[s] for s in successors), default=project_duration)
+    
+    duration = G.nodes[task]['duration']
+    late_start[task] = lf - duration
+    late_finish[task] = lf
+
+# 5. Calculate Slack & Critical Path
+slack = {}
+critical_path = []
+for task in tasks:
+    s = late_start[task] - early_start[task]
+    slack[task] = s
+    if s == 0:
+        critical_path.append(task)
+
+# 6. Display Results
+df = pd.DataFrame({
+    'Duration': [tasks[t]['duration'] for t in tasks],
+    'ES': [early_start[t] for t in tasks],
+    'EF': [early_finish[t] for t in tasks],
+    'LS': [late_start[t] for t in tasks],
+    'LF': [late_finish[t] for t in tasks],
+    'Slack': [slack[t] for t in tasks],
+    'Critical': ['Yes' if s == 0 else 'No' for s in slack.values()]
+}, index=tasks.keys())
+
+print("--- CPM Schedule: The Merge Challenge ---")
+print(df)
+print("-" * 60)
+print(f"Total Project Duration: {project_duration} Days")
+print(f"Critical Path: {' -> '.join(critical_path)}")
+```
 
 ### Problem 4: Complex Dependencies
+
 **Scenario:** A tech product launch.
 
 | Act | Desc | Pred | Time |
@@ -384,26 +645,107 @@ To solve CPM problems without getting confused, we treat the project network lik
 | **F** | C, E | **70** | 75 | - | 75 | 70 | 0 |
 
 **Calculations to Watch:**
-* For **F**: Predecessors C(25) and E(70). $\max(25, 70) = 70$.
-* For **C**: Successor F requires start at 70. Duration 15. $LS = 70-15 = 55$.
-    * Float for C: $55 - 10 = 45$.
-    * *Insight:* The Ad Campaign (C) is wildly non-critical. You have 45 days of slack!
+
+- For **F**: Predecessors C(25) and E(70). $\max(25, 70) = 70$.
+- For **C**: Successor F requires start at 70. Duration 15. $LS = 70-15 = 55$.
+
+    - Float for C: $55 - 10 = 45$.
+    - *Insight:* The Ad Campaign (C) is wildly non-critical. You have 45 days of slack!
 
 **Critical Path:** $A \to B \to D \to E \to F$
 
+>**Python solution**
+
+```{python}
+import networkx as nx
+import pandas as pd
+
+# 1. Define the Project Data (Problem 4: Tech Launch)
+tasks = {
+    'A': {'desc': 'Market Research', 'duration': 10, 'predecessors': []},
+    'B': {'desc': 'Product Design',  'duration': 20, 'predecessors': ['A']},
+    'C': {'desc': 'Ad Campaign',     'duration': 15, 'predecessors': ['A']},
+    'D': {'desc': 'Prototype',       'duration': 10, 'predecessors': ['B']},
+    'E': {'desc': 'Manufacture',     'duration': 30, 'predecessors': ['D']},
+    'F': {'desc': 'Launch Event',    'duration': 5,  'predecessors': ['C', 'E']}
+}
+
+# 2. Build Graph
+G = nx.DiGraph()
+for task, data in tasks.items():
+    G.add_node(task, duration=data['duration'], desc=data['desc'])
+    for pred in data['predecessors']:
+        G.add_edge(pred, task)
+
+# 3. Forward Pass (Early Start/Finish)
+early_start = {}
+early_finish = {}
+for task in nx.topological_sort(G):
+    predecessors = list(G.predecessors(task))
+    es = max((early_finish[p] for p in predecessors), default=0)
+    
+    duration = G.nodes[task]['duration']
+    early_start[task] = es
+    early_finish[task] = es + duration
+
+project_duration = max(early_finish.values())
+
+# 4. Backward Pass (Late Start/Finish)
+late_start = {}
+late_finish = {}
+for task in reversed(list(nx.topological_sort(G))):
+    successors = list(G.successors(task))
+    lf = min((late_start[s] for s in successors), default=project_duration)
+    
+    duration = G.nodes[task]['duration']
+    late_start[task] = lf - duration
+    late_finish[task] = lf
+
+# 5. Calculate Slack & Critical Path
+slack = {}
+critical_path = []
+for task in tasks:
+    s = late_start[task] - early_start[task]
+    slack[task] = s
+    if s == 0:
+        critical_path.append(task)
+
+# 6. Display Results
+df = pd.DataFrame({
+    'Description': [tasks[t]['desc'] for t in tasks],
+    'Duration': [tasks[t]['duration'] for t in tasks],
+    'ES': [early_start[t] for t in tasks],
+    'EF': [early_finish[t] for t in tasks],
+    'LS': [late_start[t] for t in tasks],
+    'LF': [late_finish[t] for t in tasks],
+    'Slack': [slack[t] for t in tasks],
+    'Critical': ['Yes' if s == 0 else 'No' for s in slack.values()]
+}, index=tasks.keys())
+
+print("--- CPM Analysis: Tech Product Launch ---")
+print(df[['Description', 'Duration', 'ES', 'EF', 'Slack', 'Critical']])
+print("-" * 65)
+print(f"Total Project Duration: {project_duration} Days")
+print(f"Critical Path: {' -> '.join(critical_path)}")
+```
+
+
 ### Problem 5: The "Exam Style" Tabular Problem
+
 **Scenario:** Complete the table to find the project parameters.
 
 **Given Data:**
-* A (4), B (3) start at 0.
-* C (2) depends on A.
-* D (5) depends on A.
-* E (6) depends on B.
-* F (3) depends on C, D, E.
+
+- A (4), B (3) start at 0.
+- C (2) depends on A.
+- D (5) depends on A.
+- E (6) depends on B.
+- F (3) depends on C, D, E.
 
 **Mathematical Solution:**
 
 **Forward Pass:**
+
 1.  **A:** $0 \to 4$.
 2.  **B:** $0 \to 3$.
 3.  **C:** After A(4). $4 \to 6$.
@@ -412,6 +754,7 @@ To solve CPM problems without getting confused, we treat the project network lik
 6.  **F:** After C(6), D(9), E(9). $\max(6, 9, 9) = 9$. $9 \to 12$.
 
 **Backward Pass:**
+
 1.  **F:** End 12. Start 9.
 2.  **C:** Need by 9. End 9. Start $9-2=7$.
 3.  **D:** Need by 9. End 9. Start $9-5=4$.
@@ -431,11 +774,89 @@ To solve CPM problems without getting confused, we treat the project network lik
 | F | 9 | 12 | 9 | 12 | 0 | **YES** |
 
 **Observation:**
+
 This project has **Two Critical Paths**:
+
 1.  $A \to D \to F$ (Length $4+5+3 = 12$)
 2.  $B \to E \to F$ (Length $3+6+3 = 12$)
 
 Both paths are bottlenecks. Delays in either A OR B will delay the project.
+
+**Python solution**
+
+```{python}
+import networkx as nx
+import pandas as pd
+
+# 1. Define the Project Data (Problem 5)
+tasks = {
+    'A': {'duration': 4, 'predecessors': []},
+    'B': {'duration': 3, 'predecessors': []},
+    'C': {'duration': 2, 'predecessors': ['A']},
+    'D': {'duration': 5, 'predecessors': ['A']},
+    'E': {'duration': 6, 'predecessors': ['B']},
+    'F': {'duration': 3, 'predecessors': ['C', 'D', 'E']}
+}
+
+# 2. Build Graph
+G = nx.DiGraph()
+for task, data in tasks.items():
+    G.add_node(task, duration=data['duration'])
+    for pred in data['predecessors']:
+        G.add_edge(pred, task)
+
+# 3. Forward Pass (Early Start/Finish)
+early_start = {}
+early_finish = {}
+for task in nx.topological_sort(G):
+    predecessors = list(G.predecessors(task))
+    # If no preds, start at 0. Else max of preds' finish.
+    es = max((early_finish[p] for p in predecessors), default=0)
+    
+    duration = G.nodes[task]['duration']
+    early_start[task] = es
+    early_finish[task] = es + duration
+
+project_duration = max(early_finish.values())
+
+# 4. Backward Pass (Late Start/Finish)
+late_start = {}
+late_finish = {}
+for task in reversed(list(nx.topological_sort(G))):
+    successors = list(G.successors(task))
+    # If no successors, finish at Project Duration. Else min of succs' start.
+    lf = min((late_start[s] for s in successors), default=project_duration)
+    
+    duration = G.nodes[task]['duration']
+    late_start[task] = lf - duration
+    late_finish[task] = lf
+
+# 5. Calculate Slack & Identify Critical Paths
+slack = {}
+critical_path_tasks = []
+for task in tasks:
+    s = late_start[task] - early_start[task]
+    slack[task] = s
+    if s == 0:
+        critical_path_tasks.append(task)
+
+# 6. Display Results
+df = pd.DataFrame({
+    'Duration': [tasks[t]['duration'] for t in tasks],
+    'ES': [early_start[t] for t in tasks],
+    'EF': [early_finish[t] for t in tasks],
+    'LS': [late_start[t] for t in tasks],
+    'LF': [late_finish[t] for t in tasks],
+    'Slack': [slack[t] for t in tasks],
+    'Critical': ['Yes' if s == 0 else 'No' for s in slack.values()]
+}, index=tasks.keys())
+
+print("--- CPM Tabular Solution ---")
+print(df)
+print("-" * 60)
+print(f"Total Project Duration: {project_duration} Days")
+print(f"Critical Tasks: {', '.join(critical_path_tasks)}")
+```
 
 ### Sample Problem
 
@@ -488,17 +909,149 @@ Find the minimum cost schedule to complete in 10 weeks.
 **Solution Approach:**
 Use CPM with time-cost trade-off analysis (crashing). Calculate cost slope = (Crash Cost - Normal Cost)/(Normal Time - Crash Time) and crash activities on critical path starting with lowest cost slope.
 
+**Python solution**
+
+```{python}
+import networkx as nx
+import pandas as pd
+from itertools import combinations
+
+# ---------------------------------------------------------
+# 1. Setup Project Data
+# ---------------------------------------------------------
+# Format: {Activity: {NormalT, CrashT, NormalC, CrashC, Predecessors}}
+data = {
+    'A': {'nT': 3, 'cT': 2, 'nC': 1000, 'cC': 1500, 'pred': []},
+    'B': {'nT': 4, 'cT': 3, 'nC': 2000, 'cC': 2600, 'pred': ['A']},
+    'C': {'nT': 5, 'cT': 4, 'nC': 1500, 'cC': 2000, 'pred': ['A']},
+    'D': {'nT': 6, 'cT': 4, 'nC': 3000, 'cC': 4200, 'pred': ['B', 'C']}
+}
+
+TARGET_DURATION = 10
+
+# ---------------------------------------------------------
+# 2. Helper Functions
+# ---------------------------------------------------------
+
+def calculate_slope(task):
+    """Calculates Cost Slope = (Crash Cost - Normal Cost) / (Normal Time - Crash Time)"""
+    props = data[task]
+    if props['nT'] == props['cT']: return float('inf') # Cannot crash
+    return (props['cC'] - props['nC']) / (props['nT'] - props['cT'])
+
+def get_project_duration(current_times):
+    """Runs CPM Forward Pass to find Project Duration"""
+    G = nx.DiGraph()
+    for task, props in data.items():
+        G.add_node(task, duration=current_times[task])
+        for p in props['pred']:
+            G.add_edge(p, task)
+            
+    # Calculate Earliest Finish (EF)
+    early_finish = {}
+    for task in nx.topological_sort(G):
+        preds = list(G.predecessors(task))
+        es = max((early_finish[p] for p in preds), default=0)
+        early_finish[task] = es + current_times[task]
+        
+    return max(early_finish.values())
+
+# ---------------------------------------------------------
+# 3. Initialization
+# ---------------------------------------------------------
+# Current state of durations (Starts at Normal Time)
+current_times = {t: data[t]['nT'] for t in data}
+current_cost = sum(data[t]['nC'] for t in data)
+history = []
+
+# Calculate Slopes
+slopes = {t: calculate_slope(t) for t in data}
+
+# ---------------------------------------------------------
+# 4. Iterative Crashing Loop
+# ---------------------------------------------------------
+print("--- Crashing Analysis Log ---")
+
+while True:
+    duration = get_project_duration(current_times)
+    history.append({'Duration': duration, 'Total Cost': current_cost, 'Action': 'Status Check'})
+    
+    if duration <= TARGET_DURATION:
+        print(f"Target of {TARGET_DURATION} weeks reached!")
+        break
+
+    # Find the Best Move (Cheapest way to reduce duration by 1 unit)
+    best_move = None
+    min_move_cost = float('inf')
+    
+    # Strategy A: Try crashing single tasks
+    candidates = [t for t in data if current_times[t] > data[t]['cT']]
+    
+    for task in candidates:
+        # Simulate Crash
+        current_times[task] -= 1
+        new_dur = get_project_duration(current_times)
+        current_times[task] += 1 # Revert
+        
+        # If duration decreased, this is a valid move
+        if new_dur < duration:
+            cost = slopes[task]
+            if cost < min_move_cost:
+                min_move_cost = cost
+                best_move = [task]
+
+    # Strategy B: If single tasks fail (due to parallel critical paths), try pairs
+    if best_move is None:
+        # We need to crash two parallel tasks simultaneously (e.g., B and C)
+        for t1, t2 in combinations(candidates, 2):
+            current_times[t1] -= 1
+            current_times[t2] -= 1
+            new_dur = get_project_duration(current_times)
+            current_times[t1] += 1
+            current_times[t2] += 1
+            
+            if new_dur < duration:
+                cost = slopes[t1] + slopes[t2]
+                if cost < min_move_cost:
+                    min_move_cost = cost
+                    best_move = [t1, t2]
+
+    # Apply the Best Move
+    if best_move:
+        actions_str = ""
+        for task in best_move:
+            current_times[task] -= 1
+            current_cost += slopes[task]
+            actions_str += f"Crash {task} (-1 wk, +${slopes[task]}); "
+        
+        print(f"Current Duration: {duration} wks. Action: {actions_str}")
+    else:
+        print("Cannot crash further (Max limit reached).")
+        break
+
+# ---------------------------------------------------------
+# 5. Final Output
+# ---------------------------------------------------------
+df_res = pd.DataFrame(history)
+print("\n--- Final Project Schedule ---")
+print(f"Final Duration: {get_project_duration(current_times)} weeks")
+print(f"Final Total Cost: ${current_cost}")
+print(f"Durations: {current_times}")
+print("-" * 40)
+print(df_res)
+```
+
 ### Review Questions
 
-1. **Explain why activities on the critical path have zero float. What implications does this have for project management?**
+1. Explain why activities on the critical path have zero float. What implications does this have for project management?
 
-2. **How does CPM help in resource allocation for campus construction projects?**
+2. How does CPM help in resource allocation for campus construction projects?
 
-3. **Given a project network, how would you determine all possible critical paths if multiple exist?**
+3. Given a project network, how would you determine all possible critical paths if multiple exist?
 
-4. **What is the significance of float/slack time in project scheduling? How can it be utilized effectively?**
+4. What is the significance of float/slack time in project scheduling? How can it be utilized effectively?
 
-5. **Design a CPM analysis for planning a campus festival. Identify what would constitute critical activities.**
+5. Design a CPM analysis for planning a campus festival. Identify what would constitute critical activities.
 
 
 ## Program Evaluation and Review Technique (PERT)
@@ -653,15 +1206,15 @@ te = (4+20+12)/6 = 6 weeks
 
 ### Review Questions
 
-1. **Explain why PERT uses the formula (a+4m+b)/6 for expected time rather than a simple average.**
+1. Explain why PERT uses the formula (a+4m+b)/6 for expected time rather than a simple average.
 
-2. **How does the assumption of normal distribution for project completion time rely on the Central Limit Theorem?**
+2. How does the assumption of normal distribution for project completion time rely on the Central Limit Theorem?
 
-3. **Calculate the probability of completing a project with expected duration 45 days and standard deviation 5 days within 50 days.**
+3. Calculate the probability of completing a project with expected duration 45 days and standard deviation 5 days within 50 days.
 
-4. **What managerial insights can be gained from PERT probability analysis that are not available from deterministic CPM?**
+4. What managerial insights can be gained from PERT probability analysis that are not available from deterministic CPM?
 
-5. **Design a PERT analysis for planning a campus conference. Which activities would likely have the highest uncertainty and why?**
+5. Design a PERT analysis for planning a campus conference. Which activities would likely have the highest uncertainty and why?
 
 
 ## Gantt Charts and Project Visualization
@@ -766,15 +1319,15 @@ Adjust schedule within float limits to ensure never more than 2 PMs working simu
 
 ### Review Questions
 
-1. **What information from CPM analysis is essential for creating an accurate Gantt chart?**
+1. What information from CPM analysis is essential for creating an accurate Gantt chart?
 
-2. **How do Gantt charts help in communicating project status to non-technical campus stakeholders?**
+2. How do Gantt charts help in communicating project status to non-technical campus stakeholders?
 
-3. **Design a Gantt chart for a semester-long academic project. What special considerations would apply?**
+3. Design a Gantt chart for a semester-long academic project. What special considerations would apply?
 
-4. **Explain how resource leveling can be visualized and implemented using Gantt charts.**
+4. Explain how resource leveling can be visualized and implemented using Gantt charts.
 
-5. **What are the limitations of Gantt charts compared to network diagrams for complex projects?**
+5. What are the limitations of Gantt charts compared to network diagrams for complex projects?
 
 
 ## Heuristic Algorithms and Local Search
@@ -886,15 +1439,15 @@ If distance < 45 km, accept the swap.
 
 ### Review Questions
 
-1. **Explain the trade-off between solution quality and computational time when using heuristic algorithms.**
+1. Explain the trade-off between solution quality and computational time when using heuristic algorithms.
 
-2. **What is the "local optimum" problem in local search algorithms and how can it be addressed?**
+2. What is the "local optimum" problem in local search algorithms and how can it be addressed?
 
-3. **Design a greedy heuristic for assigning project teams to campus facilities based on proximity and capacity.**
+3. Design a greedy heuristic for assigning project teams to campus facilities based on proximity and capacity.
 
-4. **Compare constructive heuristics vs improvement heuristics. When would you use each approach?**
+4. Compare constructive heuristics vs improvement heuristics. When would you use each approach?
 
-5. **How can heuristics be combined with exact methods (like CPM) for complex campus planning problems?**
+5. How can heuristics be combined with exact methods (like CPM) for complex campus planning problems?
 
 
 ## Micro-Project 3: Campus Construction Planning
@@ -1082,8 +1635,7 @@ For critical activities, provide three-point estimates:
 - **Implementation Ready:** Plan actionable for campus operations
 
 
-## Module 3 Summary
-
+:::{.callout-note}
 ### Key Concepts Mastered
 
 - ✅ Project planning fundamentals and methodologies
@@ -1091,6 +1643,8 @@ For critical activities, provide three-point estimates:
 - ✅ Program Evaluation Review Technique (PERT) for probabilistic analysis
 - ✅ Gantt chart creation and project visualization
 - ✅ Heuristic algorithms for complex optimization problems
+
+:::
 
 ### Skills Developed
 
