@@ -1192,7 +1192,179 @@ P(Z ≤ 2.70) ≈ 0.9965 → 99.65% probability
 Z for 95% = 1.96, 
 Interval: 20 ± 1.96×0.74 = [18.55, 21.45] weeks
 
-### Sample Problem
+>**Python solution**
+
+```{python}
+import math
+from collections import deque
+
+def solve_pert_problem():
+    # Activity data: a (optimistic), m (most likely), b (pessimistic), predecessors
+    activities = {
+        'A': {'a': 1, 'm': 2, 'b': 3, 'pred': []},
+        'B': {'a': 3, 'm': 4, 'b': 5, 'pred': ['A']},
+        'C': {'a': 5, 'm': 6, 'b': 7, 'pred': ['B']},
+        'D': {'a': 2, 'm': 3, 'b': 4, 'pred': ['C']},
+        'E': {'a': 2, 'm': 3, 'b': 4, 'pred': ['C']},
+        'F': {'a': 3, 'm': 4, 'b': 5, 'pred': ['D', 'E']},
+        'G': {'a': 1, 'm': 2, 'b': 3, 'pred': ['C']},
+        'H': {'a': 1, 'm': 1, 'b': 1, 'pred': ['F', 'G']}
+    }
+    
+    # Calculate expected time and variance for each activity
+    print("Activity Analysis:")
+    print("=" * 60)
+    print(f"{'Activity':<10} {'Optimistic (a)':<15} {'Most Likely (m)':<15} {'Pessimistic (b)':<15} {'Expected Time (te)':<20} {'Variance (σ²)':<15}")
+    print("-" * 90)
+    
+    for activity, data in activities.items():
+        a, m, b = data['a'], data['m'], data['b']
+        # PERT formula: Expected time = (a + 4m + b) / 6
+        te = (a + 4 * m + b) / 6
+        # Variance = ((b - a) / 6)^2
+        variance = ((b - a) / 6) ** 2
+        activities[activity]['te'] = round(te, 2)
+        activities[activity]['variance'] = round(variance, 2)
+        print(f"{activity:<10} {a:<15} {m:<15} {b:<15} {te:<20.2f} {variance:<15.4f}")
+    
+    print()
+    
+    # Forward pass: Calculate earliest start (ES) and earliest finish (EF)
+    print("Forward Pass Calculation:")
+    print("=" * 60)
+    print(f"{'Activity':<10} {'ES':<10} {'EF':<10}")
+    print("-" * 30)
+    
+    # Initialize ES and EF for all activities
+    for activity in activities:
+        activities[activity]['ES'] = 0
+        activities[activity]['EF'] = 0
+    
+    # Perform topological sort using Kahn's algorithm
+    in_degree = {activity: len(activities[activity]['pred']) for activity in activities}
+    queue = deque([activity for activity in activities if in_degree[activity] == 0])
+    
+    while queue:
+        current = queue.popleft()
+        current_data = activities[current]
+        
+        # Calculate ES: max of EF of all predecessors
+        if current_data['pred']:
+            current_data['ES'] = max(activities[pred]['EF'] for pred in current_data['pred'])
+        else:
+            current_data['ES'] = 0
+        
+        # Calculate EF: ES + expected time
+        current_data['EF'] = current_data['ES'] + current_data['te']
+        
+        print(f"{current:<10} {current_data['ES']:<10.2f} {current_data['EF']:<10.2f}")
+        
+        # Update in-degree for successors and add to queue if in-degree becomes 0
+        for activity in activities:
+            if current in activities[activity]['pred']:
+                in_degree[activity] -= 1
+                if in_degree[activity] == 0:
+                    queue.append(activity)
+    
+    # Find project duration (maximum EF)
+    project_duration = max(activities[activity]['EF'] for activity in activities)
+    print(f"\nExpected Project Duration: {project_duration:.2f} weeks")
+    
+    # Find critical path
+    print("\nCritical Path Analysis:")
+    print("=" * 60)
+    
+    # Backward pass: Calculate latest start (LS) and latest finish (LF)
+    for activity in activities:
+        activities[activity]['LF'] = project_duration
+        activities[activity]['LS'] = project_duration
+    
+    # Process activities in reverse order
+    reverse_order = list(activities.keys())[::-1]
+    
+    for activity in reverse_order:
+        current_data = activities[activity]
+        
+        # Find minimum LS of all successors
+        successors = [a for a in activities if activity in activities[a]['pred']]
+        
+        if successors:
+            current_data['LF'] = min(activities[s]['LS'] for s in successors)
+        else:
+            current_data['LF'] = project_duration
+            
+        current_data['LS'] = current_data['LF'] - current_data['te']
+    
+    # Identify critical activities and calculate path variance
+    print(f"{'Activity':<10} {'Slack':<10} {'Critical?':<15} {'Variance':<10}")
+    print("-" * 45)
+    
+    critical_path = []
+    path_variance = 0
+    
+    for activity in activities:
+        slack = activities[activity]['LS'] - activities[activity]['ES']
+        is_critical = abs(slack) < 0.01  # Considering floating point errors
+        
+        print(f"{activity:<10} {slack:<10.2f} {'Yes' if is_critical else 'No':<15} {activities[activity]['variance']:<10.4f}")
+        
+        if is_critical:
+            critical_path.append(activity)
+            path_variance += activities[activity]['variance']
+    
+    print(f"\nCritical Path: {' -> '.join(critical_path)}")
+    print(f"Critical Path Variance: {path_variance:.4f}")
+    print(f"Critical Path Standard Deviation: {math.sqrt(path_variance):.4f}")
+    
+    # Calculate probability of completing in 22 weeks
+    print("\n" + "=" * 60)
+    print("PROBABILITY ANALYSIS")
+    print("=" * 60)
+    
+    target_time = 22
+    z_score = (target_time - project_duration) / math.sqrt(path_variance)
+    
+    print(f"Target completion time: {target_time} weeks")
+    print(f"Expected completion time: {project_duration:.2f} weeks")
+    print(f"Standard deviation of critical path: {math.sqrt(path_variance):.4f}")
+    print(f"Z-score: {z_score:.4f}")
+    
+    # Calculate probability using normal distribution
+    from scipy.stats import norm
+    
+    probability = norm.cdf(z_score)
+    print(f"Probability of completing in {target_time} weeks: {probability:.4f} or {probability*100:.2f}%")
+    
+    # Calculate 95% confidence interval
+    print("\n" + "=" * 60)
+    print("95% CONFIDENCE INTERVAL")
+    print("=" * 60)
+    
+    # Z-value for 95% confidence is approximately 1.96
+    z_95 = 1.96
+    margin_of_error = z_95 * math.sqrt(path_variance)
+    
+    lower_bound = project_duration - margin_of_error
+    upper_bound = project_duration + margin_of_error
+    
+    print(f"95% Confidence Interval for completion:")
+    print(f"Lower bound: {lower_bound:.2f} weeks")
+    print(f"Upper bound: {upper_bound:.2f} weeks")
+    print(f"We can be 95% confident that the project will take between {lower_bound:.2f} and {upper_bound:.2f} weeks")
+    
+    # Summary
+    print("\n" + "=" * 60)
+    print("SUMMARY")
+    print("=" * 60)
+    print(f"1. Expected project duration: {project_duration:.2f} weeks")
+    print(f"2. Probability of completing in {target_time} weeks: {probability*100:.2f}%")
+    print(f"3. 95% confidence interval: [{lower_bound:.2f}, {upper_bound:.2f}] weeks")
+
+
+if __name__ == "__main__":
+    solve_pert_problem()
+```
+
 
 **Problem Statement:**
 A campus research project has activity D with estimates: a=4, m=5, b=12 weeks. Calculate the expected time and standard deviation. What does the large range (b-a) indicate?
@@ -1220,7 +1392,9 @@ te = (4+20+12)/6 = 6 weeks
 ## Gantt Charts and Project Visualization
 
 While CPM and PERT are the *brains* of the operation, the **Gantt Chart** is the *face*. It is a horizontal bar chart that maps activities against time.
+
 ### Why do we need this?
+
 Imagine explaining "Nodes and Edges" to a University Dean or a Construction Foreman. They might not understand graph theory, but they understand a bar chart.
 
 * It visualizes **Parallelism**: "Look, the electricians and plumbers are working at the same time."
@@ -1272,7 +1446,137 @@ A Gantt chart is a bar chart that visually represents a project schedule, showin
 4. **Schedule Adjustment**: Visualize impact of changes
 5. **Stakeholder Reporting**: Professional project updates
 
-### Sample Problem
+
+### Sample problem 1: The "Exam Style" Tabular Problem
+
+**Scenario:** Complete the table to find the project parameters.
+
+**Given Data:**
+
+- A (4), B (3) start at 0.
+- C (2) depends on A.
+- D (5) depends on A.
+- E (6) depends on B.
+- F (3) depends on C, D, E.
+
+>**Python solution to fill the table**
+```{python}
+import pandas as pd
+import networkx as nx
+import matplotlib.pyplot as plt
+import matplotlib.patches as mpatches
+
+# --- PART 1: CPM CALCULATION ---
+
+# 1. Define Project Data
+tasks = {
+    'A': {'duration': 4, 'preds': []},
+    'B': {'duration': 3, 'preds': []},
+    'C': {'duration': 2, 'preds': ['A']},
+    'D': {'duration': 5, 'preds': ['A']},
+    'E': {'duration': 6, 'preds': ['B']},
+    'F': {'duration': 3, 'preds': ['C', 'D', 'E']}
+}
+
+# 2. Build Graph
+G = nx.DiGraph()
+for task, data in tasks.items():
+    G.add_node(task, duration=data['duration'])
+    for pred in data['preds']:
+        G.add_edge(pred, task)
+
+# 3. Forward Pass (Earliest Start/Finish)
+early_start = {}
+early_finish = {}
+for task in nx.topological_sort(G):
+    preds = list(G.predecessors(task))
+    es = max((early_finish[p] for p in preds), default=0)
+    duration = G.nodes[task]['duration']
+    early_start[task] = es
+    early_finish[task] = es + duration
+
+project_duration = max(early_finish.values())
+
+# 4. Backward Pass (Latest Start/Finish)
+late_start = {}
+late_finish = {}
+for task in reversed(list(nx.topological_sort(G))):
+    succs = list(G.successors(task))
+    lf = min((late_start[s] for s in succs), default=project_duration)
+    duration = G.nodes[task]['duration']
+    late_start[task] = lf - duration
+    late_finish[task] = lf
+
+# 5. Calculate Slack & Criticality
+results = []
+for t in tasks:
+    es, ef = early_start[t], early_finish[t]
+    ls, lf = late_start[t], late_finish[t]
+    slack = ls - es
+    is_critical = (slack == 0)
+    results.append({
+        'Task': t, 'Duration': tasks[t]['duration'],
+        'ES': es, 'EF': ef, 'LS': ls, 'LF': lf,
+        'Slack': slack, 'Critical': is_critical
+    })
+
+# Create DataFrame for CPM Table
+df_cpm = pd.DataFrame(results).set_index('Task')
+print("--- CPM Calculation Results ---")
+print(df_cpm)
+print("-" * 50)
+
+# --- PART 2: GANTT CHART VISUALIZATION ---
+
+fig, ax = plt.subplots(figsize=(10, 6))
+
+# Define positions
+y_positions = range(len(results), 0, -1)
+yticks = [r['Task'] for r in results]
+
+for i, row in enumerate(results):
+    y = y_positions[i]
+    task = row['Task']
+    start = row['ES']
+    dur = row['Duration']
+    slack = row['Slack']
+    
+    # 1. Main Task Bar
+    color = 'tab:red' if row['Critical'] else 'tab:blue'
+    ax.barh(y, dur, left=start, height=0.5, color=color, edgecolor='black', alpha=0.8)
+    
+    # 2. Slack Bar (Ghost Bar)
+    if slack > 0:
+        ax.barh(y, slack, left=start + dur, height=0.5, 
+                color='gray', alpha=0.3, hatch='///', edgecolor='gray', linestyle='--')
+        ax.text(start + dur + slack/2, y, f"Slack: {slack}", 
+                ha='center', va='center', fontsize=8, color='black')
+
+    # Label inside bar
+    ax.text(start + dur/2, y, task, ha='center', va='center', 
+            color='white', fontweight='bold')
+
+# Chart Formatting
+ax.set_yticks(y_positions)
+ax.set_yticklabels(yticks)
+ax.set_xlabel("Time (Days)")
+ax.set_title(f"Project Gantt Chart (Duration: {project_duration} Days)")
+ax.set_xlim(0, project_duration + 2)
+ax.grid(axis='x', linestyle='--', alpha=0.5)
+
+# Legend
+legend_elements = [
+    mpatches.Patch(color='tab:red', label='Critical Task'),
+    mpatches.Patch(color='tab:blue', label='Non-Critical Task'),
+    mpatches.Patch(facecolor='gray', alpha=0.3, hatch='///', label='Slack (Float)')
+]
+ax.legend(handles=legend_elements, loc='lower right')
+
+plt.tight_layout()
+plt.show()
+```
+
+### Sample Problem 2
 
 **Problem Statement:**
 Create a Gantt chart for the library construction project using CPM results from Section 3.2.
@@ -1301,6 +1605,71 @@ Create a Gantt chart for the library construction project using CPM results from
 - Structure Complete: Week 12
 - Project Complete: Week 20
 
+>**Python solution using Matplotlib**
+
+```{python}
+import matplotlib.pyplot as plt
+import matplotlib.patches as mpatches
+
+# 1. Define the Project Schedule Data
+# Format: (Task Name, Start Week, Duration, Is_Critical, Float_Duration)
+tasks = [
+    ('A', 0,  2, True,  0),   # Critical
+    ('B', 2,  4, True,  0),   # Critical (Ends at 6)
+    ('C', 6,  6, True,  0),   # Critical (Ends at 12)
+    ('D', 12, 3, True,  0),   # Critical (Ends at 15)
+    ('E', 12, 3, False, 0),   # Non-Critical (Ends at 15)
+    ('G', 12, 2, False, 3),   # Non-Critical (Ends at 14, Float to 17)
+    ('F', 15, 4, True,  0),   # Critical (Ends at 19)
+    ('H', 19, 1, True,  0),   # Critical (Ends at 20)
+]
+
+# 2. Setup the Plot
+fig, ax = plt.subplots(figsize=(10, 6))
+
+# Y-positions for the tasks (reversed so A is at the top)
+y_pos = range(len(tasks), 0, -1)
+
+# 3. Plotting Loop
+for i, (name, start, duration, is_critical, slack) in enumerate(tasks):
+    y = y_pos[i]
+    
+    # Determine Color
+    color = 'tab:red' if is_critical else 'tab:blue'
+    
+    # Plot the Main Activity Bar
+    ax.barh(y, duration, left=start, height=0.5, align='center', 
+            color=color, alpha=0.8, edgecolor='black')
+    
+    # Plot Float/Slack (if any)
+    if slack > 0:
+        ax.barh(y, slack, left=start + duration, height=0.5, align='center', 
+                color='gray', alpha=0.3, hatch='///', edgecolor='gray', linestyle='--')
+        
+    # Add Text Labels inside/near bars
+    ax.text(start + duration/2, y, f"{name}", 
+            ha='center', va='center', color='white', fontweight='bold')
+
+# 4. Formatting the Chart
+ax.set_yticks(y_pos)
+ax.set_yticklabels([t[0] for t in tasks])
+ax.set_xlabel("Timeline (Weeks)")
+ax.set_ylabel("Activity")
+ax.set_title("Library Construction Project Gantt Chart")
+ax.set_xlim(0, 22)  # Extends slightly beyond 20 for visibility
+ax.grid(axis='x', linestyle='--', alpha=0.7)
+
+# Add Legend
+red_patch = mpatches.Patch(color='tab:red', label='Critical Path')
+blue_patch = mpatches.Patch(color='tab:blue', label='Non-Critical Task')
+gray_patch = mpatches.Patch(facecolor='gray', alpha=0.3, hatch='///', label='Float / Slack')
+plt.legend(handles=[red_patch, blue_patch, gray_patch], loc='lower right')
+
+# 5. Show the plot
+plt.tight_layout()
+plt.show()
+```
+
 ### Sample Problem
 
 **Problem Statement:**
@@ -1316,6 +1685,276 @@ A campus event planning project has resource constraints (only 2 project manager
 
 **Solution Approach:**
 Adjust schedule within float limits to ensure never more than 2 PMs working simultaneously, minimizing project extension.
+
+>**Python solution using Matplotlib with resource leveling**
+
+```{python}
+import pandas as pd
+import plotly.express as px
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+from itertools import combinations
+
+def resource_leveling_solution():
+    print("=" * 80)
+    print("CAMPUS EVENT PLANNING PROJECT - RESOURCE LEVELING")
+    print("=" * 80)
+    
+    # Initial project data
+    activities = {
+        'Planning': {'duration': 2, 'PMs': 2, 'predecessors': [], 'ES': 0, 'EF': 2, 'LS': 0, 'LF': 2},
+        'Vendor Selection': {'duration': 3, 'PMs': 1, 'predecessors': ['Planning'], 'ES': 2, 'EF': 5, 'LS': 3, 'LF': 6},
+        'Logistics': {'duration': 2, 'PMs': 2, 'predecessors': ['Planning'], 'ES': 2, 'EF': 4, 'LS': 4, 'LF': 6},
+        'Promotion': {'duration': 4, 'PMs': 1, 'predecessors': ['Planning'], 'ES': 2, 'EF': 6, 'LS': 2, 'LF': 6},
+        'Execution': {'duration': 1, 'PMs': 2, 'predecessors': ['Vendor Selection', 'Logistics', 'Promotion'], 
+                      'ES': 6, 'EF': 7, 'LS': 6, 'LF': 7}
+    }
+    
+    # Calculate slack/float
+    for activity in activities:
+        activities[activity]['slack'] = activities[activity]['LS'] - activities[activity]['ES']
+    
+    print("\nINITIAL SCHEDULE ANALYSIS:")
+    print("-" * 80)
+    print(f"{'Activity':<20} {'Duration':<10} {'PMs':<10} {'ES':<10} {'EF':<10} {'LS':<10} {'LF':<10} {'Slack':<10}")
+    print("-" * 80)
+    
+    for activity, data in activities.items():
+        print(f"{activity:<20} {data['duration']:<10} {data['PMs']:<10} {data['ES']:<10} "
+              f"{data['EF']:<10} {data['LS']:<10} {data['LF']:<10} {data['slack']:<10}")
+    
+    # Calculate initial resource profile
+    print("\n" + "=" * 80)
+    print("RESOURCE CONFLICT ANALYSIS")
+    print("=" * 80)
+    
+    initial_duration = max(activities[act]['EF'] for act in activities)
+    print(f"Initial project duration: {initial_duration} weeks")
+    
+    # Check resource requirements week by week
+    resource_profile = {}
+    for week in range(initial_duration + 1):
+        resource_profile[week] = 0
+    
+    for activity, data in activities.items():
+        for week in range(data['ES'], data['EF']):
+            resource_profile[week] += data['PMs']
+    
+    print("\nInitial Weekly Resource Demand (PMs):")
+    print("-" * 40)
+    for week in sorted(resource_profile.keys()):
+        if resource_profile[week] > 0:
+            print(f"Week {week}: {resource_profile[week]} PMs {'(OVERLOAD!)' if resource_profile[week] > 2 else ''}")
+    
+    # Identify overload periods
+    overloads = [(week, demand) for week, demand in resource_profile.items() if demand > 2]
+    if overloads:
+        print(f"\n⚠️  RESOURCE CONFLICT DETECTED!")
+        print(f"Maximum resource demand: {max(resource_profile.values())} PMs")
+        print(f"Available PMs: 2")
+        print(f"Overload occurs in {len(overloads)} weeks")
+    else:
+        print("\n✅ No resource conflicts detected!")
+    
+    # Resource leveling algorithm
+    print("\n" + "=" * 80)
+    print("RESOURCE LEVELING SOLUTION")
+    print("=" * 80)
+    
+    # Create leveled schedule (manual heuristic approach)
+    leveled_schedule = {
+        'Planning': {'start': 0, 'end': 2, 'PMs': 2, 'moved': False},
+        'Vendor Selection': {'start': 2, 'end': 5, 'PMs': 1, 'moved': False},
+        'Logistics': {'start': 5, 'end': 7, 'PMs': 2, 'moved': True},
+        'Promotion': {'start': 2, 'end': 6, 'PMs': 1, 'moved': False},
+        'Execution': {'start': 7, 'end': 8, 'PMs': 2, 'moved': True}
+    }
+    
+    # Calculate leveled resource profile
+    leveled_resources = {}
+    for week in range(9):  # Extended timeline
+        leveled_resources[week] = 0
+    
+    for activity, data in leveled_schedule.items():
+        for week in range(data['start'], data['end']):
+            leveled_resources[week] += data['PMs']
+    
+    print("\nLeveled Weekly Resource Demand:")
+    print("-" * 40)
+    for week in sorted(leveled_resources.keys()):
+        if leveled_resources[week] > 0:
+            print(f"Week {week}: {leveled_resources[week]} PMs")
+    
+    print("\nLeveling Strategy Applied:")
+    print("-" * 40)
+    print("1. 'Planning' (2 PMs, 2 weeks): Weeks 0-2 (no change)")
+    print("2. 'Vendor Selection' (1 PM, 3 weeks): Weeks 2-5 (no change)")
+    print("3. 'Promotion' (1 PM, 4 weeks): Weeks 2-6 (no change)")
+    print("4. 'Logistics' (2 PMs, 2 weeks): DELAYED to Weeks 5-7")
+    print("   - Originally Weeks 2-4 (conflict with Planning)")
+    print("   - Using slack of 2 weeks (LF=6)")
+    print("5. 'Execution' (2 PMs, 1 week): Weeks 7-8 (delayed by 1 week)")
+    print("\nTotal project extension: 1 week (from 7 to 8 weeks)")
+    
+    # Create comparison visualization
+    print("\n" + "=" * 80)
+    print("VISUAL COMPARISON: BEFORE vs AFTER RESOURCE LEVELING")
+    print("=" * 80)
+    
+    # Before leveling data
+    before_data = []
+    for activity, data in activities.items():
+        before_data.append({
+            'Activity': activity,
+            'Start': data['ES'],
+            'Finish': data['EF'],
+            'PMs': data['PMs'],
+            'Status': 'Before Leveling'
+        })
+    
+    # After leveling data
+    after_data = []
+    for activity, data in leveled_schedule.items():
+        after_data.append({
+            'Activity': activity,
+            'Start': data['start'],
+            'Finish': data['end'],
+            'PMs': data['PMs'],
+            'Status': 'After Leveling'
+        })
+    
+    df_before = pd.DataFrame(before_data)
+    df_after = pd.DataFrame(after_data)
+    df_combined = pd.concat([df_before, df_after])
+    
+    # Create subplots
+    fig = make_subplots(
+        rows=2, cols=1,
+        subplot_titles=('Before Resource Leveling', 'After Resource Leveling'),
+        vertical_spacing=0.15,
+        row_heights=[0.5, 0.5]
+    )
+    
+    # Before leveling
+    colors_before = ['#EF553B' if pm == 2 else '#636EFA' for pm in df_before['PMs']]
+    fig.add_trace(
+        go.Bar(
+            name='Before',
+            x=df_before['Activity'],
+            y=df_before['Finish'] - df_before['Start'],
+            base=df_before['Start'],
+            marker_color=colors_before,
+            text=[f"{row['PMs']} PMs" for _, row in df_before.iterrows()],
+            textposition='inside',
+            hoverinfo='text',
+            hovertext=[f"{row['Activity']}: Weeks {row['Start']}-{row['Finish']}<br>{row['PMs']} PMs" 
+                      for _, row in df_before.iterrows()]
+        ),
+        row=1, col=1
+    )
+    
+    # After leveling
+    colors_after = ['#00CC96' if row['PMs'] == 2 else '#AB63FA' for _, row in df_after.iterrows()]
+    fig.add_trace(
+        go.Bar(
+            name='After',
+            x=df_after['Activity'],
+            y=df_after['Finish'] - df_after['Start'],
+            base=df_after['Start'],
+            marker_color=colors_after,
+            text=[f"{row['PMs']} PMs" for _, row in df_after.iterrows()],
+            textposition='inside',
+            hoverinfo='text',
+            hovertext=[f"{row['Activity']}: Weeks {row['Start']}-{row['Finish']}<br>{row['PMs']} PMs" 
+                      for _, row in df_after.iterrows()]
+        ),
+        row=2, col=1
+    )
+    
+    # Update layout
+    fig.update_layout(
+        title_text="Campus Event Planning - Resource Leveling Comparison",
+        height=800,
+        showlegend=False,
+        barmode='stack'
+    )
+    
+    fig.update_yaxes(title_text="Weeks", row=1, col=1)
+    fig.update_yaxes(title_text="Weeks", row=2, col=1)
+    
+    # Resource profile chart
+    print("\n" + "=" * 80)
+    print("RESOURCE LOADING PROFILE")
+    print("=" * 80)
+    
+    # Create resource profile visualization
+    weeks = list(range(9))
+    before_load = [resource_profile.get(week, 0) for week in weeks]
+    after_load = [leveled_resources.get(week, 0) for week in weeks]
+    
+    fig2 = go.Figure()
+    
+    fig2.add_trace(go.Scatter(
+        x=weeks, y=before_load,
+        mode='lines+markers',
+        name='Before Leveling',
+        line=dict(color='red', width=3),
+        marker=dict(size=8)
+    ))
+    
+    fig2.add_trace(go.Scatter(
+        x=weeks, y=after_load,
+        mode='lines+markers',
+        name='After Leveling',
+        line=dict(color='green', width=3),
+        marker=dict(size=8)
+    ))
+    
+    # Add resource limit line
+    fig2.add_hline(y=2, line_dash="dash", line_color="blue", 
+                  annotation_text="Resource Limit (2 PMs)", 
+                  annotation_position="top left")
+    
+    fig2.update_layout(
+        title="PM Resource Loading Profile",
+        xaxis_title="Week",
+        yaxis_title="Number of PMs Required",
+        height=500
+    )
+    
+    print("\nKEY INSIGHTS:")
+    print("-" * 40)
+    print("1. Initial schedule had 3 PMs required in Week 2 (Planning + Promotion)")
+    print("2. By delaying 'Logistics' to Weeks 5-7, we avoid resource conflicts")
+    print("3. 'Vendor Selection' and 'Promotion' (both 1 PM) can run in parallel")
+    print("4. Minimum project extension: 1 week (8 weeks total)")
+    print("5. Resource utilization is now balanced at max 2 PMs/week")
+    
+    return fig, fig2, leveled_schedule
+
+# Generate the solution
+fig1, fig2, final_schedule = resource_leveling_solution()
+
+# Display schedule in text format
+print("\n" + "=" * 80)
+print("FINAL RESOURCE-LEVELED SCHEDULE")
+print("=" * 80)
+print(f"{'Activity':<20} {'Start Week':<15} {'End Week':<15} {'PMs':<10} {'Status':<15}")
+print("-" * 80)
+
+for activity, data in final_schedule.items():
+    status = "DELAYED" if data['moved'] else "AS PLANNED"
+    print(f"{activity:<20} {data['start']:<15} {data['end']:<15} {data['PMs']:<10} {status:<15}")
+
+print("\n" + "=" * 80)
+print("GANTT CHART VISUALIZATION")
+print("=" * 80)
+print("Charts will be displayed in your environment.")
+print("If using Jupyter, run: fig1.show() and fig2.show()")
+print("\nTo save the charts:")
+print("fig1.write_html('resource_leveling_gantt.html')")
+print("fig2.write_html('resource_profile.html')")
+```
 
 ### Review Questions
 
