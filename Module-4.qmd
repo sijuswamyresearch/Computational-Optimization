@@ -1144,6 +1144,7 @@ In the previous section (MST), our goal was **Cost Efficiency** for the *builder
 In a weighted graph, a "path" is a sequence of edges connecting a starting node (Source, $S$) to a destination node (Target, $T$). The "length" of the path is not the number of edges, but the **sum of their weights**.
 
 The Shortest Path Problem asks:
+
 > *"What is the sequence of edges that yields the minimum possible total weight between $u$ and $v$?"*
 
 

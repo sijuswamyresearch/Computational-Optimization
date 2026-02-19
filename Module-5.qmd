@@ -247,6 +247,7 @@ Machine learning fundamentally involves optimization:
 $$
 J(\theta) = \text{Loss}(\theta) + \lambda \sum |\theta_i|
 $$
+
 - Promotes sparsity
 - Feature selection
 
