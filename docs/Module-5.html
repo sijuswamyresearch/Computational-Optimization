@@ -1,0 +1,1965 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.31">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>6&nbsp; Module 5: Optimization Algorithms for Advanced Applications – Computational Optimization &amp; Applications</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./Module-4.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-c39790739b795761a025db3e98f5af6a.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./Module-5.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Module 5: Optimization Algorithms for Advanced Applications</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Computational Optimization &amp; Applications</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">🎯 Course Vision &amp; Context</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./intro.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction to Computational Optimization and Applications</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Module-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Module 1: Basics of Optimization and Linear Programming</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Module-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Module 2: Non-linear Programming with Python</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Module-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Module 3: Project Planning and Optimization Techniques</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Module-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Module 4: Combinatorial Optimization and Graph Algorithms</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Module-5.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Module 5: Optimization Algorithms for Advanced Applications</span></span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#module-overview" id="toc-module-overview" class="nav-link active" data-scroll-target="#module-overview"><span class="header-section-number">6.1</span> Module Overview</a>
+  <ul class="collapse">
+  <li><a href="#learning-objectives" id="toc-learning-objectives" class="nav-link" data-scroll-target="#learning-objectives"><span class="header-section-number">6.1.1</span> Learning Objectives</a></li>
+  <li><a href="#module-structure" id="toc-module-structure" class="nav-link" data-scroll-target="#module-structure"><span class="header-section-number">6.1.2</span> Module Structure</a></li>
+  <li><a href="#real-world-context" id="toc-real-world-context" class="nav-link" data-scroll-target="#real-world-context"><span class="header-section-number">6.1.3</span> Real-World Context</a></li>
+  </ul></li>
+  <li><a href="#gradient-descent-fundamentals" id="toc-gradient-descent-fundamentals" class="nav-link" data-scroll-target="#gradient-descent-fundamentals"><span class="header-section-number">6.2</span> Gradient Descent Fundamentals</a>
+  <ul class="collapse">
+  <li><a href="#theoretical-foundation" id="toc-theoretical-foundation" class="nav-link" data-scroll-target="#theoretical-foundation"><span class="header-section-number">6.2.1</span> Theoretical Foundation</a></li>
+  <li><a href="#sample-problem" id="toc-sample-problem" class="nav-link" data-scroll-target="#sample-problem"><span class="header-section-number">6.2.2</span> Sample Problem</a></li>
+  <li><a href="#review-questions-5.1" id="toc-review-questions-5.1" class="nav-link" data-scroll-target="#review-questions-5.1"><span class="header-section-number">6.2.3</span> Review Questions 5.1</a></li>
+  </ul></li>
+  <li><a href="#advanced-gradient-methods" id="toc-advanced-gradient-methods" class="nav-link" data-scroll-target="#advanced-gradient-methods"><span class="header-section-number">6.3</span> Advanced Gradient Methods</a>
+  <ul class="collapse">
+  <li><a href="#theoretical-foundation-1" id="toc-theoretical-foundation-1" class="nav-link" data-scroll-target="#theoretical-foundation-1"><span class="header-section-number">6.3.1</span> Theoretical Foundation</a></li>
+  <li><a href="#sample-problems" id="toc-sample-problems" class="nav-link" data-scroll-target="#sample-problems"><span class="header-section-number">6.3.2</span> Sample Problems</a></li>
+  <li><a href="#sample-problem-1" id="toc-sample-problem-1" class="nav-link" data-scroll-target="#sample-problem-1"><span class="header-section-number">6.3.3</span> Sample Problem</a></li>
+  <li><a href="#review-questions" id="toc-review-questions" class="nav-link" data-scroll-target="#review-questions"><span class="header-section-number">6.3.4</span> Review Questions</a></li>
+  </ul></li>
+  <li><a href="#optimization-in-machine-learning" id="toc-optimization-in-machine-learning" class="nav-link" data-scroll-target="#optimization-in-machine-learning"><span class="header-section-number">6.4</span> Optimization in Machine Learning</a>
+  <ul class="collapse">
+  <li><a href="#theoretical-foundation-2" id="toc-theoretical-foundation-2" class="nav-link" data-scroll-target="#theoretical-foundation-2"><span class="header-section-number">6.4.1</span> Theoretical Foundation</a></li>
+  <li><a href="#bias-and-variance" id="toc-bias-and-variance" class="nav-link" data-scroll-target="#bias-and-variance"><span class="header-section-number">6.4.2</span> Bias and Variance</a></li>
+  <li><a href="#overfitting-and-underfitting" id="toc-overfitting-and-underfitting" class="nav-link" data-scroll-target="#overfitting-and-underfitting"><span class="header-section-number">6.4.3</span> Overfitting and Underfitting</a></li>
+  <li><a href="#sample-problem-2" id="toc-sample-problem-2" class="nav-link" data-scroll-target="#sample-problem-2"><span class="header-section-number">6.4.4</span> Sample Problem</a></li>
+  <li><a href="#sample-problem-3" id="toc-sample-problem-3" class="nav-link" data-scroll-target="#sample-problem-3"><span class="header-section-number">6.4.5</span> Sample Problem</a></li>
+  <li><a href="#review-questions-1" id="toc-review-questions-1" class="nav-link" data-scroll-target="#review-questions-1"><span class="header-section-number">6.4.6</span> Review Questions</a></li>
+  </ul></li>
+  <li><a href="#stochastic-optimization-methods" id="toc-stochastic-optimization-methods" class="nav-link" data-scroll-target="#stochastic-optimization-methods"><span class="header-section-number">6.5</span> Stochastic Optimization Methods</a>
+  <ul class="collapse">
+  <li><a href="#theoretical-foundation-3" id="toc-theoretical-foundation-3" class="nav-link" data-scroll-target="#theoretical-foundation-3"><span class="header-section-number">6.5.1</span> Theoretical Foundation</a></li>
+  <li><a href="#sample-problem-4" id="toc-sample-problem-4" class="nav-link" data-scroll-target="#sample-problem-4"><span class="header-section-number">6.5.2</span> Sample Problem</a></li>
+  <li><a href="#sample-problem-5" id="toc-sample-problem-5" class="nav-link" data-scroll-target="#sample-problem-5"><span class="header-section-number">6.5.3</span> Sample Problem</a></li>
+  <li><a href="#review-questions-2" id="toc-review-questions-2" class="nav-link" data-scroll-target="#review-questions-2"><span class="header-section-number">6.5.4</span> Review Questions</a></li>
+  </ul></li>
+  <li><a href="#capstone-project-ai-enhanced-campus-optimization" id="toc-capstone-project-ai-enhanced-campus-optimization" class="nav-link" data-scroll-target="#capstone-project-ai-enhanced-campus-optimization"><span class="header-section-number">6.6</span> Capstone Project: AI-Enhanced Campus Optimization</a>
+  <ul class="collapse">
+  <li><a href="#project-foundation" id="toc-project-foundation" class="nav-link" data-scroll-target="#project-foundation"><span class="header-section-number">6.6.1</span> Project Foundation</a></li>
+  <li><a href="#capstone-project-requirements" id="toc-capstone-project-requirements" class="nav-link" data-scroll-target="#capstone-project-requirements"><span class="header-section-number">6.6.2</span> Capstone Project Requirements</a></li>
+  <li><a href="#sample-capstone-problem" id="toc-sample-capstone-problem" class="nav-link" data-scroll-target="#sample-capstone-problem"><span class="header-section-number">6.6.3</span> Sample Capstone Problem</a></li>
+  <li><a href="#capstone-design-questions" id="toc-capstone-design-questions" class="nav-link" data-scroll-target="#capstone-design-questions"><span class="header-section-number">6.6.4</span> Capstone Design Questions</a></li>
+  </ul></li>
+  <li><a href="#module-5-summary" id="toc-module-5-summary" class="nav-link" data-scroll-target="#module-5-summary"><span class="header-section-number">6.7</span> Module 5 Summary</a>
+  <ul class="collapse">
+  <li><a href="#key-concepts-mastered" id="toc-key-concepts-mastered" class="nav-link" data-scroll-target="#key-concepts-mastered"><span class="header-section-number">6.7.1</span> Key Concepts Mastered</a></li>
+  <li><a href="#skills-developed" id="toc-skills-developed" class="nav-link" data-scroll-target="#skills-developed"><span class="header-section-number">6.7.2</span> Skills Developed</a></li>
+  <li><a href="#course-integration" id="toc-course-integration" class="nav-link" data-scroll-target="#course-integration"><span class="header-section-number">6.7.3</span> Course Integration</a></li>
+  <li><a href="#career-applications" id="toc-career-applications" class="nav-link" data-scroll-target="#career-applications"><span class="header-section-number">6.7.4</span> Career Applications</a></li>
+  <li><a href="#final-preparation" id="toc-final-preparation" class="nav-link" data-scroll-target="#final-preparation"><span class="header-section-number">6.7.5</span> Final Preparation</a></li>
+  </ul></li>
+  <li><a href="#course-culmination" id="toc-course-culmination" class="nav-link" data-scroll-target="#course-culmination"><span class="header-section-number">6.8</span> Course Culmination</a>
+  <ul class="collapse">
+  <li><a href="#learning-journey-recap" id="toc-learning-journey-recap" class="nav-link" data-scroll-target="#learning-journey-recap"><span class="header-section-number">6.8.1</span> Learning Journey Recap</a></li>
+  <li><a href="#professional-competencies-achieved" id="toc-professional-competencies-achieved" class="nav-link" data-scroll-target="#professional-competencies-achieved"><span class="header-section-number">6.8.2</span> Professional Competencies Achieved</a></li>
+  <li><a href="#future-learning-pathways" id="toc-future-learning-pathways" class="nav-link" data-scroll-target="#future-learning-pathways"><span class="header-section-number">6.8.3</span> Future Learning Pathways</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Module 5: Optimization Algorithms for Advanced Applications</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="module-overview" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="module-overview"><span class="header-section-number">6.1</span> Module Overview</h2>
+<div style="text-align: center;">
+<p><img src="Module-5-info.png" alt="A detailed infographic about Quarto webpage contents" style="width: 650px; height: auto; display: block; margin: 0 auto;"></p>
+</div>
+<section id="learning-objectives" class="level3" data-number="6.1.1">
+<h3 data-number="6.1.1" class="anchored" data-anchor-id="learning-objectives"><span class="header-section-number">6.1.1</span> Learning Objectives</h3>
+<ul>
+<li>Master gradient-based optimization algorithms and their variants</li>
+<li>Understand optimization in machine learning and deep learning contexts</li>
+<li>Implement stochastic optimization methods for large-scale problems</li>
+<li>Apply optimization techniques to advanced AI applications</li>
+<li>Develop expertise in tuning optimization hyperparameters</li>
+</ul>
+</section>
+<section id="module-structure" class="level3" data-number="6.1.2">
+<h3 data-number="6.1.2" class="anchored" data-anchor-id="module-structure"><span class="header-section-number">6.1.2</span> Module Structure</h3>
+<ul>
+<li><strong>Section 5.1</strong>: Gradient Descent Fundamentals</li>
+<li><strong>Section 5.2</strong>: Advanced Gradient Methods</li>
+<li><strong>Section 5.3</strong>: Optimization in Machine Learning</li>
+<li><strong>Section 5.4</strong>: Stochastic Optimization Methods</li>
+<li><strong>Section 5.5</strong>: Capstone Project: AI-Enhanced Campus Optimization</li>
+</ul>
+</section>
+<section id="real-world-context" class="level3" data-number="6.1.3">
+<h3 data-number="6.1.3" class="anchored" data-anchor-id="real-world-context"><span class="header-section-number">6.1.3</span> Real-World Context</h3>
+<p>Apply optimization algorithms to train machine learning models for predictive analytics in campus operations, from demand forecasting to intelligent routing systems.</p>
+</section>
+</section>
+<section id="gradient-descent-fundamentals" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="gradient-descent-fundamentals"><span class="header-section-number">6.2</span> Gradient Descent Fundamentals</h2>
+<section id="theoretical-foundation" class="level3" data-number="6.2.1">
+<h3 data-number="6.2.1" class="anchored" data-anchor-id="theoretical-foundation"><span class="header-section-number">6.2.1</span> Theoretical Foundation</h3>
+<section id="what-is-gradient-descent" class="level4" data-number="6.2.1.1">
+<h4 data-number="6.2.1.1" class="anchored" data-anchor-id="what-is-gradient-descent"><span class="header-section-number">6.2.1.1</span> What is Gradient Descent?</h4>
+<p>Gradient Descent is an iterative optimization algorithm used to find the minimum of a function. By following the negative gradient of the function, it progressively moves toward the optimal solution.</p>
+</section>
+<section id="mathematical-formulation" class="level4" data-number="6.2.1.2">
+<h4 data-number="6.2.1.2" class="anchored" data-anchor-id="mathematical-formulation"><span class="header-section-number">6.2.1.2</span> Mathematical Formulation</h4>
+<p>Given a function <span class="math inline">\(f(\theta)\)</span> we want to minimize:</p>
+<p><strong>Update Rule:</strong> <span class="math display">\[
+\theta_{t+1} = \theta_t - \eta \cdot \nabla f(\theta_t)
+\]</span> Where:</p>
+<ul>
+<li><span class="math inline">\(\theta\)</span>: Parameters to optimize</li>
+<li><span class="math inline">\(\eta\)</span>: Learning rate (step size)</li>
+<li><span class="math inline">\(\nabla f(\theta)\)</span>: Gradient of the function</li>
+<li><span class="math inline">\(t\)</span>: Iteration number</li>
+</ul>
+</section>
+<section id="key-concepts" class="level4" data-number="6.2.1.3">
+<h4 data-number="6.2.1.3" class="anchored" data-anchor-id="key-concepts"><span class="header-section-number">6.2.1.3</span> Key Concepts</h4>
+<p><strong>Learning Rate (η):</strong></p>
+<ul>
+<li>Controls step size in each iteration</li>
+<li>Too large: May overshoot minimum</li>
+<li>Too small: Slow convergence</li>
+</ul>
+<p><strong>Convergence Criteria:</strong></p>
+<ul>
+<li>Gradient magnitude below threshold</li>
+<li>Small change in objective function</li>
+<li>Maximum iterations reached</li>
+</ul>
+<p><strong>Types of Gradient Descent:</strong></p>
+<ol type="1">
+<li><strong>Batch Gradient Descent</strong>: Uses entire dataset for each update</li>
+<li><strong>Stochastic Gradient Descent (SGD)</strong>: Uses single sample per update</li>
+<li><strong>Mini-batch Gradient Descent</strong>: Uses small batches of data</li>
+</ol>
+</section>
+<section id="campus-city-application" class="level4" data-number="6.2.1.4">
+<h4 data-number="6.2.1.4" class="anchored" data-anchor-id="campus-city-application"><span class="header-section-number">6.2.1.4</span> Campus City Application</h4>
+<p>Optimizing warehouse locations by treating facility coordinates as parameters and total transportation cost as the objective function to minimize.</p>
+</section>
+</section>
+<section id="sample-problem" class="level3" data-number="6.2.2">
+<h3 data-number="6.2.2" class="anchored" data-anchor-id="sample-problem"><span class="header-section-number">6.2.2</span> Sample Problem</h3>
+<p><strong>Problem Statement:</strong> Minimize the quadratic function <span class="math inline">\(f(x) = x^2 - 4x + 4\)</span> using gradient descent starting from <span class="math inline">\(x_0 = 0\)</span>, with learning rate <span class="math inline">\(\eta = 0.1\)</span>.</p>
+<p><strong>Solution Steps:</strong></p>
+<ol type="1">
+<li><strong>Gradient:</strong> <span class="math inline">\(\nabla f(x) = 2x - 4\)</span></li>
+<li><strong>Iteration 1:</strong>
+<ul>
+<li>Gradient at <span class="math inline">\(x_0 = 0\)</span>: <span class="math inline">\(2(0) - 4 = -4\)</span></li>
+<li>Update: <span class="math inline">\(x_1 = 0 - 0.1(-4) = 0.4\)</span></li>
+</ul></li>
+<li><strong>Iteration 2:</strong>
+<ul>
+<li>Gradient at <span class="math inline">\(x_1 = 0.4\)</span>: <span class="math inline">\(2(0.4) - 4 = -3.2\)</span></li>
+<li>Update: <span class="math inline">\(x_2 = 0.4 - 0.1(-3.2) = 0.72\)</span></li>
+</ul></li>
+<li>Continue until convergence</li>
+<li><strong>Analytical minimum:</strong> <span class="math inline">\(x = 2\)</span> (from setting gradient to zero)</li>
+</ol>
+<p><strong>Observation:</strong> Gradient descent approaches the true minimum <span class="math inline">\(x = 2\)</span> asymptotically.</p>
+</section>
+<section id="review-questions-5.1" class="level3" data-number="6.2.3">
+<h3 data-number="6.2.3" class="anchored" data-anchor-id="review-questions-5.1"><span class="header-section-number">6.2.3</span> Review Questions 5.1</h3>
+<ol type="1">
+<li><p>Explain the intuition behind gradient descent: why does following the negative gradient lead to function minimization?</p></li>
+<li><p>What is the effect of learning rate on gradient descent convergence? Provide examples of problems caused by too large and too small learning rates.</p></li>
+<li><p>Calculate the first three iterations of gradient descent for <span class="math inline">\(f(x) = 3x^2 + 2x - 5\)</span> starting from <span class="math inline">\(x_0 = 1\)</span> with <span class="math inline">\(\eta = 0.05\)</span>.</p></li>
+<li><p>How does gradient descent handle non-convex functions with multiple local minima?</p></li>
+<li><p>Design a gradient descent approach for optimizing delivery routes in Campus City. What would be your parameters and objective function?</p></li>
+</ol>
+</section>
+</section>
+<section id="advanced-gradient-methods" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="advanced-gradient-methods"><span class="header-section-number">6.3</span> Advanced Gradient Methods</h2>
+<section id="theoretical-foundation-1" class="level3" data-number="6.3.1">
+<h3 data-number="6.3.1" class="anchored" data-anchor-id="theoretical-foundation-1"><span class="header-section-number">6.3.1</span> Theoretical Foundation</h3>
+<section id="limitations-of-basic-gradient-descent" class="level4" data-number="6.3.1.1">
+<h4 data-number="6.3.1.1" class="anchored" data-anchor-id="limitations-of-basic-gradient-descent"><span class="header-section-number">6.3.1.1</span> Limitations of Basic Gradient Descent</h4>
+<ul>
+<li>Slow convergence in flat regions</li>
+<li>Oscillations in steep valleys</li>
+<li>Sensitive to learning rate choice</li>
+<li>Poor performance with ill-conditioned problems</li>
+</ul>
+<p>As a solution, advanced gradient methods have been developed to address these issues by incorporating momentum, adaptive learning rates, and other techniques. Most of these methods are designed to accelerate convergence, improve stability, and handle the complexities of non-convex optimization landscapes commonly encountered in machine learning and deep learning applications. Popular methods include Momentum, Nesterov Accelerated Gradient (NAG), Adagrad, RMSProp, and Adam.</p>
+<p><strong>Momentum:</strong> <span class="math display">\[
+\begin{aligned}
+v_t &amp;= \beta v_{t-1} + (1 - \beta) \nabla f(\theta_t) \\
+\theta_{t+1} &amp;= \theta_t - \eta v_t
+\end{aligned}
+\]</span></p>
+<ul>
+<li><span class="math inline">\(\beta\)</span>: Momentum coefficient (typically 0.9)</li>
+<li>Accumulates gradient from previous steps</li>
+<li>Reduces oscillations and accelerates convergence</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Poylak’s Momentum Method:
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Poylak’s momentum method, introduced in 1964, is one of the earliest techniques to enhance gradient descent by adding a momentum term that helps accelerate convergence, especially in scenarios with high curvature or noisy gradients. The momentum term allows the optimization process to build up speed in directions with consistent gradients while dampening oscillations in directions with varying gradients. The update formula for Poylakis’s method is similar to the standard momentum method, where the velocity term is updated based on the current gradient and the previous velocity, and then used to update the parameters. This approach has been foundational in the development of more advanced optimization algorithms used in machine learning today. This method will solve the cold start problem. The update rules for Poylak’s momentum method can be expressed as:</p>
+<p><span class="math display">\[v_t = \beta v_{t-1} +\eta  \nabla f(\theta_t)\]</span> <span class="math display">\[\theta_{t+1} = \theta_t - v_t\]</span></p>
+</div>
+</div>
+<p>A comparison of the gradient descent, momentum with EMA approach and the Poylak’s momentum method can be shown as follows:</p>
+<p><strong>Problem:</strong> Minimize <span class="math inline">\(f(x) = x^2 - 4x + 4\)</span> starting from <span class="math inline">\(x_0 = 0\)</span> with learning rate <span class="math inline">\(\eta = 0.1\)</span> and momentum coefficient <span class="math inline">\(\beta = 0.9\)</span>.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+<col style="width: 25%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Iteration</th>
+<th style="text-align: left;">Standard GD</th>
+<th style="text-align: left;">GD with EMA Momentum</th>
+<th style="text-align: left;">Classical Polyak Momentum</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><strong>0</strong></td>
+<td style="text-align: left;">0.0000</td>
+<td style="text-align: left;">0.0000</td>
+<td style="text-align: left;">0.0000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>1</strong></td>
+<td style="text-align: left;">0.4000</td>
+<td style="text-align: left;">0.0400</td>
+<td style="text-align: left;">0.4000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>2</strong></td>
+<td style="text-align: left;">0.7200</td>
+<td style="text-align: left;">0.1152</td>
+<td style="text-align: left;">1.0800</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><strong>3</strong></td>
+<td style="text-align: left;">0.9760</td>
+<td style="text-align: left;">0.2206</td>
+<td style="text-align: left;">1.8760</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><strong>4</strong></td>
+<td style="text-align: left;">1.1808</td>
+<td style="text-align: left;">0.3510</td>
+<td style="text-align: left;">2.6172</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Nesterov Accelerated Gradient (NAG):</strong> Introduced by Yurii Nesterov in 1983, it has become a standard optimization technique in machine learning. Nesterov’s method looks ahead by calculating the gradient at the estimated future position: <span class="math display">\[\begin{aligned}
+v_t &amp;= \beta v_{t-1} + (1 - \beta) \nabla f(\theta_t - \eta \beta v_{t-1}) \\
+\theta_{t+1} &amp;= \theta_t - \eta v_t
+\end{aligned}
+\]</span> where the gradient is evaluated at the “look-ahead” position <span class="math inline">\(\theta_t - \eta \beta v_{t-1}\)</span>, allowing for more informed updates.</p>
+<ul>
+<li>Provides a look-ahead mechanism</li>
+<li>Often leads to faster convergence than standard momentum</li>
+<li>Particularly effective in convex optimization problems</li>
+<li>Can help escape local minima in non-convex problems</li>
+<li>Reduces overshooting in steep regions</li>
+<li>Commonly used in training deep neural networks for improved performance</li>
+</ul>
+</section>
+<section id="adaptive-learning-rate-methods" class="level4" data-number="6.3.1.2">
+<h4 data-number="6.3.1.2" class="anchored" data-anchor-id="adaptive-learning-rate-methods"><span class="header-section-number">6.3.1.2</span> Adaptive Learning Rate Methods</h4>
+<p>adaptive learning rate methods adjust the learning rate for each parameter based on the history of gradients, allowing for more efficient optimization, especially in scenarios with sparse gradients or varying curvature. Most common adaptive methods include Adagrad, RMSProp, and Adam, each with its own approach to modifying the learning rate dynamically during training.</p>
+<p><strong>Adagrad:</strong> Adapts learning rate for each parameter based on historical gradients. It divides the learning rate by the square root of the sum of squared gradients, which can lead to diminishing learning rates over time. The update formula is given by: <span class="math display">\[
+\theta_{t+1} = \theta_t - \frac{\eta}{\sqrt{G_t + \epsilon}} \nabla f(\theta_t)
+\]</span> Where <span class="math inline">\(G_t\)</span> is the sum of squares of past gradients and <span class="math inline">\(\epsilon\)</span> is a small constant to prevent division by zero. <span class="math display">\[
+G_t = \sum_{i=1}^t \nabla f(\theta_i)^2
+\]</span></p>
+<p><strong>RMSProp:</strong> Adapts learning rate per parameter based on recent gradient magnitudes. Introduced in a 2012 Coursera lecture by Hinton, RMSProp aims to resolve Adagrad’s radically diminishing learning rates by using a moving average of squared gradients. Compare with Adagrad, RMSProp maintains a decaying average of past squared gradients, which allows it to continue learning even after many iterations. The update rules for RMSProp are:<br>
+<span class="math display">\[
+\theta_{t+1} = \theta_t - \frac{\eta}{\sqrt{E[g^2]_t + \epsilon}} g_t
+\]</span> Where <span class="math inline">\(E[g^2]_t\)</span> is the exponentially decaying average of past squared gradients, calculated as:<br>
+<span class="math display">\[E[g^2]_t = \gamma E[g^2]_{t-1} + (1 - \gamma) g_t^2\]</span></p>
+<p><strong>Adam (Adaptive Moment Estimation):</strong></p>
+<p>Adam is an optimization algorithm that combines the advantages of both Momentum and RMSProp. It computes adaptive learning rates for each parameter by maintaining running averages of both the gradients (first moment) and the squared gradients (second moment). Adam also includes bias-correction terms to account for the initialization of these averages. The update rules for Adam are as follows: <span class="math display">\[\begin{aligned}
+m_t &amp;= \beta_1 m_{t-1} + (1 - \beta_1) g_t \\
+v_t &amp;= \beta_2 v_{t-1} + (1 - \beta_2) g_t^2 \\
+\hat{m}_t &amp;= \frac{m_t}{1 - \beta_1^t} \\
+\hat{v}_t &amp;= \frac{v_t}{1 - \beta_2^t} \\
+\theta_{t+1} &amp;= \theta_t - \frac{\eta}{\sqrt{\hat{v}_t} + \epsilon} \hat{m}_t
+\end{aligned}
+\]</span></p>
+<p>where:</p>
+<ul>
+<li><span class="math inline">\(m_t\)</span>: First moment estimate (mean of gradients)</li>
+<li><span class="math inline">\(v_t\)</span>: Second moment estimate (uncentered variance of gradients)</li>
+<li><span class="math inline">\(\beta_1\)</span>: Exponential decay rate for the first moment estimates (commonly set to 0.9)</li>
+<li><span class="math inline">\(\beta_2\)</span>: Exponential decay rate for the second moment estimates (commonly set to 0.999)</li>
+<li><span class="math inline">\(\hat{m}_t\)</span>: Bias-corrected first moment estimate</li>
+<li><span class="math inline">\(\hat{v}_t\)</span>: Bias-corrected second moment estimate</li>
+<li><span class="math inline">\(\epsilon\)</span>: Small constant to prevent division by zero (commonly set to <span class="math inline">\(10^{-8}\)</span>)</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Advantages of Adam:
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Maintains exponentially decaying average of past gradients (first moment)</li>
+<li>Maintains exponentially decaying average of past squared gradients (second moment)</li>
+<li>Computes bias-corrected estimates</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="mathematical-comparison" class="level4" data-number="6.3.1.3">
+<h4 data-number="6.3.1.3" class="anchored" data-anchor-id="mathematical-comparison"><span class="header-section-number">6.3.1.3</span> Mathematical Comparison</h4>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 22%">
+<col style="width: 22%">
+<col style="width: 37%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Method</th>
+<th>Key Idea</th>
+<th>Best For</th>
+<th>Hyperparameters</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Momentum</td>
+<td>Accumulates past gradients</td>
+<td>Navigating ravines</td>
+<td>β (momentum)</td>
+</tr>
+<tr class="even">
+<td>NAG</td>
+<td>Look-ahead gradient</td>
+<td>Faster convergence</td>
+<td>β (momentum)</td>
+</tr>
+<tr class="odd">
+<td>RMSProp</td>
+<td>Adaptive learning rates</td>
+<td>Non-stationary objectives</td>
+<td>γ (decay rate)</td>
+</tr>
+<tr class="even">
+<td>Adam</td>
+<td>Combines momentum + RMSProp</td>
+<td>General purpose</td>
+<td>β₁, β₂, ε</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="sample-problems" class="level3" data-number="6.3.2">
+<h3 data-number="6.3.2" class="anchored" data-anchor-id="sample-problems"><span class="header-section-number">6.3.2</span> Sample Problems</h3>
+<p><strong>1. Problem statement:</strong> Compare the convergence of solutions of <span class="math inline">\(f(x)=x^2-4x+4\)</span> using the Adagrad, RMSProp and adam optimizers starting from <span class="math inline">\(x_0=0\)</span> with learning rate <span class="math inline">\(\eta=0.1\)</span>. Chose 4 iterations and show the results in a table. ( <span class="math inline">\(\gamma=0.9\)</span>, <span class="math inline">\(\beta_1=0.9\)</span>, <span class="math inline">\(\beta_2=0.99\)</span> and <span class="math inline">\(\epsilon=10^{-8}\)</span>).</p>
+<div id="808fccb5" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f_prime(x):</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Derivative of the objective function f(x) = x^2 - 4x + 4"""</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">2</span> <span class="op">*</span> x <span class="op">-</span> <span class="dv">4</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Hyperparameters</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>x_0 <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>eta <span class="op">=</span> <span class="fl">0.1</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>epsilon <span class="op">=</span> <span class="fl">1e-8</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>iterations <span class="op">=</span> <span class="dv">4</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># AdaGrad Initialization</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>x_ada <span class="op">=</span> x_0</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># RMSprop Initialization</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>x_rms <span class="op">=</span> x_0</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>gamma <span class="op">=</span> <span class="fl">0.9</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>E_g2 <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Adam Initialization</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>x_adam <span class="op">=</span> x_0</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>beta1 <span class="op">=</span> <span class="fl">0.9</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>beta2 <span class="op">=</span> <span class="fl">0.99</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Header for the table</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="st">'Iteration (t)'</span><span class="sc">:&lt;15}</span><span class="ss"> | </span><span class="sc">{</span><span class="st">'AdaGrad (x_t)'</span><span class="sc">:&lt;15}</span><span class="ss"> | </span><span class="sc">{</span><span class="st">'RMSprop (x_t)'</span><span class="sc">:&lt;15}</span><span class="ss"> | </span><span class="sc">{</span><span class="st">'Adam (x_t)'</span><span class="sc">:&lt;15}</span><span class="ss">"</span>)</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">68</span>)</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="dv">0</span><span class="sc">:&lt;15}</span><span class="ss"> | </span><span class="sc">{</span>x_0<span class="sc">:&lt;15.4f}</span><span class="ss"> | </span><span class="sc">{</span>x_0<span class="sc">:&lt;15.4f}</span><span class="ss"> | </span><span class="sc">{</span>x_0<span class="sc">:&lt;15.4f}</span><span class="ss">"</span>)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Iteration Loop</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, iterations <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ------------------ AdaGrad Update ------------------</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    g_ada <span class="op">=</span> f_prime(x_ada)</span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    G <span class="op">+=</span> g_ada<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>    x_ada <span class="op">=</span> x_ada <span class="op">-</span> (eta <span class="op">/</span> (math.sqrt(G) <span class="op">+</span> epsilon)) <span class="op">*</span> g_ada</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ------------------ RMSprop Update ------------------</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>    g_rms <span class="op">=</span> f_prime(x_rms)</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>    E_g2 <span class="op">=</span> gamma <span class="op">*</span> E_g2 <span class="op">+</span> (<span class="dv">1</span> <span class="op">-</span> gamma) <span class="op">*</span> g_rms<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>    x_rms <span class="op">=</span> x_rms <span class="op">-</span> (eta <span class="op">/</span> (math.sqrt(E_g2) <span class="op">+</span> epsilon)) <span class="op">*</span> g_rms</span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>    <span class="co"># ------------------ Adam Update ---------------------</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>    g_adam <span class="op">=</span> f_prime(x_adam)</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> beta1 <span class="op">*</span> m <span class="op">+</span> (<span class="dv">1</span> <span class="op">-</span> beta1) <span class="op">*</span> g_adam</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>    v <span class="op">=</span> beta2 <span class="op">*</span> v <span class="op">+</span> (<span class="dv">1</span> <span class="op">-</span> beta2) <span class="op">*</span> g_adam<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Bias corrections for Adam</span></span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>    m_hat <span class="op">=</span> m <span class="op">/</span> (<span class="dv">1</span> <span class="op">-</span> beta1<span class="op">**</span>t)</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>    v_hat <span class="op">=</span> v <span class="op">/</span> (<span class="dv">1</span> <span class="op">-</span> beta2<span class="op">**</span>t)</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>    x_adam <span class="op">=</span> x_adam <span class="op">-</span> (eta <span class="op">/</span> (math.sqrt(v_hat) <span class="op">+</span> epsilon)) <span class="op">*</span> m_hat</span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Print row</span></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>t<span class="sc">:&lt;15}</span><span class="ss"> | </span><span class="sc">{</span>x_ada<span class="sc">:&lt;15.4f}</span><span class="ss"> | </span><span class="sc">{</span>x_rms<span class="sc">:&lt;15.4f}</span><span class="ss"> | </span><span class="sc">{</span>x_adam<span class="sc">:&lt;15.4f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Iteration (t)   | AdaGrad (x_t)   | RMSprop (x_t)   | Adam (x_t)     
+--------------------------------------------------------------------
+0               | 0.0000          | 0.0000          | 0.0000         
+1               | 0.1000          | 0.3162          | 0.1000         
+2               | 0.1689          | 0.5261          | 0.1998         
+3               | 0.2242          | 0.6913          | 0.2994         
+4               | 0.2714          | 0.8302          | 0.3986         </code></pre>
+</div>
+</div>
+<p><strong>Problem Statement 2:</strong> Use Gradient Descend, Momentum adagrad, RMSProp, and adam methods solve the problem minimize <span class="math inline">\(f(x)=x^2-7x+5\)</span>.</p>
+<div id="3aed01e3" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f_prime(x):</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Derivative of the objective function f(x) = x^2 - 7x + 5"""</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">2</span> <span class="op">*</span> x <span class="op">-</span> <span class="dv">7</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Hyperparameters</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>x_0 <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>eta <span class="op">=</span> <span class="fl">0.1</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>epsilon <span class="op">=</span> <span class="fl">1e-8</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>iterations <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Initializations</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>x_gd <span class="op">=</span> x_0</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>x_mom <span class="op">=</span> x_0</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>v_mom <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>beta_mom <span class="op">=</span> <span class="fl">0.9</span>  <span class="co"># Polyak momentum coefficient</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>x_ada <span class="op">=</span> x_0</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>G <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>x_rms <span class="op">=</span> x_0</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>gamma <span class="op">=</span> <span class="fl">0.9</span>     <span class="co"># RMSprop decay rate</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>E_g2 <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>x_adam <span class="op">=</span> x_0</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>beta1 <span class="op">=</span> <span class="fl">0.9</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>beta2 <span class="op">=</span> <span class="fl">0.99</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Header for the table</span></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="st">'Iter'</span><span class="sc">:&lt;5}</span><span class="ss"> | </span><span class="sc">{</span><span class="st">'GD'</span><span class="sc">:&lt;10}</span><span class="ss"> | </span><span class="sc">{</span><span class="st">'Momentum'</span><span class="sc">:&lt;10}</span><span class="ss"> | </span><span class="sc">{</span><span class="st">'AdaGrad'</span><span class="sc">:&lt;10}</span><span class="ss"> | </span><span class="sc">{</span><span class="st">'RMSProp'</span><span class="sc">:&lt;10}</span><span class="ss"> | </span><span class="sc">{</span><span class="st">'Adam'</span><span class="sc">:&lt;10}</span><span class="ss">"</span>)</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">65</span>)</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="dv">0</span><span class="sc">:&lt;5}</span><span class="ss"> | </span><span class="sc">{</span>x_gd<span class="sc">:&lt;10.4f}</span><span class="ss"> | </span><span class="sc">{</span>x_mom<span class="sc">:&lt;10.4f}</span><span class="ss"> | </span><span class="sc">{</span>x_ada<span class="sc">:&lt;10.4f}</span><span class="ss"> | </span><span class="sc">{</span>x_rms<span class="sc">:&lt;10.4f}</span><span class="ss"> | </span><span class="sc">{</span>x_adam<span class="sc">:&lt;10.4f}</span><span class="ss">"</span>)</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a><span class="co"># Iteration Loop</span></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, iterations <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 1. Standard Gradient Descent</span></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true" tabindex="-1"></a>    g_gd <span class="op">=</span> f_prime(x_gd)</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true" tabindex="-1"></a>    x_gd <span class="op">=</span> x_gd <span class="op">-</span> eta <span class="op">*</span> g_gd</span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 2. GD with Momentum (Classical Polyak)</span></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true" tabindex="-1"></a>    g_mom <span class="op">=</span> f_prime(x_mom)</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true" tabindex="-1"></a>    v_mom <span class="op">=</span> beta_mom <span class="op">*</span> v_mom <span class="op">+</span> eta <span class="op">*</span> g_mom</span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true" tabindex="-1"></a>    x_mom <span class="op">=</span> x_mom <span class="op">-</span> v_mom</span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 3. AdaGrad</span></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true" tabindex="-1"></a>    g_ada <span class="op">=</span> f_prime(x_ada)</span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true" tabindex="-1"></a>    G <span class="op">+=</span> g_ada<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true" tabindex="-1"></a>    x_ada <span class="op">=</span> x_ada <span class="op">-</span> (eta <span class="op">/</span> (math.sqrt(G) <span class="op">+</span> epsilon)) <span class="op">*</span> g_ada</span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 4. RMSprop</span></span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true" tabindex="-1"></a>    g_rms <span class="op">=</span> f_prime(x_rms)</span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true" tabindex="-1"></a>    E_g2 <span class="op">=</span> gamma <span class="op">*</span> E_g2 <span class="op">+</span> (<span class="dv">1</span> <span class="op">-</span> gamma) <span class="op">*</span> g_rms<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true" tabindex="-1"></a>    x_rms <span class="op">=</span> x_rms <span class="op">-</span> (eta <span class="op">/</span> (math.sqrt(E_g2) <span class="op">+</span> epsilon)) <span class="op">*</span> g_rms</span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true" tabindex="-1"></a>    <span class="co"># 5. Adam</span></span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true" tabindex="-1"></a>    g_adam <span class="op">=</span> f_prime(x_adam)</span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> beta1 <span class="op">*</span> m <span class="op">+</span> (<span class="dv">1</span> <span class="op">-</span> beta1) <span class="op">*</span> g_adam</span>
+<span id="cb3-63"><a href="#cb3-63" aria-hidden="true" tabindex="-1"></a>    v <span class="op">=</span> beta2 <span class="op">*</span> v <span class="op">+</span> (<span class="dv">1</span> <span class="op">-</span> beta2) <span class="op">*</span> g_adam<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb3-64"><a href="#cb3-64" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-65"><a href="#cb3-65" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Bias corrections for Adam</span></span>
+<span id="cb3-66"><a href="#cb3-66" aria-hidden="true" tabindex="-1"></a>    m_hat <span class="op">=</span> m <span class="op">/</span> (<span class="dv">1</span> <span class="op">-</span> beta1<span class="op">**</span>t)</span>
+<span id="cb3-67"><a href="#cb3-67" aria-hidden="true" tabindex="-1"></a>    v_hat <span class="op">=</span> v <span class="op">/</span> (<span class="dv">1</span> <span class="op">-</span> beta2<span class="op">**</span>t)</span>
+<span id="cb3-68"><a href="#cb3-68" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-69"><a href="#cb3-69" aria-hidden="true" tabindex="-1"></a>    x_adam <span class="op">=</span> x_adam <span class="op">-</span> (eta <span class="op">/</span> (math.sqrt(v_hat) <span class="op">+</span> epsilon)) <span class="op">*</span> m_hat</span>
+<span id="cb3-70"><a href="#cb3-70" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Print row</span></span>
+<span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>t<span class="sc">:&lt;5}</span><span class="ss"> | </span><span class="sc">{</span>x_gd<span class="sc">:&lt;10.4f}</span><span class="ss"> | </span><span class="sc">{</span>x_mom<span class="sc">:&lt;10.4f}</span><span class="ss"> | </span><span class="sc">{</span>x_ada<span class="sc">:&lt;10.4f}</span><span class="ss"> | </span><span class="sc">{</span>x_rms<span class="sc">:&lt;10.4f}</span><span class="ss"> | </span><span class="sc">{</span>x_adam<span class="sc">:&lt;10.4f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Iter  | GD         | Momentum   | AdaGrad    | RMSProp    | Adam      
+-----------------------------------------------------------------
+0     | 0.0000     | 0.0000     | 0.0000     | 0.0000     | 0.0000    
+1     | 0.7000     | 0.7000     | 0.1000     | 0.3162     | 0.1000    
+2     | 1.2600     | 1.8900     | 0.1697     | 0.5351     | 0.1999    
+3     | 1.7080     | 3.2830     | 0.2261     | 0.7128     | 0.2997    
+4     | 2.0664     | 4.5801     | 0.2745     | 0.8666     | 0.3993    
+5     | 2.3531     | 5.5315     | 0.3176     | 1.0045     | 0.4986    
+6     | 2.5825     | 5.9814     | 0.3567     | 1.1308     | 0.5976    
+7     | 2.7660     | 5.8901     | 0.3928     | 1.2482     | 0.6963    
+8     | 2.9128     | 5.3299     | 0.4264     | 1.3584     | 0.7945    
+9     | 3.0302     | 4.4597     | 0.4579     | 1.4627     | 0.8921    
+10    | 3.1242     | 3.4846     | 0.4876     | 1.5619     | 0.9892    </code></pre>
+</div>
+</div>
+<p><strong>Problem Statement 3:</strong> Compare convergence of basic gradient descent vs momentum for minimizing <span class="math inline">\(f(x) = x^4 - 3x^2 + x\)</span> starting from <span class="math inline">\(x_0 = 2.5\)</span>.</p>
+<div id="cbdc9317" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f_prime(x):</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Derivative of f(x) = x^4 - 3x^2 + x"""</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">4</span> <span class="op">*</span> x<span class="op">**</span><span class="dv">3</span> <span class="op">-</span> <span class="dv">6</span> <span class="op">*</span> x <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Hyperparameters</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>x_0 <span class="op">=</span> <span class="fl">2.5</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>eta <span class="op">=</span> <span class="fl">0.01</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>iterations <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Basic GD Initialization</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>x_gd <span class="op">=</span> x_0</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Momentum Initialization</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>x_mom <span class="op">=</span> x_0</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>v_mom <span class="op">=</span> <span class="fl">0.0</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>beta <span class="op">=</span> <span class="fl">0.9</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="st">'Iter'</span><span class="sc">:&lt;5}</span><span class="ss"> | </span><span class="sc">{</span><span class="st">'Basic GD (x_t)'</span><span class="sc">:&lt;15}</span><span class="ss"> | </span><span class="sc">{</span><span class="st">'Momentum (x_t)'</span><span class="sc">:&lt;15}</span><span class="ss">"</span>)</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">40</span>)</span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="dv">0</span><span class="sc">:&lt;5}</span><span class="ss"> | </span><span class="sc">{</span>x_gd<span class="sc">:&lt;15.4f}</span><span class="ss"> | </span><span class="sc">{</span>x_mom<span class="sc">:&lt;15.4f}</span><span class="ss">"</span>)</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, iterations <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Basic Gradient Descent Update</span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true" tabindex="-1"></a>    g_gd <span class="op">=</span> f_prime(x_gd)</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true" tabindex="-1"></a>    x_gd <span class="op">=</span> x_gd <span class="op">-</span> eta <span class="op">*</span> g_gd</span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Momentum Update</span></span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true" tabindex="-1"></a>    g_mom <span class="op">=</span> f_prime(x_mom)</span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true" tabindex="-1"></a>    v_mom <span class="op">=</span> beta <span class="op">*</span> v_mom <span class="op">+</span> eta <span class="op">*</span> g_mom</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true" tabindex="-1"></a>    x_mom <span class="op">=</span> x_mom <span class="op">-</span> v_mom</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>t<span class="sc">:&lt;5}</span><span class="ss"> | </span><span class="sc">{</span>x_gd<span class="sc">:&lt;15.4f}</span><span class="ss"> | </span><span class="sc">{</span>x_mom<span class="sc">:&lt;15.4f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Iter  | Basic GD (x_t)  | Momentum (x_t) 
+----------------------------------------
+0     | 2.5000          | 2.5000         
+1     | 2.0150          | 2.0150         
+2     | 1.7986          | 1.3621         
+3     | 1.6638          | 0.7452         
+4     | 1.5694          | 0.2081         
+5     | 1.4989          | -0.2731        
+6     | 1.4442          | -0.7318        
+7     | 1.4003          | -1.1829        
+8     | 1.3645          | -1.6036        
+9     | 1.3348          | -1.9235        
+10    | 1.3097          | -2.0522        </code></pre>
+</div>
+</div>
+<p><strong>Analysis:</strong></p>
+<ol type="1">
+<li><strong>Basic GD:</strong> May oscillate in the valley near <span class="math inline">\(x = 1\)</span></li>
+<li><strong>Momentum GD:</strong> Smoothens oscillations and converges faster</li>
+<li><strong>Key Insight:</strong> Momentum helps escape local flat regions and reduces zigzagging</li>
+</ol>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li>Learning rate: <span class="math inline">\(\eta = 0.01\)</span></li>
+<li>Momentum: <span class="math inline">\(\beta = 0.9\)</span></li>
+<li>True minimum: Near <span class="math inline">\(x ≈ 0.85\)</span></li>
+</ul>
+</section>
+<section id="sample-problem-1" class="level3" data-number="6.3.3">
+<h3 data-number="6.3.3" class="anchored" data-anchor-id="sample-problem-1"><span class="header-section-number">6.3.3</span> Sample Problem</h3>
+<p><strong>Problem Statement:</strong> A neural network for predicting campus facility demand has loss function with very different curvatures in different parameter directions (ill-conditioned). Which optimizer would you choose and why?</p>
+<p><strong>Solution:</strong></p>
+<p>Adam optimizer would be most suitable because:</p>
+<ol type="1">
+<li>Handles sparse gradients well</li>
+<li>Adapts learning rates per parameter</li>
+<li>Combines benefits of momentum and RMSProp</li>
+<li>Generally robust to ill-conditioning</li>
+</ol>
+</section>
+<section id="review-questions" class="level3" data-number="6.3.4">
+<h3 data-number="6.3.4" class="anchored" data-anchor-id="review-questions"><span class="header-section-number">6.3.4</span> Review Questions</h3>
+<ol type="1">
+<li><p>Explain how momentum helps gradient descent overcome the problem of oscillations in narrow valleys.</p></li>
+<li><p>Compare <code>RMSProp</code> and <code>Adam</code> optimizers. When would you choose one over the other for campus demand prediction?</p></li>
+<li><p>What is the “look-ahead” property of Nesterov Accelerated Gradient and how does it improve convergence?</p></li>
+<li><p>Design an adaptive learning rate schedule for optimizing a campus energy consumption model. What factors would influence your schedule?</p></li>
+<li><p>How do advanced gradient methods handle the trade-off between convergence speed and stability?</p></li>
+</ol>
+</section>
+</section>
+<section id="optimization-in-machine-learning" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="optimization-in-machine-learning"><span class="header-section-number">6.4</span> Optimization in Machine Learning</h2>
+<section id="theoretical-foundation-2" class="level3" data-number="6.4.1">
+<h3 data-number="6.4.1" class="anchored" data-anchor-id="theoretical-foundation-2"><span class="header-section-number">6.4.1</span> Theoretical Foundation</h3>
+<section id="optimization-in-ml-pipeline" class="level4" data-number="6.4.1.1">
+<h4 data-number="6.4.1.1" class="anchored" data-anchor-id="optimization-in-ml-pipeline"><span class="header-section-number">6.4.1.1</span> Optimization in ML Pipeline</h4>
+<p>Machine learning fundamentally involves optimization:</p>
+<ol type="1">
+<li><strong>Model Selection:</strong> Choose hypothesis space</li>
+<li><strong>Loss Function:</strong> Define optimization objective</li>
+<li><strong>Optimization Algorithm:</strong> Find optimal parameters</li>
+<li><strong>Regularization:</strong> Control model complexity</li>
+</ol>
+</section>
+<section id="loss-functions" class="level4" data-number="6.4.1.2">
+<h4 data-number="6.4.1.2" class="anchored" data-anchor-id="loss-functions"><span class="header-section-number">6.4.1.2</span> Loss Functions</h4>
+<p><strong>Common Loss Functions:</strong></p>
+<ol type="1">
+<li><strong>Mean Squared Error (MSE):</strong> <span class="math inline">\(\frac{1}{n} \sum (y_i - \hat{y}_i)^2\)</span>: Used for regression tasks, penalizes larger errors more heavily, and is sensitive to outliers. For example, if a dataset contains an outlier with a large error, the MSE will be significantly affected, leading to a model that may not generalize well to the majority of the data. In contrast, using a loss function like Huber loss can mitigate this issue by reducing the influence of outliers on the optimization process.</li>
+<li><strong>Cross-Entropy:</strong> <span class="math inline">\(-\sum y_i \log(\hat{y}_i)\)</span>: Used for classification tasks, measures the difference between true labels and predicted probabilities, and is effective for training models that output probabilities. For instance, in a binary classification problem, if the model predicts a probability of 0.9 for the positive class when the true label is 1, the cross-entropy loss will be low, indicating a good prediction. However, if the model predicts a probability of 0.1 for the positive class, the loss will be high, signaling a poor prediction.</li>
+<li><strong>Hinge Loss:</strong> <span class="math inline">\(\max(0, 1 - y_i \hat{y}_i)\)</span>: Used in support vector machines, encourages a margin between classes, and is non-differentiable at the margin. For example, if a data point is correctly classified with a margin greater than 1, the hinge loss will be zero, indicating no penalty. However, if a data point is misclassified or classified within the margin (i.e., <span class="math inline">\(y_i \hat{y}_i &lt; 1\)</span>), the hinge loss will be positive, penalizing the model for not maintaining the desired margin.</li>
+</ol>
+<p><strong>Properties:</strong></p>
+<p>Three key properties of loss functions that influence optimization are:</p>
+<ul>
+<li><em>Convexity affects optimization difficulty:</em> convex functions guarantee global minima, while non-convex functions may have multiple local minima. A loss function is convex if its second derivative is non-negative for all inputs, which ensures that any local minimum is also a global minimum. Non-convex loss functions can lead to optimization challenges, as they may contain multiple local minima and saddle points, making it difficult for gradient-based methods to find the global minimum. Using the example of a simple quadratic loss function, we can see that it is convex because its second derivative is constant and positive. In contrast, a loss function with multiple peaks and valleys would be non-convex, posing challenges for optimization algorithms.</li>
+</ul>
+<p>Mathematically, if <span class="math inline">\((\theta_1, \theta_2)\)</span> are two points in the parameter space and <span class="math inline">\(\lambda \in [0, 1]\)</span>, a loss function <span class="math inline">\(L(\theta)\)</span> is convex if: <span class="math display">\[L(\lambda \theta_1 + (1 - \lambda) \theta_2) \leq \lambda L(\theta_1) + (1 - \lambda) L(\theta_2)\]</span></p>
+<ul>
+<li><p><em>Differentiability determines gradient availability:</em> differentiable loss functions allow for gradient-based optimization methods, while non-differentiable loss functions may require subgradient methods or other optimization techniques. For example, the hinge loss used in support vector machines is non-differentiable at the point where <span class="math inline">\(y_i \hat{y}_i = 1\)</span>, which necessitates the use of subgradient methods for optimization. In contrast, the mean squared error loss is differentiable everywhere, allowing for straightforward application of gradient descent.</p></li>
+<li><p><em>Robustness to outliers influences performance:</em> loss functions like Huber loss are designed to be less sensitive to outliers compared to MSE, which can be heavily influenced by extreme values. The Huber loss behaves like MSE for small residuals and like absolute error for large residuals, providing a balance between sensitivity and robustness. In contrast, the mean squared error can disproportionately penalize outliers, leading to skewed model performance. For instance, if a dataset contains outliers, using MSE as the loss function may result in a model that fits the outliers at the expense of overall performance, while Huber loss would mitigate this issue by reducing the influence of outliers on the optimization process.</p></li>
+</ul>
+</section>
+</section>
+<section id="bias-and-variance" class="level3" data-number="6.4.2">
+<h3 data-number="6.4.2" class="anchored" data-anchor-id="bias-and-variance"><span class="header-section-number">6.4.2</span> Bias and Variance</h3>
+<p><strong>Bias:</strong> Error from erroneous assumptions in the learning algorithm. High bias can cause underfitting, where the model is too simple to capture the underlying patterns in the data. For example, a linear regression model may have high bias when trying to fit a dataset with a non-linear relationship between the features and the target variable, leading to poor performance on both training and test data.</p>
+<p><strong>Variance:</strong> Error from sensitivity to small fluctuations in the training set. High variance can cause overfitting, where the model captures noise in the training data and fails to generalize to unseen data. For instance, a high-degree polynomial regression model may have high variance when fitting a dataset with limited samples, as it may capture noise and outliers in the training data, resulting in poor performance on test data.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Bias-Variance Trade-off
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The bias-variance trade-off is a fundamental concept in machine learning that describes the relationship between bias and variance in model performance. As model complexity increases, bias tends to decrease while variance tends to increase. The optimal model complexity is achieved when the total error (sum of bias and variance) is minimized. For example, a simple linear model may have high bias but low variance, while a complex neural network may have low bias but high variance. The goal is to find a balance that minimizes total error and achieves good generalization to unseen data.</p>
+</div>
+</div>
+</section>
+<section id="overfitting-and-underfitting" class="level3" data-number="6.4.3">
+<h3 data-number="6.4.3" class="anchored" data-anchor-id="overfitting-and-underfitting"><span class="header-section-number">6.4.3</span> Overfitting and Underfitting</h3>
+<ul>
+<li><strong>Overfitting:</strong> Model captures noise in training data, performs poorly on unseen data. It occurs when a model is too complex relative to the amount of training data, leading to a model that fits the training data very well but fails to generalize to new, unseen data. For example, a high-degree polynomial regression model may fit the training data perfectly but will likely perform poorly on test data due to its sensitivity to noise and outliers.</li>
+<li><strong>Underfitting:</strong> Model is too simple, fails to capture underlying patterns in data. It occurs when a model is not complex enough to capture the underlying structure of the data, resulting in poor performance on both the training and test datasets. For instance, a linear regression model may underfit a dataset that has a non-linear relationship between the features and the target variable, leading to high bias and poor predictive performance.</li>
+</ul>
+<p><strong>Methods to handle overfitting and underfitting:</strong></p>
+<ul>
+<li><p><strong>Cross-validation:</strong> Evaluates model performance on unseen data to detect overfitting. By partitioning the dataset into training and validation sets, cross-validation allows for the assessment of how well a model generalizes to new data. For example, k-fold cross-validation involves dividing the dataset into k subsets, training the model on k-1 subsets, and validating it on the remaining subset. This process is repeated k times, with each subset serving as the validation set once, providing a more reliable estimate of model performance and helping to identify overfitting.</p></li>
+<li><p><strong>Regularization:</strong> Adds penalty to loss function to prevent overfitting. Regularization techniques, such as L1 and L2 regularization, introduce a penalty term to the loss function that discourages complex models by shrinking the coefficients of less important features towards zero. For instance, L1 regularization (Lasso) can lead to sparse models by driving some coefficients to exactly zero, effectively performing feature selection, while L2 regularization (Ridge) encourages smaller coefficients without necessarily eliminating any features, helping to prevent overfitting while maintaining all features in the model.</p></li>
+</ul>
+<section id="regularization-techniques" class="level4" data-number="6.4.3.1">
+<h4 data-number="6.4.3.1" class="anchored" data-anchor-id="regularization-techniques"><span class="header-section-number">6.4.3.1</span> Regularization Techniques</h4>
+<p>Regularization adds a penalty to the loss function to prevent overfitting and improve generalization. It can be viewed as adding a constraint to the optimization problem, encouraging simpler models that are less likely to fit noise in the training data. Common regularization techniques include L1 (Lasso), L2 (Ridge), and Elastic Net, each with its own mathematical formulation and effects on the model parameters.</p>
+<p><strong>L1 Regularization (Lasso):</strong></p>
+<p>In L1 regularization, the penalty is proportional to the absolute value of the coefficients. The objective function with L1 regularization can be expressed as: <span class="math display">\[
+J(\theta) = \text{Loss}(\theta) + \lambda \sum |\theta_i|
+\]</span></p>
+<p>Adavantages of L1 Regularization:</p>
+<ul>
+<li>Promotes sparsity: Encourages many coefficients to be exactly zero, leading to simpler models and feature selection.</li>
+<li>Feature selection: By driving some coefficients to zero, L1 regularization effectively selects a subset of features, which can be particularly beneficial in high-dimensional datasets where many features may be irrelevant or redundant. This can lead to more interpretable models and improved generalization performance by reducing overfitting.</li>
+</ul>
+<p><strong>L2 Regularization (Ridge):</strong> L2 regularization adds a penalty proportional to the square of the coefficients. The objective function with L2 regularization is given by: <span class="math display">\[
+J(\theta) = \text{Loss}(\theta) + \lambda \sum \theta_i^2
+\]</span></p>
+<p>Advantages of L2 Regularization:</p>
+<ul>
+<li>Prevents overfitting: Encourages smaller coefficients, which can help prevent overfitting by reducing model complexity and improving generalization to unseen data. By adding a penalty on the magnitude of the coefficients, L2 regularization discourages the model from fitting the noise in the training data, leading to better performance on test data.</li>
+<li>Stabilizes optimization: L2 regularization can help stabilize the optimization process by preventing large updates to the coefficients, which can lead to more stable convergence and improved performance, especially in cases where the features are highly correlated.</li>
+</ul>
+<p><strong>Elastic Net:</strong> Elastic Net combines both L1 and L2 regularization, allowing for a balance between sparsity and coefficient shrinkage. The objective function for Elastic Net is: <span class="math display">\[
+J(\theta) = \text{Loss}(\theta) + \lambda_1 \sum |\theta_i| + \lambda_2 \sum \theta_i^2
+\]</span> Where <span class="math inline">\(\lambda_1\)</span> and <span class="math inline">\(\lambda_2\)</span> are the regularization parameters for L1 and L2 terms, respectively. Advantages of Elastic Net:</p>
+<ul>
+<li><p>Combines benefits of L1 and L2: Provides a balance between feature selection (L1) and coefficient shrinkage (L2), making it effective in scenarios with correlated features or when the number of features exceeds the number of samples.</p></li>
+<li><p>Flexibility: By adjusting the regularization parameters, Elastic Net can be tailored to specific datasets and modeling needs, allowing for greater flexibility in controlling model complexity and improving generalization performance.</p></li>
+</ul>
+</section>
+<section id="neural-network-optimization" class="level4" data-number="6.4.3.2">
+<h4 data-number="6.4.3.2" class="anchored" data-anchor-id="neural-network-optimization"><span class="header-section-number">6.4.3.2</span> Neural Network Optimization</h4>
+<p>We have covered the basics of optimization in machine learning, but optimizing neural networks introduces additional challenges due to their non-convex loss landscapes and high-dimensional parameter spaces. Neural network optimization often requires specialized techniques to ensure effective training and convergence. In addition to the advanced gradient methods discussed earlier, there are several key considerations when optimizing neural networks:</p>
+<p>Special considerations for deep learning:</p>
+<ul>
+<li><p><strong>Vanishing/Exploding Gradients:</strong> Gradients can become very small (vanishing) or very large (exploding) in deep networks, making training difficult. Solutions include using ReLU activation functions, batch normalization, and careful weight initialization.</p></li>
+<li><p><strong>Batch Normalization:</strong> Stabilizes training: normalizes layer inputs, allowing for higher learning rates and faster convergence. It also helps mitigate the vanishing gradient problem by maintaining a more stable distribution of activations throughout the network, which can lead to improved performance and faster training times.</p></li>
+<li><p><strong>Dropout:</strong> Regularization technique: randomly drops units during training to prevent overfitting and improve generalization. By randomly deactivating a subset of neurons during each training iteration, dropout forces the network to learn more robust features that are not reliant on specific neurons, thereby reducing the risk of overfitting and improving the model’s ability to generalize to unseen data. By introducing randomness into the training process, dropout can also help prevent co-adaptation of neurons, leading to a more resilient and effective model.Andrew Ng’s Deep Learning Specialization on Coursera provides an in-depth exploration of these techniques and their applications in optimizing neural networks for various tasks, including computer vision, natural language processing, and more. The formula suggested by Andrew Ng for dropout is: <span class="math display">\[\text{Dropout}(x) = \frac{x \cdot \text{Bernoulli}(p)}{p}\]</span></p></li>
+</ul>
+<p>Where <span class="math inline">\(x\)</span> is the input to the dropout layer, <span class="math inline">\(\text{Bernoulli}(p)\)</span> is a random variable that takes the value 1 with probability <span class="math inline">\(p\)</span> and 0 with probability <span class="math inline">\(1-p\)</span>, and the division by <span class="math inline">\(p\)</span> is used to maintain the expected value of the activations during training. This technique effectively prevents overfitting by randomly deactivating a fraction of the neurons during each training iteration, encouraging the network to learn more robust features that are not reliant on specific neurons. By introducing randomness into the training process, dropout can also help prevent co-adaptation of neurons, leading to a more resilient and effective model.</p>
+<ul>
+<li><strong>Weight Initialization:</strong> Proper weight initialization can help mitigate issues like vanishing/exploding gradients and improve convergence. Techniques include Xavier/Glorot initialization and He initialization, which are designed to maintain the variance of activations across layers, promoting stable training and faster convergence. For example, Xavier initialization is given by: <span class="math display">\[W \sim \mathcal{U}\left(-\sqrt{\frac{6}{n_{in} + n_{out}}}, \sqrt{\frac{6}{n_{in} + n_{out}}}\right)\]</span></li>
+</ul>
+<p>Where <span class="math inline">\(n_{in}\)</span> and <span class="math inline">\(n_{out}\)</span> are the number of input and output units in the layer, respectively. This initialization method helps maintain the variance of activations across layers, which can lead to improved convergence and performance during training. He initialization, on the other hand, is given by: <span class="math display">\[W \sim \mathcal{N}\left(0, \sqrt{\frac{2}{n_{in}}}\right)\]</span></p>
+<p>Where <span class="math inline">\(n_{in}\)</span> is the number of input units in the layer. He initialization is particularly effective for layers with ReLU activation functions, as it helps mitigate the vanishing gradient problem by maintaining a more stable distribution of activations throughout the network, leading to improved performance and faster training times.</p>
+</section>
+</section>
+<section id="sample-problem-2" class="level3" data-number="6.4.4">
+<h3 data-number="6.4.4" class="anchored" data-anchor-id="sample-problem-2"><span class="header-section-number">6.4.4</span> Sample Problem</h3>
+<p><strong>Problem Statement:</strong> Train a linear regression model for predicting campus facility demand with features: day_of_week, temperature, special_event. Use gradient descent with L2 regularization.</p>
+<p><strong>Mathematical Formulation:</strong> Based on the problem statement, we can formulate the optimization problem for training a linear regression model with L2 regularization as follows: <span class="math display">\[
+J(\theta) = \frac{1}{2m} \sum_{i=1}^m (h_\theta(x^{(i)}) - y^{(i)})^2 + \frac{\lambda}{2m} \sum_{j=1}^n \theta_j^2
+\]</span> Where:</p>
+<ul>
+<li><span class="math inline">\(h_\theta(x) = \theta_0 + \theta_1 x_1 + \theta_2 x_2 + \theta_3 x_3\)</span></li>
+<li><span class="math inline">\(\lambda\)</span>: Regularization parameter</li>
+<li><span class="math inline">\(m\)</span>: Number of training examples</li>
+</ul>
+<p><strong>Gradient with Regularization:</strong> The gradient of the cost function with respect to the parameters <span class="math inline">\(\theta_j\)</span> for <span class="math inline">\(j \geq 1\)</span> can be derived as follows:<br>
+<span class="math display">\[
+\frac{\partial J}{\partial \theta_j} = \frac{1}{m} \sum_{i=1}^m (h_\theta(x^{(i)}) - y^{(i)}) x_j^{(i)} + \frac{\lambda}{m} \theta_j \quad \text{for } j \geq 1
+\]</span></p>
+<p><span class="math display">\[
+\frac{\partial J}{\partial \theta_0} = \frac{1}{   m} \sum_{i=1}^m (h_\theta(x^{(i)}) - y^{(i)})
+\]</span> <strong>Update Rule:</strong> The update rule for gradient descent with L2 regularization can be expressed as: <span class="math display">\[
+\theta_j := \theta_j - \eta \left( \frac{1}{m} \sum_{i=1}^m (h_\theta(x^{(i)}) - y^{(i)}) x_j^{(i)} + \frac{\lambda}{m} \theta_j \right) \quad \text{for } j \geq 1
+\]</span></p>
+<p><span class="math display">\[
+\theta_0 := \theta_0 - \eta \left( \frac{1}{m} \sum_{i=1}^m (h_\theta(x^{(i)}) - y^{(i)}) \right)
+\]</span></p>
+<p><strong>Implementation:</strong></p>
+<div id="fcdd6f2d" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_cost(X, y, theta, lambda_):</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> <span class="bu">len</span>(y)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    predictions <span class="op">=</span> X.dot(theta)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    cost <span class="op">=</span> (<span class="dv">1</span> <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> m)) <span class="op">*</span> np.<span class="bu">sum</span>((predictions <span class="op">-</span> y) <span class="op">**</span> <span class="dv">2</span>) <span class="op">+</span> (lambda_ <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> m)) <span class="op">*</span> np.<span class="bu">sum</span>(theta[<span class="dv">1</span>:] <span class="op">**</span> <span class="dv">2</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> cost</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gradient_descent(X, y, theta, alpha, lambda_, iterations):</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> <span class="bu">len</span>(y)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    cost_history <span class="op">=</span> np.zeros(iterations)</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(iterations):</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>         predictions <span class="op">=</span> X.dot(theta)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>         errors <span class="op">=</span> predictions <span class="op">-</span> y</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>         gradient <span class="op">=</span> (<span class="dv">1</span> <span class="op">/</span> m) <span class="op">*</span> (X.T.dot(errors)) <span class="op">+</span> (lambda_ <span class="op">/</span> m) <span class="op">*</span> np.hstack(([<span class="dv">0</span>], theta[<span class="dv">1</span>:]))</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>         theta <span class="op">-=</span> alpha <span class="op">*</span> gradient</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>         cost_history[i] <span class="op">=</span> compute_cost(X, y, theta, lambda_)</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> theta, cost_history</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage</span></span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.array([[<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">30</span>, <span class="dv">0</span>], [<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">25</span>, <span class="dv">1</span>], [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">20</span>, <span class="dv">0</span>], [<span class="dv">1</span>, <span class="dv">3</span>, <span class="dv">15</span>, <span class="dv">1</span>]])  <span class="co"># Add intercept term</span></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.array([<span class="dv">100</span>, <span class="dv">150</span>, <span class="dv">200</span>, <span class="dv">250</span>])</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> np.zeros(X.shape[<span class="dv">1</span>])</span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>alpha <span class="op">=</span> <span class="fl">0.01</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>lambda_ <span class="op">=</span> <span class="fl">1.0</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>iterations <span class="op">=</span> <span class="dv">1000</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>theta, cost_history <span class="op">=</span> gradient_descent(X, y, theta, alpha, lambda_, iterations)</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Optimized parameters:"</span>, theta)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Optimized parameters: [nan nan nan nan]</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>C:\Users\SIJUKSWAMY\AppData\Local\Temp\ipykernel_2592\3733090581.py:5: RuntimeWarning:
+
+overflow encountered in square
+
+C:\Users\SIJUKSWAMY\AppData\Local\Temp\ipykernel_2592\3733090581.py:14: RuntimeWarning:
+
+invalid value encountered in subtract
+</code></pre>
+</div>
+</div>
+</section>
+<section id="sample-problem-3" class="level3" data-number="6.4.5">
+<h3 data-number="6.4.5" class="anchored" data-anchor-id="sample-problem-3"><span class="header-section-number">6.4.5</span> Sample Problem</h3>
+<p><strong>Problem Statement:</strong> A campus energy consumption prediction model uses neural network with 3 hidden layers. During training, gradients become extremely small in early layers. Identify the problem and solution.</p>
+<p><strong>Analysis:</strong> Given the problem statement, the issue of gradients becoming extremely small in early layers of a neural network is commonly referred to as the “vanishing gradient problem.” This problem occurs when the gradients of the loss function with respect to the parameters in the early layers become very small, effectively preventing those layers from learning and updating their weights during training.</p>
+<p><strong>Problem:</strong> Vanishing Gradient Problem</p>
+<p><strong>Causes:</strong> Deep network, activation functions like sigmoid</p>
+<p><strong>Solutions:</strong> There are several techniques to address the vanishing gradient problem in deep neural networks:</p>
+<ol type="1">
+<li>Use ReLU activation functions: ReLU (Rectified Linear Unit) activation functions help mitigate the vanishing gradient problem by allowing gradients to flow more effectively through the network. Unlike sigmoid or tanh activations, which can saturate and lead to small gradients, ReLU does not saturate for positive inputs, allowing for larger gradients and improved learning in deeper layers.</li>
+<li>Implement batch normalization: Batch normalization can help stabilize the training process and mitigate the vanishing gradient problem by normalizing the inputs to each layer. This technique allows for higher learning rates and faster convergence, as it helps maintain a more stable distribution of activations throughout the network, which can lead to improved performance and faster training times.</li>
+<li>Use residual connections: Residual connections, as introduced in ResNet architectures, allow for the flow of gradients directly through skip connections, bypassing one or more layers. This helps mitigate the vanishing gradient problem by providing an alternative path for gradients to flow, enabling deeper networks to be trained effectively.</li>
+<li>Proper weight initialization: Using appropriate weight initialization techniques, such as Xavier or He initialization, can help maintain the variance of activations across layers, which can mitigate the vanishing gradient problem and promote stable training and faster convergence.</li>
+</ol>
+<p>Selecting the appropriate solution depends on the specific architecture and requirements of the neural network being trained, as well as the nature of the dataset and the problem being addressed.</p>
+</section>
+<section id="review-questions-1" class="level3" data-number="6.4.6">
+<h3 data-number="6.4.6" class="anchored" data-anchor-id="review-questions-1"><span class="header-section-number">6.4.6</span> Review Questions</h3>
+<ol type="1">
+<li><p>Explain how regularization prevents overfitting in machine learning optimization from an optimization theory perspective.</p></li>
+<li><p>Compare L1 and L2 regularization. When would you choose each for campus facility demand prediction?</p></li>
+<li><p>What is the vanishing gradient problem in deep learning and how do modern optimizers address it?</p></li>
+<li><p>Design a loss function for optimizing campus shuttle bus schedules that considers both operational costs and passenger wait times.</p></li>
+<li><p>How does mini-batch gradient descent balance the trade-off between computational efficiency and convergence stability?</p></li>
+</ol>
+</section>
+</section>
+<section id="stochastic-optimization-methods" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="stochastic-optimization-methods"><span class="header-section-number">6.5</span> Stochastic Optimization Methods</h2>
+<p>Stochastic optimization methods are essential for training machine learning models on large datasets, where computing the full gradient can be computationally expensive. These methods use random subsets of data to estimate the gradient, allowing for faster iterations and the ability to escape local minima in non-convex optimization problems.</p>
+<section id="theoretical-foundation-3" class="level3" data-number="6.5.1">
+<h3 data-number="6.5.1" class="anchored" data-anchor-id="theoretical-foundation-3"><span class="header-section-number">6.5.1</span> Theoretical Foundation</h3>
+<p>Computing the full gradient of the loss function with respect to the model parameters can be computationally expensive, especially for large datasets. Stochastic optimization methods address this issue by using random subsets of data (mini-batches) to estimate the gradient, allowing for faster iterations and the ability to escape local minima in non-convex optimization problems. Convergence analysis of stochastic optimization methods often involves understanding the trade-offs between bias and variance in the gradient estimates, as well as the impact of learning rate schedules on convergence rates.</p>
+<section id="why-stochastic-optimization" class="level4" data-number="6.5.1.1">
+<h4 data-number="6.5.1.1" class="anchored" data-anchor-id="why-stochastic-optimization"><span class="header-section-number">6.5.1.1</span> Why Stochastic Optimization?</h4>
+<p>Main reasons for using stochastic optimization methods include:</p>
+<ul>
+<li><p><strong>Large Datasets:</strong> Full gradient computation is expensive. Stochastic methods provide faster updates by using mini-batches. For example, in a dataset with 1 million samples, computing the full gradient would require processing all 1 million samples for each update, which can be computationally prohibitive. In contrast, using mini-batches of size 64 allows for much faster updates while still providing a reasonable estimate of the gradient.</p></li>
+<li><p><strong>Online Learning:</strong> Stochastic methods can update models in real-time as new data arrives, making them suitable for dynamic environments. For instance, in a campus energy management system, new sensor data may be continuously generated. Stochastic optimization allows the model to be updated in real-time, enabling it to adapt to changing conditions and improve predictions without needing to retrain on the entire dataset.</p></li>
+<li><p><strong>Non-Convex Problems:</strong> Stochastic methods can escape local minima, which is crucial for training deep neural networks. In non-convex optimization problems, such as training deep neural networks, the loss landscape can contain many local minima and saddle points. Stochastic optimization methods, by introducing noise into the gradient estimates, can help the optimization process escape these local minima and saddle points, leading to better convergence to a global minimum or a more optimal solution.</p></li>
+<li><p><strong>Parallelization:</strong> Stochastic methods can be parallelized across multiple processors or GPUs, improving training speed. For example, mini-batch gradient descent can be easily parallelized by distributing the computation of gradients across multiple GPUs, allowing for faster training times and the ability to handle larger models and datasets.</p></li>
+</ul>
+</section>
+<section id="stochastic-gradient-descent-sgd" class="level4" data-number="6.5.1.2">
+<h4 data-number="6.5.1.2" class="anchored" data-anchor-id="stochastic-gradient-descent-sgd"><span class="header-section-number">6.5.1.2</span> Stochastic Gradient Descent (SGD)</h4>
+<p>We already covered the basics of stochastic gradient descent (SGD) in previous modules, but let’s briefly review it here in the context of stochastic optimization methods. SGD is a simple yet powerful optimization algorithm that updates model parameters using the gradient of the loss function with respect to a single training example (or a mini-batch of examples) at each iteration. The update rule for SGD can be expressed as follows:</p>
+<p><strong>Algorithm:</strong> For each epoch, for each training example <span class="math inline">\((x^{(i)}, y^{(i)})\)</span>:</p>
+<p><span class="math display">\[
+\theta := \theta - \eta \nabla_\theta J(\theta; x^{(i)}, y^{(i)})
+\]</span></p>
+<p>Characteristics of SGD include:</p>
+<ul>
+<li><p>Noisy gradient estimates: Each update is based on a single example, leading to high variance in the updates. This can cause the optimization process to be noisy and may lead to slower convergence compared to batch gradient descent. However, this noise can also help the optimization process escape local minima in non-convex problems, which is a significant advantage of SGD over batch gradient descent.</p></li>
+<li><p>Faster per iteration: Each update is computationally cheaper than batch gradient descent, allowing for faster iterations. This can lead to quicker progress in the early stages of training, especially when dealing with large datasets.</p></li>
+<li><p>May not converge to exact minimum: Due to the noise in the updates, SGD may not converge to the exact minimum of the loss function, but it can get close enough for practical purposes. The convergence behavior of SGD can be influenced by factors such as the learning rate and the choice of mini-batch size.</p></li>
+<li><p>Can escape local minima in non-convex problems: The noise in the gradient estimates can help the optimization process escape local minima and saddle points, which is particularly beneficial when training deep neural networks.</p></li>
+</ul>
+<div id="ad01b224" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example implementation of SGD</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sgd(X, y, theta, alpha, iterations):</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> <span class="bu">len</span>(y)</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(iterations):</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(m):</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Randomly select a training example</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>            idx <span class="op">=</span> np.random.randint(m)</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>            x_i <span class="op">=</span> X[idx]</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>            y_i <span class="op">=</span> y[idx]</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Compute the gradient</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>            gradient <span class="op">=</span> (x_i.dot(theta) <span class="op">-</span> y_i) <span class="op">*</span> x_i</span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Update parameters</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>            theta <span class="op">-=</span> alpha <span class="op">*</span> gradient</span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> theta</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a><span class="co">## sample usage</span></span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.array([[<span class="dv">1</span>, <span class="dv">0</span>], [<span class="dv">1</span>, <span class="dv">1</span>], [<span class="dv">2</span>, <span class="dv">0</span>], [<span class="dv">2</span>, <span class="dv">1</span>]])  <span class="co"># Add intercept term</span></span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>])</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> np.zeros(X.shape[<span class="dv">1</span>])</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>alpha <span class="op">=</span> <span class="fl">0.01</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>iterations <span class="op">=</span> <span class="dv">1000</span></span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> sgd(X, y, theta, alpha, iterations)</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Optimized parameters:"</span>, theta)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Optimized parameters: [1.45315471 0.80941359]</code></pre>
+</div>
+</div>
+</section>
+<section id="mini-batch-gradient-descent" class="level4" data-number="6.5.1.3">
+<h4 data-number="6.5.1.3" class="anchored" data-anchor-id="mini-batch-gradient-descent"><span class="header-section-number">6.5.1.3</span> Mini-batch Gradient Descent</h4>
+<p>Mini-batch gradient descent is a compromise between batch gradient descent and stochastic gradient descent. It updates model parameters using the average gradient computed from a small random subset of the training data (mini-batch) at each iteration. The update rule for mini-batch gradient descent can be expressed as follows:</p>
+<p><strong>Update Rule:</strong> <span class="math display">\[
+\theta := \theta - \eta \nabla_\theta J(\theta; x^{(i:i+n)}, y^{(i:i+n)})
+\]</span> Where batch size <span class="math inline">\(n\)</span> is typically 32, 64, or 128.</p>
+<p>Advantages of mini-batch gradient descent include:</p>
+<ul>
+<li><p>Reduces variance compared to SGD: By using a mini-batch of examples to compute the gradient, mini-batch gradient descent provides a more stable and accurate estimate of the true gradient compared to SGD, which can lead to faster convergence and improved performance.</p></li>
+<li><p>Hardware efficient (GPU parallelization): Mini-batch gradient descent can take advantage of parallel processing capabilities of modern hardware, such as GPUs, to compute gradients for multiple examples simultaneously, leading to faster training times. For example, using a mini-batch size of 64 allows for efficient computation of gradients on a GPU, as it can process multiple examples in parallel, while still providing a reasonable estimate of the gradient for updating the model parameters.</p></li>
+<li><p>More stable convergence than pure SGD: The use of mini-batches helps to smooth out the noise in the gradient estimates, leading to more stable convergence compared to pure SGD, which can be highly noisy due to its reliance on single examples for updates. This stability can result in faster convergence and improved performance, especially when training deep neural networks on large datasets.</p></li>
+</ul>
+</section>
+<section id="advanced-stochastic-methods" class="level4" data-number="6.5.1.4">
+<h4 data-number="6.5.1.4" class="anchored" data-anchor-id="advanced-stochastic-methods"><span class="header-section-number">6.5.1.4</span> Advanced Stochastic Methods</h4>
+<p>In addition to basic SGD and mini-batch gradient descent, there are several advanced stochastic optimization methods that have been developed to improve convergence and performance in training machine learning models. These methods often incorporate techniques such as momentum, adaptive learning rates, and variance reduction to enhance the optimization process. Some of the most popular advanced stochastic optimization methods include:</p>
+<p><strong>SGD with Momentum:</strong> Incorporates a velocity term to accelerate convergence and reduce oscillations. The update rule for SGD with momentum can be expressed as follows: <span class="math display">\[v := \beta v + (1 - \beta) \nabla_\theta J(\theta; x^{(i)}, y^{(i)})\]</span> <span class="math display">\[\theta := \theta - \eta v\]</span> Where <span class="math inline">\(\beta\)</span> is the momentum parameter, typically set to 0.9. This method helps to smooth out the updates and can lead to faster convergence, especially in scenarios where the loss landscape has narrow valleys or plateaus.</p>
+<div id="38527ccc" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>   <span class="co"># Example implementation of SGD with Momentum</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sgd_momentum(X, y, theta, alpha, beta, iterations):</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> <span class="bu">len</span>(y)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    v <span class="op">=</span> np.zeros_like(theta)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(iterations):</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(m):</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>            idx <span class="op">=</span> np.random.randint(m)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>            x_i <span class="op">=</span> X[idx]</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>            y_i <span class="op">=</span> y[idx]</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>            gradient <span class="op">=</span> (x_i.dot(theta) <span class="op">-</span> y_i) <span class="op">*</span> x_i</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>            v <span class="op">=</span> beta <span class="op">*</span> v <span class="op">+</span> (<span class="dv">1</span> <span class="op">-</span> beta) <span class="op">*</span> gradient</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>            theta <span class="op">-=</span> alpha <span class="op">*</span> v</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> theta  </span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="co"># example usage </span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.array([[<span class="dv">1</span>, <span class="dv">0</span>], [<span class="dv">1</span>, <span class="dv">1</span>], [<span class="dv">2</span>, <span class="dv">0</span>], [<span class="dv">2</span>, <span class="dv">1</span>]])  <span class="co"># Add intercept term</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>])</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> np.zeros(X.shape[<span class="dv">1</span>])</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>alpha <span class="op">=</span> <span class="fl">0.01</span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>beta <span class="op">=</span> <span class="fl">0.9</span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a>iterations <span class="op">=</span> <span class="dv">1000</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> sgd_momentum(X, y, theta, alpha, beta, iterations)</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Optimized parameters:"</span>, theta)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Optimized parameters: [1.47585388 0.82154427]</code></pre>
+</div>
+</div>
+<p><strong>Adam for Stochastic Optimization:</strong> Combines momentum and adaptive learning rates for efficient optimization. The update rule for Adam can be expressed as follows: <span class="math display">\[m := \beta_1 m + (1 - \beta_1) \nabla_\theta J(\theta; x^{(i)}, y^{(i)})\]</span> <span class="math display">\[v := \beta_2 v + (1 - \beta_2) (\nabla_\theta J(\theta; x^{(i)}, y^{(i)}))^2\]</span> <span class="math display">\[\hat{m} := \frac{m}{1 - \beta_1^t}\]</span> <span class="math display">\[\hat{v} := \frac{v}{1 - \beta_2^t}\]</span></p>
+<p>where <span class="math inline">\(\beta_1\)</span> and <span class="math inline">\(\beta_2\)</span> are the decay rates for the moment estimates, typically set to 0.9 and 0.999, respectively. Adam is widely used in training deep neural networks due to its efficiency and effectiveness in handling sparse gradients and non-stationary objectives.</p>
+<div id="a400ac32" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example implementation of Adam optimizer</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> adam(X, y, theta, alpha, beta1, beta2, epsilon, iterations):</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> <span class="bu">len</span>(y)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    m_t <span class="op">=</span> np.zeros_like(theta)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    v_t <span class="op">=</span> np.zeros_like(theta)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> t <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, iterations <span class="op">+</span> <span class="dv">1</span>):</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(m):</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>            idx <span class="op">=</span> np.random.randint(m)</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>            x_i <span class="op">=</span> X[idx]</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>            y_i <span class="op">=</span> y[idx]</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>            gradient <span class="op">=</span> (x_i.dot(theta) <span class="op">-</span> y_i) <span class="op">*</span> x_i</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>            m_t <span class="op">=</span> beta1 <span class="op">*</span> m_t <span class="op">+</span> (<span class="dv">1</span> <span class="op">-</span> beta1) <span class="op">*</span> gradient</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>            v_t <span class="op">=</span> beta2 <span class="op">*</span> v_t <span class="op">+</span> (<span class="dv">1</span> <span class="op">-</span> beta2) <span class="op">*</span> (gradient <span class="op">**</span> <span class="dv">2</span>)</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>            m_hat <span class="op">=</span> m_t <span class="op">/</span> (<span class="dv">1</span> <span class="op">-</span> beta1 <span class="op">**</span> t)</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>            v_hat <span class="op">=</span> v_t <span class="op">/</span> (<span class="dv">1</span> <span class="op">-</span> beta2 <span class="op">**</span> t)</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>            theta <span class="op">-=</span> alpha <span class="op">*</span> m_hat <span class="op">/</span> (np.sqrt(v_hat) <span class="op">+</span> epsilon)</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> theta</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a><span class="co"># example usage</span></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.array([[<span class="dv">1</span>, <span class="dv">0</span>], [<span class="dv">1</span>, <span class="dv">1</span>], [<span class="dv">2</span>, <span class="dv">0</span>], [<span class="dv">2</span>, <span class="dv">1</span>]])  <span class="co"># Add intercept term</span></span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>]) </span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> np.zeros(X.shape[<span class="dv">1</span>])</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>alpha <span class="op">=</span> <span class="fl">0.01</span></span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>beta1 <span class="op">=</span> <span class="fl">0.9</span></span>
+<span id="cb14-24"><a href="#cb14-24" aria-hidden="true" tabindex="-1"></a>beta2 <span class="op">=</span> <span class="fl">0.999</span></span>
+<span id="cb14-25"><a href="#cb14-25" aria-hidden="true" tabindex="-1"></a>epsilon <span class="op">=</span> <span class="fl">1e-8</span></span>
+<span id="cb14-26"><a href="#cb14-26" aria-hidden="true" tabindex="-1"></a>iterations <span class="op">=</span> <span class="dv">1000</span></span>
+<span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> adam(X, y, theta, alpha, beta1, beta2, epsilon, iterations)</span>
+<span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Optimized parameters:"</span>, theta)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Optimized parameters: [1.47399859 0.77198097]</code></pre>
+</div>
+</div>
+<p><strong>Learning Rate Scheduling:</strong> Adjusting the learning rate during training can improve convergence. Common schedules include:</p>
+<ul>
+<li><p>Step decay: Reduce learning rate by a factor every few epochs. For example, reducing the learning rate by a factor of 0.1 every 10 epochs can help the optimization process converge more effectively as it allows for larger updates in the early stages of training and smaller, more fine-tuned updates as training progresses.</p></li>
+<li><p>Exponential decay: Reduce learning rate exponentially over time. This can be expressed mathematically as:</p></li>
+</ul>
+<p><span class="math display">\[\eta_t = \eta_0 \cdot e^{-\lambda t}\]</span></p>
+<p>Where <span class="math inline">\(\eta_0\)</span> is the initial learning rate, <span class="math inline">\(\lambda\)</span> is the decay rate, and <span class="math inline">\(t\)</span> is the current epoch or iteration. Exponential decay allows for a smooth and continuous reduction in the learning rate, which can help improve convergence and prevent overshooting as training progresses.</p>
+<ul>
+<li>Cosine annealing: Reduce learning rate following a cosine curve, which can help escape local minima. The learning rate can be defined as:</li>
+</ul>
+<p><span class="math display">\[\eta_t = \eta_{min} + \frac{1}{2} (\eta_{max} - \eta_{min}) \left(1 + \cos\left(\frac{t}{T} \pi\right)\right)\]</span></p>
+<p>Where <span class="math inline">\(\eta_{min}\)</span> and <span class="math inline">\(\eta_{max}\)</span> are the minimum and maximum learning rates, <span class="math inline">\(t\)</span> is the current epoch or iteration, and <span class="math inline">\(T\)</span> is the total number of epochs or iterations. Cosine annealing allows for a gradual reduction in the learning rate that follows a cosine curve, which can help the optimization process escape local minima and improve convergence, especially in non-convex optimization problems.</p>
+<ul>
+<li>Warm restarts: Periodically reset learning rate to escape local minima. This can be implemented by resetting the learning rate to its initial value after a certain number of epochs or iterations, allowing the optimization process to escape local minima and potentially find better solutions. For example, resetting the learning rate every 10 epochs can help the optimization process explore different regions of the loss landscape and improve convergence.</li>
+</ul>
+</section>
+<section id="convergence-analysis" class="level4" data-number="6.5.1.5">
+<h4 data-number="6.5.1.5" class="anchored" data-anchor-id="convergence-analysis"><span class="header-section-number">6.5.1.5</span> Convergence Analysis</h4>
+<p>A general convergence analysis of stochastic optimization methods involves understanding the conditions under which these methods converge to a solution and the rates at which they do so. Theoretical guarantees for convergence often depend on assumptions about the loss function, such as convexity, smoothness, and the presence of noise in the gradient estimates.</p>
+<p><strong>Theoretical Guarantees:</strong></p>
+<p>The theoretical guarantees for convergence of stochastic optimization methods can be summarized as follows:</p>
+<ul>
+<li><p>SGD converges to stationary point for non-convex functions: Under certain conditions, such as a diminishing learning rate and bounded gradients, stochastic gradient descent can be shown to converge to a stationary point of the loss function, even in non-convex optimization problems. This means that while SGD may not guarantee convergence to a global minimum, it can still find a point where the gradient is zero, which may correspond to a local minimum or saddle point.</p></li>
+<li><p>Convergence rate: For convex loss functions, stochastic optimization methods like SGD can achieve a convergence rate of <span class="math inline">\(O(1/\sqrt{T})\)</span>, where <span class="math inline">\(T\)</span> is the number of iterations. This means that the expected suboptimality of the solution decreases at a rate proportional to the inverse square root of the number of iterations, which is slower than the linear convergence rate of batch gradient descent but still provides a guarantee of improvement over time.</p></li>
+<li><p>Mini-batch: Using mini-batches can improve convergence rates by reducing variance in gradient estimates, leading to faster convergence compared to pure SGD. The convergence rate of mini-batch gradient descent can be improved to <span class="math inline">\(O(1/T)\)</span> under certain conditions, such as when the loss function is strongly convex and smooth. This improvement is due to the reduced variance in the gradient estimates provided by mini-batches, which allows for more stable updates and faster convergence compared to pure SGD.</p></li>
+</ul>
+</section>
+</section>
+<section id="sample-problem-4" class="level3" data-number="6.5.2">
+<h3 data-number="6.5.2" class="anchored" data-anchor-id="sample-problem-4"><span class="header-section-number">6.5.2</span> Sample Problem</h3>
+<p><strong>Problem Statement:</strong> Compare convergence behavior of batch GD, SGD, and mini-batch GD for optimizing a logistic regression model on campus facility usage data with 10,000 samples.</p>
+<p><strong>Analysis:</strong> From the problem statement, we can analyze the convergence behavior of batch gradient descent (GD), stochastic gradient descent (SGD), and mini-batch gradient descent (mini-batch GD) for optimizing a logistic regression model on campus facility usage data with 10,000 samples.</p>
+<ul>
+<li><p><strong>Batch GD:</strong> 10,000 computations per update, stable updates, but can get stuck in local minima. Batch gradient descent computes the gradient of the loss function with respect to the model parameters using the entire dataset of 10,000 samples for each update. This results in stable and accurate updates to the model parameters, as it uses the full information from the dataset. However, batch GD can be computationally expensive and may get stuck in local minima, especially in non-convex optimization problems like logistic regression on large datasets. The convergence of batch GD can be slow, particularly when dealing with large datasets, as it requires processing all samples for each update.</p></li>
+<li><p><strong>SGD:</strong> 1 computation per update, noisy updates, can escape local minima. Stochastic gradient descent computes the gradient using a single randomly selected sample from the dataset for each update. This results in noisy updates to the model parameters, as it relies on a single data point for each update, which can lead to high variance in the updates. However, this noise can also help SGD escape local minima in non-convex optimization problems, potentially leading to better convergence to a global minimum. The convergence of SGD can be faster in the early stages of training due to its ability to make quick updates, but it may require more iterations to converge compared to batch GD due to the noise in the updates.</p></li>
+<li><p><strong>Mini-batch (B=64):</strong> 64 computations per update, more stable than SGD, faster convergence than batch GD. Mini-batch gradient descent computes the gradient using a small random subset of the dataset (mini-batch) for each update. With a mini-batch size of 64, it provides a more stable and accurate estimate of the true gradient compared to SGD, while still being computationally efficient compared to batch GD. This can lead to faster convergence, especially when training deep neural networks on large datasets. The use of mini-batches helps to smooth out the noise in the gradient estimates, leading to more stable convergence compared to pure SGD, which can be highly noisy due to its reliance on single examples for updates.</p></li>
+</ul>
+<p><strong>Trade-offs:</strong> The main trade-offs between these methods include:</p>
+<ul>
+<li><p>Computational cost per epoch: Batch GD is the most expensive, while SGD is the least expensive. Mini-batch GD falls in between, providing a balance between computational efficiency and convergence stability.</p></li>
+<li><p>Convergence speed: SGD can converge faster in the early stages of training, while batch GD may take longer to converge due to its reliance on the entire dataset for each update. Mini-batch GD can provide faster convergence than batch GD while maintaining more stability than SGD.</p></li>
+<li><p>Final solution quality: Batch GD may converge to a better local minimum due to its stable updates, while SGD may converge to a worse solution due to its noisy updates. Mini-batch GD can provide a good balance, potentially leading to better convergence than SGD while being more computationally efficient than batch GD.</p></li>
+<li><p>Memory requirements: Batch GD requires more memory to store the entire dataset for each update, while SGD and mini-batch GD require less memory as they only need to store a single sample or a small subset of samples for each update.</p></li>
+</ul>
+</section>
+<section id="sample-problem-5" class="level3" data-number="6.5.3">
+<h3 data-number="6.5.3" class="anchored" data-anchor-id="sample-problem-5"><span class="header-section-number">6.5.3</span> Sample Problem</h3>
+<p><strong>Problem Statement:</strong> Design a learning rate schedule for training a neural network on campus energy data that shows seasonal patterns.</p>
+<p><strong>Solution:</strong></p>
+<p><strong>Cosine Annealing with Warm Restarts:</strong></p>
+<ul>
+<li>Start with relatively high learning rate</li>
+<li>Gradually decrease following cosine curve</li>
+<li>Periodically restart to escape local minima</li>
+<li>Align restarts with seasonal transitions</li>
+</ul>
+<p><strong>Justification:</strong> Seasonal patterns create shifting data distributions, making warm restarts beneficial.</p>
+</section>
+<section id="review-questions-2" class="level3" data-number="6.5.4">
+<h3 data-number="6.5.4" class="anchored" data-anchor-id="review-questions-2"><span class="header-section-number">6.5.4</span> Review Questions</h3>
+<ol type="1">
+<li><p>Explain why stochastic gradient descent can help escape local minima in non-convex optimization problems.</p></li>
+<li><p>What is the optimal batch size for mini-batch gradient descent and how does it depend on problem characteristics?</p></li>
+<li><p>Compare the convergence rates of SGD, mini-batch GD, and batch GD. When would you choose each method?</p></li>
+<li><p>Design a distributed optimization strategy for training a campus-wide prediction model using stochastic methods.</p></li>
+<li><p>How does learning rate scheduling improve stochastic optimization, particularly for non-stationary campus data?</p></li>
+</ol>
+</section>
+</section>
+<section id="capstone-project-ai-enhanced-campus-optimization" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="capstone-project-ai-enhanced-campus-optimization"><span class="header-section-number">6.6</span> Capstone Project: AI-Enhanced Campus Optimization</h2>
+<section id="project-foundation" class="level3" data-number="6.6.1">
+<h3 data-number="6.6.1" class="anchored" data-anchor-id="project-foundation"><span class="header-section-number">6.6.1</span> Project Foundation</h3>
+<section id="integration-of-all-modules" class="level4" data-number="6.6.1.1">
+<h4 data-number="6.6.1.1" class="anchored" data-anchor-id="integration-of-all-modules"><span class="header-section-number">6.6.1.1</span> Integration of All Modules</h4>
+<p>This capstone project synthesizes concepts from all five modules:</p>
+<ul>
+<li><strong>Module 1:</strong> Linear constraints and formulations</li>
+<li><strong>Module 2:</strong> Nonlinear cost modeling</li>
+<li><strong>Module 3:</strong> Project planning and scheduling</li>
+<li><strong>Module 4:</strong> Graph algorithms and network optimization</li>
+<li><strong>Module 5:</strong> Machine learning and gradient optimization</li>
+</ul>
+</section>
+<section id="project-vision" class="level4" data-number="6.6.1.2">
+<h4 data-number="6.6.1.2" class="anchored" data-anchor-id="project-vision"><span class="header-section-number">6.6.1.2</span> Project Vision</h4>
+<p>Develop an intelligent campus optimization system that:</p>
+<ol type="1">
+<li><strong>Predicts</strong> facility demands using machine learning</li>
+<li><strong>Optimizes</strong> resource allocation using advanced algorithms</li>
+<li><strong>Adapts</strong> to changing conditions in real-time</li>
+<li><strong>Visualizes</strong> optimal solutions and provides insights</li>
+</ol>
+</section>
+<section id="system-architecture" class="level4" data-number="6.6.1.3">
+<h4 data-number="6.6.1.3" class="anchored" data-anchor-id="system-architecture"><span class="header-section-number">6.6.1.3</span> System Architecture</h4>
+<p><strong>Data Layer:</strong></p>
+<ul>
+<li>Historical campus operations data</li>
+<li>Real-time sensor data</li>
+<li>Environmental and contextual data</li>
+</ul>
+<p><strong>Model Layer:</strong></p>
+<ul>
+<li>Demand prediction models</li>
+<li>Optimization algorithms</li>
+<li>Constraint handlers</li>
+</ul>
+<p><strong>Application Layer:</strong></p>
+<ul>
+<li>Dashboard for campus operations</li>
+<li>Real-time optimization engine</li>
+<li>Reporting and analytics</li>
+</ul>
+</section>
+</section>
+<section id="capstone-project-requirements" class="level3" data-number="6.6.2">
+<h3 data-number="6.6.2" class="anchored" data-anchor-id="capstone-project-requirements"><span class="header-section-number">6.6.2</span> Capstone Project Requirements</h3>
+<section id="part-a-predictive-modeling-5-marks" class="level4" data-number="6.6.2.1">
+<h4 data-number="6.6.2.1" class="anchored" data-anchor-id="part-a-predictive-modeling-5-marks"><span class="header-section-number">6.6.2.1</span> Part A: Predictive Modeling (5 Marks)</h4>
+<p><strong>Objective:</strong> Develop machine learning models to predict campus facility demands.</p>
+<p><strong>Tasks:</strong></p>
+<ol type="1">
+<li><p><strong>Feature Engineering:</strong></p>
+<ul>
+<li>Temporal features (hour, day, month, holidays)</li>
+<li>Environmental features (weather, temperature)</li>
+<li>Event features (exams, sports, cultural events)</li>
+<li>Historical demand patterns</li>
+</ul></li>
+<li><p><strong>Model Development:</strong></p>
+<ul>
+<li>Time series forecasting models</li>
+<li>Regression models for demand prediction</li>
+<li>Ensemble methods for improved accuracy</li>
+</ul></li>
+<li><p><strong>Optimization Integration:</strong></p>
+<ul>
+<li>Use predictions as input to optimization models</li>
+<li>Handle prediction uncertainty in optimization</li>
+<li>Adaptive models that update with new data</li>
+</ul></li>
+</ol>
+</section>
+<section id="part-b-integrated-optimization-system-6-marks" class="level4" data-number="6.6.2.2">
+<h4 data-number="6.6.2.2" class="anchored" data-anchor-id="part-b-integrated-optimization-system-6-marks"><span class="header-section-number">6.6.2.2</span> Part B: Integrated Optimization System (6 Marks)</h4>
+<p><strong>Objective:</strong> Create a comprehensive optimization system that uses predictions to make optimal decisions.</p>
+<p><strong>Tasks:</strong></p>
+<ol type="1">
+<li><p><strong>Multi-Period Optimization:</strong></p>
+<ul>
+<li>Dynamic optimization across time horizons</li>
+<li>Handling of time-dependent constraints</li>
+<li>Integration of predicted vs actual demands</li>
+</ul></li>
+<li><p><strong>Stochastic Optimization:</strong></p>
+<ul>
+<li>Handle uncertainty in predictions</li>
+<li>Robust optimization approaches</li>
+<li>Scenario-based planning</li>
+</ul></li>
+<li><p><strong>Real-Time Adaptation:</strong></p>
+<ul>
+<li>Update optimization based on real-time data</li>
+<li>Handle unexpected events and disruptions</li>
+<li>Provide alternative solutions</li>
+</ul></li>
+</ol>
+</section>
+<section id="part-c-advanced-algorithm-implementation-5-marks" class="level4" data-number="6.6.2.3">
+<h4 data-number="6.6.2.3" class="anchored" data-anchor-id="part-c-advanced-algorithm-implementation-5-marks"><span class="header-section-number">6.6.2.3</span> Part C: Advanced Algorithm Implementation (5 Marks)</h4>
+<p><strong>Objective:</strong> Implement sophisticated optimization algorithms for complex campus problems.</p>
+<p><strong>Tasks:</strong></p>
+<ol type="1">
+<li><p><strong>Gradient-Based Optimization:</strong></p>
+<ul>
+<li>Implement Adam optimizer for parameter tuning</li>
+<li>Learning rate scheduling and adaptation</li>
+<li>Handling of non-convex objective functions</li>
+</ul></li>
+<li><p><strong>Metaheuristic Integration:</strong></p>
+<ul>
+<li>Combine gradient methods with heuristic approaches</li>
+<li>Hybrid algorithms for complex constraints</li>
+<li>Multi-objective optimization techniques</li>
+</ul></li>
+<li><p><strong>Large-Scale Optimization:</strong></p>
+<ul>
+<li>Distributed optimization approaches</li>
+<li>Parallel processing for campus-scale problems</li>
+<li>Efficient data structures for optimization</li>
+</ul></li>
+</ol>
+</section>
+<section id="part-d-system-deployment-evaluation-4-marks" class="level4" data-number="6.6.2.4">
+<h4 data-number="6.6.2.4" class="anchored" data-anchor-id="part-d-system-deployment-evaluation-4-marks"><span class="header-section-number">6.6.2.4</span> Part D: System Deployment &amp; Evaluation (4 Marks)</h4>
+<p><strong>Objective:</strong> Deploy and evaluate the complete system.</p>
+<p><strong>Tasks:</strong></p>
+<ol type="1">
+<li><p><strong>Performance Metrics:</strong></p>
+<ul>
+<li>Optimization solution quality</li>
+<li>Computational efficiency</li>
+<li>Prediction accuracy</li>
+<li>Practical feasibility</li>
+</ul></li>
+<li><p><strong>Comparative Analysis:</strong></p>
+<ul>
+<li>Baseline vs optimized solutions</li>
+<li>Different algorithm comparisons</li>
+<li>Sensitivity to parameter choices</li>
+</ul></li>
+<li><p><strong>Business Impact Assessment:</strong></p>
+<ul>
+<li>Cost savings quantification</li>
+<li>Service improvement metrics</li>
+<li>Environmental impact reduction</li>
+<li>Scalability assessment</li>
+</ul></li>
+</ol>
+</section>
+</section>
+<section id="sample-capstone-problem" class="level3" data-number="6.6.3">
+<h3 data-number="6.6.3" class="anchored" data-anchor-id="sample-capstone-problem"><span class="header-section-number">6.6.3</span> Sample Capstone Problem</h3>
+<p><strong>Problem Statement:</strong> Develop an AI-driven system for Campus City that:</p>
+<ol type="1">
+<li>Predicts hourly demands for all 15 facilities</li>
+<li>Optimizes warehouse operations and delivery schedules</li>
+<li>Adapts to real-time events (emergencies, weather)</li>
+<li>Provides dashboard for operations management</li>
+</ol>
+<p><strong>Solution Components:</strong></p>
+<p><strong>Prediction Module:</strong></p>
+<ul>
+<li>LSTM neural networks for time series prediction</li>
+<li>Gradient-based optimization for model training</li>
+<li>Uncertainty quantification for predictions</li>
+</ul>
+<p><strong>Optimization Module:</strong></p>
+<ul>
+<li>Multi-period mixed-integer programming</li>
+<li>Stochastic optimization for demand uncertainty</li>
+<li>Real-time re-optimization engine</li>
+</ul>
+<p><strong>Integration Layer:</strong></p>
+<ul>
+<li>API for data exchange between modules</li>
+<li>Visualization dashboard</li>
+<li>Alert system for exceptional situations</li>
+</ul>
+</section>
+<section id="capstone-design-questions" class="level3" data-number="6.6.4">
+<h3 data-number="6.6.4" class="anchored" data-anchor-id="capstone-design-questions"><span class="header-section-number">6.6.4</span> Capstone Design Questions</h3>
+<ol type="1">
+<li><p>How would you design a neural network architecture for predicting campus facility demands that captures both temporal patterns and external factors?</p></li>
+<li><p>What gradient optimization method would you choose for training your prediction models and why?</p></li>
+<li><p>How would you handle the trade-off between prediction model complexity and optimization solution time in a real-time system?</p></li>
+<li><p>Design a multi-objective optimization approach that balances cost minimization with service level maximization for campus operations.</p></li>
+<li><p>How would you validate that your AI-enhanced optimization system actually improves campus operations compared to traditional methods?</p></li>
+</ol>
+</section>
+</section>
+<section id="module-5-summary" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="module-5-summary"><span class="header-section-number">6.7</span> Module 5 Summary</h2>
+<section id="key-concepts-mastered" class="level3" data-number="6.7.1">
+<h3 data-number="6.7.1" class="anchored" data-anchor-id="key-concepts-mastered"><span class="header-section-number">6.7.1</span> Key Concepts Mastered</h3>
+<ul>
+<li>✅ Gradient descent fundamentals and mathematical foundations</li>
+<li>✅ Advanced gradient methods (Momentum, RMSProp, Adam)</li>
+<li>✅ Optimization in machine learning pipelines</li>
+<li>✅ Stochastic optimization methods and applications</li>
+<li>✅ Integration of AI with traditional optimization</li>
+</ul>
+</section>
+<section id="skills-developed" class="level3" data-number="6.7.2">
+<h3 data-number="6.7.2" class="anchored" data-anchor-id="skills-developed"><span class="header-section-number">6.7.2</span> Skills Developed</h3>
+<ul>
+<li><strong>Algorithm Selection:</strong> Choosing appropriate optimization methods for different problems</li>
+<li><strong>Hyperparameter Tuning:</strong> Optimizing optimization algorithms themselves</li>
+<li><strong>System Integration:</strong> Combining prediction models with optimization</li>
+<li><strong>Practical Implementation:</strong> Applying advanced methods to campus-scale problems</li>
+</ul>
+</section>
+<section id="course-integration" class="level3" data-number="6.7.3">
+<h3 data-number="6.7.3" class="anchored" data-anchor-id="course-integration"><span class="header-section-number">6.7.3</span> Course Integration</h3>
+<p>This module completes the learning journey by:</p>
+<ul>
+<li>Building on foundations from previous modules</li>
+<li>Introducing cutting-edge optimization techniques</li>
+<li>Preparing students for real-world AI/ML optimization challenges</li>
+<li>Providing a comprehensive skill set for industry applications</li>
+</ul>
+</section>
+<section id="career-applications" class="level3" data-number="6.7.4">
+<h3 data-number="6.7.4" class="anchored" data-anchor-id="career-applications"><span class="header-section-number">6.7.4</span> Career Applications</h3>
+<p>Skills developed in this module are directly applicable to:</p>
+<ul>
+<li>Data Scientist roles in logistics and operations</li>
+<li>Machine Learning Engineer positions</li>
+<li>Optimization Specialist careers</li>
+<li>AI Product Development</li>
+<li>Research in computational optimization</li>
+</ul>
+</section>
+<section id="final-preparation" class="level3" data-number="6.7.5">
+<h3 data-number="6.7.5" class="anchored" data-anchor-id="final-preparation"><span class="header-section-number">6.7.5</span> Final Preparation</h3>
+<ul>
+<li>Complete Capstone Project integration</li>
+<li>Review all module concepts for final assessment</li>
+<li>Prepare professional portfolio with project work</li>
+<li>Develop presentation skills for technical solutions</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="course-culmination" class="level2" data-number="6.8">
+<h2 data-number="6.8" class="anchored" data-anchor-id="course-culmination"><span class="header-section-number">6.8</span> Course Culmination</h2>
+<section id="learning-journey-recap" class="level3" data-number="6.8.1">
+<h3 data-number="6.8.1" class="anchored" data-anchor-id="learning-journey-recap"><span class="header-section-number">6.8.1</span> Learning Journey Recap</h3>
+<ul>
+<li><strong>Module 1:</strong> Mathematical foundations and linear optimization</li>
+<li><strong>Module 2:</strong> Nonlinear methods and constraint handling</li>
+<li><strong>Module 3:</strong> Project planning and heuristic approaches</li>
+<li><strong>Module 4:</strong> Combinatorial optimization and graph algorithms</li>
+<li><strong>Module 5:</strong> AI integration and advanced optimization</li>
+</ul>
+</section>
+<section id="professional-competencies-achieved" class="level3" data-number="6.8.2">
+<h3 data-number="6.8.2" class="anchored" data-anchor-id="professional-competencies-achieved"><span class="header-section-number">6.8.2</span> Professional Competencies Achieved</h3>
+<ol type="1">
+<li><strong>Technical Expertise:</strong> From basic LP to neural network optimization</li>
+<li><strong>Problem-Solving:</strong> Structured approach to complex optimization challenges</li>
+<li><strong>Implementation Skills:</strong> Python proficiency with industry-standard libraries</li>
+<li><strong>Business Acumen:</strong> Translating technical solutions to business value</li>
+<li><strong>Communication:</strong> Presenting optimization insights to diverse audiences</li>
+</ol>
+</section>
+<section id="future-learning-pathways" class="level3" data-number="6.8.3">
+<h3 data-number="6.8.3" class="anchored" data-anchor-id="future-learning-pathways"><span class="header-section-number">6.8.3</span> Future Learning Pathways</h3>
+<ul>
+<li>Advanced topics in convex optimization</li>
+<li>Reinforcement learning for sequential decision making</li>
+<li>Quantum optimization algorithms</li>
+<li>Large-scale distributed optimization systems</li>
+<li>Research in optimization theory and applications</li>
+</ul>
+<p><em>This module completes the Computational Optimization &amp; Applications course, equipping students with comprehensive optimization skills applicable to the most challenging problems in technology, business, and research.</em></p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./Module-4.html" class="pagination-link" aria-label="Module 4: Combinatorial Optimization and Graph Algorithms">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Module 4: Combinatorial Optimization and Graph Algorithms</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

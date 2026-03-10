@@ -65,6 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<link href="./Module-5.html" rel="next">
 <link href="./Module-3.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -204,6 +205,12 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="./Module-4.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Module 4: Combinatorial Optimization and Graph Algorithms</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./Module-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Module 5: Optimization Algorithms for Advanced Applications</span></span></a>
   </div>
 </li>
     </ul>
@@ -647,7 +654,7 @@ Mathematical Definition:
 <blockquote class="blockquote">
 <p><strong>Python implementation</strong></p>
 </blockquote>
-<div id="9b19bcdf" class="cell" data-execution_count="1">
+<div id="03229000" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx <span class="co"># for network visualization</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -703,7 +710,7 @@ Mathematical Definition:
 <span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>=== Minimum Spanning Tree Results ===
-Edges in MST: [('A', 'C', {'weight': 2}), ('B', 'C', {'weight': 3}), ('B', 'D', {'weight': 2}), ('D', 'E', {'weight': 1})]
+Edges in MST: [('A', 'C', {'weight': 2}), ('B', 'D', {'weight': 2}), ('B', 'C', {'weight': 3}), ('D', 'E', {'weight': 1})]
 Total Minimum Cost: 8.0</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -769,7 +776,7 @@ Total Minimum Cost: 8.0</code></pre>
 <blockquote class="blockquote">
 <p><strong>Python solution</strong></p>
 </blockquote>
-<div id="e9da47b7" class="cell" data-execution_count="2">
+<div id="436c5e72" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -882,7 +889,7 @@ Edges in the MST:
 <blockquote class="blockquote">
 <p><strong>Python solution</strong></p>
 </blockquote>
-<div id="f68f9cc2" class="cell" data-execution_count="3">
+<div id="0dd4526d" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1135,7 +1142,7 @@ Insight: When to use which?
 <blockquote class="blockquote">
 <p><strong>Python code</strong></p>
 </blockquote>
-<div id="0ebd3478" class="cell" data-execution_count="4">
+<div id="1e891688" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1274,7 +1281,7 @@ Insight
 <blockquote class="blockquote">
 <p><strong>Python Code:</strong></p>
 </blockquote>
-<div id="ac98263b" class="cell" data-execution_count="5">
+<div id="17bf68de" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1409,7 +1416,7 @@ Edges in the MST:
 <blockquote class="blockquote">
 <p><strong>Python code</strong></p>
 </blockquote>
-<div id="ed9a5a6e" class="cell" data-execution_count="6">
+<div id="a2582a90" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1587,7 +1594,7 @@ Edges in the MST:
 <blockquote class="blockquote">
 <p><strong>Python code:</strong></p>
 </blockquote>
-<div id="71c1869c" class="cell" data-execution_count="7">
+<div id="3d7658dc" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -1737,7 +1744,7 @@ Edges selected:
 <blockquote class="blockquote">
 <p><strong>Python code:</strong></p>
 </blockquote>
-<div id="cf1606b8" class="cell" data-execution_count="8">
+<div id="b6bb451e" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2001,7 +2008,7 @@ Alternative Algorithms
 <blockquote class="blockquote">
 <p><strong>Python code:</strong></p>
 </blockquote>
-<div id="0b713942" class="cell" data-execution_count="9">
+<div id="f85e26e1" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2127,7 +2134,7 @@ Total Commute Time: 6 minutes</code></pre>
 <blockquote class="blockquote">
 <p><strong>Python code:</strong></p>
 </blockquote>
-<div id="426ce60e" class="cell" data-execution_count="10">
+<div id="8af21a61" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2261,7 +2268,7 @@ Total Cost: 9</code></pre>
 <blockquote class="blockquote">
 <p><strong>Python code:</strong></p>
 </blockquote>
-<div id="12e37ed0" class="cell" data-execution_count="11">
+<div id="733a658e" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2401,7 +2408,7 @@ Total Path Cost: 6</code></pre>
 <blockquote class="blockquote">
 <p><strong>Python code:</strong></p>
 </blockquote>
-<div id="c39b784a" class="cell" data-execution_count="12">
+<div id="b3352432" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2518,7 +2525,7 @@ C &amp; 2 &amp; 1 &amp; 0
 <blockquote class="blockquote">
 <p><strong>Python Code:</strong></p>
 </blockquote>
-<div id="79f818ae" class="cell" data-execution_count="13">
+<div id="857fbb56" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -2894,7 +2901,7 @@ v &amp; \text{if } i = s \\
 <li><strong>Multi-Modal Layers:</strong> Differentiate between “Walkable” edges and “Driveable” edges.</li>
 <li><strong>Criticality Analysis:</strong> Identify “Bridge Edges”—connections that, if removed, would disconnect the graph (using <code>nx.bridges</code>).</li>
 </ul>
-<div id="0ce10f74" class="cell" data-execution_count="14">
+<div id="472448f9" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -3531,6 +3538,9 @@ Final Tip
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./Module-5.html" class="pagination-link" aria-label="Module 5: Optimization Algorithms for Advanced Applications">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Module 5: Optimization Algorithms for Advanced Applications</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
