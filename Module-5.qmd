@@ -464,26 +464,40 @@ Adam optimizer would be most suitable because:
 
 ## Optimization in Machine Learning
 
+In previous sections, we focused on optimization algorithms in a general context. Now, we will explore how these optimization techniques are applied specifically in machine learning and deep learning contexts, where the objective is to minimize a loss function that measures the discrepancy between predicted and true values. Optimization in machine learning involves not only finding the best parameters for a model but also ensuring that the model generalizes well to unseen data, which introduces additional challenges such as overfitting and underfitting.
+
 ### Theoretical Foundation
 
+In machine learning, optimization is central to training models. The goal is to find the parameters that minimize a loss function, which quantifies the error between the model's predictions and the actual data. 
+
 #### Optimization in ML Pipeline
+A ML problem typically involves the following steps:
 
-Machine learning fundamentally involves optimization:
+1. **Model Selection:** Choose a model architecture (e.g., linear regression, neural network). 
+2. **Loss Function:** Define a loss function that quantifies the error between predictions and true labels. 
+3. **Optimization Algorithm:** Choose an optimization algorithm to minimize the loss function.
+4. **Regularization:** Add regularization terms to prevent overfitting and improve generalization.
 
-1. **Model Selection:** Choose hypothesis space
-2. **Loss Function:** Define optimization objective
-3. **Optimization Algorithm:** Find optimal parameters
-4. **Regularization:** Control model complexity
+#### Model Selection
+
+Lets starts with the model selection. The choice of model architecture can significantly impact the optimization process. For example, linear models have convex loss landscapes, which guarantee that gradient descent will converge to a global minimum. In contrast, deep neural networks have non-convex loss landscapes with multiple local minima and saddle points, making optimization more challenging. The choice of model also influences the choice of optimization algorithm, as certain algorithms may be better suited for specific types of models or loss functions. Model selection should be guided by the complexity of the data, the amount of available training data, and the specific task at hand (e.g., regression vs. classification).
 
 #### Loss Functions
+The loss function is a critical component of the optimization process in machine learning, as it defines the objective that the optimization algorithm seeks to minimize. The choice of loss function depends on the type of problem being solved (e.g., regression, classification) and can significantly affect the convergence and performance of the model. The loss function should be chosen to reflect the specific goals of the model and the characteristics of the data. For instance, mean squared error is commonly used for regression tasks, while cross-entropy loss is typically used for classification tasks. The properties of the loss function, such as convexity and differentiability, also play a crucial role in determining the optimization landscape and the behavior of the optimization algorithm. Common loss functions include mean squared error, cross-entropy, and hinge loss, each with its own advantages and disadvantages depending on the context of the problem being addressed.
 
 **Common Loss Functions:**
 
-1. **Mean Squared Error (MSE):** $\frac{1}{n} \sum (y_i - \hat{y}_i)^2$: Used for regression tasks, penalizes larger errors more heavily, and is sensitive to outliers. For example, if a dataset contains an outlier with a large error, the MSE will be significantly affected, leading to a model that may not generalize well to the majority of the data. In contrast, using a loss function like Huber loss can mitigate this issue by reducing the influence of outliers on the optimization process.
-2. **Cross-Entropy:** $-\sum y_i \log(\hat{y}_i)$: Used for classification tasks, measures the difference between true labels and predicted probabilities, and is effective for training models that output probabilities. For instance, in a binary classification problem, if the model predicts a probability of 0.9 for the positive class when the true label is 1, the cross-entropy loss will be low, indicating a good prediction. However, if the model predicts a probability of 0.1 for the positive class, the loss will be high, signaling a poor prediction. 
-3. **Hinge Loss:** $\max(0, 1 - y_i \hat{y}_i)$: Used in support vector machines, encourages a margin between classes, and is non-differentiable at the margin. For example, if a data point is correctly classified with a margin greater than 1, the hinge loss will be zero, indicating no penalty. However, if a data point is misclassified or classified within the margin (i.e., $y_i \hat{y}_i < 1$), the hinge loss will be positive, penalizing the model for not maintaining the desired margin.
+1. **Mean Squared Error (MSE):** $\frac{1}{n} \sum (y_i - \hat{y}_i)^2$: Used for regression tasks, penalizes larger errors more heavily, and is sensitive to outliers. For example, if a dataset contains an outlier with a large error, the MSE will be significantly affected, leading to a model that may not generalize well to the majority of the data. In contrast, using a loss function like Huber loss can mitigate this issue by reducing the influence of outliers on the optimization process. Advantages of MSE include its simplicity and the fact that it provides a smooth gradient for optimization, which can lead to efficient convergence. However, its sensitivity to outliers can be a significant drawback in certain applications, such as when the data contains noise or extreme values that do not represent the underlying distribution well. Along with its advantages, MSE's sensitivity to outliers can lead to skewed model performance, as the optimization process may focus on minimizing the error for outliers at the expense of fitting the majority of the data accurately. This can result in a model that performs poorly on unseen data, especially if the outliers are not representative of the true underlying patterns in the data. Therefore, while MSE is a widely used loss function for regression tasks, it is important to consider the characteristics of the dataset and the presence of outliers when choosing an appropriate loss function for optimization.
 
-**Properties:**
+2. **Mean Absolute Error (MAE):** $\frac{1}{n} \sum |y_i - \hat{y}_i|$: Also used for regression, less sensitive to outliers than MSE, and provides a linear penalty for errors. For instance, if a dataset contains an outlier with a large error, the MAE will be less affected compared to MSE, as it does not square the error term. This makes MAE a more robust choice in situations where the data may contain noise or extreme values that do not represent the underlying distribution well. However, MAE can lead to slower convergence during optimization due to its non-differentiability at zero, which can make it more challenging to optimize using gradient-based methods. Despite this drawback, MAE's robustness to outliers can make it a preferable choice in certain regression tasks where the presence of outliers is a concern. Advantages of MAE include its simplicity and robustness to outliers, while its disadvantages include potential challenges in optimization due to non-differentiability and slower convergence compared to MSE. When choosing between MSE and MAE, it is important to consider the specific characteristics of the dataset and the goals of the modeling task, as well as the trade-offs between sensitivity to outliers and optimization efficiency. There are disadvantages to using MAE, such as its non-differentiability at zero, which can lead to challenges in optimization using gradient-based methods. This can result in slower convergence compared to MSE, especially in cases where the model predictions are close to the true values. Additionally, MAE does not provide a smooth gradient for optimization, which can make it more difficult for certain optimization algorithms to find the optimal parameters efficiently. Despite these drawbacks, MAE's robustness to outliers can make it a preferable choice in certain regression tasks where the presence of outliers is a concern. When choosing between MSE and MAE, it is important to consider the specific characteristics of the dataset and the goals of the modeling task, as well as the trade-offs between sensitivity to outliers and optimization efficiency.
+
+3. **Cross-Entropy:** $-\sum y_i \log(\hat{y}_i)$: Used for classification tasks, measures the difference between true labels and predicted probabilities, and is effective for training models that output probabilities. For instance, in a binary classification problem, if the model predicts a probability of 0.9 for the positive class when the true label is 1, the cross-entropy loss will be low, indicating a good prediction. However, if the model predicts a probability of 0.1 for the positive class, the loss will be high, signaling a poor prediction. Advantages of cross-entropy loss include its ability to provide a smooth gradient for optimization and its suitability for classification tasks, particularly when the model outputs probabilities. However, one disadvantage of cross-entropy loss is that it can be sensitive to class imbalance, where one class is significantly more prevalent than the other. In such cases, the model may become biased towards the majority class, leading to poor performance on the minority class. To address this issue, techniques such as class weighting or using alternative loss functions like focal loss can be employed to improve model performance in imbalanced classification scenarios. When choosing a loss function for classification tasks, it is important to consider the specific characteristics of the dataset, including class distribution and the goals of the modeling task, as well as the trade-offs between optimization efficiency and sensitivity to class imbalance. Its major disadvantage is that it can be sensitive to class imbalance, where one class is significantly more prevalent than the other. In such cases, the model may become biased towards the majority class, leading to poor performance on the minority class. To address this issue, techniques such as class weighting or using alternative loss functions like focal loss can be employed to improve model performance in imbalanced classification scenarios. When choosing a loss function for classification tasks, it is important to consider the specific characteristics of the dataset, including class distribution and the goals of the modeling task, as well as the trade-offs between optimization efficiency and sensitivity to class imbalance.
+
+3. **Categorical Cross-Entropy:** $-\sum y_i \log(\hat{y}_i)$: Used for multi-class classification, generalizes cross-entropy to multiple classes, and is effective for training models that output class probabilities. For example, in a multi-class classification problem with three classes, if the model predicts probabilities of [0.7, 0.2, 0.1] for the true class being the first class (1), the categorical cross-entropy loss will be low, indicating a good prediction. However, if the model predicts probabilities of [0.1, 0.2, 0.7], the loss will be high, signaling a poor prediction. Advantages of categorical cross-entropy loss include its ability to provide a smooth gradient for optimization and its suitability for multi-class classification tasks, particularly when the model outputs class probabilities. However, one disadvantage of categorical cross-entropy loss is that it can be sensitive to class imbalance, where one class is significantly more prevalent than the others. In such cases, the model may become biased towards the majority class, leading to poor performance on minority classes. To address this issue, techniques such as class weighting or using alternative loss functions like focal loss can be employed to improve model performance in imbalanced multi-class classification scenarios. When choosing a loss function for multi-class classification tasks, it is important to consider the specific characteristics of the dataset, including class distribution and the goals of the modeling task, as well as the trade-offs between optimization efficiency and sensitivity to class imbalance.
+
+4. **Hinge Loss:** $\max(0, 1 - y_i \hat{y}_i)$: Used in support vector machines, encourages a margin between classes, and is non-differentiable at the margin. For example, if a data point is correctly classified with a margin greater than 1, the hinge loss will be zero, indicating no penalty. However, if a data point is misclassified or classified within the margin (i.e., $y_i \hat{y}_i < 1$), the hinge loss will be positive, penalizing the model for not maintaining the desired margin. Common applications of hinge loss include support vector machines (SVMs) for classification tasks, where the goal is to find a hyperplane that maximizes the margin between classes. Advantages of hinge loss include its ability to encourage a margin between classes and its suitability for SVMs, while its disadvantages include non-differentiability at the margin, which can make optimization more challenging. When using hinge loss, it is important to consider the specific characteristics of the dataset and the goals of the modeling task, as well as the trade-offs between optimization efficiency and the desire to maintain a margin between classes. Advantages of hinge loss include its ability to encourage a margin between classes and its suitability for SVMs, while its disadvantages include non-differentiability at the margin, which can make optimization more challenging. When using hinge loss, it is important to consider the specific characteristics of the dataset and the goals of the modeling task, as well as the trade-offs between optimization efficiency and the desire to maintain a margin between classes.
+
+**Properties of loss functions:**
 
 Three key properties of loss functions that influence optimization are: 
 
@@ -507,9 +521,14 @@ $$L(\lambda \theta_1 + (1 - \lambda) \theta_2) \leq \lambda L(\theta_1) + (1 - \
 The bias-variance trade-off is a fundamental concept in machine learning that describes the relationship between bias and variance in model performance. As model complexity increases, bias tends to decrease while variance tends to increase. The optimal model complexity is achieved when the total error (sum of bias and variance) is minimized. For example, a simple linear model may have high bias but low variance, while a complex neural network may have low bias but high variance. The goal is to find a balance that minimizes total error and achieves good generalization to unseen data. 
 :::
 
+<div style="text-align: center;">
+  <img src="Bias-Variance.png" alt="Bias Variance tradeoff" style="width: 650px; height: auto; display: block; margin: 0 auto;">
+</div>
+
 ### Overfitting and Underfitting
 
 - **Overfitting:** Model captures noise in training data, performs poorly on unseen data. It occurs when a model is too complex relative to the amount of training data, leading to a model that fits the training data very well but fails to generalize to new, unseen data. For example, a high-degree polynomial regression model may fit the training data perfectly but will likely perform poorly on test data due to its sensitivity to noise and outliers.
+
 - **Underfitting:** Model is too simple, fails to capture underlying patterns in data. It occurs when a model is not complex enough to capture the underlying structure of the data, resulting in poor performance on both the training and test datasets. For instance, a linear regression model may underfit a dataset that has a non-linear relationship between the features and the target variable, leading to high bias and poor predictive performance.  
 
 **Methods to handle overfitting and underfitting:**
@@ -544,6 +563,7 @@ $$
 Advantages of L2 Regularization:
 
 - Prevents overfitting: Encourages smaller coefficients, which can help prevent overfitting by reducing model complexity and improving generalization to unseen data. By adding a penalty on the magnitude of the coefficients, L2 regularization discourages the model from fitting the noise in the training data, leading to better performance on test data.
+
 - Stabilizes optimization: L2 regularization can help stabilize the optimization process by preventing large updates to the coefficients, which can lead to more stable convergence and improved performance, especially in cases where the features are highly correlated.
 
 **Elastic Net:** Elastic Net combines both L1 and L2 regularization, allowing for a balance between sparsity and coefficient shrinkage. The objective function for Elastic Net is:
@@ -551,6 +571,7 @@ $$
 J(\theta) = \text{Loss}(\theta) + \lambda_1 \sum |\theta_i| + \lambda_2 \sum \theta_i^2
 $$
 Where $\lambda_1$ and $\lambda_2$ are the regularization parameters for L1 and L2 terms, respectively.
+
 Advantages of Elastic Net:
 
 - Combines benefits of L1 and L2: Provides a balance between feature selection (L1) and coefficient shrinkage (L2), making it effective in scenarios with correlated features or when the number of features exceeds the number of samples.
@@ -604,6 +625,7 @@ $$
 $$
 \frac{\partial J}{\partial \theta_0} = \frac{1}{   m} \sum_{i=1}^m (h_\theta(x^{(i)}) - y^{(i)})
 $$
+
 **Update Rule:**
 The update rule for gradient descent with L2 regularization can be expressed as:
 $$
