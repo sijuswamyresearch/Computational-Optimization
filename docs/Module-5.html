@@ -58,7 +58,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script><script src="site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="site_libs/quarto-nav/headroom.min.js"></script>
 <script src="site_libs/clipboard/clipboard.min.js"></script>
 <script src="site_libs/quarto-search/autocomplete.umd.js"></script>
@@ -103,6 +103,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -257,26 +260,28 @@ window.Quarto = {
   <li><a href="#sample-problem-5" id="toc-sample-problem-5" class="nav-link" data-scroll-target="#sample-problem-5"><span class="header-section-number">6.5.3</span> Sample Problem</a></li>
   <li><a href="#review-questions-2" id="toc-review-questions-2" class="nav-link" data-scroll-target="#review-questions-2"><span class="header-section-number">6.5.4</span> Review Questions</a></li>
   </ul></li>
-  <li><a href="#capstone-project-ai-enhanced-campus-optimization" id="toc-capstone-project-ai-enhanced-campus-optimization" class="nav-link" data-scroll-target="#capstone-project-ai-enhanced-campus-optimization"><span class="header-section-number">6.6</span> Capstone Project: AI-Enhanced Campus Optimization</a>
+  <li><a href="#example--implementation-of-concepts-learned-in-module-5-in-the-iris-classification-problem-using-tensorflow-and-keras" id="toc-example--implementation-of-concepts-learned-in-module-5-in-the-iris-classification-problem-using-tensorflow-and-keras" class="nav-link" data-scroll-target="#example--implementation-of-concepts-learned-in-module-5-in-the-iris-classification-problem-using-tensorflow-and-keras"><span class="header-section-number">6.6</span> Example- Implementation of concepts learned in Module 5 in the iris classification problem using Tensorflow and Keras</a></li>
+  <li><a href="#advanced-networks-for-image-processing" id="toc-advanced-networks-for-image-processing" class="nav-link" data-scroll-target="#advanced-networks-for-image-processing"><span class="header-section-number">6.7</span> Advanced Networks for image processing</a></li>
+  <li><a href="#capstone-project-ai-enhanced-campus-optimization" id="toc-capstone-project-ai-enhanced-campus-optimization" class="nav-link" data-scroll-target="#capstone-project-ai-enhanced-campus-optimization"><span class="header-section-number">6.8</span> Capstone Project: AI-Enhanced Campus Optimization</a>
   <ul class="collapse">
-  <li><a href="#project-foundation" id="toc-project-foundation" class="nav-link" data-scroll-target="#project-foundation"><span class="header-section-number">6.6.1</span> Project Foundation</a></li>
-  <li><a href="#capstone-project-requirements" id="toc-capstone-project-requirements" class="nav-link" data-scroll-target="#capstone-project-requirements"><span class="header-section-number">6.6.2</span> Capstone Project Requirements</a></li>
-  <li><a href="#sample-capstone-problem" id="toc-sample-capstone-problem" class="nav-link" data-scroll-target="#sample-capstone-problem"><span class="header-section-number">6.6.3</span> Sample Capstone Problem</a></li>
-  <li><a href="#capstone-design-questions" id="toc-capstone-design-questions" class="nav-link" data-scroll-target="#capstone-design-questions"><span class="header-section-number">6.6.4</span> Capstone Design Questions</a></li>
+  <li><a href="#project-foundation" id="toc-project-foundation" class="nav-link" data-scroll-target="#project-foundation"><span class="header-section-number">6.8.1</span> Project Foundation</a></li>
+  <li><a href="#capstone-project-requirements" id="toc-capstone-project-requirements" class="nav-link" data-scroll-target="#capstone-project-requirements"><span class="header-section-number">6.8.2</span> Capstone Project Requirements</a></li>
+  <li><a href="#sample-capstone-problem" id="toc-sample-capstone-problem" class="nav-link" data-scroll-target="#sample-capstone-problem"><span class="header-section-number">6.8.3</span> Sample Capstone Problem</a></li>
+  <li><a href="#capstone-design-questions" id="toc-capstone-design-questions" class="nav-link" data-scroll-target="#capstone-design-questions"><span class="header-section-number">6.8.4</span> Capstone Design Questions</a></li>
   </ul></li>
-  <li><a href="#module-5-summary" id="toc-module-5-summary" class="nav-link" data-scroll-target="#module-5-summary"><span class="header-section-number">6.7</span> Module 5 Summary</a>
+  <li><a href="#module-5-summary" id="toc-module-5-summary" class="nav-link" data-scroll-target="#module-5-summary"><span class="header-section-number">6.9</span> Module 5 Summary</a>
   <ul class="collapse">
-  <li><a href="#key-concepts-mastered" id="toc-key-concepts-mastered" class="nav-link" data-scroll-target="#key-concepts-mastered"><span class="header-section-number">6.7.1</span> Key Concepts Mastered</a></li>
-  <li><a href="#skills-developed" id="toc-skills-developed" class="nav-link" data-scroll-target="#skills-developed"><span class="header-section-number">6.7.2</span> Skills Developed</a></li>
-  <li><a href="#course-integration" id="toc-course-integration" class="nav-link" data-scroll-target="#course-integration"><span class="header-section-number">6.7.3</span> Course Integration</a></li>
-  <li><a href="#career-applications" id="toc-career-applications" class="nav-link" data-scroll-target="#career-applications"><span class="header-section-number">6.7.4</span> Career Applications</a></li>
-  <li><a href="#final-preparation" id="toc-final-preparation" class="nav-link" data-scroll-target="#final-preparation"><span class="header-section-number">6.7.5</span> Final Preparation</a></li>
+  <li><a href="#key-concepts-mastered" id="toc-key-concepts-mastered" class="nav-link" data-scroll-target="#key-concepts-mastered"><span class="header-section-number">6.9.1</span> Key Concepts Mastered</a></li>
+  <li><a href="#skills-developed" id="toc-skills-developed" class="nav-link" data-scroll-target="#skills-developed"><span class="header-section-number">6.9.2</span> Skills Developed</a></li>
+  <li><a href="#course-integration" id="toc-course-integration" class="nav-link" data-scroll-target="#course-integration"><span class="header-section-number">6.9.3</span> Course Integration</a></li>
+  <li><a href="#career-applications" id="toc-career-applications" class="nav-link" data-scroll-target="#career-applications"><span class="header-section-number">6.9.4</span> Career Applications</a></li>
+  <li><a href="#final-preparation" id="toc-final-preparation" class="nav-link" data-scroll-target="#final-preparation"><span class="header-section-number">6.9.5</span> Final Preparation</a></li>
   </ul></li>
-  <li><a href="#course-culmination" id="toc-course-culmination" class="nav-link" data-scroll-target="#course-culmination"><span class="header-section-number">6.8</span> Course Culmination</a>
+  <li><a href="#course-culmination" id="toc-course-culmination" class="nav-link" data-scroll-target="#course-culmination"><span class="header-section-number">6.10</span> Course Culmination</a>
   <ul class="collapse">
-  <li><a href="#learning-journey-recap" id="toc-learning-journey-recap" class="nav-link" data-scroll-target="#learning-journey-recap"><span class="header-section-number">6.8.1</span> Learning Journey Recap</a></li>
-  <li><a href="#professional-competencies-achieved" id="toc-professional-competencies-achieved" class="nav-link" data-scroll-target="#professional-competencies-achieved"><span class="header-section-number">6.8.2</span> Professional Competencies Achieved</a></li>
-  <li><a href="#future-learning-pathways" id="toc-future-learning-pathways" class="nav-link" data-scroll-target="#future-learning-pathways"><span class="header-section-number">6.8.3</span> Future Learning Pathways</a></li>
+  <li><a href="#learning-journey-recap" id="toc-learning-journey-recap" class="nav-link" data-scroll-target="#learning-journey-recap"><span class="header-section-number">6.10.1</span> Learning Journey Recap</a></li>
+  <li><a href="#professional-competencies-achieved" id="toc-professional-competencies-achieved" class="nav-link" data-scroll-target="#professional-competencies-achieved"><span class="header-section-number">6.10.2</span> Professional Competencies Achieved</a></li>
+  <li><a href="#future-learning-pathways" id="toc-future-learning-pathways" class="nav-link" data-scroll-target="#future-learning-pathways"><span class="header-section-number">6.10.3</span> Future Learning Pathways</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -613,7 +618,7 @@ Advantages of Adam:
 <section id="sample-problems" class="level3" data-number="6.3.2">
 <h3 data-number="6.3.2" class="anchored" data-anchor-id="sample-problems"><span class="header-section-number">6.3.2</span> Sample Problems</h3>
 <p><strong>1. Problem statement:</strong> Compare the convergence of solutions of <span class="math inline">\(f(x)=x^2-4x+4\)</span> using the Adagrad, RMSProp and adam optimizers starting from <span class="math inline">\(x_0=0\)</span> with learning rate <span class="math inline">\(\eta=0.1\)</span>. Chose 4 iterations and show the results in a table. ( <span class="math inline">\(\gamma=0.9\)</span>, <span class="math inline">\(\beta_1=0.9\)</span>, <span class="math inline">\(\beta_2=0.99\)</span> and <span class="math inline">\(\epsilon=10^{-8}\)</span>).</p>
-<div id="44b97b31" class="cell" data-execution_count="1">
+<div id="00edb2de" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f_prime(x):</span>
@@ -684,7 +689,7 @@ Advantages of Adam:
 </div>
 </div>
 <p><strong>Problem Statement 2:</strong> Use Gradient Descend, Momentum adagrad, RMSProp, and adam methods solve the problem minimize <span class="math inline">\(f(x)=x^2-7x+5\)</span>.</p>
-<div id="e0c6dfe6" class="cell" data-execution_count="2">
+<div id="e01af57f" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f_prime(x):</span>
@@ -774,7 +779,7 @@ Advantages of Adam:
 </div>
 </div>
 <p><strong>Problem Statement 3:</strong> Compare convergence of basic gradient descent vs momentum for minimizing <span class="math inline">\(f(x) = x^4 - 3x^2 + x\)</span> starting from <span class="math inline">\(x_0 = 2.5\)</span>.</p>
-<div id="9f5ca5e7" class="cell" data-execution_count="3">
+<div id="50e65e91" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f_prime(x):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Derivative of f(x) = x^4 - 3x^2 + x"""</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">4</span> <span class="op">*</span> x<span class="op">**</span><span class="dv">3</span> <span class="op">-</span> <span class="dv">6</span> <span class="op">*</span> x <span class="op">+</span> <span class="dv">1</span></span>
@@ -1005,7 +1010,7 @@ J(\theta) = \frac{1}{2m} \sum_{i=1}^m (h_\theta(x^{(i)}) - y^{(i)})^2 + \frac{\l
 \theta_0 := \theta_0 - \eta \left( \frac{1}{m} \sum_{i=1}^m (h_\theta(x^{(i)}) - y^{(i)}) \right)
 \]</span></p>
 <p><strong>Implementation:</strong></p>
-<div id="c5a0db8d" class="cell" data-execution_count="4">
+<div id="e69e3ba1" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_cost(X, y, theta, lambda_):</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> <span class="bu">len</span>(y)</span>
@@ -1035,11 +1040,11 @@ J(\theta) = \frac{1}{2m} \sum_{i=1}^m (h_\theta(x^{(i)}) - y^{(i)})^2 + \frac{\l
 <pre><code>Optimized parameters: [nan nan nan nan]</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\SIJUKSWAMY\AppData\Local\Temp\ipykernel_17248\3733090581.py:5: RuntimeWarning:
+<pre><code>C:\Users\SIJUKSWAMY\AppData\Local\Temp\ipykernel_21740\3733090581.py:5: RuntimeWarning:
 
 overflow encountered in square
 
-C:\Users\SIJUKSWAMY\AppData\Local\Temp\ipykernel_17248\3733090581.py:14: RuntimeWarning:
+C:\Users\SIJUKSWAMY\AppData\Local\Temp\ipykernel_21740\3733090581.py:14: RuntimeWarning:
 
 invalid value encountered in subtract
 </code></pre>
@@ -1102,7 +1107,7 @@ invalid value encountered in subtract
 <li><p>May not converge to exact minimum: Due to the noise in the updates, SGD may not converge to the exact minimum of the loss function, but it can get close enough for practical purposes. The convergence behavior of SGD can be influenced by factors such as the learning rate and the choice of mini-batch size.</p></li>
 <li><p>Can escape local minima in non-convex problems: The noise in the gradient estimates can help the optimization process escape local minima and saddle points, which is particularly beneficial when training deep neural networks.</p></li>
 </ul>
-<div id="e3f32109" class="cell" data-execution_count="5">
+<div id="271a9d40" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example implementation of SGD</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sgd(X, y, theta, alpha, iterations):</span>
@@ -1127,7 +1132,7 @@ invalid value encountered in subtract
 <span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> sgd(X, y, theta, alpha, iterations)</span>
 <span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Optimized parameters:"</span>, theta)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Optimized parameters: [1.45652113 0.83737739]</code></pre>
+<pre><code>Optimized parameters: [1.4456557  0.80672584]</code></pre>
 </div>
 </div>
 </section>
@@ -1148,7 +1153,7 @@ invalid value encountered in subtract
 <h4 data-number="6.5.1.4" class="anchored" data-anchor-id="advanced-stochastic-methods"><span class="header-section-number">6.5.1.4</span> Advanced Stochastic Methods</h4>
 <p>In addition to basic SGD and mini-batch gradient descent, there are several advanced stochastic optimization methods that have been developed to improve convergence and performance in training machine learning models. These methods often incorporate techniques such as momentum, adaptive learning rates, and variance reduction to enhance the optimization process. Some of the most popular advanced stochastic optimization methods include:</p>
 <p><strong>SGD with Momentum:</strong> Incorporates a velocity term to accelerate convergence and reduce oscillations. The update rule for SGD with momentum can be expressed as follows: <span class="math display">\[v := \beta v + (1 - \beta) \nabla_\theta J(\theta; x^{(i)}, y^{(i)})\]</span> <span class="math display">\[\theta := \theta - \eta v\]</span> Where <span class="math inline">\(\beta\)</span> is the momentum parameter, typically set to 0.9. This method helps to smooth out the updates and can lead to faster convergence, especially in scenarios where the loss landscape has narrow valleys or plateaus.</p>
-<div id="c24d8155" class="cell" data-execution_count="6">
+<div id="e02bae0a" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>   <span class="co"># Example implementation of SGD with Momentum</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sgd_momentum(X, y, theta, alpha, beta, iterations):</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> <span class="bu">len</span>(y)</span>
@@ -1172,12 +1177,12 @@ invalid value encountered in subtract
 <span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> sgd_momentum(X, y, theta, alpha, beta, iterations)</span>
 <span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Optimized parameters:"</span>, theta)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Optimized parameters: [1.44006818 0.81979002]</code></pre>
+<pre><code>Optimized parameters: [1.48166565 0.81068065]</code></pre>
 </div>
 </div>
 <p><strong>Adam for Stochastic Optimization:</strong> Combines momentum and adaptive learning rates for efficient optimization. The update rule for Adam can be expressed as follows: <span class="math display">\[m := \beta_1 m + (1 - \beta_1) \nabla_\theta J(\theta; x^{(i)}, y^{(i)})\]</span> <span class="math display">\[v := \beta_2 v + (1 - \beta_2) (\nabla_\theta J(\theta; x^{(i)}, y^{(i)}))^2\]</span> <span class="math display">\[\hat{m} := \frac{m}{1 - \beta_1^t}\]</span> <span class="math display">\[\hat{v} := \frac{v}{1 - \beta_2^t}\]</span></p>
 <p>where <span class="math inline">\(\beta_1\)</span> and <span class="math inline">\(\beta_2\)</span> are the decay rates for the moment estimates, typically set to 0.9 and 0.999, respectively. Adam is widely used in training deep neural networks due to its efficiency and effectiveness in handling sparse gradients and non-stationary objectives.</p>
-<div id="b8fd9488" class="cell" data-execution_count="7">
+<div id="9829ec02" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example implementation of Adam optimizer</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> adam(X, y, theta, alpha, beta1, beta2, epsilon, iterations):</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> <span class="bu">len</span>(y)</span>
@@ -1207,7 +1212,7 @@ invalid value encountered in subtract
 <span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> adam(X, y, theta, alpha, beta1, beta2, epsilon, iterations)</span>
 <span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Optimized parameters:"</span>, theta)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Optimized parameters: [1.47076764 0.84904457]</code></pre>
+<pre><code>Optimized parameters: [1.4541315 0.8085012]</code></pre>
 </div>
 </div>
 <p><strong>Learning Rate Scheduling:</strong> Adjusting the learning rate during training can improve convergence. Common schedules include:</p>
@@ -1279,12 +1284,840 @@ invalid value encountered in subtract
 </ol>
 </section>
 </section>
-<section id="capstone-project-ai-enhanced-campus-optimization" class="level2" data-number="6.6">
-<h2 data-number="6.6" class="anchored" data-anchor-id="capstone-project-ai-enhanced-campus-optimization"><span class="header-section-number">6.6</span> Capstone Project: AI-Enhanced Campus Optimization</h2>
-<section id="project-foundation" class="level3" data-number="6.6.1">
-<h3 data-number="6.6.1" class="anchored" data-anchor-id="project-foundation"><span class="header-section-number">6.6.1</span> Project Foundation</h3>
-<section id="integration-of-all-modules" class="level4" data-number="6.6.1.1">
-<h4 data-number="6.6.1.1" class="anchored" data-anchor-id="integration-of-all-modules"><span class="header-section-number">6.6.1.1</span> Integration of All Modules</h4>
+<section id="example--implementation-of-concepts-learned-in-module-5-in-the-iris-classification-problem-using-tensorflow-and-keras" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="example--implementation-of-concepts-learned-in-module-5-in-the-iris-classification-problem-using-tensorflow-and-keras"><span class="header-section-number">6.6</span> Example- Implementation of concepts learned in Module 5 in the iris classification problem using Tensorflow and Keras</h2>
+<div id="d094c1e2" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tensorflow <span class="im">as</span> tf</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow <span class="im">import</span> keras</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> load_iris</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> accuracy_score,confusion_matrix, classification_report  </span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the iris dataset</span></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>iris <span class="op">=</span> load_iris()</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> iris.data</span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> iris.target</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Preprocess the data</span></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a>scaler <span class="op">=</span> StandardScaler()</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>X_scaled <span class="op">=</span> scaler.fit_transform(X)</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Split the data into training and testing sets</span></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X_scaled, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Build the neural network model</span></span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> keras.Sequential([</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>    keras.layers.Dense(<span class="dv">64</span>, activation<span class="op">=</span><span class="st">'relu'</span>, input_shape<span class="op">=</span>(X_train.shape[<span class="dv">1</span>],)),</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>    keras.layers.Dropout(<span class="fl">0.5</span>),</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>    keras.layers.Dense(<span class="dv">64</span>, activation<span class="op">=</span><span class="st">'relu'</span>),</span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a>    keras.layers.Dropout(<span class="fl">0.5</span>),</span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>    keras.layers.Dense(<span class="dv">3</span>, activation<span class="op">=</span><span class="st">'softmax'</span>)</span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a>]) </span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Compile the model with Adam optimizer and categorical cross-entropy loss</span></span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">compile</span>(optimizer<span class="op">=</span><span class="st">'adam'</span>, loss<span class="op">=</span><span class="st">'sparse_categorical_crossentropy'</span>, metrics<span class="op">=</span>[<span class="st">'accuracy'</span>])</span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a><span class="co"># Train the model</span></span>
+<span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a>history <span class="op">=</span> model.fit(X_train, y_train, epochs<span class="op">=</span><span class="dv">100</span>, batch_size<span class="op">=</span><span class="dv">16</span>, validation_split<span class="op">=</span><span class="fl">0.2</span>,verbose<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Evaluate the model on the test set   </span></span>
+<span id="cb16-30"><a href="#cb16-30" aria-hidden="true" tabindex="-1"></a>test_loss, test_acc <span class="op">=</span> model.evaluate(X_test, y_test)</span>
+<span id="cb16-31"><a href="#cb16-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Test accuracy: </span><span class="sc">{</span>test_acc<span class="sc">:.4f}</span><span class="ss">'</span>)</span>
+<span id="cb16-32"><a href="#cb16-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Classification Report:"</span>)</span>
+<span id="cb16-33"><a href="#cb16-33" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> np.argmax(model.predict(X_test), axis<span class="op">=</span><span class="dv">1</span>)  </span>
+<span id="cb16-34"><a href="#cb16-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(classification_report(y_test, y_pred))</span>
+<span id="cb16-35"><a href="#cb16-35" aria-hidden="true" tabindex="-1"></a><span class="co">#confusion matrix</span></span>
+<span id="cb16-36"><a href="#cb16-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Confusion Matrix:"</span>)</span>
+<span id="cb16-37"><a href="#cb16-37" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(confusion_matrix(y_test, y_pred))</span>
+<span id="cb16-38"><a href="#cb16-38" aria-hidden="true" tabindex="-1"></a><span class="co"># false positives, false negatives, true positives, true negatives</span></span>
+<span id="cb16-39"><a href="#cb16-39" aria-hidden="true" tabindex="-1"></a><span class="co"># For multi-class, you might want per-class metrics</span></span>
+<span id="cb16-40"><a href="#cb16-40" aria-hidden="true" tabindex="-1"></a>cm <span class="op">=</span> confusion_matrix(y_test, y_pred)</span>
+<span id="cb16-41"><a href="#cb16-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-42"><a href="#cb16-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Get per-class metrics</span></span>
+<span id="cb16-43"><a href="#cb16-43" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(cm)):</span>
+<span id="cb16-44"><a href="#cb16-44" aria-hidden="true" tabindex="-1"></a>    tp <span class="op">=</span> cm[i, i]</span>
+<span id="cb16-45"><a href="#cb16-45" aria-hidden="true" tabindex="-1"></a>    fp <span class="op">=</span> cm[:, i].<span class="bu">sum</span>() <span class="op">-</span> tp</span>
+<span id="cb16-46"><a href="#cb16-46" aria-hidden="true" tabindex="-1"></a>    fn <span class="op">=</span> cm[i, :].<span class="bu">sum</span>() <span class="op">-</span> tp</span>
+<span id="cb16-47"><a href="#cb16-47" aria-hidden="true" tabindex="-1"></a>    tn <span class="op">=</span> cm.<span class="bu">sum</span>() <span class="op">-</span> (tp <span class="op">+</span> fp <span class="op">+</span> fn)</span>
+<span id="cb16-48"><a href="#cb16-48" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb16-49"><a href="#cb16-49" aria-hidden="true" tabindex="-1"></a>    precision <span class="op">=</span> tp <span class="op">/</span> (tp <span class="op">+</span> fp) <span class="cf">if</span> (tp <span class="op">+</span> fp) <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">else</span> <span class="dv">0</span></span>
+<span id="cb16-50"><a href="#cb16-50" aria-hidden="true" tabindex="-1"></a>    recall <span class="op">=</span> tp <span class="op">/</span> (tp <span class="op">+</span> fn) <span class="cf">if</span> (tp <span class="op">+</span> fn) <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">else</span> <span class="dv">0</span></span>
+<span id="cb16-51"><a href="#cb16-51" aria-hidden="true" tabindex="-1"></a>    f1 <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> (precision <span class="op">*</span> recall) <span class="op">/</span> (precision <span class="op">+</span> recall) <span class="cf">if</span> (precision <span class="op">+</span> recall) <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">else</span> <span class="dv">0</span></span>
+<span id="cb16-52"><a href="#cb16-52" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb16-53"><a href="#cb16-53" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Class </span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">: Precision=</span><span class="sc">{</span>precision<span class="sc">:.3f}</span><span class="ss">, Recall=</span><span class="sc">{</span>recall<span class="sc">:.3f}</span><span class="ss">, F1=</span><span class="sc">{</span>f1<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb16-54"><a href="#cb16-54" aria-hidden="true" tabindex="-1"></a><span class="co"># tru positives, true negatives, false positives, false negatives</span></span>
+<span id="cb16-55"><a href="#cb16-55" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'True Positives: </span><span class="sc">{</span>tp<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb16-56"><a href="#cb16-56" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'True Negatives: </span><span class="sc">{</span>tn<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb16-57"><a href="#cb16-57" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'False Positives: </span><span class="sc">{</span>fp<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb16-58"><a href="#cb16-58" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'False Negatives: </span><span class="sc">{</span>fn<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb16-59"><a href="#cb16-59" aria-hidden="true" tabindex="-1"></a><span class="co"># tru positive rate (sensitivity) and true negative rate (specificity)</span></span>
+<span id="cb16-60"><a href="#cb16-60" aria-hidden="true" tabindex="-1"></a>tpr <span class="op">=</span> tp <span class="op">/</span> (tp <span class="op">+</span> fn) <span class="cf">if</span> (tp <span class="op">+</span> fn) <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">else</span> <span class="dv">0</span></span>
+<span id="cb16-61"><a href="#cb16-61" aria-hidden="true" tabindex="-1"></a>tnr <span class="op">=</span> tn <span class="op">/</span> (tn <span class="op">+</span> fp) <span class="cf">if</span> (tn <span class="op">+</span> fp) <span class="op">&gt;</span> <span class="dv">0</span> <span class="cf">else</span> <span class="dv">0</span> </span>
+<span id="cb16-62"><a href="#cb16-62" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'True Positive Rate (Sensitivity): </span><span class="sc">{</span>tpr<span class="sc">:.4f}</span><span class="ss">'</span>)</span>
+<span id="cb16-63"><a href="#cb16-63" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'True Negative Rate (Specificity): </span><span class="sc">{</span>tnr<span class="sc">:.4f}</span><span class="ss">'</span>)</span>
+<span id="cb16-64"><a href="#cb16-64" aria-hidden="true" tabindex="-1"></a><span class="co"># Region of convergence plot</span></span>
+<span id="cb16-65"><a href="#cb16-65" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt  </span>
+<span id="cb16-66"><a href="#cb16-66" aria-hidden="true" tabindex="-1"></a>plt.plot(history.history[<span class="st">'accuracy'</span>], label<span class="op">=</span><span class="st">'Training Accuracy'</span>)</span>
+<span id="cb16-67"><a href="#cb16-67" aria-hidden="true" tabindex="-1"></a>plt.plot(history.history[<span class="st">'val_accuracy'</span>], label<span class="op">=</span><span class="st">'Validation Accuracy'</span>)</span>
+<span id="cb16-68"><a href="#cb16-68" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Model Accuracy'</span>)</span>
+<span id="cb16-69"><a href="#cb16-69" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Epoch'</span>)</span>
+<span id="cb16-70"><a href="#cb16-70" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Accuracy'</span>)</span>
+<span id="cb16-71"><a href="#cb16-71" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb16-72"><a href="#cb16-72" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb16-73"><a href="#cb16-73" aria-hidden="true" tabindex="-1"></a><span class="co"># Loss curve plot- training and validation loss curves to visualize convergence and potential overfitting</span></span>
+<span id="cb16-74"><a href="#cb16-74" aria-hidden="true" tabindex="-1"></a>plt.plot(history.history[<span class="st">'loss'</span>], label<span class="op">=</span><span class="st">'Training Loss'</span>)</span>
+<span id="cb16-75"><a href="#cb16-75" aria-hidden="true" tabindex="-1"></a>plt.plot(history.history[<span class="st">'val_loss'</span>], label<span class="op">=</span><span class="st">'Validation Loss'</span>)</span>
+<span id="cb16-76"><a href="#cb16-76" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Model Loss'</span>)</span>
+<span id="cb16-77"><a href="#cb16-77" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Epoch'</span>)  </span>
+<span id="cb16-78"><a href="#cb16-78" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Loss'</span>)</span>
+<span id="cb16-79"><a href="#cb16-79" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb16-80"><a href="#cb16-80" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>C:\Users\SIJUKSWAMY\AppData\Local\Programs\Python\Python312\Lib\site-packages\keras\src\layers\core\dense.py:87: UserWarning:
+
+Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequential models, prefer using an `Input(shape)` object as the first layer in the model instead.
+</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-bold">1/1</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 31ms/step - accuracy: 1.0000 - loss: 0.0399
+
+<span class="ansi-bold">1/1</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 47ms/step - accuracy: 1.0000 - loss: 0.0399
+
+Test accuracy: 1.0000
+
+Classification Report:
+
+
+<span class="ansi-bold">1/1</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 35ms/step
+
+<span class="ansi-bold">1/1</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 52ms/step
+
+              precision    recall  f1-score   support
+
+
+
+           0       1.00      1.00      1.00        10
+
+           1       1.00      1.00      1.00         9
+
+           2       1.00      1.00      1.00        11
+
+
+
+    accuracy                           1.00        30
+
+   macro avg       1.00      1.00      1.00        30
+
+weighted avg       1.00      1.00      1.00        30
+
+
+
+Confusion Matrix:
+
+[[10  0  0]
+
+ [ 0  9  0]
+
+ [ 0  0 11]]
+
+Class 0: Precision=1.000, Recall=1.000, F1=1.000
+
+Class 1: Precision=1.000, Recall=1.000, F1=1.000
+
+Class 2: Precision=1.000, Recall=1.000, F1=1.000
+
+True Positives: 11
+
+True Negatives: 19
+
+False Positives: 0
+
+False Negatives: 0
+
+True Positive Rate (Sensitivity): 1.0000
+
+True Negative Rate (Specificity): 1.0000
+</pre>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Module-5_files/figure-html/cell-9-output-3.png" width="589" height="449" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Module-5_files/figure-html/cell-9-output-4.png" width="589" height="449" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Statistical conclusion:</strong> The model achieves high accuracy on the test set, with a classification report showing strong precision, recall, and F1-score across all classes. The confusion matrix indicates that the model is effectively distinguishing between the three iris species, with minimal misclassifications. The training and validation curves suggest good convergence without significant overfitting, demonstrating the effectiveness of the optimization techniques applied in this module.</p>
+<p><strong>Major problems with the implementation:</strong> The model may require tuning of hyperparameters such as learning rate, batch size, and the number of epochs to achieve optimal performance. Additionally, the use of dropout layers may lead to underfitting if not properly balanced with the model architecture and training data. Finally, the small dataset size may limit the generalizability of the model, and further validation on larger datasets would be necessary to confirm its robustness.</p>
+<p><strong>Statistical issues with this loss function:</strong> The use of categorical cross-entropy loss is appropriate for multi-class classification problems like the iris dataset. However, if the dataset is imbalanced, this loss function may not adequately penalize misclassifications of minority classes, leading to biased predictions. In such cases, alternative loss functions or techniques such as class weighting or oversampling may be necessary to address class imbalance and improve model performance.</p>
+<p><strong>Issues with optimization of average loss:</strong> The optimization of average loss may not always lead to the best generalization performance, especially if the dataset contains outliers or is imbalanced. In such cases, the model may overfit to the majority class or be influenced by outliers, resulting in suboptimal performance on unseen data. To mitigate this issue, techniques such as robust loss functions, regularization, or data augmentation can be employed to improve the model’s ability to generalize and perform well on a wider range of inputs.</p>
+<p><strong>Truth of pixel-wise error minimization:</strong> Pixel-wise error minimization may not always lead to the best perceptual quality in image-related tasks, as it focuses on minimizing the average error across all pixels rather than considering the overall structure and context of the image. This can result in blurry or unrealistic outputs, especially in tasks such as image generation or super-resolution. To address this issue, alternative loss functions that consider perceptual quality, such as adversarial loss or perceptual loss, can be used to improve the visual quality of the generated images. In this context, it is a classification problem rather than an image generation task, so pixel-wise error minimization is not directly applicable. However, the choice of loss function and optimization strategy can still impact the model’s ability to generalize and perform well on unseen data, as discussed in the previous points. The real mathematics in the categorical cross-entropy loss function is based on the concept of maximum likelihood estimation, where the model is trained to maximize the likelihood of the observed data given the model parameters. This involves minimizing the negative log-likelihood, which is equivalent to minimizing the categorical cross-entropy loss in multi-class classification problems. The optimization process involves adjusting the model parameters to minimize this loss function, which can be achieved using various optimization algorithms such as SGD, Adam, or RMSProp, as discussed in this module. The categorical cross entropy measures the dissimilarity between the predicted probability distribution and the true distribution (one-hot encoded labels) for multi-class classification problems. It is defined as: <span class="math display">\[L = -\sum_{i=1}^{N} \sum_{j=1}^{C} y_{ij} \log(p_{ij})\]</span></p>
+<p>Where <span class="math inline">\(N\)</span> is the number of samples, <span class="math inline">\(C\)</span> is the number of classes, <span class="math inline">\(y_{ij}\)</span> is the true label (1 if sample <span class="math inline">\(i\)</span> belongs to class <span class="math inline">\(j\)</span>, 0 otherwise), and <span class="math inline">\(p_{ij}\)</span> is the predicted probability that sample <span class="math inline">\(i\)</span> belongs to class <span class="math inline">\(j\)</span>. The optimization process involves minimizing this loss function with respect to the model parameters, which can be achieved using various optimization algorithms such as SGD, Adam, or RMSProp, as discussed in this module. The choice of optimization algorithm and hyperparameters can significantly impact the convergence and performance of the model on the given dataset. This optimization uses the properties of the loss function, such as its smoothness and convexity, to guide the search for optimal parameters. The optimization process iteratively updates the model parameters in the direction that minimizes the loss function, ultimately leading to a model that can effectively classify the iris dataset with high accuracy and generalization performance.</p>
+</section>
+<section id="advanced-networks-for-image-processing" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="advanced-networks-for-image-processing"><span class="header-section-number">6.7</span> Advanced Networks for image processing</h2>
+<p>Convolutional Neural Networks (CNNs) are a class of deep learning models that have shown remarkable performance in image-related tasks. They are designed to automatically and adaptively learn spatial hierarchies of features from input images, making them particularly effective for tasks such as image classification, object detection, and image generation. A simple example of CNN for classifying MNIST Fashion dataset can be implemented as follows:</p>
+<div id="38e0c8ae" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Import necessary libraries</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tensorflow <span class="im">as</span> tf</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow <span class="im">import</span> keras</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras <span class="im">import</span> layers</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras.models <span class="im">import</span> Model</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.gridspec <span class="im">as</span> gridspec</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Load and preprocess Fashion-MNIST dataset</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Loading Fashion-MNIST dataset..."</span>)</span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>fashion_mnist <span class="op">=</span> keras.datasets.fashion_mnist</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>(train_images, train_labels), (test_images, test_labels) <span class="op">=</span> fashion_mnist.load_data()</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Class names for Fashion-MNIST</span></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>class_names <span class="op">=</span> [<span class="st">'T-shirt/top'</span>, <span class="st">'Trouser'</span>, <span class="st">'Pullover'</span>, <span class="st">'Dress'</span>, <span class="st">'Coat'</span>,</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>               <span class="st">'Sandal'</span>, <span class="st">'Shirt'</span>, <span class="st">'Sneaker'</span>, <span class="st">'Bag'</span>, <span class="st">'Ankle boot'</span>]</span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Normalize pixel values to [0, 1]</span></span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>train_images <span class="op">=</span> train_images.astype(<span class="st">'float32'</span>) <span class="op">/</span> <span class="fl">255.0</span></span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>test_images <span class="op">=</span> test_images.astype(<span class="st">'float32'</span>) <span class="op">/</span> <span class="fl">255.0</span></span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Reshape images to add channel dimension (28, 28, 1)</span></span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>train_images <span class="op">=</span> train_images.reshape(train_images.shape[<span class="dv">0</span>], <span class="dv">28</span>, <span class="dv">28</span>, <span class="dv">1</span>)</span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>test_images <span class="op">=</span> test_images.reshape(test_images.shape[<span class="dv">0</span>], <span class="dv">28</span>, <span class="dv">28</span>, <span class="dv">1</span>)</span>
+<span id="cb18-26"><a href="#cb18-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-27"><a href="#cb18-27" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Training data shape: </span><span class="sc">{</span>train_images<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb18-28"><a href="#cb18-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Test data shape: </span><span class="sc">{</span>test_images<span class="sc">.</span>shape<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb18-29"><a href="#cb18-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-30"><a href="#cb18-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 3: Display sample images from the dataset</span></span>
+<span id="cb18-31"><a href="#cb18-31" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> display_sample_images(images, labels, num_rows<span class="op">=</span><span class="dv">2</span>, num_cols<span class="op">=</span><span class="dv">5</span>):</span>
+<span id="cb18-32"><a href="#cb18-32" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">4</span>))</span>
+<span id="cb18-33"><a href="#cb18-33" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(num_rows <span class="op">*</span> num_cols):</span>
+<span id="cb18-34"><a href="#cb18-34" aria-hidden="true" tabindex="-1"></a>        plt.subplot(num_rows, num_cols, i<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb18-35"><a href="#cb18-35" aria-hidden="true" tabindex="-1"></a>        plt.imshow(images[i].reshape(<span class="dv">28</span>, <span class="dv">28</span>), cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb18-36"><a href="#cb18-36" aria-hidden="true" tabindex="-1"></a>        plt.title(class_names[labels[i]])</span>
+<span id="cb18-37"><a href="#cb18-37" aria-hidden="true" tabindex="-1"></a>        plt.axis(<span class="st">'off'</span>)</span>
+<span id="cb18-38"><a href="#cb18-38" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb18-39"><a href="#cb18-39" aria-hidden="true" tabindex="-1"></a>    plt.suptitle(<span class="st">'Sample Fashion-MNIST Images'</span>, y<span class="op">=</span><span class="fl">1.02</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb18-40"><a href="#cb18-40" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb18-41"><a href="#cb18-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-42"><a href="#cb18-42" aria-hidden="true" tabindex="-1"></a>display_sample_images(train_images, train_labels)</span>
+<span id="cb18-43"><a href="#cb18-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-44"><a href="#cb18-44" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 4: Build the CNN model using Functional API instead of Sequential</span></span>
+<span id="cb18-45"><a href="#cb18-45" aria-hidden="true" tabindex="-1"></a><span class="co"># This approach makes it easier to extract intermediate layer outputs</span></span>
+<span id="cb18-46"><a href="#cb18-46" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> create_cnn_functional_model():</span>
+<span id="cb18-47"><a href="#cb18-47" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Define input layer</span></span>
+<span id="cb18-48"><a href="#cb18-48" aria-hidden="true" tabindex="-1"></a>    inputs <span class="op">=</span> keras.Input(shape<span class="op">=</span>(<span class="dv">28</span>, <span class="dv">28</span>, <span class="dv">1</span>), name<span class="op">=</span><span class="st">'input'</span>)</span>
+<span id="cb18-49"><a href="#cb18-49" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-50"><a href="#cb18-50" aria-hidden="true" tabindex="-1"></a>    <span class="co"># First Convolutional Block</span></span>
+<span id="cb18-51"><a href="#cb18-51" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> layers.Conv2D(<span class="dv">32</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>, padding<span class="op">=</span><span class="st">'same'</span>, name<span class="op">=</span><span class="st">'conv1'</span>)(inputs)</span>
+<span id="cb18-52"><a href="#cb18-52" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>), name<span class="op">=</span><span class="st">'pool1'</span>)(x)</span>
+<span id="cb18-53"><a href="#cb18-53" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-54"><a href="#cb18-54" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Second Convolutional Block</span></span>
+<span id="cb18-55"><a href="#cb18-55" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> layers.Conv2D(<span class="dv">64</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>, padding<span class="op">=</span><span class="st">'same'</span>, name<span class="op">=</span><span class="st">'conv2'</span>)(x)</span>
+<span id="cb18-56"><a href="#cb18-56" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>), name<span class="op">=</span><span class="st">'pool2'</span>)(x)</span>
+<span id="cb18-57"><a href="#cb18-57" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-58"><a href="#cb18-58" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Third Convolutional Block</span></span>
+<span id="cb18-59"><a href="#cb18-59" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> layers.Conv2D(<span class="dv">128</span>, (<span class="dv">3</span>, <span class="dv">3</span>), activation<span class="op">=</span><span class="st">'relu'</span>, padding<span class="op">=</span><span class="st">'same'</span>, name<span class="op">=</span><span class="st">'conv3'</span>)(x)</span>
+<span id="cb18-60"><a href="#cb18-60" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> layers.MaxPooling2D((<span class="dv">2</span>, <span class="dv">2</span>), name<span class="op">=</span><span class="st">'pool3'</span>)(x)</span>
+<span id="cb18-61"><a href="#cb18-61" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-62"><a href="#cb18-62" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Flatten and Dense layers</span></span>
+<span id="cb18-63"><a href="#cb18-63" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> layers.Flatten(name<span class="op">=</span><span class="st">'flatten'</span>)(x)</span>
+<span id="cb18-64"><a href="#cb18-64" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> layers.Dense(<span class="dv">128</span>, activation<span class="op">=</span><span class="st">'relu'</span>, name<span class="op">=</span><span class="st">'dense1'</span>)(x)</span>
+<span id="cb18-65"><a href="#cb18-65" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> layers.Dropout(<span class="fl">0.5</span>, name<span class="op">=</span><span class="st">'dropout'</span>)(x)</span>
+<span id="cb18-66"><a href="#cb18-66" aria-hidden="true" tabindex="-1"></a>    outputs <span class="op">=</span> layers.Dense(<span class="dv">10</span>, activation<span class="op">=</span><span class="st">'softmax'</span>, name<span class="op">=</span><span class="st">'output'</span>)(x)</span>
+<span id="cb18-67"><a href="#cb18-67" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-68"><a href="#cb18-68" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create model</span></span>
+<span id="cb18-69"><a href="#cb18-69" aria-hidden="true" tabindex="-1"></a>    model <span class="op">=</span> keras.Model(inputs<span class="op">=</span>inputs, outputs<span class="op">=</span>outputs, name<span class="op">=</span><span class="st">'fashion_cnn'</span>)</span>
+<span id="cb18-70"><a href="#cb18-70" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-71"><a href="#cb18-71" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> model</span>
+<span id="cb18-72"><a href="#cb18-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-73"><a href="#cb18-73" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the model</span></span>
+<span id="cb18-74"><a href="#cb18-74" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> create_cnn_functional_model()</span>
+<span id="cb18-75"><a href="#cb18-75" aria-hidden="true" tabindex="-1"></a>model.summary()</span>
+<span id="cb18-76"><a href="#cb18-76" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-77"><a href="#cb18-77" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 5: Compile and train the model</span></span>
+<span id="cb18-78"><a href="#cb18-78" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">compile</span>(optimizer<span class="op">=</span><span class="st">'adam'</span>,</span>
+<span id="cb18-79"><a href="#cb18-79" aria-hidden="true" tabindex="-1"></a>              loss<span class="op">=</span><span class="st">'sparse_categorical_crossentropy'</span>,</span>
+<span id="cb18-80"><a href="#cb18-80" aria-hidden="true" tabindex="-1"></a>              metrics<span class="op">=</span>[<span class="st">'accuracy'</span>])</span>
+<span id="cb18-81"><a href="#cb18-81" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-82"><a href="#cb18-82" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Training the model..."</span>)</span>
+<span id="cb18-83"><a href="#cb18-83" aria-hidden="true" tabindex="-1"></a>history <span class="op">=</span> model.fit(train_images, train_labels, </span>
+<span id="cb18-84"><a href="#cb18-84" aria-hidden="true" tabindex="-1"></a>                   epochs<span class="op">=</span><span class="dv">3</span>,  <span class="co"># Reduced epochs for faster execution</span></span>
+<span id="cb18-85"><a href="#cb18-85" aria-hidden="true" tabindex="-1"></a>                   batch_size<span class="op">=</span><span class="dv">64</span>,</span>
+<span id="cb18-86"><a href="#cb18-86" aria-hidden="true" tabindex="-1"></a>                   validation_split<span class="op">=</span><span class="fl">0.2</span>,</span>
+<span id="cb18-87"><a href="#cb18-87" aria-hidden="true" tabindex="-1"></a>                   verbose<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb18-88"><a href="#cb18-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-89"><a href="#cb18-89" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 6: Evaluate the model</span></span>
+<span id="cb18-90"><a href="#cb18-90" aria-hidden="true" tabindex="-1"></a>test_loss, test_accuracy <span class="op">=</span> model.evaluate(test_images, test_labels, verbose<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb18-91"><a href="#cb18-91" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Test accuracy: </span><span class="sc">{</span>test_accuracy<span class="sc">:.4f}</span><span class="ss">"</span>)</span>
+<span id="cb18-92"><a href="#cb18-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-93"><a href="#cb18-93" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 7: Create feature extraction model</span></span>
+<span id="cb18-94"><a href="#cb18-94" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> create_feature_extractor(model):</span>
+<span id="cb18-95"><a href="#cb18-95" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb18-96"><a href="#cb18-96" aria-hidden="true" tabindex="-1"></a><span class="co">    Create a model that extracts features from intermediate layers</span></span>
+<span id="cb18-97"><a href="#cb18-97" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb18-98"><a href="#cb18-98" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Define the layers we want to extract</span></span>
+<span id="cb18-99"><a href="#cb18-99" aria-hidden="true" tabindex="-1"></a>    layer_names <span class="op">=</span> [<span class="st">'conv1'</span>, <span class="st">'conv2'</span>, <span class="st">'conv3'</span>]</span>
+<span id="cb18-100"><a href="#cb18-100" aria-hidden="true" tabindex="-1"></a>    layer_outputs <span class="op">=</span> [model.get_layer(name).output <span class="cf">for</span> name <span class="kw">in</span> layer_names]</span>
+<span id="cb18-101"><a href="#cb18-101" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-102"><a href="#cb18-102" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create feature extractor model</span></span>
+<span id="cb18-103"><a href="#cb18-103" aria-hidden="true" tabindex="-1"></a>    feature_extractor <span class="op">=</span> Model(inputs<span class="op">=</span>model.<span class="bu">input</span>, outputs<span class="op">=</span>layer_outputs)</span>
+<span id="cb18-104"><a href="#cb18-104" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> feature_extractor</span>
+<span id="cb18-105"><a href="#cb18-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-106"><a href="#cb18-106" aria-hidden="true" tabindex="-1"></a><span class="co"># Create feature extractor</span></span>
+<span id="cb18-107"><a href="#cb18-107" aria-hidden="true" tabindex="-1"></a>feature_extractor <span class="op">=</span> create_feature_extractor(model)</span>
+<span id="cb18-108"><a href="#cb18-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-109"><a href="#cb18-109" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 8: Visualize feature maps for a single image</span></span>
+<span id="cb18-110"><a href="#cb18-110" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> visualize_feature_maps(image, label, feature_extractor, layer_names<span class="op">=</span>[<span class="st">'conv1'</span>, <span class="st">'conv2'</span>, <span class="st">'conv3'</span>]):</span>
+<span id="cb18-111"><a href="#cb18-111" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb18-112"><a href="#cb18-112" aria-hidden="true" tabindex="-1"></a><span class="co">    Visualize feature maps from different layers</span></span>
+<span id="cb18-113"><a href="#cb18-113" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb18-114"><a href="#cb18-114" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Get feature maps</span></span>
+<span id="cb18-115"><a href="#cb18-115" aria-hidden="true" tabindex="-1"></a>    feature_maps <span class="op">=</span> feature_extractor.predict(image[np.newaxis, ...], verbose<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb18-116"><a href="#cb18-116" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-117"><a href="#cb18-117" aria-hidden="true" tabindex="-1"></a>    <span class="co"># If only one layer output, wrap in list</span></span>
+<span id="cb18-118"><a href="#cb18-118" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> <span class="bu">isinstance</span>(feature_maps, <span class="bu">list</span>):</span>
+<span id="cb18-119"><a href="#cb18-119" aria-hidden="true" tabindex="-1"></a>        feature_maps <span class="op">=</span> [feature_maps]</span>
+<span id="cb18-120"><a href="#cb18-120" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-121"><a href="#cb18-121" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create figure</span></span>
+<span id="cb18-122"><a href="#cb18-122" aria-hidden="true" tabindex="-1"></a>    fig <span class="op">=</span> plt.figure(figsize<span class="op">=</span>(<span class="dv">15</span>, <span class="dv">10</span>))</span>
+<span id="cb18-123"><a href="#cb18-123" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-124"><a href="#cb18-124" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Plot original image</span></span>
+<span id="cb18-125"><a href="#cb18-125" aria-hidden="true" tabindex="-1"></a>    plt.subplot(<span class="dv">4</span>, <span class="dv">4</span>, <span class="dv">1</span>)</span>
+<span id="cb18-126"><a href="#cb18-126" aria-hidden="true" tabindex="-1"></a>    plt.imshow(image.reshape(<span class="dv">28</span>, <span class="dv">28</span>), cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb18-127"><a href="#cb18-127" aria-hidden="true" tabindex="-1"></a>    plt.title(<span class="ss">f'Original: </span><span class="sc">{</span>class_names[label]<span class="sc">}</span><span class="ss">'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb18-128"><a href="#cb18-128" aria-hidden="true" tabindex="-1"></a>    plt.axis(<span class="st">'off'</span>)</span>
+<span id="cb18-129"><a href="#cb18-129" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-130"><a href="#cb18-130" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Plot feature maps for each layer</span></span>
+<span id="cb18-131"><a href="#cb18-131" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> layer_idx, (layer_name, features) <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="bu">zip</span>(layer_names, feature_maps)):</span>
+<span id="cb18-132"><a href="#cb18-132" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Show 5 feature maps from this layer</span></span>
+<span id="cb18-133"><a href="#cb18-133" aria-hidden="true" tabindex="-1"></a>        num_features <span class="op">=</span> <span class="bu">min</span>(<span class="dv">5</span>, features.shape[<span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb18-134"><a href="#cb18-134" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(num_features):</span>
+<span id="cb18-135"><a href="#cb18-135" aria-hidden="true" tabindex="-1"></a>            plot_idx <span class="op">=</span> layer_idx <span class="op">*</span> <span class="dv">5</span> <span class="op">+</span> i <span class="op">+</span> <span class="dv">2</span></span>
+<span id="cb18-136"><a href="#cb18-136" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> plot_idx <span class="op">&lt;=</span> <span class="dv">16</span>:  <span class="co"># Ensure we don't exceed subplot grid</span></span>
+<span id="cb18-137"><a href="#cb18-137" aria-hidden="true" tabindex="-1"></a>                plt.subplot(<span class="dv">4</span>, <span class="dv">4</span>, plot_idx)</span>
+<span id="cb18-138"><a href="#cb18-138" aria-hidden="true" tabindex="-1"></a>                plt.imshow(features[<span class="dv">0</span>, :, :, i], cmap<span class="op">=</span><span class="st">'viridis'</span>)</span>
+<span id="cb18-139"><a href="#cb18-139" aria-hidden="true" tabindex="-1"></a>                plt.axis(<span class="st">'off'</span>)</span>
+<span id="cb18-140"><a href="#cb18-140" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> i <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb18-141"><a href="#cb18-141" aria-hidden="true" tabindex="-1"></a>                    plt.title(<span class="ss">f'</span><span class="sc">{</span>layer_name<span class="sc">}</span><span class="ss">'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb18-142"><a href="#cb18-142" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-143"><a href="#cb18-143" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Hide empty subplots</span></span>
+<span id="cb18-144"><a href="#cb18-144" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(layer_names)<span class="op">*</span><span class="dv">5</span> <span class="op">+</span> <span class="dv">2</span>, <span class="dv">17</span>):</span>
+<span id="cb18-145"><a href="#cb18-145" aria-hidden="true" tabindex="-1"></a>        plt.subplot(<span class="dv">4</span>, <span class="dv">4</span>, i)</span>
+<span id="cb18-146"><a href="#cb18-146" aria-hidden="true" tabindex="-1"></a>        plt.axis(<span class="st">'off'</span>)</span>
+<span id="cb18-147"><a href="#cb18-147" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-148"><a href="#cb18-148" aria-hidden="true" tabindex="-1"></a>    plt.suptitle(<span class="st">'Feature Maps: From Edges to High-Level Features'</span>, fontsize<span class="op">=</span><span class="dv">14</span>, y<span class="op">=</span><span class="fl">0.98</span>)</span>
+<span id="cb18-149"><a href="#cb18-149" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb18-150"><a href="#cb18-150" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb18-151"><a href="#cb18-151" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-152"><a href="#cb18-152" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 9: Demonstrate feature hierarchy</span></span>
+<span id="cb18-153"><a href="#cb18-153" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> demonstrate_feature_hierarchy(feature_extractor, test_images, test_labels, num_samples<span class="op">=</span><span class="dv">2</span>):</span>
+<span id="cb18-154"><a href="#cb18-154" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb18-155"><a href="#cb18-155" aria-hidden="true" tabindex="-1"></a><span class="co">    Demonstrate feature hierarchy for multiple sample images</span></span>
+<span id="cb18-156"><a href="#cb18-156" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb18-157"><a href="#cb18-157" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span> <span class="op">+</span> <span class="st">"="</span><span class="op">*</span><span class="dv">70</span>)</span>
+<span id="cb18-158"><a href="#cb18-158" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"FEATURE HIERARCHY DEMONSTRATION"</span>)</span>
+<span id="cb18-159"><a href="#cb18-159" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">70</span>)</span>
+<span id="cb18-160"><a href="#cb18-160" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-161"><a href="#cb18-161" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Select random samples</span></span>
+<span id="cb18-162"><a href="#cb18-162" aria-hidden="true" tabindex="-1"></a>    indices <span class="op">=</span> np.random.choice(<span class="bu">len</span>(test_images), num_samples, replace<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb18-163"><a href="#cb18-163" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-164"><a href="#cb18-164" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> idx <span class="kw">in</span> indices:</span>
+<span id="cb18-165"><a href="#cb18-165" aria-hidden="true" tabindex="-1"></a>        image <span class="op">=</span> test_images[idx]</span>
+<span id="cb18-166"><a href="#cb18-166" aria-hidden="true" tabindex="-1"></a>        label <span class="op">=</span> test_labels[idx]</span>
+<span id="cb18-167"><a href="#cb18-167" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb18-168"><a href="#cb18-168" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Get prediction from original model</span></span>
+<span id="cb18-169"><a href="#cb18-169" aria-hidden="true" tabindex="-1"></a>        prediction <span class="op">=</span> model.predict(image[np.newaxis, ...], verbose<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb18-170"><a href="#cb18-170" aria-hidden="true" tabindex="-1"></a>        pred_class <span class="op">=</span> np.argmax(prediction)</span>
+<span id="cb18-171"><a href="#cb18-171" aria-hidden="true" tabindex="-1"></a>        confidence <span class="op">=</span> np.<span class="bu">max</span>(prediction)</span>
+<span id="cb18-172"><a href="#cb18-172" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb18-173"><a href="#cb18-173" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Image </span><span class="sc">{</span>idx<span class="sc">}</span><span class="ss">: True class = </span><span class="sc">{</span>class_names[label]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb18-174"><a href="#cb18-174" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Predicted: </span><span class="sc">{</span>class_names[pred_class]<span class="sc">}</span><span class="ss"> (confidence: </span><span class="sc">{</span>confidence<span class="sc">:.3f}</span><span class="ss">)"</span>)</span>
+<span id="cb18-175"><a href="#cb18-175" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb18-176"><a href="#cb18-176" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Visualize feature maps</span></span>
+<span id="cb18-177"><a href="#cb18-177" aria-hidden="true" tabindex="-1"></a>        visualize_feature_maps(image, label, feature_extractor)</span>
+<span id="cb18-178"><a href="#cb18-178" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-179"><a href="#cb18-179" aria-hidden="true" tabindex="-1"></a><span class="co"># Run the demonstration</span></span>
+<span id="cb18-180"><a href="#cb18-180" aria-hidden="true" tabindex="-1"></a>demonstrate_feature_hierarchy(feature_extractor, test_images, test_labels, num_samples<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb18-181"><a href="#cb18-181" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-182"><a href="#cb18-182" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 10: Visualize learned filters</span></span>
+<span id="cb18-183"><a href="#cb18-183" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> visualize_learned_filters(model, layer_name<span class="op">=</span><span class="st">'conv1'</span>):</span>
+<span id="cb18-184"><a href="#cb18-184" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb18-185"><a href="#cb18-185" aria-hidden="true" tabindex="-1"></a><span class="co">    Visualize the learned filters from a convolutional layer</span></span>
+<span id="cb18-186"><a href="#cb18-186" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb18-187"><a href="#cb18-187" aria-hidden="true" tabindex="-1"></a>    layer <span class="op">=</span> model.get_layer(layer_name)</span>
+<span id="cb18-188"><a href="#cb18-188" aria-hidden="true" tabindex="-1"></a>    weights <span class="op">=</span> layer.get_weights()[<span class="dv">0</span>]  <span class="co"># Get the kernels</span></span>
+<span id="cb18-189"><a href="#cb18-189" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-190"><a href="#cb18-190" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Normalize weights for better visualization</span></span>
+<span id="cb18-191"><a href="#cb18-191" aria-hidden="true" tabindex="-1"></a>    weights <span class="op">=</span> (weights <span class="op">-</span> weights.<span class="bu">min</span>()) <span class="op">/</span> (weights.<span class="bu">max</span>() <span class="op">-</span> weights.<span class="bu">min</span>() <span class="op">+</span> <span class="fl">1e-8</span>)</span>
+<span id="cb18-192"><a href="#cb18-192" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-193"><a href="#cb18-193" aria-hidden="true" tabindex="-1"></a>    num_filters <span class="op">=</span> <span class="bu">min</span>(<span class="dv">16</span>, weights.shape[<span class="op">-</span><span class="dv">1</span>])</span>
+<span id="cb18-194"><a href="#cb18-194" aria-hidden="true" tabindex="-1"></a>    num_rows <span class="op">=</span> (num_filters <span class="op">+</span> <span class="dv">3</span>) <span class="op">//</span> <span class="dv">4</span></span>
+<span id="cb18-195"><a href="#cb18-195" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-196"><a href="#cb18-196" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">3</span><span class="op">*</span>num_rows))</span>
+<span id="cb18-197"><a href="#cb18-197" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-198"><a href="#cb18-198" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(num_filters):</span>
+<span id="cb18-199"><a href="#cb18-199" aria-hidden="true" tabindex="-1"></a>        plt.subplot(num_rows, <span class="dv">4</span>, i<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb18-200"><a href="#cb18-200" aria-hidden="true" tabindex="-1"></a>        plt.imshow(weights[:, :, <span class="dv">0</span>, i], cmap<span class="op">=</span><span class="st">'viridis'</span>)</span>
+<span id="cb18-201"><a href="#cb18-201" aria-hidden="true" tabindex="-1"></a>        plt.axis(<span class="st">'off'</span>)</span>
+<span id="cb18-202"><a href="#cb18-202" aria-hidden="true" tabindex="-1"></a>        plt.title(<span class="ss">f'Filter </span><span class="sc">{</span>i<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">'</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb18-203"><a href="#cb18-203" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-204"><a href="#cb18-204" aria-hidden="true" tabindex="-1"></a>    plt.suptitle(<span class="ss">f'Learned Filters from </span><span class="sc">{</span>layer_name<span class="sc">}</span><span class="ss"> Layer'</span>, fontsize<span class="op">=</span><span class="dv">14</span>, y<span class="op">=</span><span class="fl">0.98</span>)</span>
+<span id="cb18-205"><a href="#cb18-205" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb18-206"><a href="#cb18-206" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb18-207"><a href="#cb18-207" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-208"><a href="#cb18-208" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span> <span class="op">+</span> <span class="st">"="</span><span class="op">*</span><span class="dv">70</span>)</span>
+<span id="cb18-209"><a href="#cb18-209" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"VISUALIZING LEARNED FILTERS"</span>)</span>
+<span id="cb18-210"><a href="#cb18-210" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">70</span>)</span>
+<span id="cb18-211"><a href="#cb18-211" aria-hidden="true" tabindex="-1"></a>visualize_learned_filters(model, <span class="st">'conv1'</span>)</span>
+<span id="cb18-212"><a href="#cb18-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-213"><a href="#cb18-213" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 11: Show feature map statistics</span></span>
+<span id="cb18-214"><a href="#cb18-214" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> analyze_feature_statistics(feature_extractor, sample_image, sample_label):</span>
+<span id="cb18-215"><a href="#cb18-215" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb18-216"><a href="#cb18-216" aria-hidden="true" tabindex="-1"></a><span class="co">    Analyze and compare feature maps across layers</span></span>
+<span id="cb18-217"><a href="#cb18-217" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb18-218"><a href="#cb18-218" aria-hidden="true" tabindex="-1"></a>    layer_names <span class="op">=</span> [<span class="st">'conv1'</span>, <span class="st">'conv2'</span>, <span class="st">'conv3'</span>]</span>
+<span id="cb18-219"><a href="#cb18-219" aria-hidden="true" tabindex="-1"></a>    feature_maps <span class="op">=</span> feature_extractor.predict(sample_image[np.newaxis, ...], verbose<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb18-220"><a href="#cb18-220" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-221"><a href="#cb18-221" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="kw">not</span> <span class="bu">isinstance</span>(feature_maps, <span class="bu">list</span>):</span>
+<span id="cb18-222"><a href="#cb18-222" aria-hidden="true" tabindex="-1"></a>        feature_maps <span class="op">=</span> [feature_maps]</span>
+<span id="cb18-223"><a href="#cb18-223" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-224"><a href="#cb18-224" aria-hidden="true" tabindex="-1"></a>    fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">4</span>, figsize<span class="op">=</span>(<span class="dv">16</span>, <span class="dv">4</span>))</span>
+<span id="cb18-225"><a href="#cb18-225" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-226"><a href="#cb18-226" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Original image</span></span>
+<span id="cb18-227"><a href="#cb18-227" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">0</span>].imshow(sample_image.reshape(<span class="dv">28</span>, <span class="dv">28</span>), cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb18-228"><a href="#cb18-228" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">0</span>].set_title(<span class="ss">f'Input: </span><span class="sc">{</span>class_names[sample_label]<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb18-229"><a href="#cb18-229" aria-hidden="true" tabindex="-1"></a>    axes[<span class="dv">0</span>].axis(<span class="st">'off'</span>)</span>
+<span id="cb18-230"><a href="#cb18-230" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-231"><a href="#cb18-231" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Statistics for each layer</span></span>
+<span id="cb18-232"><a href="#cb18-232" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, (layer_name, features) <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="bu">zip</span>(layer_names, feature_maps)):</span>
+<span id="cb18-233"><a href="#cb18-233" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Calculate mean activation across all feature maps</span></span>
+<span id="cb18-234"><a href="#cb18-234" aria-hidden="true" tabindex="-1"></a>        mean_activation <span class="op">=</span> np.mean(features[<span class="dv">0</span>], axis<span class="op">=-</span><span class="dv">1</span>)</span>
+<span id="cb18-235"><a href="#cb18-235" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb18-236"><a href="#cb18-236" aria-hidden="true" tabindex="-1"></a>        im <span class="op">=</span> axes[i<span class="op">+</span><span class="dv">1</span>].imshow(mean_activation, cmap<span class="op">=</span><span class="st">'hot'</span>)</span>
+<span id="cb18-237"><a href="#cb18-237" aria-hidden="true" tabindex="-1"></a>        axes[i<span class="op">+</span><span class="dv">1</span>].set_title(<span class="ss">f'</span><span class="sc">{</span>layer_name<span class="sc">}</span><span class="ch">\n</span><span class="ss">Mean Activation'</span>)</span>
+<span id="cb18-238"><a href="#cb18-238" aria-hidden="true" tabindex="-1"></a>        axes[i<span class="op">+</span><span class="dv">1</span>].axis(<span class="st">'off'</span>)</span>
+<span id="cb18-239"><a href="#cb18-239" aria-hidden="true" tabindex="-1"></a>        plt.colorbar(im, ax<span class="op">=</span>axes[i<span class="op">+</span><span class="dv">1</span>])</span>
+<span id="cb18-240"><a href="#cb18-240" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-241"><a href="#cb18-241" aria-hidden="true" tabindex="-1"></a>    plt.suptitle(<span class="st">'Feature Map Statistics Across Layers'</span>, fontsize<span class="op">=</span><span class="dv">14</span>)</span>
+<span id="cb18-242"><a href="#cb18-242" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb18-243"><a href="#cb18-243" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb18-244"><a href="#cb18-244" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-245"><a href="#cb18-245" aria-hidden="true" tabindex="-1"></a><span class="co"># Demonstrate with a sample</span></span>
+<span id="cb18-246"><a href="#cb18-246" aria-hidden="true" tabindex="-1"></a>sample_idx <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb18-247"><a href="#cb18-247" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">Feature statistics for </span><span class="sc">{</span>class_names[test_labels[sample_idx]]<span class="sc">}</span><span class="ss">:"</span>)</span>
+<span id="cb18-248"><a href="#cb18-248" aria-hidden="true" tabindex="-1"></a>analyze_feature_statistics(feature_extractor, test_images[sample_idx], test_labels[sample_idx])</span>
+<span id="cb18-249"><a href="#cb18-249" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-250"><a href="#cb18-250" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 12: Training history visualization</span></span>
+<span id="cb18-251"><a href="#cb18-251" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_training_history(history):</span>
+<span id="cb18-252"><a href="#cb18-252" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb18-253"><a href="#cb18-253" aria-hidden="true" tabindex="-1"></a><span class="co">    Plot training and validation accuracy/loss</span></span>
+<span id="cb18-254"><a href="#cb18-254" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb18-255"><a href="#cb18-255" aria-hidden="true" tabindex="-1"></a>    fig, (ax1, ax2) <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">5</span>))</span>
+<span id="cb18-256"><a href="#cb18-256" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-257"><a href="#cb18-257" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Accuracy</span></span>
+<span id="cb18-258"><a href="#cb18-258" aria-hidden="true" tabindex="-1"></a>    ax1.plot(history.history[<span class="st">'accuracy'</span>], label<span class="op">=</span><span class="st">'Training Accuracy'</span>, marker<span class="op">=</span><span class="st">'o'</span>)</span>
+<span id="cb18-259"><a href="#cb18-259" aria-hidden="true" tabindex="-1"></a>    ax1.plot(history.history[<span class="st">'val_accuracy'</span>], label<span class="op">=</span><span class="st">'Validation Accuracy'</span>, marker<span class="op">=</span><span class="st">'o'</span>)</span>
+<span id="cb18-260"><a href="#cb18-260" aria-hidden="true" tabindex="-1"></a>    ax1.set_title(<span class="st">'Model Accuracy'</span>)</span>
+<span id="cb18-261"><a href="#cb18-261" aria-hidden="true" tabindex="-1"></a>    ax1.set_xlabel(<span class="st">'Epoch'</span>)</span>
+<span id="cb18-262"><a href="#cb18-262" aria-hidden="true" tabindex="-1"></a>    ax1.set_ylabel(<span class="st">'Accuracy'</span>)</span>
+<span id="cb18-263"><a href="#cb18-263" aria-hidden="true" tabindex="-1"></a>    ax1.legend()</span>
+<span id="cb18-264"><a href="#cb18-264" aria-hidden="true" tabindex="-1"></a>    ax1.grid(<span class="va">True</span>)</span>
+<span id="cb18-265"><a href="#cb18-265" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-266"><a href="#cb18-266" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Loss</span></span>
+<span id="cb18-267"><a href="#cb18-267" aria-hidden="true" tabindex="-1"></a>    ax2.plot(history.history[<span class="st">'loss'</span>], label<span class="op">=</span><span class="st">'Training Loss'</span>, marker<span class="op">=</span><span class="st">'o'</span>)</span>
+<span id="cb18-268"><a href="#cb18-268" aria-hidden="true" tabindex="-1"></a>    ax2.plot(history.history[<span class="st">'val_loss'</span>], label<span class="op">=</span><span class="st">'Validation Loss'</span>, marker<span class="op">=</span><span class="st">'o'</span>)</span>
+<span id="cb18-269"><a href="#cb18-269" aria-hidden="true" tabindex="-1"></a>    ax2.set_title(<span class="st">'Model Loss'</span>)</span>
+<span id="cb18-270"><a href="#cb18-270" aria-hidden="true" tabindex="-1"></a>    ax2.set_xlabel(<span class="st">'Epoch'</span>)</span>
+<span id="cb18-271"><a href="#cb18-271" aria-hidden="true" tabindex="-1"></a>    ax2.set_ylabel(<span class="st">'Loss'</span>)</span>
+<span id="cb18-272"><a href="#cb18-272" aria-hidden="true" tabindex="-1"></a>    ax2.legend()</span>
+<span id="cb18-273"><a href="#cb18-273" aria-hidden="true" tabindex="-1"></a>    ax2.grid(<span class="va">True</span>)</span>
+<span id="cb18-274"><a href="#cb18-274" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-275"><a href="#cb18-275" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb18-276"><a href="#cb18-276" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb18-277"><a href="#cb18-277" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-278"><a href="#cb18-278" aria-hidden="true" tabindex="-1"></a>plot_training_history(history)</span>
+<span id="cb18-279"><a href="#cb18-279" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-280"><a href="#cb18-280" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 13: Comprehensive feature hierarchy explanation</span></span>
+<span id="cb18-281"><a href="#cb18-281" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> explain_feature_hierarchy_comprehensive(feature_extractor, test_images, test_labels):</span>
+<span id="cb18-282"><a href="#cb18-282" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb18-283"><a href="#cb18-283" aria-hidden="true" tabindex="-1"></a><span class="co">    Provide a comprehensive explanation of feature hierarchy with examples</span></span>
+<span id="cb18-284"><a href="#cb18-284" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb18-285"><a href="#cb18-285" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span> <span class="op">+</span> <span class="st">"="</span><span class="op">*</span><span class="dv">80</span>)</span>
+<span id="cb18-286"><a href="#cb18-286" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"UNDERSTANDING CNN FEATURE HIERARCHY"</span>)</span>
+<span id="cb18-287"><a href="#cb18-287" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">80</span>)</span>
+<span id="cb18-288"><a href="#cb18-288" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-289"><a href="#cb18-289" aria-hidden="true" tabindex="-1"></a>    explanation <span class="op">=</span> <span class="st">"""</span></span>
+<span id="cb18-290"><a href="#cb18-290" aria-hidden="true" tabindex="-1"></a><span class="st">    HOW CNNs LEARN HIERARCHICAL FEATURES:</span></span>
+<span id="cb18-291"><a href="#cb18-291" aria-hidden="true" tabindex="-1"></a><span class="st">    </span></span>
+<span id="cb18-292"><a href="#cb18-292" aria-hidden="true" tabindex="-1"></a><span class="st">    🔵 LAYER 1 (conv1) - LOW-LEVEL FEATURES:</span></span>
+<span id="cb18-293"><a href="#cb18-293" aria-hidden="true" tabindex="-1"></a><span class="st">       • Detects simple patterns like edges (horizontal, vertical, diagonal)</span></span>
+<span id="cb18-294"><a href="#cb18-294" aria-hidden="true" tabindex="-1"></a><span class="st">       • Identifies corners and basic textures</span></span>
+<span id="cb18-295"><a href="#cb18-295" aria-hidden="true" tabindex="-1"></a><span class="st">       • These are universal feature detectors (similar across all images)</span></span>
+<span id="cb18-296"><a href="#cb18-296" aria-hidden="true" tabindex="-1"></a><span class="st">       • Feature maps show edge-like activations</span></span>
+<span id="cb18-297"><a href="#cb18-297" aria-hidden="true" tabindex="-1"></a><span class="st">       • Output size: 14x14 with 32 channels</span></span>
+<span id="cb18-298"><a href="#cb18-298" aria-hidden="true" tabindex="-1"></a><span class="st">    </span></span>
+<span id="cb18-299"><a href="#cb18-299" aria-hidden="true" tabindex="-1"></a><span class="st">    🟢 LAYER 2 (conv2) - MID-LEVEL FEATURES:</span></span>
+<span id="cb18-300"><a href="#cb18-300" aria-hidden="true" tabindex="-1"></a><span class="st">       • Combines edges to form shapes (circles, rectangles, patterns)</span></span>
+<span id="cb18-301"><a href="#cb18-301" aria-hidden="true" tabindex="-1"></a><span class="st">       • Learns textures and repeating patterns</span></span>
+<span id="cb18-302"><a href="#cb18-302" aria-hidden="true" tabindex="-1"></a><span class="st">       • Starts recognizing object parts (sleeves, collars, straps)</span></span>
+<span id="cb18-303"><a href="#cb18-303" aria-hidden="true" tabindex="-1"></a><span class="st">       • Feature maps show pattern-like activations</span></span>
+<span id="cb18-304"><a href="#cb18-304" aria-hidden="true" tabindex="-1"></a><span class="st">       • Output size: 7x7 with 64 channels</span></span>
+<span id="cb18-305"><a href="#cb18-305" aria-hidden="true" tabindex="-1"></a><span class="st">    </span></span>
+<span id="cb18-306"><a href="#cb18-306" aria-hidden="true" tabindex="-1"></a><span class="st">    🔴 LAYER 3 (conv3) - HIGH-LEVEL FEATURES:</span></span>
+<span id="cb18-307"><a href="#cb18-307" aria-hidden="true" tabindex="-1"></a><span class="st">       • Learns complex, task-specific features</span></span>
+<span id="cb18-308"><a href="#cb18-308" aria-hidden="true" tabindex="-1"></a><span class="st">       • Detects complete object parts and their arrangements</span></span>
+<span id="cb18-309"><a href="#cb18-309" aria-hidden="true" tabindex="-1"></a><span class="st">       • Features become more abstract and semantically meaningful</span></span>
+<span id="cb18-310"><a href="#cb18-310" aria-hidden="true" tabindex="-1"></a><span class="st">       • Feature maps show object-part activations</span></span>
+<span id="cb18-311"><a href="#cb18-311" aria-hidden="true" tabindex="-1"></a><span class="st">       • Output size: 3x3 with 128 channels</span></span>
+<span id="cb18-312"><a href="#cb18-312" aria-hidden="true" tabindex="-1"></a><span class="st">    </span></span>
+<span id="cb18-313"><a href="#cb18-313" aria-hidden="true" tabindex="-1"></a><span class="st">    ⚪ DENSE LAYERS - CLASSIFICATION:</span></span>
+<span id="cb18-314"><a href="#cb18-314" aria-hidden="true" tabindex="-1"></a><span class="st">       • Combines high-level features</span></span>
+<span id="cb18-315"><a href="#cb18-315" aria-hidden="true" tabindex="-1"></a><span class="st">       • Makes final classification decisions</span></span>
+<span id="cb18-316"><a href="#cb18-316" aria-hidden="true" tabindex="-1"></a><span class="st">       • Learns which feature combinations indicate specific clothing items</span></span>
+<span id="cb18-317"><a href="#cb18-317" aria-hidden="true" tabindex="-1"></a><span class="st">    """</span></span>
+<span id="cb18-318"><a href="#cb18-318" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-319"><a href="#cb18-319" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(explanation)</span>
+<span id="cb18-320"><a href="#cb18-320" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-321"><a href="#cb18-321" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Show examples of feature progression</span></span>
+<span id="cb18-322"><a href="#cb18-322" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span> <span class="op">+</span> <span class="st">"-"</span><span class="op">*</span><span class="dv">60</span>)</span>
+<span id="cb18-323"><a href="#cb18-323" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"EXAMPLE: Feature progression for different clothing items"</span>)</span>
+<span id="cb18-324"><a href="#cb18-324" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"-"</span><span class="op">*</span><span class="dv">60</span>)</span>
+<span id="cb18-325"><a href="#cb18-325" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-326"><a href="#cb18-326" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Select examples from different classes</span></span>
+<span id="cb18-327"><a href="#cb18-327" aria-hidden="true" tabindex="-1"></a>    example_indices <span class="op">=</span> [<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">5</span>, <span class="dv">9</span>]  <span class="co"># T-shirt, Pullover, Sandal, Ankle boot</span></span>
+<span id="cb18-328"><a href="#cb18-328" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-329"><a href="#cb18-329" aria-hidden="true" tabindex="-1"></a>    fig, axes <span class="op">=</span> plt.subplots(<span class="dv">4</span>, <span class="dv">5</span>, figsize<span class="op">=</span>(<span class="dv">20</span>, <span class="dv">16</span>))</span>
+<span id="cb18-330"><a href="#cb18-330" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-331"><a href="#cb18-331" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> row, idx <span class="kw">in</span> <span class="bu">enumerate</span>(example_indices):</span>
+<span id="cb18-332"><a href="#cb18-332" aria-hidden="true" tabindex="-1"></a>        image <span class="op">=</span> test_images[idx]</span>
+<span id="cb18-333"><a href="#cb18-333" aria-hidden="true" tabindex="-1"></a>        label <span class="op">=</span> test_labels[idx]</span>
+<span id="cb18-334"><a href="#cb18-334" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb18-335"><a href="#cb18-335" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Get feature maps</span></span>
+<span id="cb18-336"><a href="#cb18-336" aria-hidden="true" tabindex="-1"></a>        feature_maps <span class="op">=</span> feature_extractor.predict(image[np.newaxis, ...], verbose<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb18-337"><a href="#cb18-337" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> <span class="bu">isinstance</span>(feature_maps, <span class="bu">list</span>):</span>
+<span id="cb18-338"><a href="#cb18-338" aria-hidden="true" tabindex="-1"></a>            feature_maps <span class="op">=</span> [feature_maps]</span>
+<span id="cb18-339"><a href="#cb18-339" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb18-340"><a href="#cb18-340" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Original image</span></span>
+<span id="cb18-341"><a href="#cb18-341" aria-hidden="true" tabindex="-1"></a>        axes[row, <span class="dv">0</span>].imshow(image.reshape(<span class="dv">28</span>, <span class="dv">28</span>), cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb18-342"><a href="#cb18-342" aria-hidden="true" tabindex="-1"></a>        axes[row, <span class="dv">0</span>].set_title(<span class="ss">f'</span><span class="sc">{</span>class_names[label]<span class="sc">}</span><span class="ch">\n</span><span class="ss">Original'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb18-343"><a href="#cb18-343" aria-hidden="true" tabindex="-1"></a>        axes[row, <span class="dv">0</span>].axis(<span class="st">'off'</span>)</span>
+<span id="cb18-344"><a href="#cb18-344" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb18-345"><a href="#cb18-345" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Feature maps from each layer</span></span>
+<span id="cb18-346"><a href="#cb18-346" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> col, (layer_name, features) <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="bu">zip</span>([<span class="st">'conv1'</span>, <span class="st">'conv2'</span>, <span class="st">'conv3'</span>], feature_maps)):</span>
+<span id="cb18-347"><a href="#cb18-347" aria-hidden="true" tabindex="-1"></a>            <span class="co"># Show first 4 feature maps as examples</span></span>
+<span id="cb18-348"><a href="#cb18-348" aria-hidden="true" tabindex="-1"></a>            <span class="cf">for</span> f <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">min</span>(<span class="dv">4</span>, features.shape[<span class="op">-</span><span class="dv">1</span>])):</span>
+<span id="cb18-349"><a href="#cb18-349" aria-hidden="true" tabindex="-1"></a>                col_idx <span class="op">=</span> col<span class="op">*</span><span class="dv">4</span> <span class="op">+</span> f <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb18-350"><a href="#cb18-350" aria-hidden="true" tabindex="-1"></a>                <span class="cf">if</span> col_idx <span class="op">&lt;</span> <span class="dv">5</span>:  <span class="co"># Ensure we don't exceed subplot grid</span></span>
+<span id="cb18-351"><a href="#cb18-351" aria-hidden="true" tabindex="-1"></a>                  axes[row, col_idx].imshow(features[<span class="dv">0</span>, :, :, f], cmap<span class="op">=</span><span class="st">'viridis'</span>)</span>
+<span id="cb18-352"><a href="#cb18-352" aria-hidden="true" tabindex="-1"></a>                  axes[row, col_idx].set_title(<span class="ss">f'</span><span class="sc">{</span>layer_name<span class="sc">}</span><span class="ch">\n</span><span class="ss">F</span><span class="sc">{</span>f<span class="sc">}</span><span class="ss">'</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb18-353"><a href="#cb18-353" aria-hidden="true" tabindex="-1"></a>                  axes[row, col_idx].axis(<span class="st">'off'</span>)</span>
+<span id="cb18-354"><a href="#cb18-354" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-355"><a href="#cb18-355" aria-hidden="true" tabindex="-1"></a>    plt.suptitle(<span class="st">'Feature Progression Across Layers for Different Clothing Items'</span>, fontsize<span class="op">=</span><span class="dv">14</span>, y<span class="op">=</span><span class="fl">0.98</span>)</span>
+<span id="cb18-356"><a href="#cb18-356" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb18-357"><a href="#cb18-357" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb18-358"><a href="#cb18-358" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-359"><a href="#cb18-359" aria-hidden="true" tabindex="-1"></a>explain_feature_hierarchy_comprehensive(feature_extractor, test_images, test_labels)</span>
+<span id="cb18-360"><a href="#cb18-360" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-361"><a href="#cb18-361" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 14: Visualize activation patterns</span></span>
+<span id="cb18-362"><a href="#cb18-362" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> visualize_activation_patterns(feature_extractor, test_images, test_labels):</span>
+<span id="cb18-363"><a href="#cb18-363" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb18-364"><a href="#cb18-364" aria-hidden="true" tabindex="-1"></a><span class="co">    Visualize how different classes activate different feature maps</span></span>
+<span id="cb18-365"><a href="#cb18-365" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb18-366"><a href="#cb18-366" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Select one image from each class</span></span>
+<span id="cb18-367"><a href="#cb18-367" aria-hidden="true" tabindex="-1"></a>    class_examples <span class="op">=</span> []</span>
+<span id="cb18-368"><a href="#cb18-368" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> class_id <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>):</span>
+<span id="cb18-369"><a href="#cb18-369" aria-hidden="true" tabindex="-1"></a>        idx <span class="op">=</span> np.where(test_labels <span class="op">==</span> class_id)[<span class="dv">0</span>][<span class="dv">0</span>]</span>
+<span id="cb18-370"><a href="#cb18-370" aria-hidden="true" tabindex="-1"></a>        class_examples.append((test_images[idx], class_id))</span>
+<span id="cb18-371"><a href="#cb18-371" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-372"><a href="#cb18-372" aria-hidden="true" tabindex="-1"></a>    fig, axes <span class="op">=</span> plt.subplots(<span class="dv">10</span>, <span class="dv">4</span>, figsize<span class="op">=</span>(<span class="dv">16</span>, <span class="dv">20</span>))</span>
+<span id="cb18-373"><a href="#cb18-373" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-374"><a href="#cb18-374" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> row, (image, label) <span class="kw">in</span> <span class="bu">enumerate</span>(class_examples):</span>
+<span id="cb18-375"><a href="#cb18-375" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Get feature maps</span></span>
+<span id="cb18-376"><a href="#cb18-376" aria-hidden="true" tabindex="-1"></a>        feature_maps <span class="op">=</span> feature_extractor.predict(image[np.newaxis, ...], verbose<span class="op">=</span><span class="dv">0</span>)</span>
+<span id="cb18-377"><a href="#cb18-377" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="kw">not</span> <span class="bu">isinstance</span>(feature_maps, <span class="bu">list</span>):</span>
+<span id="cb18-378"><a href="#cb18-378" aria-hidden="true" tabindex="-1"></a>            feature_maps <span class="op">=</span> [feature_maps]</span>
+<span id="cb18-379"><a href="#cb18-379" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb18-380"><a href="#cb18-380" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Original image</span></span>
+<span id="cb18-381"><a href="#cb18-381" aria-hidden="true" tabindex="-1"></a>        axes[row, <span class="dv">0</span>].imshow(image.reshape(<span class="dv">28</span>, <span class="dv">28</span>), cmap<span class="op">=</span><span class="st">'gray'</span>)</span>
+<span id="cb18-382"><a href="#cb18-382" aria-hidden="true" tabindex="-1"></a>        axes[row, <span class="dv">0</span>].set_title(<span class="ss">f'</span><span class="sc">{</span>class_names[label]<span class="sc">}</span><span class="ss">'</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb18-383"><a href="#cb18-383" aria-hidden="true" tabindex="-1"></a>        axes[row, <span class="dv">0</span>].axis(<span class="st">'off'</span>)</span>
+<span id="cb18-384"><a href="#cb18-384" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb18-385"><a href="#cb18-385" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Show mean activation for each layer</span></span>
+<span id="cb18-386"><a href="#cb18-386" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> col, features <span class="kw">in</span> <span class="bu">enumerate</span>(feature_maps):</span>
+<span id="cb18-387"><a href="#cb18-387" aria-hidden="true" tabindex="-1"></a>            mean_activation <span class="op">=</span> np.mean(features[<span class="dv">0</span>], axis<span class="op">=-</span><span class="dv">1</span>)</span>
+<span id="cb18-388"><a href="#cb18-388" aria-hidden="true" tabindex="-1"></a>            axes[row, col<span class="op">+</span><span class="dv">1</span>].imshow(mean_activation, cmap<span class="op">=</span><span class="st">'hot'</span>)</span>
+<span id="cb18-389"><a href="#cb18-389" aria-hidden="true" tabindex="-1"></a>            <span class="cf">if</span> row <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb18-390"><a href="#cb18-390" aria-hidden="true" tabindex="-1"></a>                axes[row, col<span class="op">+</span><span class="dv">1</span>].set_title(<span class="ss">f'Layer </span><span class="sc">{</span>col<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ch">\n</span><span class="ss">Mean Activation'</span>, fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb18-391"><a href="#cb18-391" aria-hidden="true" tabindex="-1"></a>            axes[row, col<span class="op">+</span><span class="dv">1</span>].axis(<span class="st">'off'</span>)</span>
+<span id="cb18-392"><a href="#cb18-392" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb18-393"><a href="#cb18-393" aria-hidden="true" tabindex="-1"></a>    plt.suptitle(<span class="st">'Activation Patterns Across Different Classes'</span>, fontsize<span class="op">=</span><span class="dv">14</span>, y<span class="op">=</span><span class="fl">0.98</span>)</span>
+<span id="cb18-394"><a href="#cb18-394" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb18-395"><a href="#cb18-395" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb18-396"><a href="#cb18-396" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-397"><a href="#cb18-397" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span> <span class="op">+</span> <span class="st">"="</span><span class="op">*</span><span class="dv">70</span>)</span>
+<span id="cb18-398"><a href="#cb18-398" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"CLASS-SPECIFIC ACTIVATION PATTERNS"</span>)</span>
+<span id="cb18-399"><a href="#cb18-399" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">70</span>)</span>
+<span id="cb18-400"><a href="#cb18-400" aria-hidden="true" tabindex="-1"></a>visualize_activation_patterns(feature_extractor, test_images, test_labels)</span>
+<span id="cb18-401"><a href="#cb18-401" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-402"><a href="#cb18-402" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 15: Final summary</span></span>
+<span id="cb18-403"><a href="#cb18-403" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">"</span> <span class="op">+</span> <span class="st">"="</span><span class="op">*</span><span class="dv">70</span>)</span>
+<span id="cb18-404"><a href="#cb18-404" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"SUMMARY: CNN FEATURE LEARNING HIERARCHY"</span>)</span>
+<span id="cb18-405"><a href="#cb18-405" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">70</span>)</span>
+<span id="cb18-406"><a href="#cb18-406" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"""</span></span>
+<span id="cb18-407"><a href="#cb18-407" aria-hidden="true" tabindex="-1"></a><span class="st">✅ Layer 1 (conv1): Edge and Corner Detectors</span></span>
+<span id="cb18-408"><a href="#cb18-408" aria-hidden="true" tabindex="-1"></a><span class="st">   • Responds to simple patterns</span></span>
+<span id="cb18-409"><a href="#cb18-409" aria-hidden="true" tabindex="-1"></a><span class="st">   • Universal feature detectors</span></span>
+<span id="cb18-410"><a href="#cb18-410" aria-hidden="true" tabindex="-1"></a><span class="st">   • Visualized as oriented edges</span></span>
+<span id="cb18-411"><a href="#cb18-411" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-412"><a href="#cb18-412" aria-hidden="true" tabindex="-1"></a><span class="st">✅ Layer 2 (conv2): Pattern and Shape Detectors</span></span>
+<span id="cb18-413"><a href="#cb18-413" aria-hidden="true" tabindex="-1"></a><span class="st">   • Combines edges into shapes</span></span>
+<span id="cb18-414"><a href="#cb18-414" aria-hidden="true" tabindex="-1"></a><span class="st">   • Learns textures and patterns</span></span>
+<span id="cb18-415"><a href="#cb18-415" aria-hidden="true" tabindex="-1"></a><span class="st">   • Starts recognizing object parts</span></span>
+<span id="cb18-416"><a href="#cb18-416" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-417"><a href="#cb18-417" aria-hidden="true" tabindex="-1"></a><span class="st">✅ Layer 3 (conv3): Object Part Detectors</span></span>
+<span id="cb18-418"><a href="#cb18-418" aria-hidden="true" tabindex="-1"></a><span class="st">   • Learns complex, task-specific features</span></span>
+<span id="cb18-419"><a href="#cb18-419" aria-hidden="true" tabindex="-1"></a><span class="st">   • Responds to semantic concepts</span></span>
+<span id="cb18-420"><a href="#cb18-420" aria-hidden="true" tabindex="-1"></a><span class="st">   • Abstract representations</span></span>
+<span id="cb18-421"><a href="#cb18-421" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-422"><a href="#cb18-422" aria-hidden="true" tabindex="-1"></a><span class="st">✅ Dense Layers: Classifiers</span></span>
+<span id="cb18-423"><a href="#cb18-423" aria-hidden="true" tabindex="-1"></a><span class="st">   • Combines high-level features</span></span>
+<span id="cb18-424"><a href="#cb18-424" aria-hidden="true" tabindex="-1"></a><span class="st">   • Makes final classification decisions</span></span>
+<span id="cb18-425"><a href="#cb18-425" aria-hidden="true" tabindex="-1"></a><span class="st">   • Learns class-specific feature combinations</span></span>
+<span id="cb18-426"><a href="#cb18-426" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-427"><a href="#cb18-427" aria-hidden="true" tabindex="-1"></a><span class="st">The network progressively builds more abstract and </span></span>
+<span id="cb18-428"><a href="#cb18-428" aria-hidden="true" tabindex="-1"></a><span class="st">task-specific representations from raw pixels to </span></span>
+<span id="cb18-429"><a href="#cb18-429" aria-hidden="true" tabindex="-1"></a><span class="st">final classification decisions.</span></span>
+<span id="cb18-430"><a href="#cb18-430" aria-hidden="true" tabindex="-1"></a><span class="st">"""</span>)</span>
+<span id="cb18-431"><a href="#cb18-431" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-432"><a href="#cb18-432" aria-hidden="true" tabindex="-1"></a><span class="co"># Save the model</span></span>
+<span id="cb18-433"><a href="#cb18-433" aria-hidden="true" tabindex="-1"></a>model.save(<span class="st">'fashion_mnist_functional_model.h5'</span>)</span>
+<span id="cb18-434"><a href="#cb18-434" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Model saved as 'fashion_mnist_functional_model.h5'"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Loading Fashion-MNIST dataset...
+Training data shape: (60000, 28, 28, 1)
+Test data shape: (10000, 28, 28, 1)</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Module-5_files/figure-html/cell-10-output-2.png" width="931" height="396" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">Model: "fashion_cnn"</span>
+</pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━┓
+┃<span style="font-weight: bold"> Layer (type)                    </span>┃<span style="font-weight: bold"> Output Shape           </span>┃<span style="font-weight: bold">       Param # </span>┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━┩
+│ input (<span style="color: #0087ff; text-decoration-color: #0087ff">InputLayer</span>)              │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">28</span>, <span style="color: #00af00; text-decoration-color: #00af00">28</span>, <span style="color: #00af00; text-decoration-color: #00af00">1</span>)      │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ conv1 (<span style="color: #0087ff; text-decoration-color: #0087ff">Conv2D</span>)                  │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">28</span>, <span style="color: #00af00; text-decoration-color: #00af00">28</span>, <span style="color: #00af00; text-decoration-color: #00af00">32</span>)     │           <span style="color: #00af00; text-decoration-color: #00af00">320</span> │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ pool1 (<span style="color: #0087ff; text-decoration-color: #0087ff">MaxPooling2D</span>)            │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">14</span>, <span style="color: #00af00; text-decoration-color: #00af00">14</span>, <span style="color: #00af00; text-decoration-color: #00af00">32</span>)     │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ conv2 (<span style="color: #0087ff; text-decoration-color: #0087ff">Conv2D</span>)                  │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">14</span>, <span style="color: #00af00; text-decoration-color: #00af00">14</span>, <span style="color: #00af00; text-decoration-color: #00af00">64</span>)     │        <span style="color: #00af00; text-decoration-color: #00af00">18,496</span> │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ pool2 (<span style="color: #0087ff; text-decoration-color: #0087ff">MaxPooling2D</span>)            │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">7</span>, <span style="color: #00af00; text-decoration-color: #00af00">7</span>, <span style="color: #00af00; text-decoration-color: #00af00">64</span>)       │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ conv3 (<span style="color: #0087ff; text-decoration-color: #0087ff">Conv2D</span>)                  │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">7</span>, <span style="color: #00af00; text-decoration-color: #00af00">7</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)      │        <span style="color: #00af00; text-decoration-color: #00af00">73,856</span> │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ pool3 (<span style="color: #0087ff; text-decoration-color: #0087ff">MaxPooling2D</span>)            │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">3</span>, <span style="color: #00af00; text-decoration-color: #00af00">3</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)      │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ flatten (<span style="color: #0087ff; text-decoration-color: #0087ff">Flatten</span>)               │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">1152</span>)           │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dense1 (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                  │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)            │       <span style="color: #00af00; text-decoration-color: #00af00">147,584</span> │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ dropout (<span style="color: #0087ff; text-decoration-color: #0087ff">Dropout</span>)               │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">128</span>)            │             <span style="color: #00af00; text-decoration-color: #00af00">0</span> │
+├─────────────────────────────────┼────────────────────────┼───────────────┤
+│ output (<span style="color: #0087ff; text-decoration-color: #0087ff">Dense</span>)                  │ (<span style="color: #00d7ff; text-decoration-color: #00d7ff">None</span>, <span style="color: #00af00; text-decoration-color: #00af00">10</span>)             │         <span style="color: #00af00; text-decoration-color: #00af00">1,290</span> │
+└─────────────────────────────────┴────────────────────────┴───────────────┘
+</pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold"> Total params: </span><span style="color: #00af00; text-decoration-color: #00af00">241,546</span> (943.54 KB)
+</pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold"> Trainable params: </span><span style="color: #00af00; text-decoration-color: #00af00">241,546</span> (943.54 KB)
+</pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold"> Non-trainable params: </span><span style="color: #00af00; text-decoration-color: #00af00">0</span> (0.00 B)
+</pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Training the model...
+
+Test accuracy: 0.8982
+
+======================================================================
+FEATURE HIERARCHY DEMONSTRATION
+======================================================================
+
+Image 1821: True class = Pullover
+Predicted: Pullover (confidence: 0.648)</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Module-5_files/figure-html/cell-10-output-9.png" width="1223" height="946" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Image 6540: True class = Shirt
+Predicted: Coat (confidence: 0.499)</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Module-5_files/figure-html/cell-10-output-11.png" width="1223" height="946" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+======================================================================
+VISUALIZING LEARNED FILTERS
+======================================================================</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Module-5_files/figure-html/cell-10-output-13.png" width="1117" height="1134" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Feature statistics for Coat:</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Module-5_files/figure-html/cell-10-output-15.png" width="1494" height="381" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Module-5_files/figure-html/cell-10-output-16.png" width="1334" height="470" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+================================================================================
+UNDERSTANDING CNN FEATURE HIERARCHY
+================================================================================
+
+    HOW CNNs LEARN HIERARCHICAL FEATURES:
+    
+    🔵 LAYER 1 (conv1) - LOW-LEVEL FEATURES:
+       • Detects simple patterns like edges (horizontal, vertical, diagonal)
+       • Identifies corners and basic textures
+       • These are universal feature detectors (similar across all images)
+       • Feature maps show edge-like activations
+       • Output size: 14x14 with 32 channels
+    
+    🟢 LAYER 2 (conv2) - MID-LEVEL FEATURES:
+       • Combines edges to form shapes (circles, rectangles, patterns)
+       • Learns textures and repeating patterns
+       • Starts recognizing object parts (sleeves, collars, straps)
+       • Feature maps show pattern-like activations
+       • Output size: 7x7 with 64 channels
+    
+    🔴 LAYER 3 (conv3) - HIGH-LEVEL FEATURES:
+       • Learns complex, task-specific features
+       • Detects complete object parts and their arrangements
+       • Features become more abstract and semantically meaningful
+       • Feature maps show object-part activations
+       • Output size: 3x3 with 128 channels
+    
+    ⚪ DENSE LAYERS - CLASSIFICATION:
+       • Combines high-level features
+       • Makes final classification decisions
+       • Learns which feature combinations indicate specific clothing items
+    
+
+------------------------------------------------------------
+EXAMPLE: Feature progression for different clothing items
+------------------------------------------------------------</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Module-5_files/figure-html/cell-10-output-18.png" width="1869" height="1510" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+======================================================================
+CLASS-SPECIFIC ACTIVATION PATTERNS
+======================================================================</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="Module-5_files/figure-html/cell-10-output-20.png" width="1216" height="1886" class="figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+======================================================================
+SUMMARY: CNN FEATURE LEARNING HIERARCHY
+======================================================================
+
+✅ Layer 1 (conv1): Edge and Corner Detectors
+   • Responds to simple patterns
+   • Universal feature detectors
+   • Visualized as oriented edges
+
+✅ Layer 2 (conv2): Pattern and Shape Detectors
+   • Combines edges into shapes
+   • Learns textures and patterns
+   • Starts recognizing object parts
+
+✅ Layer 3 (conv3): Object Part Detectors
+   • Learns complex, task-specific features
+   • Responds to semantic concepts
+   • Abstract representations
+
+✅ Dense Layers: Classifiers
+   • Combines high-level features
+   • Makes final classification decisions
+   • Learns class-specific feature combinations
+
+The network progressively builds more abstract and 
+task-specific representations from raw pixels to 
+final classification decisions.
+
+
+Model saved as 'fashion_mnist_functional_model.h5'</code></pre>
+</div>
+</div>
+</section>
+<section id="capstone-project-ai-enhanced-campus-optimization" class="level2" data-number="6.8">
+<h2 data-number="6.8" class="anchored" data-anchor-id="capstone-project-ai-enhanced-campus-optimization"><span class="header-section-number">6.8</span> Capstone Project: AI-Enhanced Campus Optimization</h2>
+<section id="project-foundation" class="level3" data-number="6.8.1">
+<h3 data-number="6.8.1" class="anchored" data-anchor-id="project-foundation"><span class="header-section-number">6.8.1</span> Project Foundation</h3>
+<section id="integration-of-all-modules" class="level4" data-number="6.8.1.1">
+<h4 data-number="6.8.1.1" class="anchored" data-anchor-id="integration-of-all-modules"><span class="header-section-number">6.8.1.1</span> Integration of All Modules</h4>
 <p>This capstone project synthesizes concepts from all five modules:</p>
 <ul>
 <li><strong>Module 1:</strong> Linear constraints and formulations</li>
@@ -1294,8 +2127,8 @@ invalid value encountered in subtract
 <li><strong>Module 5:</strong> Machine learning and gradient optimization</li>
 </ul>
 </section>
-<section id="project-vision" class="level4" data-number="6.6.1.2">
-<h4 data-number="6.6.1.2" class="anchored" data-anchor-id="project-vision"><span class="header-section-number">6.6.1.2</span> Project Vision</h4>
+<section id="project-vision" class="level4" data-number="6.8.1.2">
+<h4 data-number="6.8.1.2" class="anchored" data-anchor-id="project-vision"><span class="header-section-number">6.8.1.2</span> Project Vision</h4>
 <p>Develop an intelligent campus optimization system that:</p>
 <ol type="1">
 <li><strong>Predicts</strong> facility demands using machine learning</li>
@@ -1304,8 +2137,8 @@ invalid value encountered in subtract
 <li><strong>Visualizes</strong> optimal solutions and provides insights</li>
 </ol>
 </section>
-<section id="system-architecture" class="level4" data-number="6.6.1.3">
-<h4 data-number="6.6.1.3" class="anchored" data-anchor-id="system-architecture"><span class="header-section-number">6.6.1.3</span> System Architecture</h4>
+<section id="system-architecture" class="level4" data-number="6.8.1.3">
+<h4 data-number="6.8.1.3" class="anchored" data-anchor-id="system-architecture"><span class="header-section-number">6.8.1.3</span> System Architecture</h4>
 <p><strong>Data Layer:</strong></p>
 <ul>
 <li>Historical campus operations data</li>
@@ -1326,10 +2159,10 @@ invalid value encountered in subtract
 </ul>
 </section>
 </section>
-<section id="capstone-project-requirements" class="level3" data-number="6.6.2">
-<h3 data-number="6.6.2" class="anchored" data-anchor-id="capstone-project-requirements"><span class="header-section-number">6.6.2</span> Capstone Project Requirements</h3>
-<section id="part-a-predictive-modeling-5-marks" class="level4" data-number="6.6.2.1">
-<h4 data-number="6.6.2.1" class="anchored" data-anchor-id="part-a-predictive-modeling-5-marks"><span class="header-section-number">6.6.2.1</span> Part A: Predictive Modeling (5 Marks)</h4>
+<section id="capstone-project-requirements" class="level3" data-number="6.8.2">
+<h3 data-number="6.8.2" class="anchored" data-anchor-id="capstone-project-requirements"><span class="header-section-number">6.8.2</span> Capstone Project Requirements</h3>
+<section id="part-a-predictive-modeling-5-marks" class="level4" data-number="6.8.2.1">
+<h4 data-number="6.8.2.1" class="anchored" data-anchor-id="part-a-predictive-modeling-5-marks"><span class="header-section-number">6.8.2.1</span> Part A: Predictive Modeling (5 Marks)</h4>
 <p><strong>Objective:</strong> Develop machine learning models to predict campus facility demands.</p>
 <p><strong>Tasks:</strong></p>
 <ol type="1">
@@ -1354,8 +2187,8 @@ invalid value encountered in subtract
 </ul></li>
 </ol>
 </section>
-<section id="part-b-integrated-optimization-system-6-marks" class="level4" data-number="6.6.2.2">
-<h4 data-number="6.6.2.2" class="anchored" data-anchor-id="part-b-integrated-optimization-system-6-marks"><span class="header-section-number">6.6.2.2</span> Part B: Integrated Optimization System (6 Marks)</h4>
+<section id="part-b-integrated-optimization-system-6-marks" class="level4" data-number="6.8.2.2">
+<h4 data-number="6.8.2.2" class="anchored" data-anchor-id="part-b-integrated-optimization-system-6-marks"><span class="header-section-number">6.8.2.2</span> Part B: Integrated Optimization System (6 Marks)</h4>
 <p><strong>Objective:</strong> Create a comprehensive optimization system that uses predictions to make optimal decisions.</p>
 <p><strong>Tasks:</strong></p>
 <ol type="1">
@@ -1379,8 +2212,8 @@ invalid value encountered in subtract
 </ul></li>
 </ol>
 </section>
-<section id="part-c-advanced-algorithm-implementation-5-marks" class="level4" data-number="6.6.2.3">
-<h4 data-number="6.6.2.3" class="anchored" data-anchor-id="part-c-advanced-algorithm-implementation-5-marks"><span class="header-section-number">6.6.2.3</span> Part C: Advanced Algorithm Implementation (5 Marks)</h4>
+<section id="part-c-advanced-algorithm-implementation-5-marks" class="level4" data-number="6.8.2.3">
+<h4 data-number="6.8.2.3" class="anchored" data-anchor-id="part-c-advanced-algorithm-implementation-5-marks"><span class="header-section-number">6.8.2.3</span> Part C: Advanced Algorithm Implementation (5 Marks)</h4>
 <p><strong>Objective:</strong> Implement sophisticated optimization algorithms for complex campus problems.</p>
 <p><strong>Tasks:</strong></p>
 <ol type="1">
@@ -1404,8 +2237,8 @@ invalid value encountered in subtract
 </ul></li>
 </ol>
 </section>
-<section id="part-d-system-deployment-evaluation-4-marks" class="level4" data-number="6.6.2.4">
-<h4 data-number="6.6.2.4" class="anchored" data-anchor-id="part-d-system-deployment-evaluation-4-marks"><span class="header-section-number">6.6.2.4</span> Part D: System Deployment &amp; Evaluation (4 Marks)</h4>
+<section id="part-d-system-deployment-evaluation-4-marks" class="level4" data-number="6.8.2.4">
+<h4 data-number="6.8.2.4" class="anchored" data-anchor-id="part-d-system-deployment-evaluation-4-marks"><span class="header-section-number">6.8.2.4</span> Part D: System Deployment &amp; Evaluation (4 Marks)</h4>
 <p><strong>Objective:</strong> Deploy and evaluate the complete system.</p>
 <p><strong>Tasks:</strong></p>
 <ol type="1">
@@ -1432,8 +2265,8 @@ invalid value encountered in subtract
 </ol>
 </section>
 </section>
-<section id="sample-capstone-problem" class="level3" data-number="6.6.3">
-<h3 data-number="6.6.3" class="anchored" data-anchor-id="sample-capstone-problem"><span class="header-section-number">6.6.3</span> Sample Capstone Problem</h3>
+<section id="sample-capstone-problem" class="level3" data-number="6.8.3">
+<h3 data-number="6.8.3" class="anchored" data-anchor-id="sample-capstone-problem"><span class="header-section-number">6.8.3</span> Sample Capstone Problem</h3>
 <p><strong>Problem Statement:</strong> Develop an AI-driven system for Campus City that:</p>
 <ol type="1">
 <li>Predicts hourly demands for all 15 facilities</li>
@@ -1461,8 +2294,8 @@ invalid value encountered in subtract
 <li>Alert system for exceptional situations</li>
 </ul>
 </section>
-<section id="capstone-design-questions" class="level3" data-number="6.6.4">
-<h3 data-number="6.6.4" class="anchored" data-anchor-id="capstone-design-questions"><span class="header-section-number">6.6.4</span> Capstone Design Questions</h3>
+<section id="capstone-design-questions" class="level3" data-number="6.8.4">
+<h3 data-number="6.8.4" class="anchored" data-anchor-id="capstone-design-questions"><span class="header-section-number">6.8.4</span> Capstone Design Questions</h3>
 <ol type="1">
 <li><p>How would you design a neural network architecture for predicting campus facility demands that captures both temporal patterns and external factors?</p></li>
 <li><p>What gradient optimization method would you choose for training your prediction models and why?</p></li>
@@ -1472,10 +2305,10 @@ invalid value encountered in subtract
 </ol>
 </section>
 </section>
-<section id="module-5-summary" class="level2" data-number="6.7">
-<h2 data-number="6.7" class="anchored" data-anchor-id="module-5-summary"><span class="header-section-number">6.7</span> Module 5 Summary</h2>
-<section id="key-concepts-mastered" class="level3" data-number="6.7.1">
-<h3 data-number="6.7.1" class="anchored" data-anchor-id="key-concepts-mastered"><span class="header-section-number">6.7.1</span> Key Concepts Mastered</h3>
+<section id="module-5-summary" class="level2" data-number="6.9">
+<h2 data-number="6.9" class="anchored" data-anchor-id="module-5-summary"><span class="header-section-number">6.9</span> Module 5 Summary</h2>
+<section id="key-concepts-mastered" class="level3" data-number="6.9.1">
+<h3 data-number="6.9.1" class="anchored" data-anchor-id="key-concepts-mastered"><span class="header-section-number">6.9.1</span> Key Concepts Mastered</h3>
 <ul>
 <li>✅ Gradient descent fundamentals and mathematical foundations</li>
 <li>✅ Advanced gradient methods (Momentum, RMSProp, Adam)</li>
@@ -1484,8 +2317,8 @@ invalid value encountered in subtract
 <li>✅ Integration of AI with traditional optimization</li>
 </ul>
 </section>
-<section id="skills-developed" class="level3" data-number="6.7.2">
-<h3 data-number="6.7.2" class="anchored" data-anchor-id="skills-developed"><span class="header-section-number">6.7.2</span> Skills Developed</h3>
+<section id="skills-developed" class="level3" data-number="6.9.2">
+<h3 data-number="6.9.2" class="anchored" data-anchor-id="skills-developed"><span class="header-section-number">6.9.2</span> Skills Developed</h3>
 <ul>
 <li><strong>Algorithm Selection:</strong> Choosing appropriate optimization methods for different problems</li>
 <li><strong>Hyperparameter Tuning:</strong> Optimizing optimization algorithms themselves</li>
@@ -1493,8 +2326,8 @@ invalid value encountered in subtract
 <li><strong>Practical Implementation:</strong> Applying advanced methods to campus-scale problems</li>
 </ul>
 </section>
-<section id="course-integration" class="level3" data-number="6.7.3">
-<h3 data-number="6.7.3" class="anchored" data-anchor-id="course-integration"><span class="header-section-number">6.7.3</span> Course Integration</h3>
+<section id="course-integration" class="level3" data-number="6.9.3">
+<h3 data-number="6.9.3" class="anchored" data-anchor-id="course-integration"><span class="header-section-number">6.9.3</span> Course Integration</h3>
 <p>This module completes the learning journey by:</p>
 <ul>
 <li>Building on foundations from previous modules</li>
@@ -1503,8 +2336,8 @@ invalid value encountered in subtract
 <li>Providing a comprehensive skill set for industry applications</li>
 </ul>
 </section>
-<section id="career-applications" class="level3" data-number="6.7.4">
-<h3 data-number="6.7.4" class="anchored" data-anchor-id="career-applications"><span class="header-section-number">6.7.4</span> Career Applications</h3>
+<section id="career-applications" class="level3" data-number="6.9.4">
+<h3 data-number="6.9.4" class="anchored" data-anchor-id="career-applications"><span class="header-section-number">6.9.4</span> Career Applications</h3>
 <p>Skills developed in this module are directly applicable to:</p>
 <ul>
 <li>Data Scientist roles in logistics and operations</li>
@@ -1514,8 +2347,8 @@ invalid value encountered in subtract
 <li>Research in computational optimization</li>
 </ul>
 </section>
-<section id="final-preparation" class="level3" data-number="6.7.5">
-<h3 data-number="6.7.5" class="anchored" data-anchor-id="final-preparation"><span class="header-section-number">6.7.5</span> Final Preparation</h3>
+<section id="final-preparation" class="level3" data-number="6.9.5">
+<h3 data-number="6.9.5" class="anchored" data-anchor-id="final-preparation"><span class="header-section-number">6.9.5</span> Final Preparation</h3>
 <ul>
 <li>Complete Capstone Project integration</li>
 <li>Review all module concepts for final assessment</li>
@@ -1525,10 +2358,10 @@ invalid value encountered in subtract
 <hr>
 </section>
 </section>
-<section id="course-culmination" class="level2" data-number="6.8">
-<h2 data-number="6.8" class="anchored" data-anchor-id="course-culmination"><span class="header-section-number">6.8</span> Course Culmination</h2>
-<section id="learning-journey-recap" class="level3" data-number="6.8.1">
-<h3 data-number="6.8.1" class="anchored" data-anchor-id="learning-journey-recap"><span class="header-section-number">6.8.1</span> Learning Journey Recap</h3>
+<section id="course-culmination" class="level2" data-number="6.10">
+<h2 data-number="6.10" class="anchored" data-anchor-id="course-culmination"><span class="header-section-number">6.10</span> Course Culmination</h2>
+<section id="learning-journey-recap" class="level3" data-number="6.10.1">
+<h3 data-number="6.10.1" class="anchored" data-anchor-id="learning-journey-recap"><span class="header-section-number">6.10.1</span> Learning Journey Recap</h3>
 <ul>
 <li><strong>Module 1:</strong> Mathematical foundations and linear optimization</li>
 <li><strong>Module 2:</strong> Nonlinear methods and constraint handling</li>
@@ -1537,8 +2370,8 @@ invalid value encountered in subtract
 <li><strong>Module 5:</strong> AI integration and advanced optimization</li>
 </ul>
 </section>
-<section id="professional-competencies-achieved" class="level3" data-number="6.8.2">
-<h3 data-number="6.8.2" class="anchored" data-anchor-id="professional-competencies-achieved"><span class="header-section-number">6.8.2</span> Professional Competencies Achieved</h3>
+<section id="professional-competencies-achieved" class="level3" data-number="6.10.2">
+<h3 data-number="6.10.2" class="anchored" data-anchor-id="professional-competencies-achieved"><span class="header-section-number">6.10.2</span> Professional Competencies Achieved</h3>
 <ol type="1">
 <li><strong>Technical Expertise:</strong> From basic LP to neural network optimization</li>
 <li><strong>Problem-Solving:</strong> Structured approach to complex optimization challenges</li>
@@ -1547,8 +2380,8 @@ invalid value encountered in subtract
 <li><strong>Communication:</strong> Presenting optimization insights to diverse audiences</li>
 </ol>
 </section>
-<section id="future-learning-pathways" class="level3" data-number="6.8.3">
-<h3 data-number="6.8.3" class="anchored" data-anchor-id="future-learning-pathways"><span class="header-section-number">6.8.3</span> Future Learning Pathways</h3>
+<section id="future-learning-pathways" class="level3" data-number="6.10.3">
+<h3 data-number="6.10.3" class="anchored" data-anchor-id="future-learning-pathways"><span class="header-section-number">6.10.3</span> Future Learning Pathways</h3>
 <ul>
 <li>Advanced topics in convex optimization</li>
 <li>Reinforcement learning for sequential decision making</li>

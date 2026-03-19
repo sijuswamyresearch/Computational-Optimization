@@ -943,6 +943,544 @@ Design a learning rate schedule for training a neural network on campus energy d
 
 5. How does learning rate scheduling improve stochastic optimization, particularly for non-stationary campus data?
 
+## Example- Implementation of concepts learned in Module 5 in the iris classification problem using Tensorflow and Keras
+
+```{python}
+import tensorflow as tf
+from tensorflow import keras
+from sklearn.datasets import load_iris
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score,confusion_matrix, classification_report  
+from sklearn.preprocessing import StandardScaler
+import numpy as np
+# Load the iris dataset
+iris = load_iris()
+X = iris.data
+y = iris.target
+# Preprocess the data
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X_scaled, y, test_size=0.2, random_state=42)
+# Build the neural network model
+model = keras.Sequential([
+    keras.layers.Dense(64, activation='relu', input_shape=(X_train.shape[1],)),
+    keras.layers.Dropout(0.5),
+    keras.layers.Dense(64, activation='relu'),
+    keras.layers.Dropout(0.5),
+    keras.layers.Dense(3, activation='softmax')
+]) 
+# Compile the model with Adam optimizer and categorical cross-entropy loss
+model.compile(optimizer='adam', loss='sparse_categorical_crossentropy', metrics=['accuracy'])
+# Train the model
+history = model.fit(X_train, y_train, epochs=100, batch_size=16, validation_split=0.2,verbose=0)
+# Evaluate the model on the test set   
+test_loss, test_acc = model.evaluate(X_test, y_test)
+print(f'Test accuracy: {test_acc:.4f}')
+print("Classification Report:")
+y_pred = np.argmax(model.predict(X_test), axis=1)  
+print(classification_report(y_test, y_pred))
+#confusion matrix
+print("Confusion Matrix:")
+print(confusion_matrix(y_test, y_pred))
+# false positives, false negatives, true positives, true negatives
+# For multi-class, you might want per-class metrics
+cm = confusion_matrix(y_test, y_pred)
+
+# Get per-class metrics
+for i in range(len(cm)):
+    tp = cm[i, i]
+    fp = cm[:, i].sum() - tp
+    fn = cm[i, :].sum() - tp
+    tn = cm.sum() - (tp + fp + fn)
+    
+    precision = tp / (tp + fp) if (tp + fp) > 0 else 0
+    recall = tp / (tp + fn) if (tp + fn) > 0 else 0
+    f1 = 2 * (precision * recall) / (precision + recall) if (precision + recall) > 0 else 0
+    
+    print(f"Class {i}: Precision={precision:.3f}, Recall={recall:.3f}, F1={f1:.3f}")
+# tru positives, true negatives, false positives, false negatives
+print(f'True Positives: {tp}')
+print(f'True Negatives: {tn}')
+print(f'False Positives: {fp}')
+print(f'False Negatives: {fn}')
+# tru positive rate (sensitivity) and true negative rate (specificity)
+tpr = tp / (tp + fn) if (tp + fn) > 0 else 0
+tnr = tn / (tn + fp) if (tn + fp) > 0 else 0 
+print(f'True Positive Rate (Sensitivity): {tpr:.4f}')
+print(f'True Negative Rate (Specificity): {tnr:.4f}')
+# Region of convergence plot
+import matplotlib.pyplot as plt  
+plt.plot(history.history['accuracy'], label='Training Accuracy')
+plt.plot(history.history['val_accuracy'], label='Validation Accuracy')
+plt.title('Model Accuracy')
+plt.xlabel('Epoch')
+plt.ylabel('Accuracy')
+plt.legend()
+plt.show()
+# Loss curve plot- training and validation loss curves to visualize convergence and potential overfitting
+plt.plot(history.history['loss'], label='Training Loss')
+plt.plot(history.history['val_loss'], label='Validation Loss')
+plt.title('Model Loss')
+plt.xlabel('Epoch')  
+plt.ylabel('Loss')
+plt.legend()
+plt.show()
+```
+
+**Statistical conclusion:** The model achieves high accuracy on the test set, with a classification report showing strong precision, recall, and F1-score across all classes. The confusion matrix indicates that the model is effectively distinguishing between the three iris species, with minimal misclassifications. The training and validation curves suggest good convergence without significant overfitting, demonstrating the effectiveness of the optimization techniques applied in this module.
+
+**Major problems with the implementation:** The model may require tuning of hyperparameters such as learning rate, batch size, and the number of epochs to achieve optimal performance. Additionally, the use of dropout layers may lead to underfitting if not properly balanced with the model architecture and training data. Finally, the small dataset size may limit the generalizability of the model, and further validation on larger datasets would be necessary to confirm its robustness. 
+
+**Statistical issues with this loss function:** The use of categorical cross-entropy loss is appropriate for multi-class classification problems like the iris dataset. However, if the dataset is imbalanced, this loss function may not adequately penalize misclassifications of minority classes, leading to biased predictions. In such cases, alternative loss functions or techniques such as class weighting or oversampling may be necessary to address class imbalance and improve model performance.
+
+**Issues with optimization of average loss:** The optimization of average loss may not always lead to the best generalization performance, especially if the dataset contains outliers or is imbalanced. In such cases, the model may overfit to the majority class or be influenced by outliers, resulting in suboptimal performance on unseen data. To mitigate this issue, techniques such as robust loss functions, regularization, or data augmentation can be employed to improve the model's ability to generalize and perform well on a wider range of inputs.
+
+**Truth of pixel-wise error minimization:** Pixel-wise error minimization may not always lead to the best perceptual quality in image-related tasks, as it focuses on minimizing the average error across all pixels rather than considering the overall structure and context of the image. This can result in blurry or unrealistic outputs, especially in tasks such as image generation or super-resolution. To address this issue, alternative loss functions that consider perceptual quality, such as adversarial loss or perceptual loss, can be used to improve the visual quality of the generated images. In this context, it is a classification problem rather than an image generation task, so pixel-wise error minimization is not directly applicable. However, the choice of loss function and optimization strategy can still impact the model's ability to generalize and perform well on unseen data, as discussed in the previous points. The real mathematics in the categorical cross-entropy loss function is based on the concept of maximum likelihood estimation, where the model is trained to maximize the likelihood of the observed data given the model parameters. This involves minimizing the negative log-likelihood, which is equivalent to minimizing the categorical cross-entropy loss in multi-class classification problems. The optimization process involves adjusting the model parameters to minimize this loss function, which can be achieved using various optimization algorithms such as SGD, Adam, or RMSProp, as discussed in this module. The categorical cross entropy measures the dissimilarity between the predicted probability distribution and the true distribution (one-hot encoded labels) for multi-class classification problems. It is defined as:
+$$L = -\sum_{i=1}^{N} \sum_{j=1}^{C} y_{ij} \log(p_{ij})$$
+
+Where $N$ is the number of samples, $C$ is the number of classes, $y_{ij}$ is the true label (1 if sample $i$ belongs to class $j$, 0 otherwise), and $p_{ij}$ is the predicted probability that sample $i$ belongs to class $j$. The optimization process involves minimizing this loss function with respect to the model parameters, which can be achieved using various optimization algorithms such as SGD, Adam, or RMSProp, as discussed in this module. The choice of optimization algorithm and hyperparameters can significantly impact the convergence and performance of the model on the given dataset.  This optimization uses the properties of the loss function, such as its smoothness and convexity, to guide the search for optimal parameters. The optimization process iteratively updates the model parameters in the direction that minimizes the loss function, ultimately leading to a model that can effectively classify the iris dataset with high accuracy and generalization performance.
+
+## Advanced Networks for image processing
+
+Convolutional Neural Networks (CNNs) are a class of deep learning models that have shown remarkable performance in image-related tasks. They are designed to automatically and adaptively learn spatial hierarchies of features from input images, making them particularly effective for tasks such as image classification, object detection, and image generation. A simple example of CNN for classifying MNIST Fashion dataset can be implemented as follows:
+
+```{python}
+# Step 1: Import necessary libraries
+import numpy as np
+import matplotlib.pyplot as plt
+import tensorflow as tf
+from tensorflow import keras
+from tensorflow.keras import layers
+from tensorflow.keras.models import Model
+import matplotlib.gridspec as gridspec
+
+# Step 2: Load and preprocess Fashion-MNIST dataset
+print("Loading Fashion-MNIST dataset...")
+fashion_mnist = keras.datasets.fashion_mnist
+(train_images, train_labels), (test_images, test_labels) = fashion_mnist.load_data()
+
+# Class names for Fashion-MNIST
+class_names = ['T-shirt/top', 'Trouser', 'Pullover', 'Dress', 'Coat',
+               'Sandal', 'Shirt', 'Sneaker', 'Bag', 'Ankle boot']
+
+# Normalize pixel values to [0, 1]
+train_images = train_images.astype('float32') / 255.0
+test_images = test_images.astype('float32') / 255.0
+
+# Reshape images to add channel dimension (28, 28, 1)
+train_images = train_images.reshape(train_images.shape[0], 28, 28, 1)
+test_images = test_images.reshape(test_images.shape[0], 28, 28, 1)
+
+print(f"Training data shape: {train_images.shape}")
+print(f"Test data shape: {test_images.shape}")
+
+# Step 3: Display sample images from the dataset
+def display_sample_images(images, labels, num_rows=2, num_cols=5):
+    plt.figure(figsize=(10, 4))
+    for i in range(num_rows * num_cols):
+        plt.subplot(num_rows, num_cols, i+1)
+        plt.imshow(images[i].reshape(28, 28), cmap='gray')
+        plt.title(class_names[labels[i]])
+        plt.axis('off')
+    plt.tight_layout()
+    plt.suptitle('Sample Fashion-MNIST Images', y=1.02, fontsize=14)
+    plt.show()
+
+display_sample_images(train_images, train_labels)
+
+# Step 4: Build the CNN model using Functional API instead of Sequential
+# This approach makes it easier to extract intermediate layer outputs
+def create_cnn_functional_model():
+    # Define input layer
+    inputs = keras.Input(shape=(28, 28, 1), name='input')
+    
+    # First Convolutional Block
+    x = layers.Conv2D(32, (3, 3), activation='relu', padding='same', name='conv1')(inputs)
+    x = layers.MaxPooling2D((2, 2), name='pool1')(x)
+    
+    # Second Convolutional Block
+    x = layers.Conv2D(64, (3, 3), activation='relu', padding='same', name='conv2')(x)
+    x = layers.MaxPooling2D((2, 2), name='pool2')(x)
+    
+    # Third Convolutional Block
+    x = layers.Conv2D(128, (3, 3), activation='relu', padding='same', name='conv3')(x)
+    x = layers.MaxPooling2D((2, 2), name='pool3')(x)
+    
+    # Flatten and Dense layers
+    x = layers.Flatten(name='flatten')(x)
+    x = layers.Dense(128, activation='relu', name='dense1')(x)
+    x = layers.Dropout(0.5, name='dropout')(x)
+    outputs = layers.Dense(10, activation='softmax', name='output')(x)
+    
+    # Create model
+    model = keras.Model(inputs=inputs, outputs=outputs, name='fashion_cnn')
+    
+    return model
+
+# Create the model
+model = create_cnn_functional_model()
+model.summary()
+
+# Step 5: Compile and train the model
+model.compile(optimizer='adam',
+              loss='sparse_categorical_crossentropy',
+              metrics=['accuracy'])
+
+print("\nTraining the model...")
+history = model.fit(train_images, train_labels, 
+                   epochs=3,  # Reduced epochs for faster execution
+                   batch_size=64,
+                   validation_split=0.2,
+                   verbose=0)
+
+# Step 6: Evaluate the model
+test_loss, test_accuracy = model.evaluate(test_images, test_labels, verbose=0)
+print(f"\nTest accuracy: {test_accuracy:.4f}")
+
+# Step 7: Create feature extraction model
+def create_feature_extractor(model):
+    """
+    Create a model that extracts features from intermediate layers
+    """
+    # Define the layers we want to extract
+    layer_names = ['conv1', 'conv2', 'conv3']
+    layer_outputs = [model.get_layer(name).output for name in layer_names]
+    
+    # Create feature extractor model
+    feature_extractor = Model(inputs=model.input, outputs=layer_outputs)
+    return feature_extractor
+
+# Create feature extractor
+feature_extractor = create_feature_extractor(model)
+
+# Step 8: Visualize feature maps for a single image
+def visualize_feature_maps(image, label, feature_extractor, layer_names=['conv1', 'conv2', 'conv3']):
+    """
+    Visualize feature maps from different layers
+    """
+    # Get feature maps
+    feature_maps = feature_extractor.predict(image[np.newaxis, ...], verbose=0)
+    
+    # If only one layer output, wrap in list
+    if not isinstance(feature_maps, list):
+        feature_maps = [feature_maps]
+    
+    # Create figure
+    fig = plt.figure(figsize=(15, 10))
+    
+    # Plot original image
+    plt.subplot(4, 4, 1)
+    plt.imshow(image.reshape(28, 28), cmap='gray')
+    plt.title(f'Original: {class_names[label]}', fontsize=10)
+    plt.axis('off')
+    
+    # Plot feature maps for each layer
+    for layer_idx, (layer_name, features) in enumerate(zip(layer_names, feature_maps)):
+        # Show 5 feature maps from this layer
+        num_features = min(5, features.shape[-1])
+        for i in range(num_features):
+            plot_idx = layer_idx * 5 + i + 2
+            if plot_idx <= 16:  # Ensure we don't exceed subplot grid
+                plt.subplot(4, 4, plot_idx)
+                plt.imshow(features[0, :, :, i], cmap='viridis')
+                plt.axis('off')
+                if i == 0:
+                    plt.title(f'{layer_name}', fontsize=10)
+    
+    # Hide empty subplots
+    for i in range(len(layer_names)*5 + 2, 17):
+        plt.subplot(4, 4, i)
+        plt.axis('off')
+    
+    plt.suptitle('Feature Maps: From Edges to High-Level Features', fontsize=14, y=0.98)
+    plt.tight_layout()
+    plt.show()
+
+# Step 9: Demonstrate feature hierarchy
+def demonstrate_feature_hierarchy(feature_extractor, test_images, test_labels, num_samples=2):
+    """
+    Demonstrate feature hierarchy for multiple sample images
+    """
+    print("\n" + "="*70)
+    print("FEATURE HIERARCHY DEMONSTRATION")
+    print("="*70)
+    
+    # Select random samples
+    indices = np.random.choice(len(test_images), num_samples, replace=False)
+    
+    for idx in indices:
+        image = test_images[idx]
+        label = test_labels[idx]
+        
+        # Get prediction from original model
+        prediction = model.predict(image[np.newaxis, ...], verbose=0)
+        pred_class = np.argmax(prediction)
+        confidence = np.max(prediction)
+        
+        print(f"\nImage {idx}: True class = {class_names[label]}")
+        print(f"Predicted: {class_names[pred_class]} (confidence: {confidence:.3f})")
+        
+        # Visualize feature maps
+        visualize_feature_maps(image, label, feature_extractor)
+
+# Run the demonstration
+demonstrate_feature_hierarchy(feature_extractor, test_images, test_labels, num_samples=2)
+
+# Step 10: Visualize learned filters
+def visualize_learned_filters(model, layer_name='conv1'):
+    """
+    Visualize the learned filters from a convolutional layer
+    """
+    layer = model.get_layer(layer_name)
+    weights = layer.get_weights()[0]  # Get the kernels
+    
+    # Normalize weights for better visualization
+    weights = (weights - weights.min()) / (weights.max() - weights.min() + 1e-8)
+    
+    num_filters = min(16, weights.shape[-1])
+    num_rows = (num_filters + 3) // 4
+    
+    plt.figure(figsize=(12, 3*num_rows))
+    
+    for i in range(num_filters):
+        plt.subplot(num_rows, 4, i+1)
+        plt.imshow(weights[:, :, 0, i], cmap='viridis')
+        plt.axis('off')
+        plt.title(f'Filter {i+1}', fontsize=8)
+    
+    plt.suptitle(f'Learned Filters from {layer_name} Layer', fontsize=14, y=0.98)
+    plt.tight_layout()
+    plt.show()
+
+print("\n" + "="*70)
+print("VISUALIZING LEARNED FILTERS")
+print("="*70)
+visualize_learned_filters(model, 'conv1')
+
+# Step 11: Show feature map statistics
+def analyze_feature_statistics(feature_extractor, sample_image, sample_label):
+    """
+    Analyze and compare feature maps across layers
+    """
+    layer_names = ['conv1', 'conv2', 'conv3']
+    feature_maps = feature_extractor.predict(sample_image[np.newaxis, ...], verbose=0)
+    
+    if not isinstance(feature_maps, list):
+        feature_maps = [feature_maps]
+    
+    fig, axes = plt.subplots(1, 4, figsize=(16, 4))
+    
+    # Original image
+    axes[0].imshow(sample_image.reshape(28, 28), cmap='gray')
+    axes[0].set_title(f'Input: {class_names[sample_label]}')
+    axes[0].axis('off')
+    
+    # Statistics for each layer
+    for i, (layer_name, features) in enumerate(zip(layer_names, feature_maps)):
+        # Calculate mean activation across all feature maps
+        mean_activation = np.mean(features[0], axis=-1)
+        
+        im = axes[i+1].imshow(mean_activation, cmap='hot')
+        axes[i+1].set_title(f'{layer_name}\nMean Activation')
+        axes[i+1].axis('off')
+        plt.colorbar(im, ax=axes[i+1])
+    
+    plt.suptitle('Feature Map Statistics Across Layers', fontsize=14)
+    plt.tight_layout()
+    plt.show()
+
+# Demonstrate with a sample
+sample_idx = 10
+print(f"\nFeature statistics for {class_names[test_labels[sample_idx]]}:")
+analyze_feature_statistics(feature_extractor, test_images[sample_idx], test_labels[sample_idx])
+
+# Step 12: Training history visualization
+def plot_training_history(history):
+    """
+    Plot training and validation accuracy/loss
+    """
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(14, 5))
+    
+    # Accuracy
+    ax1.plot(history.history['accuracy'], label='Training Accuracy', marker='o')
+    ax1.plot(history.history['val_accuracy'], label='Validation Accuracy', marker='o')
+    ax1.set_title('Model Accuracy')
+    ax1.set_xlabel('Epoch')
+    ax1.set_ylabel('Accuracy')
+    ax1.legend()
+    ax1.grid(True)
+    
+    # Loss
+    ax2.plot(history.history['loss'], label='Training Loss', marker='o')
+    ax2.plot(history.history['val_loss'], label='Validation Loss', marker='o')
+    ax2.set_title('Model Loss')
+    ax2.set_xlabel('Epoch')
+    ax2.set_ylabel('Loss')
+    ax2.legend()
+    ax2.grid(True)
+    
+    plt.tight_layout()
+    plt.show()
+
+plot_training_history(history)
+
+# Step 13: Comprehensive feature hierarchy explanation
+def explain_feature_hierarchy_comprehensive(feature_extractor, test_images, test_labels):
+    """
+    Provide a comprehensive explanation of feature hierarchy with examples
+    """
+    print("\n" + "="*80)
+    print("UNDERSTANDING CNN FEATURE HIERARCHY")
+    print("="*80)
+    
+    explanation = """
+    HOW CNNs LEARN HIERARCHICAL FEATURES:
+    
+    🔵 LAYER 1 (conv1) - LOW-LEVEL FEATURES:
+       • Detects simple patterns like edges (horizontal, vertical, diagonal)
+       • Identifies corners and basic textures
+       • These are universal feature detectors (similar across all images)
+       • Feature maps show edge-like activations
+       • Output size: 14x14 with 32 channels
+    
+    🟢 LAYER 2 (conv2) - MID-LEVEL FEATURES:
+       • Combines edges to form shapes (circles, rectangles, patterns)
+       • Learns textures and repeating patterns
+       • Starts recognizing object parts (sleeves, collars, straps)
+       • Feature maps show pattern-like activations
+       • Output size: 7x7 with 64 channels
+    
+    🔴 LAYER 3 (conv3) - HIGH-LEVEL FEATURES:
+       • Learns complex, task-specific features
+       • Detects complete object parts and their arrangements
+       • Features become more abstract and semantically meaningful
+       • Feature maps show object-part activations
+       • Output size: 3x3 with 128 channels
+    
+    ⚪ DENSE LAYERS - CLASSIFICATION:
+       • Combines high-level features
+       • Makes final classification decisions
+       • Learns which feature combinations indicate specific clothing items
+    """
+    
+    print(explanation)
+    
+    # Show examples of feature progression
+    print("\n" + "-"*60)
+    print("EXAMPLE: Feature progression for different clothing items")
+    print("-"*60)
+    
+    # Select examples from different classes
+    example_indices = [0, 2, 5, 9]  # T-shirt, Pullover, Sandal, Ankle boot
+    
+    fig, axes = plt.subplots(4, 5, figsize=(20, 16))
+    
+    for row, idx in enumerate(example_indices):
+        image = test_images[idx]
+        label = test_labels[idx]
+        
+        # Get feature maps
+        feature_maps = feature_extractor.predict(image[np.newaxis, ...], verbose=0)
+        if not isinstance(feature_maps, list):
+            feature_maps = [feature_maps]
+        
+        # Original image
+        axes[row, 0].imshow(image.reshape(28, 28), cmap='gray')
+        axes[row, 0].set_title(f'{class_names[label]}\nOriginal', fontsize=10)
+        axes[row, 0].axis('off')
+        
+        # Feature maps from each layer
+        for col, (layer_name, features) in enumerate(zip(['conv1', 'conv2', 'conv3'], feature_maps)):
+            # Show first 4 feature maps as examples
+            for f in range(min(4, features.shape[-1])):
+                col_idx = col*4 + f + 1
+                if col_idx < 5:  # Ensure we don't exceed subplot grid
+                  axes[row, col_idx].imshow(features[0, :, :, f], cmap='viridis')
+                  axes[row, col_idx].set_title(f'{layer_name}\nF{f}', fontsize=8)
+                  axes[row, col_idx].axis('off')
+    
+    plt.suptitle('Feature Progression Across Layers for Different Clothing Items', fontsize=14, y=0.98)
+    plt.tight_layout()
+    plt.show()
+
+explain_feature_hierarchy_comprehensive(feature_extractor, test_images, test_labels)
+
+# Step 14: Visualize activation patterns
+def visualize_activation_patterns(feature_extractor, test_images, test_labels):
+    """
+    Visualize how different classes activate different feature maps
+    """
+    # Select one image from each class
+    class_examples = []
+    for class_id in range(10):
+        idx = np.where(test_labels == class_id)[0][0]
+        class_examples.append((test_images[idx], class_id))
+    
+    fig, axes = plt.subplots(10, 4, figsize=(16, 20))
+    
+    for row, (image, label) in enumerate(class_examples):
+        # Get feature maps
+        feature_maps = feature_extractor.predict(image[np.newaxis, ...], verbose=0)
+        if not isinstance(feature_maps, list):
+            feature_maps = [feature_maps]
+        
+        # Original image
+        axes[row, 0].imshow(image.reshape(28, 28), cmap='gray')
+        axes[row, 0].set_title(f'{class_names[label]}', fontsize=8)
+        axes[row, 0].axis('off')
+        
+        # Show mean activation for each layer
+        for col, features in enumerate(feature_maps):
+            mean_activation = np.mean(features[0], axis=-1)
+            axes[row, col+1].imshow(mean_activation, cmap='hot')
+            if row == 0:
+                axes[row, col+1].set_title(f'Layer {col+1}\nMean Activation', fontsize=8)
+            axes[row, col+1].axis('off')
+    
+    plt.suptitle('Activation Patterns Across Different Classes', fontsize=14, y=0.98)
+    plt.tight_layout()
+    plt.show()
+
+print("\n" + "="*70)
+print("CLASS-SPECIFIC ACTIVATION PATTERNS")
+print("="*70)
+visualize_activation_patterns(feature_extractor, test_images, test_labels)
+
+# Step 15: Final summary
+print("\n" + "="*70)
+print("SUMMARY: CNN FEATURE LEARNING HIERARCHY")
+print("="*70)
+print("""
+✅ Layer 1 (conv1): Edge and Corner Detectors
+   • Responds to simple patterns
+   • Universal feature detectors
+   • Visualized as oriented edges
+
+✅ Layer 2 (conv2): Pattern and Shape Detectors
+   • Combines edges into shapes
+   • Learns textures and patterns
+   • Starts recognizing object parts
+
+✅ Layer 3 (conv3): Object Part Detectors
+   • Learns complex, task-specific features
+   • Responds to semantic concepts
+   • Abstract representations
+
+✅ Dense Layers: Classifiers
+   • Combines high-level features
+   • Makes final classification decisions
+   • Learns class-specific feature combinations
+
+The network progressively builds more abstract and 
+task-specific representations from raw pixels to 
+final classification decisions.
+""")
+
+# Save the model
+model.save('fashion_mnist_functional_model.h5')
+print("\nModel saved as 'fashion_mnist_functional_model.h5'")
+```
 
 ## Capstone Project: AI-Enhanced Campus Optimization
 

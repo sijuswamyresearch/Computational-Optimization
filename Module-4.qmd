@@ -233,7 +233,7 @@ Step-by-step logic:
 - *Repeat:* Now, look at all edges from both A and B to the remaining unvisited nodes. Pick the cheapest one again. Repeat this process until the Visited Set contains all vertices.
 
 
-**Complexity:** $ O(E \log V) $ with binary heap
+**Complexity:** $O(E \log V)$ with binary heap
 
 ## Practice Problems: Prim's Algorithm
 
