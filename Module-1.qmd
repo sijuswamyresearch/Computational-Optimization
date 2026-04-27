@@ -888,3 +888,24 @@ Based on our dataset, we have 15 facilities with the following key attributes:
 
 1.  Deliverable 1: Mathematical Formulation (3 Marks)
 2.  Deliverable 2: Report in .pdf format (7 Marks)
+
+## Review Questions
+
+1. Write the general form of a Linear Programming Problem.
+2. Express the following LPP in standard form using necessary slack variables and form the initial feasible solution: Maximize  $Z=2x+5y+7z$; Subject to: $x+y-z\le 5;3x-7z\le 3; -2x-7y+z\le -4;x,y,z\ge 0$.
+3. An animal feed company must produce at least 200 kgs of a mixture consisting of ingredients $X_1$  and $X_2$ daily. $X_1$ cost Rs 30 per kg and $X_2$ Rs. 80 per kg. No more than 80 kg of $X_1$ can be used, and at least 60 kg of $X_2$ must be used. Formulate a mathematical model for this problem and provide pseudocode or Python code to solve it.
+4. A firm makes two products, X and Y, and has a total production capacity of 9 tonnes per day. X and Y require the same production capacity. The firm has a permanent contract to supply at least 2 tonnes of X and at least 3 tonnes of Y per day to another company. Each tonne of X requires 20 machine hours of production time, and each tonne of Y requires 50 machine hours of production time. The daily maximum possible number of machine hours is 360. All the first output can be sold, and the profit made is Rs. 80 per tonne of X and Rs. 120 per tonne of Y. It is required to determine a schedule for maximum profit and calculate the profit by modelling this problem as an LPP.
+5. Solve the following LPP using the simplex method:
+Maximize $Z=6x_1+4x_2$. Subject to the constraints $-2x_1+x_2\le 2; x_1-x_2≤2; 3x_1+2x_2≤9; x_1,x_2≥0.
+
+6. Solve the LPP: Maximize $Z=60x_1+40x_2$. Subject to: $2x_1+x_2\le 60;x_1\le 25;x_2\le 35;x_1,x_2\ge 0$.
+7. Write the algorithm/ Pseudo code for the simplex method to solve a general linear programming problem.
+8. What are the four possible outcomes when solving a Linear Programming problem, and what does each outcome signify in terms of the feasible region and objective function?
+9. Solve the following LPP using the simplex method:
+Maximize $Z=5x_1+3x_2$ Subject to the constraints $x_1+x_2\le 2; 5x_1+2x_2\le 10; 3x_1+8x_2\le 12; x_1,x_2\ge 0$.
+10. A company produces two articles, A and B. There are two different departments through which the articles are processed, viz, the assembly line and the finishing phase. The assembly department's capacity is 60 hours per week, and the finishing department's is 48 hours per week. Producing one unit of A requires 4 hours of assembly and 2 hours of finishing. Each unit B requires 2 hours in assembly and 4 hours in finishing. If the profit is Rs. 8 per unit of A and Rs. 6 per unit of B, formulate this problem as an LPP and determine the number of units of A and B to be produced each week to maximize profit.
+11. Write the simplex algorithm to solve an LPP, and solve the following problem using this algorithm:
+Maximize $Z=6x_1+4x_2$ 
+Subject to: $-2x_1+x_2\le 2;        x_1-x_2\le 2;  3x_1+2x_2\le 9;  x_1,x_2\ge 0.$
+
+ 

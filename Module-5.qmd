@@ -1667,6 +1667,26 @@ Develop an AI-driven system for Campus City that:
 
 5. How would you validate that your AI-enhanced optimization system actually improves campus operations compared to traditional methods?
 
+## Review Questions
+
+1. Describe the concept of regularization in the machine learning context. Given any three commonly used regularization in regression models.
+2. Explain the concept of momentum in loss optimization, providing a clear rationale. Also, write the algorithm for the momentum method. 
+3. Explain the bias-variance trade-off in machine learning. How does it relate to model complexity and generalization?
+4. What is the purpose of a validation set in machine learning, and how does it differ from the training and test sets?
+5. Describe the concept of overfitting in machine learning. What are some common techniques to prevent overfitting?
+6. Explain the concept of cross-validation and how it can be used to evaluate the performance of  a machine learning model.
+7. Explain the gradient descent method for minimizing the loss function. What are the common issues with this method, and suggest a method to overcome them?
+8. Minimize the quadratic function $f(x)= x^2- 4x + 4$ using gradient descent with momentum starting from  $x_0= 0$, with learning rate $\eta = 0.1$ and $\gamma=0.9$ in 4 iterations.
+9. What is the effect of the learning rate on gradient descent convergence? Provide examples of problems caused by too large and too small learning rates.
+10. Compare RMSProp and Adam optimizers. When would you choose one over the other for campus demand prediction?
+11. Explain how momentum helps gradient descent overcome oscillations in narrow valleys.
+12. Minimize the quadratic function $f(x)= x^2- 4x + 4$ using gradient descent starting from  $x_0= 0$, with learning rate $\eta = 0.1$ in 4 iterations.
+13. Explain different types of gradient descent methods and compare them with any three dominant advantages and disadvantages.
+14. Let $y_i$ be the ground truth and $\hat{y}_i$ be the predicted value of a functional approximation $y = f(\theta_0 + \theta_1 x)$, where $\theta_0, \theta_1$ are parameters. Formulate the mean square error for this predictive function, considering $n$ samples. Also derive the update formula for both $\theta_0$ and $\theta_1$ using the gradient descent method.
+15. Explain the concept of learning rate in gradient descent. What are the potential consequences of choosing a learning rate that is too high or too low?
+16. Describe the Adam optimization algorithm and explain how it combines the advantages of both momentum and RMSProp.
+17. Explain the concept of stochastic optimization and how it differs from traditional optimization methods. Provide an example of a stochastic optimization algorithm.
+18. Discuss the challenges of integrating AI techniques with traditional optimization methods. How can these challenges be addressed in practice?
 
 ## Module 5 Summary
 

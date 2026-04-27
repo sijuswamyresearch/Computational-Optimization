@@ -2314,3 +2314,104 @@ For critical activities, provide three-point estimates:
 - Practice CPM/PERT calculations with various project scenarios
 - Explore advanced project management software tools
 - Prepare for Module 4: Graph Algorithms and Network Optimization
+
+
+## Review Questions
+
+1. Compare and contrast the Critical Path Method (CPM) and Program Evaluation and Review Technique (PERT) in decision-making.
+2. What are the key time durations used in the PERT method? Justify the choice of expected time duration calculation in the context of probabilistic modelling.
+3. Write the PERT algorithm to find the expected duration and variance of a non-repetitive project.
+4. How can Gantt charts be used to identify potential scheduling conflicts and resource bottlenecks in campus projects?
+5. The mean and standard deviation of project duration are 300 and 100 days, respectively. With proper assumptions, find the probability for (a) completing the project within 417 days, (b) not completing within 417 days, (c) completing the project within 183 days, and (d) not completing within 183 days.
+6. A project composed of 12 activities has following schedule characteristics:
+
+
+1.	Construct the network diagram
+2.	Compute earliest and latest event time for each event
+3.	Find EST, LST, EFT, and LFT values of all activities
+4.	Find the critical path and project duration
+
+| Activity | Duration | Activity | Duration |
+|----------|----------|----------|----------|
+| 1-2      | 2        | 4-6      | 3        |
+| 1-3      | 2        | 5-8      | 1        |
+| 1-4      | 1        | 6-9      | 5        |
+| 2-5      | 4        | 7-8      | 4        |
+| 3-6      | 8        | 8-9      | 3        |
+| 3-7      | 5        |          |          |
+
+5. A campus event planning project has resource constraints (only 2 project managers available). Create a resource-leveled Gantt chart using the following data.   
+Activities with PM requirements:
+i.	Planning: 2 PMs, 2 weeks
+ii.	Vendor selection: 1 PM, 3 weeks
+iii.	Logistics: 2 PMs, 2 weeks
+iv.	Promotion: 1 PM, 4 weeks
+v.	Execution: 2 PMs, 1 week.
+Assume that planning is the predecessor for Vendor selection, Logistics, and Promotion.
+
+
+6. The following table lists the jobs of a network along with their time estimates.
+
+| Job | Duration (days) - a | Duration (days) - m | Duration (days) - b |
+|-----|---------------------|---------------------|---------------------|
+| 1-2 | 3 | 6 | 15 |
+| 1-6 | 2 | 5 | 14 |
+| 2-3 | 6 | 12 | 30 |
+| 2-4 | 2 | 5 | 8 |
+| 3-5 | 5 | 11 | 17 |
+| 4-5 | 3 | 6 | 15 |
+| 6-7 | 3 | 9 | 27 |
+| 5-8 | 1 | 4 | 7 |
+| 7-8 | 4 | 19 | 28 |
+
+1.	Draw the project network
+2.	Calculate the length and variance of the critical path
+3.	What is the approximate probability that the jobs on the critical path will be completed in 41 days?
+4.	What is the probability that the project will not be completed in 45 days?
+
+
+7. A project composed of 12 activities has following schedule characteristics:
+
+| Activity | Duration | Activity | Duration |
+|----------|----------|----------|----------|
+| 1-2      | 4        | 5-6      | 4        |
+| 1-3      | 1        | 5-7      | 8        |
+| 2-4      | 1        | 6-8      | 1        |
+| 3-4      | 1        | 7-8      | 2        |
+| 3-5      | 6        | 8-10     | 5        |
+| 4-9      | 5        | 9-10     | 7        |
+
+
+1.	Construct the network diagram
+2.	Compute earliest and latest event time for each event
+3.	Find EST, LST, EFT, and LFT values of all activities
+4.	Find the critical path and project duration
+
+8. Explain the necessity of scheduling in project planning. Use a Gantt chart to visualize the critical activities, non-critical activities, and event slack for the following project. The duration of the activity in weeks is given in brackets.
+
+- A (4), B (3) start at 0.
+- C (2) depends on A.
+- D (5) depends on A.
+- E (6) depends on B.
+- F (3) depends on C, D, E.
+
+9. For the library construction project, add probabilistic time estimates:
+
+| Activity | a | m | b | Predecessors |
+|----------|---|---|---|--------------|
+| A | 1 | 2 | 3 | - |
+| B | 3 | 4 | 5 | A |
+| C | 5 | 6 | 7 | B |
+| D | 2 | 3 | 4 | C |
+| E | 2 | 3 | 4 | C |
+| F | 3 | 4 | 5 | D, E |
+| G | 1 | 2 | 3 | C |
+| H | 1 | 1 | 1 | F, G |
+
+Calculate:
+
+1. Expected project duration
+2. Probability of completing in 22 weeks
+3. 95% confidence interval for completion
+
+

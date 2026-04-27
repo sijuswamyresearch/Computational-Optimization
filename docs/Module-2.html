@@ -261,6 +261,7 @@ window.Quarto = {
   <li><a href="#ridge-regression-l2-regularization" id="toc-ridge-regression-l2-regularization" class="nav-link" data-scroll-target="#ridge-regression-l2-regularization"><span class="header-section-number">3.5.6</span> Ridge Regression (L2 Regularization)</a></li>
   <li><a href="#maximum-entropy-models-maxent" id="toc-maximum-entropy-models-maxent" class="nav-link" data-scroll-target="#maximum-entropy-models-maxent"><span class="header-section-number">3.5.7</span> Maximum Entropy Models (MaxEnt)</a></li>
   </ul></li>
+  <li><a href="#review-questions-4" id="toc-review-questions-4" class="nav-link" data-scroll-target="#review-questions-4"><span class="header-section-number">3.6</span> Review Questions</a></li>
   </ul>
 </nav>
     </div>
@@ -880,7 +881,7 @@ Practical Considerations
 <blockquote class="blockquote">
 <p><strong>Solution:</strong></p>
 </blockquote>
-<div id="bc8b2caa" class="cell" data-execution_count="1">
+<div id="ab3ed086" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> golden_section_search(f, a, b, tol<span class="op">=</span><span class="fl">1e-6</span>, max_iter<span class="op">=</span><span class="dv">100</span>):</span>
@@ -912,7 +913,7 @@ Practical Considerations
 <section id="solution-of-constrained-nlpp" class="level3" data-number="3.5.3">
 <h3 data-number="3.5.3" class="anchored" data-anchor-id="solution-of-constrained-nlpp"><span class="header-section-number">3.5.3</span> Solution of constrained NLPP</h3>
 <p>To solve NLPP using KKT method, we will use <code>solve()</code> function from the <code>sympy</code> library. Key functions required for solution will be imported</p>
-<div id="e322834f" class="cell" data-execution_count="2">
+<div id="8bb529da" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sympy <span class="im">import</span> symbols, diff, solve</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <blockquote class="blockquote">
@@ -923,7 +924,7 @@ Practical Considerations
 <blockquote class="blockquote">
 <p><strong>Python code:</strong></p>
 </blockquote>
-<div id="258f9dd7" class="cell" data-execution_count="3">
+<div id="04bd3b3f" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sympy <span class="im">import</span> symbols, diff, solve</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Define Variables</span></span>
@@ -1001,7 +1002,7 @@ Optimal Solution: x=2, y=2, cost=8</code></pre>
 <blockquote class="blockquote">
 <p><strong>Example 2:</strong> Solve <span class="math inline">\(f(x_1,x_2)=-x_1^2-x_2^2\)</span>; <span class="math inline">\(-x_1-x_2\le -1\)</span>; <span class="math inline">\(-2x_1+2x_2\le 1\)</span>; <span class="math inline">\(x_1,x_2\ge 0\)</span>.</p>
 </blockquote>
-<div id="c50d210f" class="cell" data-execution_count="4">
+<div id="1a538773" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Define Variables</span></span>
@@ -1102,7 +1103,7 @@ Point (x1, x2)       | Multipliers          | Objective  | Status
 <p><strong>Example 3:</strong> Minimize <span class="math inline">\(f(x_1,x_2)=2x_1+6x_2\)</span> subject to <span class="math inline">\(x_1-x_2\le 0\)</span>; <span class="math inline">\(x_1^2+x_2^2\ge 4\)</span>; <span class="math inline">\(x_1,x_2\ge 0\)</span>.</p>
 </blockquote>
 <p>Mathematical Formulation for <code>Sympy</code> requires constraints to be in the form <span class="math inline">\(g(x) \ge 0\)</span>. We must rearrange the given inequalities: - <em>Objective:</em> Minimize <span class="math inline">\(f(x) = 2x_1 + 6x_2\)</span> - <em>Constraint 1:</em> <span class="math inline">\(x_1 - x_2 \le 0 \implies x_2 - x_1 \ge 0\)</span> - <em>Constraint 2:</em> <span class="math inline">\(x_1^2 + x_2^2 \ge 4 \implies x_1^2 + x_2^2 - 4 \ge 0\)</span> - <em>Bounds:</em> <span class="math inline">\(x_1, x_2 \ge 0\)</span></p>
-<div id="77a527c2" class="cell" data-execution_count="5">
+<div id="55e4c407" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Define Symbols</span></span>
@@ -1304,7 +1305,7 @@ Insight: The solution lies at the intersection of the line x1=x2 and the circle.
 <blockquote class="blockquote">
 <p><strong>Python solution</strong></p>
 </blockquote>
-<div id="970f38c5" class="cell" data-execution_count="6">
+<div id="7a48cf9c" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sympy <span class="im">as</span> sp</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Define Variables</span></span>
@@ -1488,9 +1489,25 @@ Insights:
 <p>This derivation serves as the theoretical foundation for <strong>Logistic Regression</strong> and the final layer of most <strong>Neural Networks</strong>.</p>
 </div>
 </div>
-
-
 </section>
+</section>
+<section id="review-questions-4" class="level2" data-number="3.6">
+<h2 data-number="3.6" class="anchored" data-anchor-id="review-questions-4"><span class="header-section-number">3.6</span> Review Questions</h2>
+<ol type="1">
+<li><p>Explain the Golden Section Search algorithm.</p></li>
+<li><p>Write the key steps in the Golden Section Search algorithm with a suitable example.</p></li>
+<li><p>What are the KKT conditions and how do they relate to Lagrange multipliers?</p></li>
+<li><p>Find an approximate solution for the unconstrained objective function, <span class="math inline">\(f(x)=(x-3)^2+2\)</span> in the domain <span class="math inline">\([0,5]\)</span> using the Golden Section Search algorithm in 4 steps.</p></li>
+<li><p>Solve the non-linear optimization problem: Minimize <span class="math inline">\(f(x_1,x_2 )=x_1^2+x_2^2\)</span> Subject to the constraints: <span class="math inline">\(x_1+x_2\ge 4; x_1,x_2\ge 0\)</span>.</p></li>
+<li><p>A medical device company wants to determine the optimal coating thickness (between 0 mm and 5 mm) that minimizes production cost. The cost function is experimentally modeled as <span class="math inline">\(F(x)=(x-3)^2+2\)</span>. Using the Golden Section Search method, perform 4 iterations to approximate the optimal thickness that minimizes cost.</p></li>
+<li><p>A machine learning engineer wants to optimize two model parameters x_1 and x_2 to minimize the regularized loss function: <span class="math inline">\(f(x,y)=x_1^2-4x_1+x_2^2-6x_2\)</span> with two constraint – complexity constraint and non-negativity weight restrictions given by <span class="math inline">\(x_1+x_2\le 3; x_1,x_2\ge 0\)</span>, respectively. Formulate an appropriate mathematical programming model to represent this problem and determine the optimal parameter values.</p></li>
+<li><p>What does complementary slackness tell us about active vs inactive constraints at the optimal solution? Explain your claims using an appropriate example.</p></li>
+<li><p>What does complementary slackness tell us about active vs inactive constraints at the optimal solution? Explain your claims using an appropriate example.</p></li>
+<li><p>Find an interval of solution for <span class="math inline">\(f(x)=100/x+2x\)</span> in <span class="math inline">\([10,200]\)</span> in 4 steps using Golden Section or Fibonacci search method.</p></li>
+<li><p>Solve the following nonlinear optimization problem using Karush–Kuhn–Tucker conditions: Minimize: <span class="math inline">\(f(x,y)=(x_1-1)^2+(x_2-2)^2\)</span> subject to : <span class="math inline">\(x_1+x_2-5\ge 0;x_1,x_2\ge 0\)</span>.</p></li>
+</ol>
+
+
 </section>
 
 </main> <!-- /main -->

@@ -1065,3 +1065,19 @@ $$p(y|x) = \frac{1}{Z} \exp\left(\sum \lambda_i f_i(x, y)\right)$$
 ### Insights:
 This derivation serves as the theoretical foundation for **Logistic Regression** and the final layer of most **Neural Networks**.
 :::
+
+## Review Questions
+
+1. Explain the Golden Section Search algorithm.
+2. Write the key steps in the Golden Section Search algorithm with a suitable example. 
+3. What are the KKT conditions and how do they relate to Lagrange multipliers?
+4. Find an approximate solution for the unconstrained objective function, $f(x)=(x-3)^2+2$ in the domain $[0,5]$ using the Golden Section Search algorithm in 4 steps.
+5. Solve the non-linear optimization problem: Minimize $f(x_1,x_2 )=x_1^2+x_2^2$   Subject to the constraints: $x_1+x_2\ge 4; x_1,x_2\ge 0$.
+6. A medical device company wants to determine the optimal coating thickness (between 0 mm and 5 mm) that minimizes production cost. The cost function is experimentally modeled as $F(x)=(x-3)^2+2$. Using the Golden Section Search method, perform 4 iterations to approximate the optimal thickness that minimizes cost.
+7. A machine learning engineer wants to optimize two model parameters x_1  and x_2 to minimize the regularized loss function: $f(x,y)=x_1^2-4x_1+x_2^2-6x_2$ with two constraint – complexity constraint and non-negativity weight restrictions given by $x_1+x_2\le 3; x_1,x_2\ge 0$, respectively. Formulate an appropriate mathematical programming model to represent this problem and determine the optimal parameter values.
+8. What does complementary slackness tell us about active vs inactive constraints at the optimal solution? Explain your claims using an appropriate example.
+
+9. What does complementary slackness tell us about active vs inactive constraints at the optimal solution? Explain your claims using an appropriate example.
+
+10. Find an interval of solution for $f(x)=100/x+2x$ in $[10,200]$ in 4 steps using Golden Section or Fibonacci search method.
+11. Solve the following nonlinear optimization problem using Karush–Kuhn–Tucker conditions: Minimize: $f(x,y)=(x_1-1)^2+(x_2-2)^2$ subject to : $x_1+x_2-5\ge 0;x_1,x_2\ge 0$.

@@ -285,6 +285,7 @@ window.Quarto = {
   <li><a href="#physical-business-constraints" id="toc-physical-business-constraints" class="nav-link" data-scroll-target="#physical-business-constraints"><span class="header-section-number">2.10.6</span> Physical &amp; Business Constraints</a></li>
   <li><a href="#learning-objectives-1" id="toc-learning-objectives-1" class="nav-link" data-scroll-target="#learning-objectives-1"><span class="header-section-number">2.10.7</span> Learning Objectives</a></li>
   </ul></li>
+  <li><a href="#review-questions" id="toc-review-questions" class="nav-link" data-scroll-target="#review-questions"><span class="header-section-number">2.11</span> Review Questions</a></li>
   </ul>
 </nav>
     </div>
@@ -405,7 +406,7 @@ window.Quarto = {
 <h2 data-number="2.3" class="anchored" data-anchor-id="basic-python-for-optimization"><span class="header-section-number">2.3</span> Basic Python for Optimization</h2>
 <section id="essential-python-libraries-setup" class="level3" data-number="2.3.1">
 <h3 data-number="2.3.1" class="anchored" data-anchor-id="essential-python-libraries-setup"><span class="header-section-number">2.3.1</span> Essential Python Libraries Setup</h3>
-<div id="5db19ad2" class="cell" data-execution_count="1">
+<div id="4f5d34e3" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Core optimization stack installation</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># pip install numpy scipy matplotlib pulp pandas jupyter</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -431,7 +432,7 @@ Key <code>Python</code> Libraries Required for Computational Part
 </section>
 <section id="python-fundamentals-for-optimization" class="level3" data-number="2.3.2">
 <h3 data-number="2.3.2" class="anchored" data-anchor-id="python-fundamentals-for-optimization"><span class="header-section-number">2.3.2</span> Python Fundamentals for Optimization</h3>
-<div id="d62b9fc4" class="cell" data-execution_count="2">
+<div id="38e0196c" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Essential operations we'll use frequently</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -949,7 +950,7 @@ x_1, x_2 &amp;\ge 0.
 <p><em>Using PuLP for LP Problems</em></p>
 </blockquote>
 <p><code>PuLP</code> provides a high-level interface for formulating and solving optimization problems:</p>
-<div id="2bab0fb1" class="cell" data-execution_count="3">
+<div id="66cae803" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pulp</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create optimization problem</span></span>
@@ -1046,7 +1047,7 @@ x_1, x_2 &amp;\geq 0
 <blockquote class="blockquote">
 <p><code>Python</code> Solution</p>
 </blockquote>
-<div id="a13f94da" class="cell" data-execution_count="4">
+<div id="e56bce58" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pulp</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the optimization problem</span></span>
@@ -1176,7 +1177,7 @@ x_1 \geq 0, \quad x_2 \geq 0
 <blockquote class="blockquote">
 <p><code>Python</code> Implementation</p>
 </blockquote>
-<div id="dbd94275" class="cell" data-execution_count="5">
+<div id="70588b90" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pulp</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the optimization problem</span></span>
@@ -1390,9 +1391,25 @@ Total Cost: $14.00</code></pre>
 <li>Deliverable 1: Mathematical Formulation (3 Marks)</li>
 <li>Deliverable 2: Report in .pdf format (7 Marks)</li>
 </ol>
-
-
 </section>
+</section>
+<section id="review-questions" class="level2" data-number="2.11">
+<h2 data-number="2.11" class="anchored" data-anchor-id="review-questions"><span class="header-section-number">2.11</span> Review Questions</h2>
+<ol type="1">
+<li><p>Write the general form of a Linear Programming Problem.</p></li>
+<li><p>Express the following LPP in standard form using necessary slack variables and form the initial feasible solution: Maximize <span class="math inline">\(Z=2x+5y+7z\)</span>; Subject to: <span class="math inline">\(x+y-z\le 5;3x-7z\le 3; -2x-7y+z\le -4;x,y,z\ge 0\)</span>.</p></li>
+<li><p>An animal feed company must produce at least 200 kgs of a mixture consisting of ingredients <span class="math inline">\(X_1\)</span> and <span class="math inline">\(X_2\)</span> daily. <span class="math inline">\(X_1\)</span> cost Rs 30 per kg and <span class="math inline">\(X_2\)</span> Rs. 80 per kg. No more than 80 kg of <span class="math inline">\(X_1\)</span> can be used, and at least 60 kg of <span class="math inline">\(X_2\)</span> must be used. Formulate a mathematical model for this problem and provide pseudocode or Python code to solve it.</p></li>
+<li><p>A firm makes two products, X and Y, and has a total production capacity of 9 tonnes per day. X and Y require the same production capacity. The firm has a permanent contract to supply at least 2 tonnes of X and at least 3 tonnes of Y per day to another company. Each tonne of X requires 20 machine hours of production time, and each tonne of Y requires 50 machine hours of production time. The daily maximum possible number of machine hours is 360. All the first output can be sold, and the profit made is Rs. 80 per tonne of X and Rs. 120 per tonne of Y. It is required to determine a schedule for maximum profit and calculate the profit by modelling this problem as an LPP.</p></li>
+<li><p>Solve the following LPP using the simplex method: Maximize <span class="math inline">\(Z=6x_1+4x_2\)</span>. Subject to the constraints $-2x_1+x_2; x_1-x_2≤2; 3x_1+2x_2≤9; x_1,x_2≥0.</p></li>
+<li><p>Solve the LPP: Maximize <span class="math inline">\(Z=60x_1+40x_2\)</span>. Subject to: <span class="math inline">\(2x_1+x_2\le 60;x_1\le 25;x_2\le 35;x_1,x_2\ge 0\)</span>.</p></li>
+<li><p>Write the algorithm/ Pseudo code for the simplex method to solve a general linear programming problem.</p></li>
+<li><p>What are the four possible outcomes when solving a Linear Programming problem, and what does each outcome signify in terms of the feasible region and objective function?</p></li>
+<li><p>Solve the following LPP using the simplex method: Maximize <span class="math inline">\(Z=5x_1+3x_2\)</span> Subject to the constraints <span class="math inline">\(x_1+x_2\le 2; 5x_1+2x_2\le 10; 3x_1+8x_2\le 12; x_1,x_2\ge 0\)</span>.</p></li>
+<li><p>A company produces two articles, A and B. There are two different departments through which the articles are processed, viz, the assembly line and the finishing phase. The assembly department’s capacity is 60 hours per week, and the finishing department’s is 48 hours per week. Producing one unit of A requires 4 hours of assembly and 2 hours of finishing. Each unit B requires 2 hours in assembly and 4 hours in finishing. If the profit is Rs. 8 per unit of A and Rs. 6 per unit of B, formulate this problem as an LPP and determine the number of units of A and B to be produced each week to maximize profit.</p></li>
+<li><p>Write the simplex algorithm to solve an LPP, and solve the following problem using this algorithm: Maximize <span class="math inline">\(Z=6x_1+4x_2\)</span> Subject to: <span class="math inline">\(-2x_1+x_2\le 2;        x_1-x_2\le 2;  3x_1+2x_2\le 9;  x_1,x_2\ge 0.\)</span></p></li>
+</ol>
+
+
 </section>
 
 </main> <!-- /main -->

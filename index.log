@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2025.2.19)  19 MAR 2026 13:15
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2025.2.19)  27 APR 2026 14:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1328,27 +1328,34 @@ Missing character: There is no ≥ (U+2265) in font [lmroman10-regular]:mapping=
 
 
 [38]
+Missing character: There is no ≤ (U+2264) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ≤ (U+2264) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ≤ (U+2264) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ≥ (U+2265) in font [lmroman10-regular]:mapping=tex-text;!
+
+
+[39]
 chapter 3.
 
-Underfull \hbox (badness 10000) in paragraph at lines 2641--2643
+Underfull \hbox (badness 10000) in paragraph at lines 2705--2707
 
  []
 
 
 
-[39
+[40
 
 ]
-Overfull \hbox (1.07973pt too wide) in paragraph at lines 2721--2721
+Overfull \hbox (1.07973pt too wide) in paragraph at lines 2785--2785
 []|\TU/lmr/bx/n/10.95 Optimality|  
  []
 
 
-Overfull \hbox (23.63673pt too wide) in paragraph at lines 2731--2731
+Overfull \hbox (23.63673pt too wide) in paragraph at lines 2795--2795
 []|\TU/lmr/bx/n/10.95 Computational 
  []
 
-[40]
+[41]
 Missing character: There is no ┌ (U+250C) in font [lmmono10-regular]:!
 Missing character: There is no ─ (U+2500) in font [lmmono10-regular]:!
 Missing character: There is no ─ (U+2500) in font [lmmono10-regular]:!
@@ -1642,12 +1649,12 @@ Missing character: There is no ─ (U+2500) in font [lmmono10-regular]:!
 Missing character: There is no ─ (U+2500) in font [lmmono10-regular]:!
 Missing character: There is no ┐ (U+2510) in font [lmmono10-regular]:!
 
-Overfull \hbox (13.13986pt too wide) in paragraph at lines 2750--2750
+Overfull \hbox (13.13986pt too wide) in paragraph at lines 2814--2814
 []     \TU/lmtt/m/n/10.95 | Linear objective &     |               | At least one objective or      |[] 
  []
 
 
-Overfull \hbox (13.13986pt too wide) in paragraph at lines 2751--2751
+Overfull \hbox (13.13986pt too wide) in paragraph at lines 2815--2815
 []     \TU/lmtt/m/n/10.95 | linear constraints     |               | constraint is nonlinear        |[] 
  []
 
@@ -1711,54 +1718,54 @@ Missing character: There is no ─ (U+2500) in font [lmmono10-regular]:!
 Missing character: There is no ─ (U+2500) in font [lmmono10-regular]:!
 Missing character: There is no ┘ (U+2518) in font [lmmono10-regular]:!
 
-Overfull \hbox (13.13986pt too wide) in paragraph at lines 2754--2754
+Overfull \hbox (13.13986pt too wide) in paragraph at lines 2818--2818
 []      \TU/lmtt/m/n/10.95 Feasible region is convex                Region may be curved or nonconvex[] 
  []
 
 
-Overfull \hbox (1.64236pt too wide) in paragraph at lines 2756--2756
+Overfull \hbox (1.64236pt too wide) in paragraph at lines 2820--2820
 []    \TU/lmtt/m/n/10.95 Optimal solution at a vertex                May have multiple local optima[] 
  []
 
 
-Overfull \hbox (1.64236pt too wide) in paragraph at lines 2758--2758
+Overfull \hbox (1.64236pt too wide) in paragraph at lines 2822--2822
 []    \TU/lmtt/m/n/10.95 Solved via Simplex / IPM                      Solved via numerical methods[] 
  []
 
 
 
-[41]
-Underfull \hbox (badness 10000) in paragraph at lines 2807--2809
+[42]
+Underfull \hbox (badness 10000) in paragraph at lines 2871--2873
 
  []
 
 
 
-[42]
-
 [43]
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table 3.2 on input line 2952.
-
-
 
 [44]
 
 Package longtable Warning: Column widths have changed
-(longtable)                in table 3.3 on input line 3003.
+(longtable)                in table 3.2 on input line 3016.
 
 
 
 [45]
 
+Package longtable Warning: Column widths have changed
+(longtable)                in table 3.3 on input line 3067.
+
+
+
 [46]
 
 [47]
+
+[48]
 Missing character: There is no ≤ (U+2264) in font [lmroman10-regular]:mapping=tex-text;!
 Missing character: There is no ≤ (U+2264) in font [lmroman10-regular]:mapping=tex-text;!
 
-Underfull \hbox (badness 10000) in paragraph at lines 3213--3215
+Underfull \hbox (badness 10000) in paragraph at lines 3277--3279
 
  []
 
@@ -1766,12 +1773,12 @@ Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:mapping=
 Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:mapping=tex-text;!
 
 
-[48]
+[49]
 Missing character: There is no λ (U+03BB) in font [lmroman10-bold]:mapping=tex-text;!
 Missing character: There is no μ (U+03BC) in font [lmroman10-bold]:mapping=tex-text;!
 
 
-[49]
+[50]
 Missing character: There is no 𝜆 (U+1D706) in font [lmroman10-regular]:mapping=tex-text;!
 Missing character: There is no ≥ (U+2265) in font [lmroman10-regular]:mapping=tex-text;!
 Missing character: There is no λ (U+03BB) in font [lmroman10-regular]:mapping=tex-text;!
@@ -1782,8 +1789,6 @@ Missing character: There is no λ (U+03BB) in font [lmroman10-regular]:mapping=t
 Missing character: There is no λ (U+03BB) in font [lmroman10-regular]:mapping=tex-text;!
 
 
-[50]
-
 [51]
 
 [52]
@@ -1791,557 +1796,557 @@ Missing character: There is no λ (U+03BB) in font [lmroman10-regular]:mapping=t
 [53]
 
 [54]
-Underfull \vbox (badness 10000) detected at line 3679
- []
-
-
-Underfull \vbox (badness 10000) detected at line 3679
- []
-
-
 
 [55]
+Underfull \vbox (badness 10000) detected at line 3743
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 3743
+ []
+
+
 
 [56]
-Overfull \hbox (13.13986pt too wide) in paragraph at lines 3688--3688
+
+[57]
+Overfull \hbox (13.13986pt too wide) in paragraph at lines 3752--3752
 []\TU/lmtt/m/n/10.95 (0.2500, 0.7500)   | L1=-1.0000, L2=-0.2500 | -0.6250     | Invalid (lambda < 0)[] 
  []
 
 
-Overfull \hbox (7.39111pt too wide) in paragraph at lines 3689--3689
+Overfull \hbox (7.39111pt too wide) in paragraph at lines 3753--3753
 []\TU/lmtt/m/n/10.95 (0.5000, 0.5000)   | L1=-1.0000, L2=0.0000 | -0.5000     | Invalid (lambda < 0)[] 
  []
 
 
 
-[57]
-Underfull \vbox (badness 10000) detected at line 3797
- []
-
-
-Underfull \vbox (badness 10000) detected at line 3797
- []
-
-
-
 [58]
-Overfull \hbox (41.8836pt too wide) in paragraph at lines 3803--3803
-[]\TU/lmtt/m/n/10.95 -------------------------------------------------------------------------------------[] 
+Underfull \vbox (badness 10000) detected at line 3861
  []
 
 
-Overfull \hbox (41.8836pt too wide) in paragraph at lines 3805--3805
-[]\TU/lmtt/m/n/10.95 -------------------------------------------------------------------------------------[] 
- []
-
-
-Overfull \hbox (41.8836pt too wide) in paragraph at lines 3810--3810
-[]\TU/lmtt/m/n/10.95 -------------------------------------------------------------------------------------[] 
- []
-
-
-Overfull \hbox (13.13986pt too wide) in paragraph at lines 3815--3815
-[]\TU/lmtt/m/n/10.95 Insight: The solution lies at the intersection of the line x1=x2 and the circle.[] 
+Underfull \vbox (badness 10000) detected at line 3861
  []
 
 
 
 [59]
+Overfull \hbox (41.8836pt too wide) in paragraph at lines 3867--3867
+[]\TU/lmtt/m/n/10.95 -------------------------------------------------------------------------------------[] 
+ []
+
+
+Overfull \hbox (41.8836pt too wide) in paragraph at lines 3869--3869
+[]\TU/lmtt/m/n/10.95 -------------------------------------------------------------------------------------[] 
+ []
+
+
+Overfull \hbox (41.8836pt too wide) in paragraph at lines 3874--3874
+[]\TU/lmtt/m/n/10.95 -------------------------------------------------------------------------------------[] 
+ []
+
+
+Overfull \hbox (13.13986pt too wide) in paragraph at lines 3879--3879
+[]\TU/lmtt/m/n/10.95 Insight: The solution lies at the intersection of the line x1=x2 and the circle.[] 
+ []
+
+
 
 [60]
-Missing character: There is no 𝛼 (U+1D6FC) in font [lmroman10-bold]:mapping=tex-text;!
-Missing character: There is no 𝛼 (U+1D6FC) in font [lmroman10-bold]:mapping=tex-text;!
-
 
 [61]
-Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
-Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
+Missing character: There is no 𝛼 (U+1D6FC) in font [lmroman10-bold]:mapping=tex-text;!
+Missing character: There is no 𝛼 (U+1D6FC) in font [lmroman10-bold]:mapping=tex-text;!
 
 
 [62]
-Underfull \vbox (badness 10000) detected at line 4092
- []
-
-
-Underfull \vbox (badness 10000) detected at line 4092
- []
-
+Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
+Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
 
 
 [63]
-Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
-Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
-Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
-Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
-Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
-Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
+Underfull \vbox (badness 10000) detected at line 4156
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 4156
+ []
+
 
 
 [64]
+Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
+Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
+Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
+Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
+Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
+Missing character: There is no λ (U+03BB) in font [lmmono10-regular]:!
+
 
 [65]
 
 [66]
+
+[67]
+
+[68]
 chapter 4.
 
 
-[67
+[69
 
 ]
-
-[68]
-
-[69]
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table 4.2 on input line 4464.
-
-
 
 [70]
 
 [71]
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 4.2 on input line 4580.
+
+
 
 [72]
 
 [73]
 
 [74]
-Underfull \vbox (badness 10000) detected at line 4848
- []
-
-
-Underfull \vbox (badness 10000) detected at line 4848
- []
-
-
 
 [75]
 
 [76]
-File: Module-3_files/figure-pdf/cell-2-output-2.pdf Graphic file (type pdf)
-<use Module-3_files/figure-pdf/cell-2-output-2.pdf>
+Underfull \vbox (badness 10000) detected at line 4964
+ []
 
-Package longtable Warning: Column widths have changed
-(longtable)                in table 4.5 on input line 4888.
+
+Underfull \vbox (badness 10000) detected at line 4964
+ []
 
 
 
 [77]
 
 [78]
-
-[79]
+File: Module-3_files/figure-pdf/cell-2-output-2.pdf Graphic file (type pdf)
+<use Module-3_files/figure-pdf/cell-2-output-2.pdf>
 
 Package longtable Warning: Column widths have changed
-(longtable)                in table 4.6 on input line 5024.
+(longtable)                in table 4.5 on input line 5004.
 
 
+
+[79]
 
 [80]
 
 [81]
 
+Package longtable Warning: Column widths have changed
+(longtable)                in table 4.6 on input line 5140.
+
+
+
 [82]
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table 4.7 on input line 5194.
-
-
-Package longtable Warning: Column widths have changed
-(longtable)                in table 4.8 on input line 5213.
-
-
 
 [83]
 
 [84]
 
-[85] [86]
-
-[87]
-Underfull \vbox (badness 10000) detected at line 5501
- []
+Package longtable Warning: Column widths have changed
+(longtable)                in table 4.7 on input line 5310.
 
 
-Underfull \vbox (badness 10000) detected at line 5501
- []
+Package longtable Warning: Column widths have changed
+(longtable)                in table 4.8 on input line 5329.
 
 
 
-[88]
+[85]
+
+[86]
+
+[87] [88]
 
 [89]
+Underfull \vbox (badness 10000) detected at line 5617
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 5617
+ []
+
+
 
 [90]
-Underfull \vbox (badness 10000) detected at line 5749
- []
-
-
-Underfull \vbox (badness 10000) detected at line 5749
- []
-
-
 
 [91]
-Underfull \vbox (badness 10000) detected at line 5749
- []
-
-
-Underfull \vbox (badness 10000) detected at line 5749
- []
-
-
 
 [92]
+Underfull \vbox (badness 10000) detected at line 5865
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 5865
+ []
+
+
 
 [93]
-Missing character: There is no σ (U+03C3) in font [lmroman10-bold]:mapping=tex-text;!
+Underfull \vbox (badness 10000) detected at line 5865
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 5865
+ []
+
 
 
 [94]
+
+[95]
 Missing character: There is no σ (U+03C3) in font [lmroman10-bold]:mapping=tex-text;!
 
 
-[95]
+[96]
+Missing character: There is no σ (U+03C3) in font [lmroman10-bold]:mapping=tex-text;!
+
+
+[97]
 
 Package longtable Warning: Column widths have changed
-(longtable)                in table 4.11 on input line 5906.
+(longtable)                in table 4.11 on input line 6022.
 
 
 
-[96]
+[98]
 Missing character: There is no ≤ (U+2264) in font [lmroman10-regular]:mapping=tex-text;!
 Missing character: There is no ≈ (U+2248) in font [lmroman10-regular]:mapping=tex-text;!
 Missing character: There is no σ (U+03C3) in font [lmmono10-regular]:!
 
 
-[97]
-Underfull \vbox (badness 10000) detected at line 6176
- []
-
-
-Underfull \vbox (badness 10000) detected at line 6176
- []
-
-
-
-[98]
-Underfull \vbox (badness 10000) detected at line 6176
- []
-
-
-Underfull \vbox (badness 10000) detected at line 6176
- []
-
-
-
 [99]
-Overfull \vbox (2.50754pt too high) detected at line 6176
+Underfull \vbox (badness 10000) detected at line 6292
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 6292
  []
 
 
 
 [100]
-Missing character: There is no σ (U+03C3) in font [lmmono10-regular]:!
-
-Overfull \hbox (85.19084pt too wide) in paragraph at lines 6181--6181
-[]\TU/lmtt/m/n/10.95 Activity   Optimistic (a)  Most Likely (m) Pessimistic (b) Expected Time (te)   Variance (σ²)[] 
+Underfull \vbox (badness 10000) detected at line 6292
  []
 
 
-Overfull \hbox (70.62735pt too wide) in paragraph at lines 6182--6182
-[]\TU/lmtt/m/n/10.95 ------------------------------------------------------------------------------------------[] 
- []
-
-
-Overfull \hbox (47.63235pt too wide) in paragraph at lines 6183--6183
-[]\TU/lmtt/m/n/10.95 A          1               2               3               2.00                 0.1111[] 
- []
-
-
-Overfull \hbox (47.63235pt too wide) in paragraph at lines 6184--6184
-[]\TU/lmtt/m/n/10.95 B          3               4               5               4.00                 0.1111[] 
- []
-
-
-Overfull \hbox (47.63235pt too wide) in paragraph at lines 6185--6185
-[]\TU/lmtt/m/n/10.95 C          5               6               7               6.00                 0.1111[] 
- []
-
-
-Overfull \hbox (47.63235pt too wide) in paragraph at lines 6186--6186
-[]\TU/lmtt/m/n/10.95 D          2               3               4               3.00                 0.1111[] 
- []
-
-
-Overfull \hbox (47.63235pt too wide) in paragraph at lines 6187--6187
-[]\TU/lmtt/m/n/10.95 E          2               3               4               3.00                 0.1111[] 
+Underfull \vbox (badness 10000) detected at line 6292
  []
 
 
 
 [101]
-Overfull \hbox (47.63235pt too wide) in paragraph at lines 6188--6188
-[]\TU/lmtt/m/n/10.95 F          3               4               5               4.00                 0.1111[] 
- []
-
-
-Overfull \hbox (47.63235pt too wide) in paragraph at lines 6189--6189
-[]\TU/lmtt/m/n/10.95 G          1               2               3               2.00                 0.1111[] 
- []
-
-
-Overfull \hbox (47.63235pt too wide) in paragraph at lines 6190--6190
-[]\TU/lmtt/m/n/10.95 H          1               1               1               1.00                 0.0000[] 
+Overfull \vbox (2.50754pt too high) detected at line 6292
  []
 
 
 
 [102]
-Overfull \hbox (13.13986pt too wide) in paragraph at lines 6239--6239
+Missing character: There is no σ (U+03C3) in font [lmmono10-regular]:!
+
+Overfull \hbox (85.19084pt too wide) in paragraph at lines 6297--6297
+[]\TU/lmtt/m/n/10.95 Activity   Optimistic (a)  Most Likely (m) Pessimistic (b) Expected Time (te)   Variance (σ²)[] 
+ []
+
+
+Overfull \hbox (70.62735pt too wide) in paragraph at lines 6298--6298
+[]\TU/lmtt/m/n/10.95 ------------------------------------------------------------------------------------------[] 
+ []
+
+
+Overfull \hbox (47.63235pt too wide) in paragraph at lines 6299--6299
+[]\TU/lmtt/m/n/10.95 A          1               2               3               2.00                 0.1111[] 
+ []
+
+
+Overfull \hbox (47.63235pt too wide) in paragraph at lines 6300--6300
+[]\TU/lmtt/m/n/10.95 B          3               4               5               4.00                 0.1111[] 
+ []
+
+
+Overfull \hbox (47.63235pt too wide) in paragraph at lines 6301--6301
+[]\TU/lmtt/m/n/10.95 C          5               6               7               6.00                 0.1111[] 
+ []
+
+
+Overfull \hbox (47.63235pt too wide) in paragraph at lines 6302--6302
+[]\TU/lmtt/m/n/10.95 D          2               3               4               3.00                 0.1111[] 
+ []
+
+
+Overfull \hbox (47.63235pt too wide) in paragraph at lines 6303--6303
+[]\TU/lmtt/m/n/10.95 E          2               3               4               3.00                 0.1111[] 
+ []
+
+
+
+[103]
+Overfull \hbox (47.63235pt too wide) in paragraph at lines 6304--6304
+[]\TU/lmtt/m/n/10.95 F          3               4               5               4.00                 0.1111[] 
+ []
+
+
+Overfull \hbox (47.63235pt too wide) in paragraph at lines 6305--6305
+[]\TU/lmtt/m/n/10.95 G          1               2               3               2.00                 0.1111[] 
+ []
+
+
+Overfull \hbox (47.63235pt too wide) in paragraph at lines 6306--6306
+[]\TU/lmtt/m/n/10.95 H          1               1               1               1.00                 0.0000[] 
+ []
+
+
+
+[104]
+Overfull \hbox (13.13986pt too wide) in paragraph at lines 6355--6355
 []\TU/lmtt/m/n/10.95 We can be 95% confident that the project will take between 18.41 and 21.59 weeks[] 
  []
 
 Missing character: There is no σ (U+03C3) in font [lmroman10-regular]:mapping=tex-text;!
 
 
-[103]
-
-[104]
-
 [105]
-Underfull \vbox (badness 10000) detected at line 6538
- []
-
-
-Underfull \vbox (badness 10000) detected at line 6538
- []
-
-
 
 [106]
-Underfull \vbox (badness 10000) detected at line 6538
- []
-
-
-Underfull \vbox (badness 10000) detected at line 6538
- []
-
-
 
 [107]
-File: Module-3_files/figure-pdf/cell-9-output-2.pdf Graphic file (type pdf)
-<use Module-3_files/figure-pdf/cell-9-output-2.pdf>
+Underfull \vbox (badness 10000) detected at line 6654
+ []
 
-Overfull \hbox (10.96175pt too wide) in paragraph at lines 6553--6554
-[][] 
+
+Underfull \vbox (badness 10000) detected at line 6654
  []
 
 
 
 [108]
+Underfull \vbox (badness 10000) detected at line 6654
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 6654
+ []
+
+
 
 [109]
+File: Module-3_files/figure-pdf/cell-9-output-2.pdf Graphic file (type pdf)
+<use Module-3_files/figure-pdf/cell-9-output-2.pdf>
 
-[110]
-File: Module-3_files/figure-pdf/cell-10-output-1.pdf Graphic file (type pdf)
-<use Module-3_files/figure-pdf/cell-10-output-1.pdf>
-
-Overfull \hbox (10.94604pt too wide) in paragraph at lines 6671--6672
+Overfull \hbox (10.96175pt too wide) in paragraph at lines 6669--6670
 [][] 
  []
 
 
 
-[111]
-Missing character: There is no ⚠ (U+26A0) in font [lmmono10-regular]:!
-Missing character: There is no ️ (U+FE0F) in font [lmmono10-regular]:!
-Missing character: There is no ✅ (U+2705) in font [lmmono10-regular]:!
+[110]
 
+[111]
 
 [112]
-Underfull \vbox (badness 10000) detected at line 6971
- []
+File: Module-3_files/figure-pdf/cell-10-output-1.pdf Graphic file (type pdf)
+<use Module-3_files/figure-pdf/cell-10-output-1.pdf>
 
-
-Underfull \vbox (badness 10000) detected at line 6971
+Overfull \hbox (10.94604pt too wide) in paragraph at lines 6787--6788
+[][] 
  []
 
 
 
 [113]
-Overfull \vbox (1.82863pt too high) detected at line 6971
- []
-
+Missing character: There is no ⚠ (U+26A0) in font [lmmono10-regular]:!
+Missing character: There is no ️ (U+FE0F) in font [lmmono10-regular]:!
+Missing character: There is no ✅ (U+2705) in font [lmmono10-regular]:!
 
 
 [114]
-Overfull \vbox (2.50754pt too high) detected at line 6971
+Underfull \vbox (badness 10000) detected at line 7087
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 7087
  []
 
 
 
 [115]
-Underfull \vbox (badness 10000) detected at line 6971
- []
-
-
-Underfull \vbox (badness 10000) detected at line 6971
+Overfull \vbox (1.82863pt too high) detected at line 7087
  []
 
 
 
 [116]
-Underfull \vbox (badness 10000) detected at line 6971
- []
-
-
-Underfull \vbox (badness 10000) detected at line 6971
+Overfull \vbox (2.50754pt too high) detected at line 7087
  []
 
 
 
 [117]
-Underfull \vbox (badness 10000) detected at line 6971
+Underfull \vbox (badness 10000) detected at line 7087
  []
 
 
-Underfull \vbox (badness 10000) detected at line 6971
+Underfull \vbox (badness 10000) detected at line 7087
  []
 
 
 
 [118]
-Overfull \hbox (13.13983pt too wide) in paragraph at lines 6974--6974
-[]\TU/lmtt/m/n/10.95 ================================================================================[] 
+Underfull \vbox (badness 10000) detected at line 7087
  []
 
 
-Overfull \hbox (13.13983pt too wide) in paragraph at lines 6976--6976
-[]\TU/lmtt/m/n/10.95 ================================================================================[] 
- []
-
-
-Overfull \hbox (13.13986pt too wide) in paragraph at lines 6979--6979
-[]\TU/lmtt/m/n/10.95 --------------------------------------------------------------------------------[] 
- []
-
-
-Overfull \hbox (82.12485pt too wide) in paragraph at lines 6980--6980
-[]\TU/lmtt/m/n/10.95 Activity             Duration   PMs        ES         EF         LS         LF         Slack[] 
- []
-
-
-Overfull \hbox (13.13986pt too wide) in paragraph at lines 6981--6981
-[]\TU/lmtt/m/n/10.95 --------------------------------------------------------------------------------[] 
- []
-
-
-Overfull \hbox (59.12985pt too wide) in paragraph at lines 6982--6982
-[]\TU/lmtt/m/n/10.95 Planning             2          2          0          2          0          2          0[] 
- []
-
-
-Overfull \hbox (59.12985pt too wide) in paragraph at lines 6983--6983
-[]\TU/lmtt/m/n/10.95 Vendor Selection     3          1          2          5          3          6          1[] 
- []
-
-
-Overfull \hbox (59.12985pt too wide) in paragraph at lines 6984--6984
-[]\TU/lmtt/m/n/10.95 Logistics            2          2          2          4          4          6          2[] 
- []
-
-
-Overfull \hbox (59.12985pt too wide) in paragraph at lines 6985--6985
-[]\TU/lmtt/m/n/10.95 Promotion            4          1          2          6          2          6          0[] 
- []
-
-
-Overfull \hbox (59.12985pt too wide) in paragraph at lines 6986--6986
-[]\TU/lmtt/m/n/10.95 Execution            1          2          6          7          6          7          0[] 
- []
-
-
-Overfull \hbox (13.13983pt too wide) in paragraph at lines 6988--6988
-[]\TU/lmtt/m/n/10.95 ================================================================================[] 
- []
-
-
-Overfull \hbox (13.13983pt too wide) in paragraph at lines 6990--6990
-[]\TU/lmtt/m/n/10.95 ================================================================================[] 
- []
-
-Missing character: There is no ⚠ (U+26A0) in font [lmmono10-regular]:!
-Missing character: There is no ️ (U+FE0F) in font [lmmono10-regular]:!
-Missing character: There is no ⚠ (U+26A0) in font [lmmono10-regular]:!
-Missing character: There is no ️ (U+FE0F) in font [lmmono10-regular]:!
-Missing character: There is no ⚠ (U+26A0) in font [lmmono10-regular]:!
-Missing character: There is no ️ (U+FE0F) in font [lmmono10-regular]:!
-
-Overfull \hbox (13.13983pt too wide) in paragraph at lines 7008--7008
-[]\TU/lmtt/m/n/10.95 ================================================================================[] 
+Underfull \vbox (badness 10000) detected at line 7087
  []
 
 
 
 [119]
-Overfull \hbox (13.13983pt too wide) in paragraph at lines 7010--7010
-[]\TU/lmtt/m/n/10.95 ================================================================================[] 
+Underfull \vbox (badness 10000) detected at line 7087
  []
 
 
-Overfull \hbox (13.13983pt too wide) in paragraph at lines 7035--7035
-[]\TU/lmtt/m/n/10.95 ================================================================================[] 
- []
-
-
-Overfull \hbox (13.13983pt too wide) in paragraph at lines 7037--7037
-[]\TU/lmtt/m/n/10.95 ================================================================================[] 
- []
-
-
-Overfull \hbox (13.13983pt too wide) in paragraph at lines 7039--7039
-[]\TU/lmtt/m/n/10.95 ================================================================================[] 
- []
-
-
-Overfull \hbox (13.13983pt too wide) in paragraph at lines 7041--7041
-[]\TU/lmtt/m/n/10.95 ================================================================================[] 
- []
-
-
-Overfull \hbox (13.13983pt too wide) in paragraph at lines 7051--7051
-[]\TU/lmtt/m/n/10.95 ================================================================================[] 
+Underfull \vbox (badness 10000) detected at line 7087
  []
 
 
 
 [120]
-Overfull \hbox (13.13983pt too wide) in paragraph at lines 7053--7053
+Overfull \hbox (13.13983pt too wide) in paragraph at lines 7090--7090
 []\TU/lmtt/m/n/10.95 ================================================================================[] 
  []
 
 
-Overfull \hbox (13.13986pt too wide) in paragraph at lines 7055--7055
+Overfull \hbox (13.13983pt too wide) in paragraph at lines 7092--7092
+[]\TU/lmtt/m/n/10.95 ================================================================================[] 
+ []
+
+
+Overfull \hbox (13.13986pt too wide) in paragraph at lines 7095--7095
 []\TU/lmtt/m/n/10.95 --------------------------------------------------------------------------------[] 
  []
 
 
-Overfull \hbox (13.13983pt too wide) in paragraph at lines 7062--7062
+Overfull \hbox (82.12485pt too wide) in paragraph at lines 7096--7096
+[]\TU/lmtt/m/n/10.95 Activity             Duration   PMs        ES         EF         LS         LF         Slack[] 
+ []
+
+
+Overfull \hbox (13.13986pt too wide) in paragraph at lines 7097--7097
+[]\TU/lmtt/m/n/10.95 --------------------------------------------------------------------------------[] 
+ []
+
+
+Overfull \hbox (59.12985pt too wide) in paragraph at lines 7098--7098
+[]\TU/lmtt/m/n/10.95 Planning             2          2          0          2          0          2          0[] 
+ []
+
+
+Overfull \hbox (59.12985pt too wide) in paragraph at lines 7099--7099
+[]\TU/lmtt/m/n/10.95 Vendor Selection     3          1          2          5          3          6          1[] 
+ []
+
+
+Overfull \hbox (59.12985pt too wide) in paragraph at lines 7100--7100
+[]\TU/lmtt/m/n/10.95 Logistics            2          2          2          4          4          6          2[] 
+ []
+
+
+Overfull \hbox (59.12985pt too wide) in paragraph at lines 7101--7101
+[]\TU/lmtt/m/n/10.95 Promotion            4          1          2          6          2          6          0[] 
+ []
+
+
+Overfull \hbox (59.12985pt too wide) in paragraph at lines 7102--7102
+[]\TU/lmtt/m/n/10.95 Execution            1          2          6          7          6          7          0[] 
+ []
+
+
+Overfull \hbox (13.13983pt too wide) in paragraph at lines 7104--7104
 []\TU/lmtt/m/n/10.95 ================================================================================[] 
  []
 
 
-Overfull \hbox (13.13983pt too wide) in paragraph at lines 7064--7064
+Overfull \hbox (13.13983pt too wide) in paragraph at lines 7106--7106
+[]\TU/lmtt/m/n/10.95 ================================================================================[] 
+ []
+
+Missing character: There is no ⚠ (U+26A0) in font [lmmono10-regular]:!
+Missing character: There is no ️ (U+FE0F) in font [lmmono10-regular]:!
+Missing character: There is no ⚠ (U+26A0) in font [lmmono10-regular]:!
+Missing character: There is no ️ (U+FE0F) in font [lmmono10-regular]:!
+Missing character: There is no ⚠ (U+26A0) in font [lmmono10-regular]:!
+Missing character: There is no ️ (U+FE0F) in font [lmmono10-regular]:!
+
+Overfull \hbox (13.13983pt too wide) in paragraph at lines 7124--7124
 []\TU/lmtt/m/n/10.95 ================================================================================[] 
  []
 
 
 
 [121]
+Overfull \hbox (13.13983pt too wide) in paragraph at lines 7126--7126
+[]\TU/lmtt/m/n/10.95 ================================================================================[] 
+ []
+
+
+Overfull \hbox (13.13983pt too wide) in paragraph at lines 7151--7151
+[]\TU/lmtt/m/n/10.95 ================================================================================[] 
+ []
+
+
+Overfull \hbox (13.13983pt too wide) in paragraph at lines 7153--7153
+[]\TU/lmtt/m/n/10.95 ================================================================================[] 
+ []
+
+
+Overfull \hbox (13.13983pt too wide) in paragraph at lines 7155--7155
+[]\TU/lmtt/m/n/10.95 ================================================================================[] 
+ []
+
+
+Overfull \hbox (13.13983pt too wide) in paragraph at lines 7157--7157
+[]\TU/lmtt/m/n/10.95 ================================================================================[] 
+ []
+
+
+Overfull \hbox (13.13983pt too wide) in paragraph at lines 7167--7167
+[]\TU/lmtt/m/n/10.95 ================================================================================[] 
+ []
+
+
 
 [122]
+Overfull \hbox (13.13983pt too wide) in paragraph at lines 7169--7169
+[]\TU/lmtt/m/n/10.95 ================================================================================[] 
+ []
+
+
+Overfull \hbox (13.13986pt too wide) in paragraph at lines 7171--7171
+[]\TU/lmtt/m/n/10.95 --------------------------------------------------------------------------------[] 
+ []
+
+
+Overfull \hbox (13.13983pt too wide) in paragraph at lines 7178--7178
+[]\TU/lmtt/m/n/10.95 ================================================================================[] 
+ []
+
+
+Overfull \hbox (13.13983pt too wide) in paragraph at lines 7180--7180
+[]\TU/lmtt/m/n/10.95 ================================================================================[] 
+ []
+
+
 
 [123]
 
@@ -2354,81 +2359,65 @@ Overfull \hbox (13.13983pt too wide) in paragraph at lines 7064--7064
 [127]
 
 [128]
-Missing character: There is no ✅ (U+2705) in font [lmroman10-regular]:mapping=tex-text;!
-Missing character: There is no ✅ (U+2705) in font [lmroman10-regular]:mapping=tex-text;!
-Missing character: There is no ✅ (U+2705) in font [lmroman10-regular]:mapping=tex-text;!
-Missing character: There is no ✅ (U+2705) in font [lmroman10-regular]:mapping=tex-text;!
-Missing character: There is no ✅ (U+2705) in font [lmroman10-regular]:mapping=tex-text;!
-Missing character: There is no ✅ (U+2705) in font [lmroman10-regular]:mapping=tex-text;!
-Missing character: There is no ✅ (U+2705) in font [lmroman10-regular]:mapping=tex-text;!
-Missing character: There is no ✅ (U+2705) in font [lmroman10-regular]:mapping=tex-text;!
-Missing character: There is no ✅ (U+2705) in font [lmroman10-regular]:mapping=tex-text;!
-Missing character: There is no ✅ (U+2705) in font [lmroman10-regular]:mapping=tex-text;!
-
 
 [129]
 
 [130]
-chapter 5.
+Missing character: There is no ✅ (U+2705) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ✅ (U+2705) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ✅ (U+2705) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ✅ (U+2705) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ✅ (U+2705) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ✅ (U+2705) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ✅ (U+2705) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ✅ (U+2705) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ✅ (U+2705) in font [lmroman10-regular]:mapping=tex-text;!
+Missing character: There is no ✅ (U+2705) in font [lmroman10-regular]:mapping=tex-text;!
 
 
-[131
-
-]
+[131]
 
 [132]
 
 [133]
 
-Package longtable Warning: Column widths have changed
-(longtable)                in table 5.1 on input line 7965.
-
-
-
 [134]
+chapter 5.
 
-[135]
+
+[135
+
+]
 
 [136]
-Overfull \hbox (9.16191pt too wide) in paragraph at lines 8255--8255
-[]|$[][][] [][] [][] [][] [][]$|  
- []
 
 [137]
 
+Package longtable Warning: Column widths have changed
+(longtable)                in table 5.1 on input line 8300.
+
+
+
 [138]
-Overfull \hbox (254.58731pt too wide) in paragraph at lines 8326--8326
+
+[139]
+
+[140]
+Overfull \hbox (9.16191pt too wide) in paragraph at lines 8590--8590
+[]|$[][][] [][] [][] [][] [][]$|  
+ []
+
+[141]
+
+[142]
+Overfull \hbox (254.58731pt too wide) in paragraph at lines 8661--8661
 []\TU/lmtt/m/n/10.95 Edges in MST: [([]A[], []C[], {[]weight[]: 2}), ([]B[], []D[], {[]weight[]: 2}), ([]B[], []C[], {[]weight[]: 3}), ([]D[], []E[], {[]weight[]: 1})][] 
  []
 
 File: Module-4_files/figure-pdf/cell-2-output-2.pdf Graphic file (type pdf)
 <use Module-4_files/figure-pdf/cell-2-output-2.pdf>
 
-Overfull \hbox (10.97131pt too wide) in paragraph at lines 8330--8331
-[][] 
- []
-
-
-
-[139]
-
-[140]
-
-[141]
-Underfull \vbox (badness 10000) detected at line 8492
- []
-
-
-Underfull \vbox (badness 10000) detected at line 8492
- []
-
-
-
-[142]
-File: Module-4_files/figure-pdf/cell-3-output-2.pdf Graphic file (type pdf)
-<use Module-4_files/figure-pdf/cell-3-output-2.pdf>
-
-Overfull \hbox (10.97131pt too wide) in paragraph at lines 8504--8505
+Overfull \hbox (10.97131pt too wide) in paragraph at lines 8665--8666
 [][] 
  []
 
@@ -2437,40 +2426,64 @@ Overfull \hbox (10.97131pt too wide) in paragraph at lines 8504--8505
 [143]
 
 [144]
-Underfull \vbox (badness 10000) detected at line 8643
- []
-
-
-Underfull \vbox (badness 10000) detected at line 8643
- []
-
-
 
 [145]
-File: Module-4_files/figure-pdf/cell-4-output-2.pdf Graphic file (type pdf)
-<use Module-4_files/figure-pdf/cell-4-output-2.pdf>
+Underfull \vbox (badness 10000) detected at line 8827
+ []
 
-Overfull \hbox (10.97131pt too wide) in paragraph at lines 8654--8655
-[][] 
+
+Underfull \vbox (badness 10000) detected at line 8827
  []
 
 
 
 [146]
+File: Module-4_files/figure-pdf/cell-3-output-2.pdf Graphic file (type pdf)
+<use Module-4_files/figure-pdf/cell-3-output-2.pdf>
+
+Overfull \hbox (10.97131pt too wide) in paragraph at lines 8839--8840
+[][] 
+ []
+
+
 
 [147]
+
+[148]
+Underfull \vbox (badness 10000) detected at line 8978
+ []
+
+
+Underfull \vbox (badness 10000) detected at line 8978
+ []
+
+
+
+[149]
+File: Module-4_files/figure-pdf/cell-4-output-2.pdf Graphic file (type pdf)
+<use Module-4_files/figure-pdf/cell-4-output-2.pdf>
+
+Overfull \hbox (10.97131pt too wide) in paragraph at lines 8989--8990
+[][] 
+ []
+
+
+
+[150]
+
+[151]
 ! Missing $ inserted.
 <inserted text> 
                 $
-l.8721 \textbf{Complexity:} \$ O(E \log
+l.9056 \textbf{Complexity:} \$ O(E \log
                                         E) \$ for sorting 
 Here is how much of TeX's memory you used:
- 39411 strings out of 475785
- 814113 string characters out of 5770505
- 1555304 words of memory out of 5000000
- 61790 multiletter control sequences out of 15000+600000
+ 39418 strings out of 475785
+ 814163 string characters out of 5770505
+ 1556324 words of memory out of 5000000
+ 61797 multiletter control sequences out of 15000+600000
  565324 words of font info for 93 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
  108i,9n,114p,10919b,1052s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on index.pdf (147 pages).
+Output written on index.pdf (151 pages).

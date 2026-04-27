@@ -268,6 +268,7 @@ window.Quarto = {
   <li><a href="#preparation-for-module-5" id="toc-preparation-for-module-5" class="nav-link" data-scroll-target="#preparation-for-module-5"><span class="header-section-number">5.9.3</span> Preparation for Module 5</a></li>
   <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">5.9.4</span> Next Steps</a></li>
   </ul></li>
+  <li><a href="#review-questions-4" id="toc-review-questions-4" class="nav-link" data-scroll-target="#review-questions-4"><span class="header-section-number">5.10</span> Review Questions</a></li>
   </ul>
 </nav>
     </div>
@@ -654,7 +655,7 @@ Mathematical Definition:
 <blockquote class="blockquote">
 <p><strong>Python implementation</strong></p>
 </blockquote>
-<div id="738f496d" class="cell" data-execution_count="1">
+<div id="fbe619c7" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx <span class="co"># for network visualization</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -710,7 +711,7 @@ Mathematical Definition:
 <span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>=== Minimum Spanning Tree Results ===
-Edges in MST: [('A', 'C', {'weight': 2}), ('B', 'C', {'weight': 3}), ('B', 'D', {'weight': 2}), ('D', 'E', {'weight': 1})]
+Edges in MST: [('A', 'C', {'weight': 2}), ('B', 'D', {'weight': 2}), ('B', 'C', {'weight': 3}), ('D', 'E', {'weight': 1})]
 Total Minimum Cost: 8.0</code></pre>
 </div>
 <div class="cell-output cell-output-display">
@@ -776,7 +777,7 @@ Total Minimum Cost: 8.0</code></pre>
 <blockquote class="blockquote">
 <p><strong>Python solution</strong></p>
 </blockquote>
-<div id="c242877b" class="cell" data-execution_count="2">
+<div id="9972be0b" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -889,7 +890,7 @@ Edges in the MST:
 <blockquote class="blockquote">
 <p><strong>Python solution</strong></p>
 </blockquote>
-<div id="65576687" class="cell" data-execution_count="3">
+<div id="bad89fa0" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -952,8 +953,8 @@ Edges in the MST:
 Total Minimum Cost: 15.0
 Edges selected by the algorithm:
   Edge (P - Q) Weight: 5
-  Edge (P - R) Weight: 5
-  Edge (Q - S) Weight: 5</code></pre>
+  Edge (Q - S) Weight: 5
+  Edge (R - S) Weight: 5</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
@@ -1142,7 +1143,7 @@ Insight: When to use which?
 <blockquote class="blockquote">
 <p><strong>Python code</strong></p>
 </blockquote>
-<div id="4dd598d0" class="cell" data-execution_count="4">
+<div id="900b015a" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1281,7 +1282,7 @@ Insight
 <blockquote class="blockquote">
 <p><strong>Python Code:</strong></p>
 </blockquote>
-<div id="76fbe3e6" class="cell" data-execution_count="5">
+<div id="28012ab3" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1416,7 +1417,7 @@ Edges in the MST:
 <blockquote class="blockquote">
 <p><strong>Python code</strong></p>
 </blockquote>
-<div id="68fe333b" class="cell" data-execution_count="6">
+<div id="1d1f79c3" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1594,7 +1595,7 @@ Edges in the MST:
 <blockquote class="blockquote">
 <p><strong>Python code:</strong></p>
 </blockquote>
-<div id="1cd54cbf" class="cell" data-execution_count="7">
+<div id="5c91741b" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -1744,7 +1745,7 @@ Edges selected:
 <blockquote class="blockquote">
 <p><strong>Python code:</strong></p>
 </blockquote>
-<div id="2570d500" class="cell" data-execution_count="8">
+<div id="babc738d" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2008,7 +2009,7 @@ Alternative Algorithms
 <blockquote class="blockquote">
 <p><strong>Python code:</strong></p>
 </blockquote>
-<div id="31b7fb8f" class="cell" data-execution_count="9">
+<div id="17956891" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2134,7 +2135,7 @@ Total Commute Time: 6 minutes</code></pre>
 <blockquote class="blockquote">
 <p><strong>Python code:</strong></p>
 </blockquote>
-<div id="5237f7f4" class="cell" data-execution_count="10">
+<div id="f20745c4" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2268,7 +2269,7 @@ Total Cost: 9</code></pre>
 <blockquote class="blockquote">
 <p><strong>Python code:</strong></p>
 </blockquote>
-<div id="f3dfdc8e" class="cell" data-execution_count="11">
+<div id="b6eea6a0" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2408,7 +2409,7 @@ Total Path Cost: 6</code></pre>
 <blockquote class="blockquote">
 <p><strong>Python code:</strong></p>
 </blockquote>
-<div id="60b6a52b" class="cell" data-execution_count="12">
+<div id="068abbeb" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2525,7 +2526,7 @@ C &amp; 2 &amp; 1 &amp; 0
 <blockquote class="blockquote">
 <p><strong>Python Code:</strong></p>
 </blockquote>
-<div id="c2bbd16c" class="cell" data-execution_count="13">
+<div id="5eeb06c6" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -2901,7 +2902,7 @@ v &amp; \text{if } i = s \\
 <li><strong>Multi-Modal Layers:</strong> Differentiate between “Walkable” edges and “Driveable” edges.</li>
 <li><strong>Criticality Analysis:</strong> Identify “Bridge Edges”—connections that, if removed, would disconnect the graph (using <code>nx.bridges</code>).</li>
 </ul>
-<div id="16b10e30" class="cell" data-execution_count="14">
+<div id="ed703fc7" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -3126,9 +3127,234 @@ Final Tip
 <li>Explore advanced topics in network optimization</li>
 <li>Prepare for Module 5: Optimization in Machine Learning</li>
 </ul>
-
-
 </section>
+</section>
+<section id="review-questions-4" class="level2" data-number="5.10">
+<h2 data-number="5.10" class="anchored" data-anchor-id="review-questions-4"><span class="header-section-number">5.10</span> Review Questions</h2>
+<ol type="1">
+<li>Find an optimum scheduling for the following job assignment problem with the given cost table using an appropriate combinatorial optimization approach:</li>
+</ol>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th>Job1</th>
+<th>Job2</th>
+<th>Job3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Node-1</td>
+<td>18</td>
+<td>17</td>
+<td>16</td>
+</tr>
+<tr class="even">
+<td>Node-2</td>
+<td>15</td>
+<td>13</td>
+<td>14</td>
+</tr>
+<tr class="odd">
+<td>Node-3</td>
+<td>19</td>
+<td>20</td>
+<td>21</td>
+</tr>
+</tbody>
+</table>
+<ol start="2" type="1">
+<li>Find an optimum scheduling for the following job assignment problem with the given cost table using an appropriate combinatorial optimization approach:</li>
+</ol>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th>Job1</th>
+<th>Job2</th>
+<th>Job3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Node-1</td>
+<td>2</td>
+<td>6</td>
+<td>2</td>
+</tr>
+<tr class="even">
+<td>Node-2</td>
+<td>1</td>
+<td>4</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>Node-3</td>
+<td>5</td>
+<td>3</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+<ol start="3" type="1">
+<li><p>Find the Minimum Spanning Tree (MST) and its total cost for the following weighted graph with vertices {A,B,C,D} and the edge and edge weights as: (A, B)=10, (A, C)=6, (A, D)=5, (B, D)=5, (B, E)=3, (C, D)=4.</p></li>
+<li><p>A project manager has to assign 4 tasks to 4 employees to minimize the total project run cost. An effect matrix is formulated for the cost per employee and per-employee efficiency, as given below. Solve this job allocation problem using a suitable combinatorial optimization technique.</p></li>
+</ol>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th>Job-1</th>
+<th>Job-2</th>
+<th>Job-3</th>
+<th>Job-4</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Emp-1</td>
+<td>13</td>
+<td>11</td>
+<td>10</td>
+<td>14</td>
+</tr>
+<tr class="even">
+<td>Emp-2</td>
+<td>17</td>
+<td>14</td>
+<td>16</td>
+<td>14</td>
+</tr>
+<tr class="odd">
+<td>Emp-3</td>
+<td>15</td>
+<td>14</td>
+<td>4</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>Emp-4</td>
+<td>1</td>
+<td>0</td>
+<td>4</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<ol start="5" type="1">
+<li><p>Find the shortest path in the following graph with vertices {A,B,C ,D,E} having edges : (A, B)=4, (A,C)=8, (B,D)=6, (C, E)=2, (D, E)= 4. Assume A is the start node, and E is the end node.</p></li>
+<li><p>Find the Minimum Spanning Tree (MST) and its total cost for the following weighted graph with vertices {A,B,C,D,E} and the edge and edge weights as: (A, B)=4, (A, C)=2, (B, C)=3, (B, D)=2, (B, E)=3, (C, D)=4, (C, E)=5, and (D, E)=1.</p></li>
+<li><p>Segment the following medical image pixel matrix into foreground and background using the minimal spanning tree algorithm (use a threshold of 50 for merging sub-trees).</p></li>
+</ol>
+<p>|100| 105| 200| |98| 102| 195| |95| 100| 105|</p>
+<ol start="7" type="1">
+<li>Using Dijkstra’s algorithm, find the shortest path from vertex A to vertex E in the following directed graph with edge weights: (A, B)=1, (A, C)=4, (B, C)=2, (B, D)=5, (C, D)=1, (D, E)=3.</li>
+<li>A project manager has to assign 4 tasks to 4 employees to minimize the total project run cost. An effect matrix is formulated for the cost per employee and per-employee efficiency, as given below. Solve this job allocation problem using a suitable combinatorial optimization technique.</li>
+</ol>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th></th>
+<th>Job-1</th>
+<th>Job-2</th>
+<th>Job-3</th>
+<th>Job-4</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Emp-1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+</tr>
+<tr class="even">
+<td>Emp-2</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+<td>7</td>
+</tr>
+<tr class="odd">
+<td>Emp-3</td>
+<td>7</td>
+<td>8</td>
+<td>9</td>
+<td>8</td>
+</tr>
+<tr class="even">
+<td>Emp-4</td>
+<td>3</td>
+<td>5</td>
+<td>8</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+<ol start="9" type="1">
+<li><p>A delivery company has to deliver packages to 5 different locations. The distance between the locations is given in the table below. Find the optimal route for the delivery truck using the Traveling Salesman Problem (TSP) approach.<br>
+| | Loc-1 | Loc-2 | Loc-3 | Loc-4 | Loc-5 | |——-|——-|——-|——-|——-|——-| | Loc-1 | 0 | 10 | 15 | 20 | 25 | | Loc-2 | 10 | 0 | 35 | 25 | 30 | | Loc-3 | 15 | 35 | 0 | 30 | 20 | | Loc-4 | 20 | 25 | 30 | 0 | 15 | | Loc-5 | 25 | 30 | 20 | 15 | 0 |</p></li>
+<li><p>Explain the Dijkstra’s algorithm to find the shortest path in a graph optimization and find the shortest path in the following graph with vertices {A,B,C ,D} having edges : (A, B)=10, (A,C)=6, (A,D)=5, (B, D)=5, (C, D)= 4.</p></li>
+<li><p>A salesman has to visit five cities: A, B, C, D, and E. The distances between the five cities are given in the table below. If the salesman starts from city A and has to return to city A, which route should he take to minimize the total distance travelled?</p></li>
+</ol>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>From &nbsp;To</th>
+<th>A</th>
+<th>B</th>
+<th>C</th>
+<th>D</th>
+<th>E</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td>-</td>
+<td>4</td>
+<td>7</td>
+<td>3</td>
+<td>4</td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td>4</td>
+<td>-</td>
+<td>6</td>
+<td>3</td>
+<td>4</td>
+</tr>
+<tr class="odd">
+<td>C</td>
+<td>7</td>
+<td>6</td>
+<td>-</td>
+<td>7</td>
+<td>5</td>
+</tr>
+<tr class="even">
+<td>D</td>
+<td>3</td>
+<td>3</td>
+<td>7</td>
+<td>-</td>
+<td>7</td>
+</tr>
+<tr class="odd">
+<td>E</td>
+<td>4</td>
+<td>4</td>
+<td>5</td>
+<td>7</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+
+
 </section>
 
 </main> <!-- /main -->

@@ -269,19 +269,20 @@ window.Quarto = {
   <li><a href="#sample-capstone-problem" id="toc-sample-capstone-problem" class="nav-link" data-scroll-target="#sample-capstone-problem"><span class="header-section-number">6.8.3</span> Sample Capstone Problem</a></li>
   <li><a href="#capstone-design-questions" id="toc-capstone-design-questions" class="nav-link" data-scroll-target="#capstone-design-questions"><span class="header-section-number">6.8.4</span> Capstone Design Questions</a></li>
   </ul></li>
-  <li><a href="#module-5-summary" id="toc-module-5-summary" class="nav-link" data-scroll-target="#module-5-summary"><span class="header-section-number">6.9</span> Module 5 Summary</a>
+  <li><a href="#review-questions-3" id="toc-review-questions-3" class="nav-link" data-scroll-target="#review-questions-3"><span class="header-section-number">6.9</span> Review Questions</a></li>
+  <li><a href="#module-5-summary" id="toc-module-5-summary" class="nav-link" data-scroll-target="#module-5-summary"><span class="header-section-number">6.10</span> Module 5 Summary</a>
   <ul class="collapse">
-  <li><a href="#key-concepts-mastered" id="toc-key-concepts-mastered" class="nav-link" data-scroll-target="#key-concepts-mastered"><span class="header-section-number">6.9.1</span> Key Concepts Mastered</a></li>
-  <li><a href="#skills-developed" id="toc-skills-developed" class="nav-link" data-scroll-target="#skills-developed"><span class="header-section-number">6.9.2</span> Skills Developed</a></li>
-  <li><a href="#course-integration" id="toc-course-integration" class="nav-link" data-scroll-target="#course-integration"><span class="header-section-number">6.9.3</span> Course Integration</a></li>
-  <li><a href="#career-applications" id="toc-career-applications" class="nav-link" data-scroll-target="#career-applications"><span class="header-section-number">6.9.4</span> Career Applications</a></li>
-  <li><a href="#final-preparation" id="toc-final-preparation" class="nav-link" data-scroll-target="#final-preparation"><span class="header-section-number">6.9.5</span> Final Preparation</a></li>
+  <li><a href="#key-concepts-mastered" id="toc-key-concepts-mastered" class="nav-link" data-scroll-target="#key-concepts-mastered"><span class="header-section-number">6.10.1</span> Key Concepts Mastered</a></li>
+  <li><a href="#skills-developed" id="toc-skills-developed" class="nav-link" data-scroll-target="#skills-developed"><span class="header-section-number">6.10.2</span> Skills Developed</a></li>
+  <li><a href="#course-integration" id="toc-course-integration" class="nav-link" data-scroll-target="#course-integration"><span class="header-section-number">6.10.3</span> Course Integration</a></li>
+  <li><a href="#career-applications" id="toc-career-applications" class="nav-link" data-scroll-target="#career-applications"><span class="header-section-number">6.10.4</span> Career Applications</a></li>
+  <li><a href="#final-preparation" id="toc-final-preparation" class="nav-link" data-scroll-target="#final-preparation"><span class="header-section-number">6.10.5</span> Final Preparation</a></li>
   </ul></li>
-  <li><a href="#course-culmination" id="toc-course-culmination" class="nav-link" data-scroll-target="#course-culmination"><span class="header-section-number">6.10</span> Course Culmination</a>
+  <li><a href="#course-culmination" id="toc-course-culmination" class="nav-link" data-scroll-target="#course-culmination"><span class="header-section-number">6.11</span> Course Culmination</a>
   <ul class="collapse">
-  <li><a href="#learning-journey-recap" id="toc-learning-journey-recap" class="nav-link" data-scroll-target="#learning-journey-recap"><span class="header-section-number">6.10.1</span> Learning Journey Recap</a></li>
-  <li><a href="#professional-competencies-achieved" id="toc-professional-competencies-achieved" class="nav-link" data-scroll-target="#professional-competencies-achieved"><span class="header-section-number">6.10.2</span> Professional Competencies Achieved</a></li>
-  <li><a href="#future-learning-pathways" id="toc-future-learning-pathways" class="nav-link" data-scroll-target="#future-learning-pathways"><span class="header-section-number">6.10.3</span> Future Learning Pathways</a></li>
+  <li><a href="#learning-journey-recap" id="toc-learning-journey-recap" class="nav-link" data-scroll-target="#learning-journey-recap"><span class="header-section-number">6.11.1</span> Learning Journey Recap</a></li>
+  <li><a href="#professional-competencies-achieved" id="toc-professional-competencies-achieved" class="nav-link" data-scroll-target="#professional-competencies-achieved"><span class="header-section-number">6.11.2</span> Professional Competencies Achieved</a></li>
+  <li><a href="#future-learning-pathways" id="toc-future-learning-pathways" class="nav-link" data-scroll-target="#future-learning-pathways"><span class="header-section-number">6.11.3</span> Future Learning Pathways</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -618,7 +619,7 @@ Advantages of Adam:
 <section id="sample-problems" class="level3" data-number="6.3.2">
 <h3 data-number="6.3.2" class="anchored" data-anchor-id="sample-problems"><span class="header-section-number">6.3.2</span> Sample Problems</h3>
 <p><strong>1. Problem statement:</strong> Compare the convergence of solutions of <span class="math inline">\(f(x)=x^2-4x+4\)</span> using the Adagrad, RMSProp and adam optimizers starting from <span class="math inline">\(x_0=0\)</span> with learning rate <span class="math inline">\(\eta=0.1\)</span>. Chose 4 iterations and show the results in a table. ( <span class="math inline">\(\gamma=0.9\)</span>, <span class="math inline">\(\beta_1=0.9\)</span>, <span class="math inline">\(\beta_2=0.99\)</span> and <span class="math inline">\(\epsilon=10^{-8}\)</span>).</p>
-<div id="00edb2de" class="cell" data-execution_count="1">
+<div id="8754d3ef" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f_prime(x):</span>
@@ -689,7 +690,7 @@ Advantages of Adam:
 </div>
 </div>
 <p><strong>Problem Statement 2:</strong> Use Gradient Descend, Momentum adagrad, RMSProp, and adam methods solve the problem minimize <span class="math inline">\(f(x)=x^2-7x+5\)</span>.</p>
-<div id="e01af57f" class="cell" data-execution_count="2">
+<div id="2a888894" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f_prime(x):</span>
@@ -779,7 +780,7 @@ Advantages of Adam:
 </div>
 </div>
 <p><strong>Problem Statement 3:</strong> Compare convergence of basic gradient descent vs momentum for minimizing <span class="math inline">\(f(x) = x^4 - 3x^2 + x\)</span> starting from <span class="math inline">\(x_0 = 2.5\)</span>.</p>
-<div id="50e65e91" class="cell" data-execution_count="3">
+<div id="3fa5a8a9" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f_prime(x):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Derivative of f(x) = x^4 - 3x^2 + x"""</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="dv">4</span> <span class="op">*</span> x<span class="op">**</span><span class="dv">3</span> <span class="op">-</span> <span class="dv">6</span> <span class="op">*</span> x <span class="op">+</span> <span class="dv">1</span></span>
@@ -1010,7 +1011,7 @@ J(\theta) = \frac{1}{2m} \sum_{i=1}^m (h_\theta(x^{(i)}) - y^{(i)})^2 + \frac{\l
 \theta_0 := \theta_0 - \eta \left( \frac{1}{m} \sum_{i=1}^m (h_\theta(x^{(i)}) - y^{(i)}) \right)
 \]</span></p>
 <p><strong>Implementation:</strong></p>
-<div id="e69e3ba1" class="cell" data-execution_count="4">
+<div id="97241f94" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_cost(X, y, theta, lambda_):</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> <span class="bu">len</span>(y)</span>
@@ -1040,11 +1041,11 @@ J(\theta) = \frac{1}{2m} \sum_{i=1}^m (h_\theta(x^{(i)}) - y^{(i)})^2 + \frac{\l
 <pre><code>Optimized parameters: [nan nan nan nan]</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>C:\Users\SIJUKSWAMY\AppData\Local\Temp\ipykernel_21740\3733090581.py:5: RuntimeWarning:
+<pre><code>C:\Users\SIJUKSWAMY\AppData\Local\Temp\ipykernel_50068\3733090581.py:5: RuntimeWarning:
 
 overflow encountered in square
 
-C:\Users\SIJUKSWAMY\AppData\Local\Temp\ipykernel_21740\3733090581.py:14: RuntimeWarning:
+C:\Users\SIJUKSWAMY\AppData\Local\Temp\ipykernel_50068\3733090581.py:14: RuntimeWarning:
 
 invalid value encountered in subtract
 </code></pre>
@@ -1107,7 +1108,7 @@ invalid value encountered in subtract
 <li><p>May not converge to exact minimum: Due to the noise in the updates, SGD may not converge to the exact minimum of the loss function, but it can get close enough for practical purposes. The convergence behavior of SGD can be influenced by factors such as the learning rate and the choice of mini-batch size.</p></li>
 <li><p>Can escape local minima in non-convex problems: The noise in the gradient estimates can help the optimization process escape local minima and saddle points, which is particularly beneficial when training deep neural networks.</p></li>
 </ul>
-<div id="271a9d40" class="cell" data-execution_count="5">
+<div id="69234c34" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example implementation of SGD</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sgd(X, y, theta, alpha, iterations):</span>
@@ -1132,7 +1133,7 @@ invalid value encountered in subtract
 <span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> sgd(X, y, theta, alpha, iterations)</span>
 <span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Optimized parameters:"</span>, theta)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Optimized parameters: [1.4456557  0.80672584]</code></pre>
+<pre><code>Optimized parameters: [1.47484672 0.79455867]</code></pre>
 </div>
 </div>
 </section>
@@ -1153,7 +1154,7 @@ invalid value encountered in subtract
 <h4 data-number="6.5.1.4" class="anchored" data-anchor-id="advanced-stochastic-methods"><span class="header-section-number">6.5.1.4</span> Advanced Stochastic Methods</h4>
 <p>In addition to basic SGD and mini-batch gradient descent, there are several advanced stochastic optimization methods that have been developed to improve convergence and performance in training machine learning models. These methods often incorporate techniques such as momentum, adaptive learning rates, and variance reduction to enhance the optimization process. Some of the most popular advanced stochastic optimization methods include:</p>
 <p><strong>SGD with Momentum:</strong> Incorporates a velocity term to accelerate convergence and reduce oscillations. The update rule for SGD with momentum can be expressed as follows: <span class="math display">\[v := \beta v + (1 - \beta) \nabla_\theta J(\theta; x^{(i)}, y^{(i)})\]</span> <span class="math display">\[\theta := \theta - \eta v\]</span> Where <span class="math inline">\(\beta\)</span> is the momentum parameter, typically set to 0.9. This method helps to smooth out the updates and can lead to faster convergence, especially in scenarios where the loss landscape has narrow valleys or plateaus.</p>
-<div id="e02bae0a" class="cell" data-execution_count="6">
+<div id="057f9bbb" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>   <span class="co"># Example implementation of SGD with Momentum</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> sgd_momentum(X, y, theta, alpha, beta, iterations):</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> <span class="bu">len</span>(y)</span>
@@ -1177,12 +1178,12 @@ invalid value encountered in subtract
 <span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> sgd_momentum(X, y, theta, alpha, beta, iterations)</span>
 <span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Optimized parameters:"</span>, theta)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Optimized parameters: [1.48166565 0.81068065]</code></pre>
+<pre><code>Optimized parameters: [1.4714003  0.83852972]</code></pre>
 </div>
 </div>
 <p><strong>Adam for Stochastic Optimization:</strong> Combines momentum and adaptive learning rates for efficient optimization. The update rule for Adam can be expressed as follows: <span class="math display">\[m := \beta_1 m + (1 - \beta_1) \nabla_\theta J(\theta; x^{(i)}, y^{(i)})\]</span> <span class="math display">\[v := \beta_2 v + (1 - \beta_2) (\nabla_\theta J(\theta; x^{(i)}, y^{(i)}))^2\]</span> <span class="math display">\[\hat{m} := \frac{m}{1 - \beta_1^t}\]</span> <span class="math display">\[\hat{v} := \frac{v}{1 - \beta_2^t}\]</span></p>
 <p>where <span class="math inline">\(\beta_1\)</span> and <span class="math inline">\(\beta_2\)</span> are the decay rates for the moment estimates, typically set to 0.9 and 0.999, respectively. Adam is widely used in training deep neural networks due to its efficiency and effectiveness in handling sparse gradients and non-stationary objectives.</p>
-<div id="9829ec02" class="cell" data-execution_count="7">
+<div id="a5c71652" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example implementation of Adam optimizer</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> adam(X, y, theta, alpha, beta1, beta2, epsilon, iterations):</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> <span class="bu">len</span>(y)</span>
@@ -1212,7 +1213,7 @@ invalid value encountered in subtract
 <span id="cb14-27"><a href="#cb14-27" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> adam(X, y, theta, alpha, beta1, beta2, epsilon, iterations)</span>
 <span id="cb14-28"><a href="#cb14-28" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Optimized parameters:"</span>, theta)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Optimized parameters: [1.4541315 0.8085012]</code></pre>
+<pre><code>Optimized parameters: [1.40456428 0.78393548]</code></pre>
 </div>
 </div>
 <p><strong>Learning Rate Scheduling:</strong> Adjusting the learning rate during training can improve convergence. Common schedules include:</p>
@@ -1286,7 +1287,7 @@ invalid value encountered in subtract
 </section>
 <section id="example--implementation-of-concepts-learned-in-module-5-in-the-iris-classification-problem-using-tensorflow-and-keras" class="level2" data-number="6.6">
 <h2 data-number="6.6" class="anchored" data-anchor-id="example--implementation-of-concepts-learned-in-module-5-in-the-iris-classification-problem-using-tensorflow-and-keras"><span class="header-section-number">6.6</span> Example- Implementation of concepts learned in Module 5 in the iris classification problem using Tensorflow and Keras</h2>
-<div id="d094c1e2" class="cell" data-execution_count="8">
+<div id="d5bd9772" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> tensorflow <span class="im">as</span> tf</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow <span class="im">import</span> keras</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.datasets <span class="im">import</span> load_iris</span>
@@ -1375,18 +1376,18 @@ Do not pass an `input_shape`/`input_dim` argument to a layer. When using Sequent
 </div>
 <div class="cell-output cell-output-stdout">
 <div class="ansi-escaped-output">
-<pre><span class="ansi-bold">1/1</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 31ms/step - accuracy: 1.0000 - loss: 0.0399
+<pre><span class="ansi-bold">1/1</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 17ms/step - accuracy: 0.9667 - loss: 0.0601
 
-<span class="ansi-bold">1/1</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 47ms/step - accuracy: 1.0000 - loss: 0.0399
+<span class="ansi-bold">1/1</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 47ms/step - accuracy: 0.9667 - loss: 0.0601
 
-Test accuracy: 1.0000
+Test accuracy: 0.9667
 
 Classification Report:
 
 
-<span class="ansi-bold">1/1</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 35ms/step
+<span class="ansi-bold">1/1</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 60ms/step
 
-<span class="ansi-bold">1/1</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 52ms/step
+<span class="ansi-bold">1/1</span> <span class="ansi-green-fg">━━━━━━━━━━━━━━━━━━━━</span> <span class="ansi-bold">0s</span> 80ms/step
 
               precision    recall  f1-score   support
 
@@ -1394,17 +1395,17 @@ Classification Report:
 
            0       1.00      1.00      1.00        10
 
-           1       1.00      1.00      1.00         9
+           1       1.00      0.89      0.94         9
 
-           2       1.00      1.00      1.00        11
+           2       0.92      1.00      0.96        11
 
 
 
-    accuracy                           1.00        30
+    accuracy                           0.97        30
 
-   macro avg       1.00      1.00      1.00        30
+   macro avg       0.97      0.96      0.97        30
 
-weighted avg       1.00      1.00      1.00        30
+weighted avg       0.97      0.97      0.97        30
 
 
 
@@ -1412,27 +1413,27 @@ Confusion Matrix:
 
 [[10  0  0]
 
- [ 0  9  0]
+ [ 0  8  1]
 
  [ 0  0 11]]
 
 Class 0: Precision=1.000, Recall=1.000, F1=1.000
 
-Class 1: Precision=1.000, Recall=1.000, F1=1.000
+Class 1: Precision=1.000, Recall=0.889, F1=0.941
 
-Class 2: Precision=1.000, Recall=1.000, F1=1.000
+Class 2: Precision=0.917, Recall=1.000, F1=0.957
 
 True Positives: 11
 
-True Negatives: 19
+True Negatives: 18
 
-False Positives: 0
+False Positives: 1
 
 False Negatives: 0
 
 True Positive Rate (Sensitivity): 1.0000
 
-True Negative Rate (Specificity): 1.0000
+True Negative Rate (Specificity): 0.9474
 </pre>
 </div>
 </div>
@@ -1461,7 +1462,7 @@ True Negative Rate (Specificity): 1.0000
 <section id="advanced-networks-for-image-processing" class="level2" data-number="6.7">
 <h2 data-number="6.7" class="anchored" data-anchor-id="advanced-networks-for-image-processing"><span class="header-section-number">6.7</span> Advanced Networks for image processing</h2>
 <p>Convolutional Neural Networks (CNNs) are a class of deep learning models that have shown remarkable performance in image-related tasks. They are designed to automatically and adaptively learn spatial hierarchies of features from input images, making them particularly effective for tasks such as image classification, object detection, and image generation. A simple example of CNN for classifying MNIST Fashion dataset can be implemented as follows:</p>
-<div id="38e0c8ae" class="cell" data-execution_count="9">
+<div id="0296f1e0" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Import necessary libraries</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -1956,14 +1957,14 @@ Test data shape: (10000, 28, 28, 1)</code></pre>
 <pre><code>
 Training the model...
 
-Test accuracy: 0.8982
+Test accuracy: 0.8851
 
 ======================================================================
 FEATURE HIERARCHY DEMONSTRATION
 ======================================================================
 
-Image 1821: True class = Pullover
-Predicted: Pullover (confidence: 0.648)</code></pre>
+Image 3849: True class = Coat
+Predicted: Coat (confidence: 0.968)</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
@@ -1974,8 +1975,8 @@ Predicted: Pullover (confidence: 0.648)</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
-Image 6540: True class = Shirt
-Predicted: Coat (confidence: 0.499)</code></pre>
+Image 3677: True class = Ankle boot
+Predicted: Ankle boot (confidence: 0.999)</code></pre>
 </div>
 <div class="cell-output cell-output-display">
 <div>
@@ -2004,7 +2005,7 @@ Feature statistics for Coat:</code></pre>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Module-5_files/figure-html/cell-10-output-15.png" width="1494" height="381" class="figure-img"></p>
+<p><img src="Module-5_files/figure-html/cell-10-output-15.png" width="1497" height="381" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -2305,10 +2306,33 @@ Model saved as 'fashion_mnist_functional_model.h5'</code></pre>
 </ol>
 </section>
 </section>
-<section id="module-5-summary" class="level2" data-number="6.9">
-<h2 data-number="6.9" class="anchored" data-anchor-id="module-5-summary"><span class="header-section-number">6.9</span> Module 5 Summary</h2>
-<section id="key-concepts-mastered" class="level3" data-number="6.9.1">
-<h3 data-number="6.9.1" class="anchored" data-anchor-id="key-concepts-mastered"><span class="header-section-number">6.9.1</span> Key Concepts Mastered</h3>
+<section id="review-questions-3" class="level2" data-number="6.9">
+<h2 data-number="6.9" class="anchored" data-anchor-id="review-questions-3"><span class="header-section-number">6.9</span> Review Questions</h2>
+<ol type="1">
+<li>Describe the concept of regularization in the machine learning context. Given any three commonly used regularization in regression models.</li>
+<li>Explain the concept of momentum in loss optimization, providing a clear rationale. Also, write the algorithm for the momentum method.</li>
+<li>Explain the bias-variance trade-off in machine learning. How does it relate to model complexity and generalization?</li>
+<li>What is the purpose of a validation set in machine learning, and how does it differ from the training and test sets?</li>
+<li>Describe the concept of overfitting in machine learning. What are some common techniques to prevent overfitting?</li>
+<li>Explain the concept of cross-validation and how it can be used to evaluate the performance of a machine learning model.</li>
+<li>Explain the gradient descent method for minimizing the loss function. What are the common issues with this method, and suggest a method to overcome them?</li>
+<li>Minimize the quadratic function <span class="math inline">\(f(x)= x^2- 4x + 4\)</span> using gradient descent with momentum starting from <span class="math inline">\(x_0= 0\)</span>, with learning rate <span class="math inline">\(\eta = 0.1\)</span> and <span class="math inline">\(\gamma=0.9\)</span> in 4 iterations.</li>
+<li>What is the effect of the learning rate on gradient descent convergence? Provide examples of problems caused by too large and too small learning rates.</li>
+<li>Compare RMSProp and Adam optimizers. When would you choose one over the other for campus demand prediction?</li>
+<li>Explain how momentum helps gradient descent overcome oscillations in narrow valleys.</li>
+<li>Minimize the quadratic function <span class="math inline">\(f(x)= x^2- 4x + 4\)</span> using gradient descent starting from <span class="math inline">\(x_0= 0\)</span>, with learning rate <span class="math inline">\(\eta = 0.1\)</span> in 4 iterations.</li>
+<li>Explain different types of gradient descent methods and compare them with any three dominant advantages and disadvantages.</li>
+<li>Let <span class="math inline">\(y_i\)</span> be the ground truth and <span class="math inline">\(\hat{y}_i\)</span> be the predicted value of a functional approximation <span class="math inline">\(y = f(\theta_0 + \theta_1 x)\)</span>, where <span class="math inline">\(\theta_0, \theta_1\)</span> are parameters. Formulate the mean square error for this predictive function, considering <span class="math inline">\(n\)</span> samples. Also derive the update formula for both <span class="math inline">\(\theta_0\)</span> and <span class="math inline">\(\theta_1\)</span> using the gradient descent method.</li>
+<li>Explain the concept of learning rate in gradient descent. What are the potential consequences of choosing a learning rate that is too high or too low?</li>
+<li>Describe the Adam optimization algorithm and explain how it combines the advantages of both momentum and RMSProp.</li>
+<li>Explain the concept of stochastic optimization and how it differs from traditional optimization methods. Provide an example of a stochastic optimization algorithm.</li>
+<li>Discuss the challenges of integrating AI techniques with traditional optimization methods. How can these challenges be addressed in practice?</li>
+</ol>
+</section>
+<section id="module-5-summary" class="level2" data-number="6.10">
+<h2 data-number="6.10" class="anchored" data-anchor-id="module-5-summary"><span class="header-section-number">6.10</span> Module 5 Summary</h2>
+<section id="key-concepts-mastered" class="level3" data-number="6.10.1">
+<h3 data-number="6.10.1" class="anchored" data-anchor-id="key-concepts-mastered"><span class="header-section-number">6.10.1</span> Key Concepts Mastered</h3>
 <ul>
 <li>✅ Gradient descent fundamentals and mathematical foundations</li>
 <li>✅ Advanced gradient methods (Momentum, RMSProp, Adam)</li>
@@ -2317,8 +2341,8 @@ Model saved as 'fashion_mnist_functional_model.h5'</code></pre>
 <li>✅ Integration of AI with traditional optimization</li>
 </ul>
 </section>
-<section id="skills-developed" class="level3" data-number="6.9.2">
-<h3 data-number="6.9.2" class="anchored" data-anchor-id="skills-developed"><span class="header-section-number">6.9.2</span> Skills Developed</h3>
+<section id="skills-developed" class="level3" data-number="6.10.2">
+<h3 data-number="6.10.2" class="anchored" data-anchor-id="skills-developed"><span class="header-section-number">6.10.2</span> Skills Developed</h3>
 <ul>
 <li><strong>Algorithm Selection:</strong> Choosing appropriate optimization methods for different problems</li>
 <li><strong>Hyperparameter Tuning:</strong> Optimizing optimization algorithms themselves</li>
@@ -2326,8 +2350,8 @@ Model saved as 'fashion_mnist_functional_model.h5'</code></pre>
 <li><strong>Practical Implementation:</strong> Applying advanced methods to campus-scale problems</li>
 </ul>
 </section>
-<section id="course-integration" class="level3" data-number="6.9.3">
-<h3 data-number="6.9.3" class="anchored" data-anchor-id="course-integration"><span class="header-section-number">6.9.3</span> Course Integration</h3>
+<section id="course-integration" class="level3" data-number="6.10.3">
+<h3 data-number="6.10.3" class="anchored" data-anchor-id="course-integration"><span class="header-section-number">6.10.3</span> Course Integration</h3>
 <p>This module completes the learning journey by:</p>
 <ul>
 <li>Building on foundations from previous modules</li>
@@ -2336,8 +2360,8 @@ Model saved as 'fashion_mnist_functional_model.h5'</code></pre>
 <li>Providing a comprehensive skill set for industry applications</li>
 </ul>
 </section>
-<section id="career-applications" class="level3" data-number="6.9.4">
-<h3 data-number="6.9.4" class="anchored" data-anchor-id="career-applications"><span class="header-section-number">6.9.4</span> Career Applications</h3>
+<section id="career-applications" class="level3" data-number="6.10.4">
+<h3 data-number="6.10.4" class="anchored" data-anchor-id="career-applications"><span class="header-section-number">6.10.4</span> Career Applications</h3>
 <p>Skills developed in this module are directly applicable to:</p>
 <ul>
 <li>Data Scientist roles in logistics and operations</li>
@@ -2347,8 +2371,8 @@ Model saved as 'fashion_mnist_functional_model.h5'</code></pre>
 <li>Research in computational optimization</li>
 </ul>
 </section>
-<section id="final-preparation" class="level3" data-number="6.9.5">
-<h3 data-number="6.9.5" class="anchored" data-anchor-id="final-preparation"><span class="header-section-number">6.9.5</span> Final Preparation</h3>
+<section id="final-preparation" class="level3" data-number="6.10.5">
+<h3 data-number="6.10.5" class="anchored" data-anchor-id="final-preparation"><span class="header-section-number">6.10.5</span> Final Preparation</h3>
 <ul>
 <li>Complete Capstone Project integration</li>
 <li>Review all module concepts for final assessment</li>
@@ -2358,10 +2382,10 @@ Model saved as 'fashion_mnist_functional_model.h5'</code></pre>
 <hr>
 </section>
 </section>
-<section id="course-culmination" class="level2" data-number="6.10">
-<h2 data-number="6.10" class="anchored" data-anchor-id="course-culmination"><span class="header-section-number">6.10</span> Course Culmination</h2>
-<section id="learning-journey-recap" class="level3" data-number="6.10.1">
-<h3 data-number="6.10.1" class="anchored" data-anchor-id="learning-journey-recap"><span class="header-section-number">6.10.1</span> Learning Journey Recap</h3>
+<section id="course-culmination" class="level2" data-number="6.11">
+<h2 data-number="6.11" class="anchored" data-anchor-id="course-culmination"><span class="header-section-number">6.11</span> Course Culmination</h2>
+<section id="learning-journey-recap" class="level3" data-number="6.11.1">
+<h3 data-number="6.11.1" class="anchored" data-anchor-id="learning-journey-recap"><span class="header-section-number">6.11.1</span> Learning Journey Recap</h3>
 <ul>
 <li><strong>Module 1:</strong> Mathematical foundations and linear optimization</li>
 <li><strong>Module 2:</strong> Nonlinear methods and constraint handling</li>
@@ -2370,8 +2394,8 @@ Model saved as 'fashion_mnist_functional_model.h5'</code></pre>
 <li><strong>Module 5:</strong> AI integration and advanced optimization</li>
 </ul>
 </section>
-<section id="professional-competencies-achieved" class="level3" data-number="6.10.2">
-<h3 data-number="6.10.2" class="anchored" data-anchor-id="professional-competencies-achieved"><span class="header-section-number">6.10.2</span> Professional Competencies Achieved</h3>
+<section id="professional-competencies-achieved" class="level3" data-number="6.11.2">
+<h3 data-number="6.11.2" class="anchored" data-anchor-id="professional-competencies-achieved"><span class="header-section-number">6.11.2</span> Professional Competencies Achieved</h3>
 <ol type="1">
 <li><strong>Technical Expertise:</strong> From basic LP to neural network optimization</li>
 <li><strong>Problem-Solving:</strong> Structured approach to complex optimization challenges</li>
@@ -2380,8 +2404,8 @@ Model saved as 'fashion_mnist_functional_model.h5'</code></pre>
 <li><strong>Communication:</strong> Presenting optimization insights to diverse audiences</li>
 </ol>
 </section>
-<section id="future-learning-pathways" class="level3" data-number="6.10.3">
-<h3 data-number="6.10.3" class="anchored" data-anchor-id="future-learning-pathways"><span class="header-section-number">6.10.3</span> Future Learning Pathways</h3>
+<section id="future-learning-pathways" class="level3" data-number="6.11.3">
+<h3 data-number="6.11.3" class="anchored" data-anchor-id="future-learning-pathways"><span class="header-section-number">6.11.3</span> Future Learning Pathways</h3>
 <ul>
 <li>Advanced topics in convex optimization</li>
 <li>Reinforcement learning for sequential decision making</li>

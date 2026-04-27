@@ -2139,3 +2139,75 @@ This module provides the foundation for:
 - Practice graph algorithm implementations
 - Explore advanced topics in network optimization
 - Prepare for Module 5: Optimization in Machine Learning
+
+## Review Questions
+
+1. Find an optimum scheduling for the following job assignment problem with the given cost table using an appropriate combinatorial optimization approach:
+
+| | Job1 | Job2 | Job3 |
+|---------|------|------|------|
+| Node-1 | 18 | 17 | 16 |
+| Node-2 | 15 | 13 | 14 |
+| Node-3 | 19 | 20 | 21 |
+
+
+2. Find an optimum scheduling for the following job assignment problem with the given cost table using an appropriate combinatorial optimization approach:
+
+| | Job1 | Job2 | Job3 |
+|---------|------|------|------|
+| Node-1 | 2 | 6 | 2 |
+| Node-2 | 1 | 4 | 1 |
+| Node-3 | 5 | 3 | 8 |
+
+3. Find the Minimum Spanning Tree (MST) and its total cost for the following weighted graph with vertices {A,B,C,D} and the edge and edge weights as: (A, B)=10, (A, C)=6, (A, D)=5, (B, D)=5, (B, E)=3, (C, D)=4.
+
+4. A project manager has to assign 4 tasks to 4 employees to minimize the total project run cost. An effect matrix is formulated for the cost per employee and per-employee efficiency, as given below. Solve this job allocation problem using a suitable combinatorial optimization technique.
+
+
+| | Job-1 | Job-2 | Job-3 | Job-4 |
+|-------|-------|-------|-------|-------|
+| Emp-1 | 13 | 11 | 10 | 14 |
+| Emp-2 | 17 | 14 | 16 | 14 |
+| Emp-3 | 15 | 14 | 4 | 3 |
+| Emp-4 | 1 | 0 | 4 | 3 |
+
+5. Find the shortest path in the following graph with vertices {A,B,C ,D,E} having edges : (A, B)=4, (A,C)=8, (B,D)=6, (C, E)=2, (D, E)= 4. Assume A is the start node, and E is the end node.
+2. Find the Minimum Spanning Tree (MST) and its total cost for the following weighted graph with vertices {A,B,C,D,E} and the edge and edge weights as: (A, B)=4, (A, C)=2, (B, C)=3, (B, D)=2, (B, E)=3, (C, D)=4, (C, E)=5, and (D, E)=1.
+
+6. Segment the following medical image pixel matrix into foreground and background using the minimal spanning tree algorithm (use a threshold of 50 for merging sub-trees).
+
+|100| 105| 200|
+|98| 102| 195|
+|95| 100| 105|
+
+7. Using Dijkstra's algorithm, find the shortest path from vertex A to vertex E in the following directed graph with edge weights: (A, B)=1, (A, C)=4, (B, C)=2, (B, D)=5, (C, D)=1, (D, E)=3.
+8. A project manager has to assign 4 tasks to 4 employees to minimize the total project run cost. An effect matrix is formulated for the cost per employee and per-employee efficiency, as given below. Solve this job allocation problem using a suitable combinatorial optimization technique.
+
+| | Job-1 | Job-2 | Job-3 | Job-4 |
+|-------|-------|-------|-------|-------|
+| Emp-1 | 2 | 3 | 4 | 5 |
+| Emp-2 | 4 | 5 | 6 | 7 |
+| Emp-3 | 7 | 8 | 9 | 8 |
+| Emp-4 | 3 | 5 | 8 | 4 |
+
+9. A delivery company has to deliver packages to 5 different locations. The distance between the locations is given in the table below. Find the optimal route for the delivery truck using the Traveling Salesman Problem (TSP) approach.  
+| | Loc-1 | Loc-2 | Loc-3 | Loc-4 | Loc-5 |
+|-------|-------|-------|-------|-------|-------|
+| Loc-1 | 0 | 10 | 15 | 20 | 25 |
+| Loc-2 | 10 | 0 | 35 | 25 | 30 |
+| Loc-3 | 15 | 35 | 0 | 30 | 20 |
+| Loc-4 | 20 | 25 | 30 | 0 | 15 |
+| Loc-5 | 25 | 30 | 20 | 15 | 0 |
+
+10. Explain the Dijkstra's algorithm to find the shortest path in a graph optimization and find the shortest path in the following graph with vertices {A,B,C ,D} having edges : (A, B)=10, (A,C)=6, (A,D)=5, (B, D)=5, (C, D)= 4.
+11. A salesman has to visit five cities: A, B, C, D, and E. The distances between the five cities are given in the table below. If the salesman starts from city A and has to return to city A, which route should he take to minimize the total distance travelled?
+
+| From \ To | A | B | C | D | E |
+|-----------|---|---|---|---|---|
+| A | - | 4 | 7 | 3 | 4 |
+| B | 4 | - | 6 | 3 | 4 |
+| C | 7 | 6 | - | 7 | 5 |
+| D | 3 | 3 | 7 | - | 7 |
+| E | 4 | 4 | 5 | 7 | - |
+
+

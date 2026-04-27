@@ -290,6 +290,7 @@ window.Quarto = {
   <li><a href="#real-world-applications" id="toc-real-world-applications" class="nav-link" data-scroll-target="#real-world-applications"><span class="header-section-number">4.8.9</span> Real-World Applications</a></li>
   <li><a href="#next-steps" id="toc-next-steps" class="nav-link" data-scroll-target="#next-steps"><span class="header-section-number">4.8.10</span> Next Steps</a></li>
   </ul></li>
+  <li><a href="#review-questions-5" id="toc-review-questions-5" class="nav-link" data-scroll-target="#review-questions-5"><span class="header-section-number">4.9</span> Review Questions</a></li>
   </ul>
 </nav>
     </div>
@@ -771,7 +772,7 @@ LS_i &amp;= LF_i - d_i \\
 <blockquote class="blockquote">
 <p><strong>Python solution</strong></p>
 </blockquote>
-<div id="f761c4c6" class="cell" data-execution_count="1">
+<div id="bb388d51" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -947,7 +948,7 @@ Critical Path: A -&gt; B -&gt; D</code></pre>
 <blockquote class="blockquote">
 <p><strong>Python solution</strong></p>
 </blockquote>
-<div id="70cbce27" class="cell" data-execution_count="2">
+<div id="1d47eb00" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1106,7 +1107,7 @@ Critical Path: S -&gt; C -&gt; T</code></pre>
 <blockquote class="blockquote">
 <p><strong>Python solution</strong></p>
 </blockquote>
-<div id="8cf0abdc" class="cell" data-execution_count="3">
+<div id="c273fd18" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1336,7 +1337,7 @@ Critical Path: A -&gt; D -&gt; F</code></pre>
 <blockquote class="blockquote">
 <p><strong>Python solution</strong></p>
 </blockquote>
-<div id="3b8766ac" class="cell" data-execution_count="4">
+<div id="373a5f2e" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1530,7 +1531,7 @@ Critical Path: A -&gt; B -&gt; D -&gt; E -&gt; F</code></pre>
 </ol>
 <p>Both paths are bottlenecks. Delays in either A OR B will delay the project.</p>
 <p><strong>Python solution</strong></p>
-<div id="430c983d" class="cell" data-execution_count="5">
+<div id="ddfc9961" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1706,7 +1707,7 @@ Critical Tasks: A, B, D, E, F</code></pre>
 <p>Find the minimum cost schedule to complete in 10 weeks.</p>
 <p><strong>Solution Approach:</strong> Use CPM with time-cost trade-off analysis (crashing). Calculate cost slope = (Crash Cost - Normal Cost)/(Normal Time - Crash Time) and crash activities on critical path starting with lowest cost slope.</p>
 <p><strong>Python solution</strong></p>
-<div id="be895db0" class="cell" data-execution_count="6">
+<div id="799ee490" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> itertools <span class="im">import</span> combinations</span>
@@ -2079,7 +2080,7 @@ Z = \frac{T - T_E}{\sigma_p}
 <blockquote class="blockquote">
 <p><strong>Python solution</strong></p>
 </blockquote>
-<div id="1cf60a91" class="cell" data-execution_count="7">
+<div id="b0af5b1f" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> collections <span class="im">import</span> deque</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2415,7 +2416,7 @@ SUMMARY
 <blockquote class="blockquote">
 <p><strong>Python solution to fill the table</strong></p>
 </blockquote>
-<div id="493972f7" class="cell" data-execution_count="8">
+<div id="8a480ea1" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> networkx <span class="im">as</span> nx</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
@@ -2577,7 +2578,7 @@ F            3   9  12   9  12      0      True
 <blockquote class="blockquote">
 <p><strong>Python solution using Matplotlib</strong></p>
 </blockquote>
-<div id="1296635f" class="cell" data-execution_count="9">
+<div id="f8ba8e35" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.patches <span class="im">as</span> mpatches</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -2662,7 +2663,7 @@ F            3   9  12   9  12      0      True
 <blockquote class="blockquote">
 <p><strong>Python solution using Matplotlib with resource leveling</strong></p>
 </blockquote>
-<div id="e36b3181" class="cell" data-execution_count="10">
+<div id="95ef0791" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.express <span class="im">as</span> px</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.graph_objects <span class="im">as</span> go</span>
@@ -3419,9 +3420,305 @@ Key Concepts Mastered
 <li>Explore advanced project management software tools</li>
 <li>Prepare for Module 4: Graph Algorithms and Network Optimization</li>
 </ul>
-
-
 </section>
+</section>
+<section id="review-questions-5" class="level2" data-number="4.9">
+<h2 data-number="4.9" class="anchored" data-anchor-id="review-questions-5"><span class="header-section-number">4.9</span> Review Questions</h2>
+<ol type="1">
+<li><p>Compare and contrast the Critical Path Method (CPM) and Program Evaluation and Review Technique (PERT) in decision-making.</p></li>
+<li><p>What are the key time durations used in the PERT method? Justify the choice of expected time duration calculation in the context of probabilistic modelling.</p></li>
+<li><p>Write the PERT algorithm to find the expected duration and variance of a non-repetitive project.</p></li>
+<li><p>How can Gantt charts be used to identify potential scheduling conflicts and resource bottlenecks in campus projects?</p></li>
+<li><p>The mean and standard deviation of project duration are 300 and 100 days, respectively. With proper assumptions, find the probability for (a) completing the project within 417 days, (b) not completing within 417 days, (c) completing the project within 183 days, and (d) not completing within 183 days.</p></li>
+<li><p>A project composed of 12 activities has following schedule characteristics:</p></li>
+<li><p>Construct the network diagram</p></li>
+<li><p>Compute earliest and latest event time for each event</p></li>
+<li><p>Find EST, LST, EFT, and LFT values of all activities</p></li>
+<li><p>Find the critical path and project duration</p></li>
+</ol>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Duration</th>
+<th>Activity</th>
+<th>Duration</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1-2</td>
+<td>2</td>
+<td>4-6</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>1-3</td>
+<td>2</td>
+<td>5-8</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>1-4</td>
+<td>1</td>
+<td>6-9</td>
+<td>5</td>
+</tr>
+<tr class="even">
+<td>2-5</td>
+<td>4</td>
+<td>7-8</td>
+<td>4</td>
+</tr>
+<tr class="odd">
+<td>3-6</td>
+<td>8</td>
+<td>8-9</td>
+<td>3</td>
+</tr>
+<tr class="even">
+<td>3-7</td>
+<td>5</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ol start="5" type="1">
+<li>A campus event planning project has resource constraints (only 2 project managers available). Create a resource-leveled Gantt chart using the following data.<br>
+Activities with PM requirements:</li>
+</ol>
+<ol type="i">
+<li>Planning: 2 PMs, 2 weeks</li>
+<li>Vendor selection: 1 PM, 3 weeks</li>
+<li>Logistics: 2 PMs, 2 weeks</li>
+<li>Promotion: 1 PM, 4 weeks</li>
+<li>Execution: 2 PMs, 1 week. Assume that planning is the predecessor for Vendor selection, Logistics, and Promotion.</li>
+</ol>
+<ol start="6" type="1">
+<li>The following table lists the jobs of a network along with their time estimates.</li>
+</ol>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 7%">
+<col style="width: 30%">
+<col style="width: 30%">
+<col style="width: 30%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Job</th>
+<th>Duration (days) - a</th>
+<th>Duration (days) - m</th>
+<th>Duration (days) - b</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1-2</td>
+<td>3</td>
+<td>6</td>
+<td>15</td>
+</tr>
+<tr class="even">
+<td>1-6</td>
+<td>2</td>
+<td>5</td>
+<td>14</td>
+</tr>
+<tr class="odd">
+<td>2-3</td>
+<td>6</td>
+<td>12</td>
+<td>30</td>
+</tr>
+<tr class="even">
+<td>2-4</td>
+<td>2</td>
+<td>5</td>
+<td>8</td>
+</tr>
+<tr class="odd">
+<td>3-5</td>
+<td>5</td>
+<td>11</td>
+<td>17</td>
+</tr>
+<tr class="even">
+<td>4-5</td>
+<td>3</td>
+<td>6</td>
+<td>15</td>
+</tr>
+<tr class="odd">
+<td>6-7</td>
+<td>3</td>
+<td>9</td>
+<td>27</td>
+</tr>
+<tr class="even">
+<td>5-8</td>
+<td>1</td>
+<td>4</td>
+<td>7</td>
+</tr>
+<tr class="odd">
+<td>7-8</td>
+<td>4</td>
+<td>19</td>
+<td>28</td>
+</tr>
+</tbody>
+</table>
+<ol type="1">
+<li><p>Draw the project network</p></li>
+<li><p>Calculate the length and variance of the critical path</p></li>
+<li><p>What is the approximate probability that the jobs on the critical path will be completed in 41 days?</p></li>
+<li><p>What is the probability that the project will not be completed in 45 days?</p></li>
+<li><p>A project composed of 12 activities has following schedule characteristics:</p></li>
+</ol>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Duration</th>
+<th>Activity</th>
+<th>Duration</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1-2</td>
+<td>4</td>
+<td>5-6</td>
+<td>4</td>
+</tr>
+<tr class="even">
+<td>1-3</td>
+<td>1</td>
+<td>5-7</td>
+<td>8</td>
+</tr>
+<tr class="odd">
+<td>2-4</td>
+<td>1</td>
+<td>6-8</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>3-4</td>
+<td>1</td>
+<td>7-8</td>
+<td>2</td>
+</tr>
+<tr class="odd">
+<td>3-5</td>
+<td>6</td>
+<td>8-10</td>
+<td>5</td>
+</tr>
+<tr class="even">
+<td>4-9</td>
+<td>5</td>
+<td>9-10</td>
+<td>7</td>
+</tr>
+</tbody>
+</table>
+<ol type="1">
+<li><p>Construct the network diagram</p></li>
+<li><p>Compute earliest and latest event time for each event</p></li>
+<li><p>Find EST, LST, EFT, and LFT values of all activities</p></li>
+<li><p>Find the critical path and project duration</p></li>
+<li><p>Explain the necessity of scheduling in project planning. Use a Gantt chart to visualize the critical activities, non-critical activities, and event slack for the following project. The duration of the activity in weeks is given in brackets.</p></li>
+</ol>
+<ul>
+<li>A (4), B (3) start at 0.</li>
+<li>C (2) depends on A.</li>
+<li>D (5) depends on A.</li>
+<li>E (6) depends on B.</li>
+<li>F (3) depends on C, D, E.</li>
+</ul>
+<ol start="9" type="1">
+<li>For the library construction project, add probabilistic time estimates:</li>
+</ol>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>a</th>
+<th>m</th>
+<th>b</th>
+<th>Predecessors</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>-</td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>A</td>
+</tr>
+<tr class="odd">
+<td>C</td>
+<td>5</td>
+<td>6</td>
+<td>7</td>
+<td>B</td>
+</tr>
+<tr class="even">
+<td>D</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>C</td>
+</tr>
+<tr class="odd">
+<td>E</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>C</td>
+</tr>
+<tr class="even">
+<td>F</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>D, E</td>
+</tr>
+<tr class="odd">
+<td>G</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>C</td>
+</tr>
+<tr class="even">
+<td>H</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>F, G</td>
+</tr>
+</tbody>
+</table>
+<p>Calculate:</p>
+<ol type="1">
+<li>Expected project duration</li>
+<li>Probability of completing in 22 weeks</li>
+<li>95% confidence interval for completion</li>
+</ol>
+
+
 </section>
 
 </main> <!-- /main -->
